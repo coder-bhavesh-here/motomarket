@@ -10,7 +10,11 @@ class TourPrice extends Model
 {
     use HasFactory;
 
-    // Define the inverse relationship with the Tour model
+    /**
+     * Define the inverse relationship with the Tour model
+     *
+     * @return BelongsTo
+     */
     public function tour(): BelongsTo
     {
         return $this->belongsTo(Tour::class);
