@@ -11,7 +11,7 @@ class TourController extends Controller
 {
     public function index(): View
     {
-        return view('tours.index', [
+        return view('livewire.tours.tour-wizard', [
             'tours' => auth()->user()->tours()->get()
         ]);
     }
