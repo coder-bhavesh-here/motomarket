@@ -21,9 +21,10 @@ class Tour extends Model
     /**
      * Relationship with the TourImage model
      *
+     * @param integer $id
      * @return HasMany
      */
-    public function images(): HasMany
+    public function images(int $id): HasMany
     {
         return $this->hasMany(TourImage::class);
     }

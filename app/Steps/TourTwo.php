@@ -47,7 +47,7 @@ class TourTwo extends Step
     {
         return [
             [
-                'state.title'     => ['required'],
+                // 'state.title'     => ['required'],
             ],
             [],
             [
