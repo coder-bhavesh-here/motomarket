@@ -38,3 +38,8 @@
     background: #FFF;
     border: 1px dashed #8B8F93;
 }
+
+button {
+    border: 1px solid black;
+    color: black;
+}
