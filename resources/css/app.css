@@ -46,3 +46,6 @@ button {
 button .bg-positive-500 {
     color: white !important;
 }
+.text-white {
+    color: white !important;
+}
