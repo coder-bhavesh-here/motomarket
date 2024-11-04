@@ -5,6 +5,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta property="og:image" itemprop="image"
+        content="https://photos.smugmug.com/Galleries/Motorcycles/i-LRCdKWq/0/LfMtVbcFp6X3xmcSNDwq6wbPcR6JS2Dn3GJvhTF7S/X2/cj.photos-_CJ07462-X2.jpg">
+    <meta property="og:description"
+        content="A plateform where you can find your buddies to ride with from the globe to any destination." />
+    <meta property="og:title" content="World On Moto" />
+    <meta property="og:site_name" content="World On Moto">
+    <meta property="og:type" content="website" />
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
