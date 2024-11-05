@@ -83,7 +83,7 @@
             </div>
             <div class="w-3/6">
                 <div class="w-2/6 flex items-center">
-                    <div><x-inputs.number /></div>
+                    <div><x-input /></div>
                     <div class="ml-2"><span>days</span></div>
                 </div>
                 <div class="text-sm text-gray-500 mt-2">
@@ -100,7 +100,7 @@
             </div>
             <div class="w-3/6">
                 <div class="w-2/6 flex items-center">
-                    <div><x-inputs.number /></div>
+                    <div><x-input /></div>
                     <div class="ml-2"><span>days</span></div>
                 </div>
                 <div class="text-sm text-gray-500 mt-2">
@@ -118,7 +118,7 @@
             </div>
             <div class="w-3/6">
                 <div class="w-2/6">
-                    <x-inputs.number />
+                    <x-input />
                 </div>
                 <div class="text-sm text-gray-500 mt-2">
                     <span>Maximum number of riders in the trip.</span>
@@ -134,7 +134,7 @@
             </div>
             <div class="w-3/6">
                 <div class="w-2/6">
-                    <x-inputs.number />
+                    <x-input />
                 </div>
                 <div class="text-sm text-gray-500 mt-2">
                     <span>Roughly how many guides or leads will be part of the tour? (put '0' is this is a self-guided
@@ -226,7 +226,7 @@
             </div>
             <div class="w-3/6">
                 <div class="w-2/6 flex items-center">
-                    <div><x-inputs.number /></div>
+                    <div><x-input /></div>
                     <div class="ml-2"><span>KM</span></div>
                 </div>
                 <div class="text-sm text-gray-500 mt-2">

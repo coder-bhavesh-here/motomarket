@@ -13,7 +13,7 @@
     <meta property="og:site_name" content="World On Moto">
     <meta property="og:type" content="website" />
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('app.name', 'World On Moto') }}</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
