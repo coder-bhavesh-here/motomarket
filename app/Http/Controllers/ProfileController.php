@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Models\Tour;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -11,6 +12,14 @@ use Illuminate\View\View;
 
 class ProfileController extends Controller
 {
+    public function home(): View
+    {
+        return view('home', [
+            'user' => Auth::user(),
+            'tours' => Tour::with(['user'])->get(),
+        ]);
+    }
+
     /**
      * Display the user's profile form.
      */

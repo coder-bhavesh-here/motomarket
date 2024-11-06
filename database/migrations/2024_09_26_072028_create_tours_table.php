@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('riding_style_info')->nullable();
             $table->enum('rider_capability', [Tour::BEGINNER, Tour::INTERMEDIATE, Tour::EXPERT]);
             $table->text('rider_capability_info')->nullable();
+            $table->text('tour_description')->nullable();
             $table->integer('duration_days');
             $table->integer('rest_days')->default(0);
             $table->integer('max_riders');

@@ -149,3 +149,28 @@ button .bg-positive-500 {
       display: none;
     }
   }
+hr {
+    margin: 15px 0 !important;
+}
+.tour-info {
+    padding: 16px;
+    border: 1px solid #ededed80;
+    border-radius: 10px;
+    margin: 10px 0;
+    background-color: #ededed80;
+}
+.tour-info .tour-title {
+    font-size: 28px;
+    color: #696868;
+    font-weight: bold;
+}
+.tour-info .tour-owner {
+    font-size: 15px;
+}
+.tour-details img {
+    width: 40%;
+    max-height: fit-content;
+}
+.tour-details .tour-description {
+    width: 60%;
+}
