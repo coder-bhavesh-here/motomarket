@@ -10,7 +10,6 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
-
     <!-- Styles -->
     <style>
         /* ! tailwindcss v3.4.1 | MIT License | https://tailwindcss.com */
@@ -957,6 +956,35 @@
                                     alt="Tour photo">
                                 <div class="tour-description ml-3 text-2xl">
                                     <p>{{ $tour->tour_description }}</p>
+                                    <div class="badges mt-5">
+                                        <span class="badge"><i
+                                                class="fa-solid fa-signal"></i><span>{{ $tour->rider_capability }}</span></span>
+                                        <span class="badge"><i
+                                                class="fa-solid fa-map-signs"></i><span>{{ $tour->riding_style }}</span></span>
+                                        <span class="badge"><i
+                                                class="fa-solid fa-hourglass-half"></i><span>{{ $tour->duration_days }}
+                                                days</span></span>
+                                        @foreach ($tour->prices as $tourDateWise)
+                                            <span class="badge"><i
+                                                    class="fa-solid fa-calendar"></i><span>{{ $tourDateWise->date }}
+                                                    <b>(€{{ $tourDateWise->price }})</b></span></span>
+                                        @endforeach
+                                        <span class="badge"><i
+                                                class="fa fa-map-pin"></i><span>{{ $tour->countries }}</span></span>
+                                        <span class="badge"><i class="fa fa-user"></i><span>{{ $tour->max_riders }}
+                                                Riders & {{ $tour->guides }} Guides</span></span>
+                                        <span class="badge"><i
+                                                class="fa fa-motorcycle"></i><span>{{ \Illuminate\Support\Str::limit($tour->riding_style_info, $limit = 15, $end = '...') }}
+                                                Guides</span></span>
+                                        <span class="badge"><i
+                                                class="fa-solid fa-star"></i><span>{{ $tour->bike_option }}</span></span>
+                                    </div>
+                                    <div class="links">
+                                        <a href="#"><i class="fa-solid fa-eye"></i></a>
+                                        <a href="#"><i class="fa-solid fa-heart"></i></a>
+                                        <a href="#"><i class="fa-solid fa-trash"></i></a>
+                                        <a href="#">See more&nbsp<i class="fa-solid fa-external-link"></i></a>
+                                    </div>
                                 </div>
                             </div>
                         </div>

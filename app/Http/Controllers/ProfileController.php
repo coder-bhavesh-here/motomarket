@@ -16,7 +16,7 @@ class ProfileController extends Controller
     {
         return view('home', [
             'user' => Auth::user(),
-            'tours' => Tour::with(['user'])->get(),
+            'tours' => Tour::with(['user'])->with('prices')->get(),
         ]);
     }
 
