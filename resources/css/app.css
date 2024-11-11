@@ -198,3 +198,37 @@ span.badge span {
     margin: 14px;
     float: right;
 }
+.tour-details ul {
+    font-size: 20px;
+    list-style: inside;
+    margin-top: 15px;
+}
+.tour-details ul li {
+    margin-top: 10px;
+}
+.include-details {
+    font-size: 18px;
+}
+.description .header {
+    font-size: 20px;
+    color: black;
+}
+.tour-prices .price {
+    padding: 25px;
+}
+.price button {
+    background-color: #3F53D9;
+    color: white !important;
+    font-size: 18px;
+}
+footer {
+    background-color: lightgray;
+}
+footer ul {
+    margin: 10px;
+    padding: 10px;
+}
+footer ul li {
+    padding: 10px;
+    border-bottom: 1px solid gray;
+}

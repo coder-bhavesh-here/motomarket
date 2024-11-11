@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProfileController::class, 'home']);
+Route::get('/tour/{tourId}', [TourController::class, 'show']);
 
 Route::get('/dashboard', [ProfileController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 

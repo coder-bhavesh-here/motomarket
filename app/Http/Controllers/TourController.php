@@ -20,4 +20,12 @@ class TourController extends Controller
     {
         return view('tours.create');
     }
+
+    public function show($tourId): View
+    {
+        $tour = Tour::find($tourId);
+        return view('tour-detail', [
+            'tour' => $tour
+        ]);
+    }
 }
