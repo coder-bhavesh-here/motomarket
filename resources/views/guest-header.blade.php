@@ -906,7 +906,10 @@
     <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
         <div class="relative min-h-screen flex flex-col selection:bg-[#FF2D20] selection:text-white">
             <div class="relative w-full px-6">
-                <header class="grid grid-cols-2 items-center gap-2 py-10 lg:grid-cols-3">
+                <header class="grid grid-cols-2 items-center gap-2 lg:grid-cols-3">
+                    <div class="flex lg:justify-center lg:col-start-1">
+                        <img class="guest-logo" src="{{ asset('images/logo.png') }}" alt="Logo">
+                    </div>
                     <div class="flex lg:justify-center lg:col-start-2">
                         <svg class="h-12 w-auto text-white lg:h-16 lg:text-[#FF2D20]" viewBox="0 0 62 65" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -916,7 +919,7 @@
                         </svg>
                     </div>
                     @if (Route::has('login'))
-                        <nav class="-mx-3 flex flex-1 justify-end">
+                        <nav class="-mx-3 flex flex-1 justify-center">
                             @auth
                                 <a href="{{ url('/dashboard') }}"
                                     class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">

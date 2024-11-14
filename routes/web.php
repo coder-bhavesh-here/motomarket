@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProfileController::class, 'home']);
 Route::get('/tour/{tourId}', [TourController::class, 'show']);
+Route::get('/tour/book/{tourId}', [TourController::class, 'book']);
 
 Route::get('/dashboard', [ProfileController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 

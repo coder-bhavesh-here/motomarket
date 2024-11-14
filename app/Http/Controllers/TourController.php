@@ -28,4 +28,13 @@ class TourController extends Controller
             'tour' => $tour
         ]);
     }
+    public function book($tourId): View
+    {
+        $tour = Tour::with(['prices', 'addons'])->where('id', $tourId)->first();
+        return view('book', [
+            'tour' => $tour,
+            'nationalities' => ['India', 'Europe', 'US  '],
+            'tourDates' => $tour->prices
+        ]);
+    }
 }
