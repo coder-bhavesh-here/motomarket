@@ -13,8 +13,8 @@
     <meta property="og:site_name" content="World On Moto">
     <meta property="og:type" content="website" />
 
-    <title>{{ config('app.name', 'World On Moto') }}</title>
-
+    <title>World On Moto</title>
+    <link rel="icon" type="image/png" href="{{ asset('images/fav.png') }}">
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
