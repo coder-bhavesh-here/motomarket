@@ -909,7 +909,8 @@
             <div class="relative w-full px-6">
                 <header class="grid grid-cols-2 items-center gap-2 lg:grid-cols-3">
                     <div class="flex lg:justify-center lg:col-start-1">
-                        <img class="guest-logo" src="{{ asset('images/logo.png') }}" alt="Logo">
+                        <a href="/"><img class="guest-logo" src="{{ asset('images/logo.png') }}"
+                                alt="Logo"></a>
                     </div>
                     <div class="flex lg:justify-center lg:col-start-2">
                         <svg class="h-12 w-auto text-white lg:h-16 lg:text-[#FF2D20]" viewBox="0 0 62 65" fill="none"
