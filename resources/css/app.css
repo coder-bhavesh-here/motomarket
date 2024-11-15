@@ -39,8 +39,9 @@
 }
 
 button {
-    border: 1px solid black;
+    border: 1px solid black !important;
     color: black !important;
+    border-color: black !important;
 }
 button .bg-positive-500 {
     color: white !important;
