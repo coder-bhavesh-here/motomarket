@@ -6,8 +6,10 @@ export default {
     content: [
         "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
         "./vendor/vildanbina/livewire-wizard/resources/views/*.blade.php",
+        "./vendor/wireui/wireui/src/View/*.php",
+        "./vendor/wireui/wireui/src/View/**/*.php",
         "./storage/framework/views/*.php",
-        "./resources/views/**/*.blade.php",
+        "./resources/**/*.blade.php",
     ],
 
     theme: {
