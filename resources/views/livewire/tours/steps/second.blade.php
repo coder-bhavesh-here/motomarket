@@ -7,16 +7,6 @@
         </div>
         <x-textarea class="editorBlock" id="description" name="description" />
         <div>
-            @push('scripts')
-                <script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/classic/ckeditor.js"></script>
-                <script>
-                    ClassicEditor
-                        .create(document.querySelector('.editorBlock'))
-                        .catch(error => {
-                            console.error(error);
-                        });
-                </script>
-            @endpush
         </div>
     </div>
     <hr>

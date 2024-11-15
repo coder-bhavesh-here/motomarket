@@ -240,3 +240,20 @@ footer ul li {
     margin-top: 10px;
     height: 180px;
 }
+#drop-area {
+    border: 2px dashed #ccc;
+    box-shadow: gray 0px 0px 10px 1px;
+    width: 100%;
+    padding: 10% 35%;
+    text-align: center;
+    /* margin: auto; */
+    margin-top: 2%;
+    font-size: 22px;
+    font-weight: 500;
+}
+#drop-area button{
+    display: none;
+}
+.tox-menubar button, .tox-toolbar__primary button {
+    border: unset !important;
+}

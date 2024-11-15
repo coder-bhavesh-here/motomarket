@@ -37,4 +37,17 @@ class TourController extends Controller
             'tourDates' => $tour->prices
         ]);
     }
+
+    public function uploadImage(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048',
+        ]);
+        if ($request->file()) {
+            $fileName = time() . '_' . $request->file->getClientOriginalName();
+            $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
+            return response()->json(['success' => 'File uploaded successfully', 'file' => $fileName]);
+        }
+        return response()->json(['error' => 'File upload failed'], 500);
+    }
 }

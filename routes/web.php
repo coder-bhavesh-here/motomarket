@@ -14,6 +14,7 @@ Route::get('/dashboard', [ProfileController::class, 'dashboard'])->middleware(['
 Route::middleware('auth')->group(function () {
     Route::get('/tours', [TourController::class, 'index'])->name('tours');
     Route::get('/tours/create', [TourController::class, 'create'])->name('tours.create');
+    Route::post('/tours/upload_image', [TourController::class, 'uploadImage'])->name('tours.upload');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
