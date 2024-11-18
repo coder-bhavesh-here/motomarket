@@ -257,3 +257,42 @@ footer ul li {
 .tox-menubar button, .tox-toolbar__primary button {
     border: unset !important;
 }
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left !important;
+    padding: 8px;
+  }
+  .table-borderless td, th {
+    border: unset;
+  }
+  .table-centered td, th{
+    text-align: center !important;
+    padding: 8px;
+  }
+  .btn-primary {
+      padding: 10px;
+      margin: 10px;
+      border: unset !important;
+      background-color: #3F53D9 !important;
+      color: white !important;
+      border-radius: 7px;
+      font-size: 18px;
+  }
+  .btn-danger {
+      padding: 10px;
+      margin: 10px;
+      border: unset !important;
+      background-color: #dc3545 !important;
+      color: white !important;
+      border-radius: 7px;
+      font-size: 18px;
+  }
+  .btn-info {
+      padding: 10px;
+      margin: 10px;
+      border: unset !important;
+      background-color: #117a8b !important;
+      color: white !important;
+      border-radius: 7px;
+      font-size: 18px;
+  }

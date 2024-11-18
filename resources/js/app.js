@@ -5,6 +5,7 @@ import "./bootstrap";
 // window.Alpine = Alpine;
 
 // Alpine.start();
+let table = new DataTable("#datatable");
 
 document.querySelectorAll(".next-button").forEach(function (element) {
     element.addEventListener("click", function () {

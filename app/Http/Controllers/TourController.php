@@ -11,14 +11,18 @@ class TourController extends Controller
 {
     public function index(): View
     {
-        return view('livewire.tours.tour-wizard', [
-            'tours' => auth()->user()->tours()->get()
+        $userId = auth()->user()->id;
+        $tours = Tour::where('user_id', $userId)->get();
+        return view('tours-list', [
+            'tours' => $tours
         ]);
     }
 
     function create(): View
     {
-        return view('tours.create');
+        return view('livewire.tours.tour-wizard', [
+            'tours' => auth()->user()->tours()->get()
+        ]);
     }
 
     public function show($tourId): View

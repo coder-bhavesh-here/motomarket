@@ -7,6 +7,36 @@
     <button onclick="document.getElementById('fileElem').click()">Select files</button>
 </div>
 
+<div class="mb-5 mt-5">
+    <span class="p-2">Tour Promotional videos</span>
+    <div class="text-sm text-gray-500 mt-2 p-2">
+        <span>Provide YouTube links to any promotional videos you have for this tour</span>
+        <div class="flex items-center mt-4">
+            <div class="w-1/6">
+                Video Link 1
+            </div>
+            <div class="w-5/6">
+                <x-input placeholder="https://youtube.com/promotional-video-1" wire:model="video_link_one" />
+            </div>
+        </div>
+        <div class="flex items-center mt-4">
+            <div class="w-1/6">
+                Video Link 2
+            </div>
+            <div class="w-5/6">
+                <x-input placeholder="https://youtube.com/promotional-video-2" wire:model="video_link_two" />
+            </div>
+        </div>
+        <div class="flex items-center mt-4">
+            <div class="w-1/6">
+                Video Link 3
+            </div>
+            <div class="w-5/6">
+                <x-input placeholder="https://youtube.com/promotional-video-3" wire:model="video_link_three" />
+            </div>
+        </div>
+    </div>
+</div>
 <script>
     document.getElementById("drop-area").addEventListener('click', function() {
         document.getElementById("fileElem").click();
