@@ -23,7 +23,7 @@
                 Video Link 1
             </div>
             <div class="w-5/6">
-                <x-input placeholder="https://youtube.com/promotional-video-1" value="{{ $tour->video_one }}"
+                <x-input placeholder="https://youtube.com/promotional-video-1" value="{{ isset($tour->video_one) ? $tour->video_one : '' }}"
                     name="video_link_one" />
             </div>
         </div>
@@ -32,7 +32,7 @@
                 Video Link 2
             </div>
             <div class="w-5/6">
-                <x-input placeholder="https://youtube.com/promotional-video-2" value="{{ $tour->video_two }}"
+                <x-input placeholder="https://youtube.com/promotional-video-2" value="{{ isset($tour->video_two) ? $tour->video_two : '' }}"
                     name="video_link_two" />
             </div>
         </div>
@@ -41,7 +41,7 @@
                 Video Link 3
             </div>
             <div class="w-5/6">
-                <x-input placeholder="https://youtube.com/promotional-video-3" value="{{ $tour->video_three }}"
+                <x-input placeholder="https://youtube.com/promotional-video-3" value="{{ isset($tour->video_three) ? $tour->video_three : '' }}"
                     name="video_link_three" />
             </div>
         </div>
