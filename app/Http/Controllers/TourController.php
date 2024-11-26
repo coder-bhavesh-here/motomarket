@@ -82,7 +82,7 @@ class TourController extends Controller
     {
         $tourImageId = $request->tourImageId;
         $imageDetails = TourImage::find($tourImageId);
-        unlink(str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']) . '/storage/' . $imageDetails->image_path);
+        unlink(str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']) . '/public/storage/' . $imageDetails->image_path);
         $imageDetails->delete();
         return response()->json(['success' => 'Image deleted successfully.'], 200);
     }
