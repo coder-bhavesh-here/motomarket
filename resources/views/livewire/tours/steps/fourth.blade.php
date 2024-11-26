@@ -70,7 +70,7 @@
 </div>
 
 <script type="text/javascript">
-    var priceI = {{ count($prices) - 1 }};
+    var priceI = {{ count($prices) }};
     $("#addDate").click(function() {
         ++priceI;
         $("#dateTable").append('<tr><td><input type="date" name="date[' + priceI +
@@ -79,8 +79,9 @@
             '][qty]" placeholder="Price on the date" class="form-control" /></td><td><button type="button" class="btn-danger remove-tr">Remove</button></td></tr>'
         );
     });
+    var addonI = {{ count($addons) }};
     $("#addAddon").click(function() {
-        var addonI = {{ count($addons) - 1 }};
+        ++addonI;
         $("#addonTable").append('<tr><td><input type="text" class="w-full" name="addon[' + addonI +
             '][addon]" placeholder="Riding with a passenger. 2 up riding on one bike" class="form-control" /></td><td><input type="text" name="addon[' +
             addonI +
