@@ -11,11 +11,11 @@
                         <th>Duration</th>
                         <th>Max Riders</th>
                         <th>Max Guides</th>
+                        <th>Tour Date</th>
+                        <th>Total Amount</th>
                         <th>Distance</th>
-                        <th>Bike Options</th>
-                        <th>Status</th>
-                        <th>Created At</th>
-                        <th>Actions</th>
+                        <th>Booked At</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -26,19 +26,11 @@
                             <td>{{ $tour->duration_days }}</td>
                             <td>{{ $tour->max_riders }}</td>
                             <td>{{ $tour->guides }}</td>
+                            <td>{{ \Carbon\Carbon::parse($tour->date)->format('F d, Y') }}</td>
+                            <td>€ {{ $tour->amount }}</td>
                             <td>{{ $tour->tour_distance }} Km</td>
-                            <td>{{ $tour->bike_option }}</td>
-                            <td>
-                                <span
-                                    class="{{ $tour->status === 'draft' ? 'badge' : 'badge-positive' }}">{{ ucfirst($tour->status) }}</span>
-                            </td>
-                            <td>{{ $tour->created_at }}</td>
-                            <td>
-                                <i class="fa-solid fa-eye" />
-                                <a class="ml-3 fa-solid fa-pencil"
-                                    href="tours/create?tour_id={{ $tour->id }}&activeStep=0"></a>
-                                <i class="ml-3 fa-solid fa-trash" />
-                            </td>
+                            <td>{{ \Carbon\Carbon::parse($tour->created_at)->format('F d, Y H:i A') }}</td>
+                            <td><a target="_blank" href="tour/{{ $tour->id }}"><u>View Tour ></u></a></td>
                         </tr>
                     @endforeach
                 </tbody>

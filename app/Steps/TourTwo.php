@@ -2,6 +2,7 @@
 
 namespace App\Steps;
 
+use App\Models\Tour;
 use PhpParser\Node\Expr\Cast\Bool_;
 use Vildanbina\LivewireWizard\Components\Step;
 
@@ -9,12 +10,16 @@ class TourTwo extends Step
 {
     // Step view located at resources/views/steps/general.blade.php 
     protected string $view = 'livewire.tours.steps.second';
+    public $tour;
 
     /*
      * Initialize step fields
      */
     public function mount()
     {
+        if (isset($_GET['tour_id'])) {
+            $this->tour = Tour::find($_GET['tour_id']);
+        }
         $this->mergeState([
             'title'                  => $this->model->title,
         ]);

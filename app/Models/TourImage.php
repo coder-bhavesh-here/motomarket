@@ -9,6 +9,10 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class TourImage extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'tour_id',
+        'image_path',
+    ];
 
     /**
      * Define the inverse relationship with the Tour model

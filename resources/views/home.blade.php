@@ -15,7 +15,7 @@
                 <img src="https://photos.smugmug.com/Galleries/Motorcycles/i-jX3tNwR/0/K2H4fw8P5MqPD8SRLWSrRZm4479d3ZvH8HL773j2D/L/cj.photos-_CJ09043-L.jpg"
                     alt="Tour photo">
                 <div class="tour-description ml-3 text-2xl">
-                    <p>{{ $tour->tour_description }}</p>
+                    <p>{!! substr($tour->tour_description, 0, 1000) !!}</p>
                     <div class="badges mt-5">
                         <span class="badge"><i
                                 class="fa-solid fa-signal"></i><span>{{ $tour->rider_capability }}</span></span>

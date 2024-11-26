@@ -9,6 +9,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class TourAddOn extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'tour_id',
+        'addon',
+        'addon_price',
+    ];
 
     /**
      * Define the inverse relationship with the Tour model

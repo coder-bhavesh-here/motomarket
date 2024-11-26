@@ -1,3 +1,6 @@
+<input type="hidden" id="description_val" value="{{ $tour->tour_description }}">
+<input type="hidden" id="included_val" value="{{ $tour->included }}">
+<input type="hidden" id="not_included_val" value="{{ $tour->not_included }}">
 <div class="mt-5">
     <x-head.tinymce-config />
     <div class="mb-5">

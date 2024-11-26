@@ -30,14 +30,14 @@ return new class extends Migration
             $table->boolean('two_up_riding')->default(false);
             $table->text('bike_specification')->nullable();
             $table->integer('tour_distance')->nullable();
-            $table->string('countries');
-            $table->text('included');
-            $table->text('not_included');
-            $table->text('map_link');
-            $table->text('loation_notes');
-            $table->text('video_one');
-            $table->text('video_two');
-            $table->text('video_three');
+            $table->string('countries')->nullable();
+            $table->text('included')->nullable();
+            $table->text('not_included')->nullable();
+            $table->text('map_link')->nullable();
+            $table->text('loation_notes')->nullable();
+            $table->text('video_one')->nullable();
+            $table->text('video_two')->nullable();
+            $table->text('video_three')->nullable();
             $table->timestamps();
         });
     }

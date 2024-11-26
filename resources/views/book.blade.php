@@ -1,54 +1,156 @@
 @include('guest-header')
 <wireui:scripts />
 <div class="px-4 py-6">
-    <p>Go Back to <strong>Hard Enduro Tours Bulgaria - Wild Bulgaria</strong></p>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <p style="font-size: 18px">
+        < Go Back to <strong><a href="/tour/{{ $tour->id }}">{{ $tour->title }}</a></strong> >
+    </p>
 
-    <div class="mt-4">
-        <h2 class="text-2xl font-semibold">Select a Date</h2>
+    <div class="mt-5">
+        {{-- <h2 class="text-2xl font-semibold">Select a Date</h2> --}}
+        <input type="hidden" value="{{ $tour->id }}" id="tour_id">
+        <input type="hidden" value="{{ $selectedDate->date }}" id="date">
         <div class="mt-2 space-y-2">
             @foreach ($tourDates as $date)
-                <x-button label="{{ $date->date }} €{{ number_format($date->price, 2) }}"
-                    wire:click="selectDate({{ $date->id }})" />
+                <a href="/book/{{ $date->id }}" class="mb-2"><span
+                        class="book-date {{ $date->id == $selectedDate->id ? 'selected' : '' }}">
+                        {{ \Carbon\Carbon::parse($date->date)->format('F d, Y') }}
+                        (€{{ number_format($date->price, 2) }})
+                    </span></a>
             @endforeach
         </div>
     </div>
 
     <div class="mt-6">
         <h2 class="text-xl font-semibold">Your Details</h2>
-        <x-input label="Your Name" placeholder="Please provide your formal full name" wire:model="name" />
-        <x-datetime-picker label="DOB" placeholder="yyyy - mm - dd" without-time wire:model="dob" />
 
-        <x-select label="Your Nationality" placeholder="Select your nationality" wire:model="nationality">
-            @foreach ($nationalities as $nationality)
-                <x-select.option label="{{ $nationality }}" value="{{ $nationality }}" />
-            @endforeach
-        </x-select>
-
-        <x-input label="Driving License Number" placeholder="Please type your driving licence number here"
-            wire:model="licenseNumber" />
-        <x-input label="Mobile Number" placeholder="Your mobile phone number" wire:model="mobileNumber" />
-        <x-input label="Your Address" placeholder="Your address" wire:model="address" />
-        <x-input label="Country" placeholder="Country" wire:model="country" />
-        <x-input label="Postcode" placeholder="Postcode" wire:model="postcode" />
+        <div class="my-10 sm:px-6 lg:px-8">
+            <div class="flex items-center">
+                <div class="w-1/6">
+                    Your Name
+                </div>
+                <div class="w-5/6">
+                    <div class="items-center">
+                        <x-input id="name" placeholder="Please provide your formal full name" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="my-10 sm:px-6 lg:px-8">
+            <div class="flex items-center">
+                <div class="w-1/6">
+                    Date of Birth
+                </div>
+                <div class="w-1/6">
+                    <div class="items-center">
+                        <input class="w-full" type="date" name="dob" id="dob">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="my-10 sm:px-6 lg:px-8">
+            <div class="flex items-center">
+                <div class="w-1/6">
+                    Your Nationality
+                </div>
+                <div class="w-5/6">
+                    <div class="items-center">
+                        <x-input id="nationality" placeholder="Please provide your nationality" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="my-10 sm:px-6 lg:px-8">
+            <div class="flex items-center">
+                <div class="w-1/6">
+                    Driving licence number
+                </div>
+                <div class="w-5/6">
+                    <div class="items-center">
+                        <x-input id="driving_license_number" placeholder="Please provide driving licence number" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="my-10 sm:px-6 lg:px-8">
+            <div class="flex items-center">
+                <div class="w-1/6">
+                    Mobile Number
+                </div>
+                <div class="w-5/6">
+                    <div class="items-center">
+                        <x-input id="mobile_number" placeholder="Please provide mobile number" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="my-10 sm:px-6 lg:px-8">
+            <div class="flex items-center">
+                <div class="w-1/6">
+                    Your Address
+                </div>
+                <div class="w-5/6">
+                    <div class="items-center">
+                        <x-textarea id="address" placeholder="Please provide your address" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="my-10 sm:px-6 lg:px-8">
+            <div class="flex items-center">
+                <div class="w-1/6">
+                    Country
+                </div>
+                <div class="w-5/6">
+                    <div class="items-center">
+                        <x-input id="country" placeholder="Please provide country" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="my-10 sm:px-6 lg:px-8">
+            <div class="flex items-center">
+                <div class="w-1/6">
+                    Postcode
+                </div>
+                <div class="w-1/6">
+                    <div class="items-center">
+                        <x-input id="postcode" placeholder="Please provide postal code" />
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-
+    <hr>
     <div class="mt-6">
-        <h2 class="text-xl font-semibold">Add-Ons</h2>
-        <p>Select all the add-ons for this tour from the list below.</p>
+        <div class="my-10 sm:px-6 lg:px-8">
+            <h2 class="text-xl font-semibold">Add-Ons</h2>
+            <p class="my-2">Select all the add-ons for this tour from the list below.</p>
 
-        <div class="mt-2 space-y-2">
-            @foreach ($tour->addOns as $addOn)
-                <x-checkbox label="{{ $addOn['name'] }} €{{ number_format($addOn['price'], 2) }}"
-                    wire:model="selectedAddOns" value="{{ $addOn['id'] }}" />
-            @endforeach
+            <div class="mt-2 space-y-2">
+                @foreach ($tour->addOns as $addOn)
+                    <div class="inline-flex w-full items-center p-3 addon-div">
+                        <input type="checkbox" name="addons[]" class="selectedAddOns" value="{{ $addOn->id }}"
+                            id="{{ $addOn->id }}" data-id="{{ $addOn->id }}"
+                            data-price="{{ number_format($addOn->addon_price, 2) }}">
+                        <label for="{{ $addOn->id }}" class="ml-2">{{ $addOn->addon }}</label>
+                    </div>
+                @endforeach
+            </div>
         </div>
     </div>
 
     <div class="mt-6">
-        <h2 class="text-xl font-semibold">Total Tour Price</h2>
-        <p>Total Tour Price: <strong>€{{ number_format(5000, 2) }}</strong></p>
-        <p>Pay today (10%): <strong>€{{ number_format(5000 * 0.1, 2) }}</strong></p>
-        <p>Pay before the 30th August 2024 (90%): <strong>€{{ number_format(5000 * 0.9, 2) }}</strong></p>
+        <input type="hidden" id="tour_price" value="{{ number_format($selectedDate->price, 2) }}">
+        <h2 class="text-xl font-semibold">Total Tour Price : <strong>€<span
+                    id="total_price">{{ number_format($selectedDate->price, 2) }}</span></strong></h2>
     </div>
 
     <div class="mt-4">
@@ -57,7 +159,70 @@
     </div>
 
     <div class="mt-4">
-        <x-button primary label="Confirm & Pay" wire:click="confirmAndPay" />
+        <x-button primary label="Confirm Booking" id="confirmBooking" />
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        const basePrice = parseFloat($("#tour_price").val().replace(',', '')); // Get the base tour price
+
+        function calculateTotalPrice() {
+            let totalPrice = basePrice;
+            $(".selectedAddOns:checked").each(function() {
+                totalPrice += parseFloat($(this).data("price"));
+            });
+            $("#total_price").html(totalPrice.toFixed(2));
+        }
+        $(".selectedAddOns").on("click", function() {
+            calculateTotalPrice();
+        });
+    });
+    $("#confirmBooking").click(function(e) {
+        const addons = $("input[name='addons[]']:checked")
+            .map(function() {
+                return $(this).val();
+            }).get().join(",");
+        const tour_id = $("#tour_id").val();
+        const date = $("#date").val();
+        const amount = $("#total_price").html();
+        const name = $("#name").val();
+        const dob = $("#dob").val();
+        const nationality = $("#nationality").val();
+        const driving_license_number = $("#driving_license_number").val();
+        const mobile_number = $("#mobile_number").val();
+        const address = $("#address").val();
+        const country = $("#country").val();
+        const postcode = $("#postcode").val();
+        $.ajax({
+            type: "POST",
+            url: "/book",
+            data: {
+                tour_id,
+                date,
+                amount,
+                addons,
+                name,
+                dob,
+                nationality,
+                driving_license_number,
+                mobile_number,
+                address,
+                country,
+                postcode
+            },
+            dataType: "JSON",
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                    "content"
+                ),
+            },
+            success: function(response) {
+                if (response.message === "Booking saved successfully") {
+                    alert(response.message);
+                    window.location.href = "/my-tours";
+                }
+            }
+        });
+    });
+</script>
 @include('footer')

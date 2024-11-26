@@ -2,19 +2,26 @@
 
 namespace App\Steps;
 
+use App\Models\TourAddOn;
+use App\Models\TourPrice;
 use Vildanbina\LivewireWizard\Components\Step;
 
 class TourFour extends Step
 {
     // Step view located at resources/views/steps/general.blade.php 
     protected string $view = 'livewire.tours.steps.fourth';
-
+    public $prices;
+    public $addons;
     /*
      * Initialize step fields
      */
     public function mount()
     {
         // dd($this->model);
+        if (isset($_GET['tour_id'])) {
+            $this->prices = TourPrice::where('tour_id', $_GET['tour_id'])->get();
+            $this->addons = TourAddOn::where('tour_id', $_GET['tour_id'])->get();
+        }
         $this->mergeState([
             'title'                  => $this->model->title,
         ]);

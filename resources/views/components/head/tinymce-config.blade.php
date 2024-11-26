@@ -3,9 +3,37 @@
         referrerpolicy="origin"></script>
     <script>
         tinymce.init({
-            selector: 'textarea.editorBlock', // Replace this CSS selector to match the placeholder element for TinyMCE
+            selector: 'textarea#description', // Replace this CSS selector to match the placeholder element for TinyMCE
             plugins: 'code table lists',
-            toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table'
+            toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table',
+            setup: function(editor) {
+                editor.on('init', function(e) {
+                    editor.setContent($("#description_val").val());
+                });
+            }
+
+        });
+        tinymce.init({
+            selector: 'textarea#included', // Replace this CSS selector to match the placeholder element for TinyMCE
+            plugins: 'code table lists',
+            toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table',
+            setup: function(editor) {
+                editor.on('init', function(e) {
+                    editor.setContent($("#included_val").val());
+                });
+            }
+
+        });
+        tinymce.init({
+            selector: 'textarea#not_included', // Replace this CSS selector to match the placeholder element for TinyMCE
+            plugins: 'code table lists',
+            toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table',
+            setup: function(editor) {
+                editor.on('init', function(e) {
+                    editor.setContent($("#not_included_val").val());
+                });
+            }
+
         });
     </script>
 </div>

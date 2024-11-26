@@ -2,12 +2,16 @@
 
 namespace App\Steps;
 
+use App\Models\Tour;
+use App\Models\TourImage;
 use Vildanbina\LivewireWizard\Components\Step;
 
 class TourThree extends Step
 {
     // Step view located at resources/views/steps/general.blade.php 
     protected string $view = 'livewire.tours.steps.third';
+    public $images;
+    public $tour;
 
     /*
      * Initialize step fields
@@ -15,6 +19,10 @@ class TourThree extends Step
     public function mount()
     {
         // dd($this->model);
+        if (isset($_GET['tour_id'])) {
+            $this->images = TourImage::where('tour_id', $_GET['tour_id'])->get();
+            $this->tour = Tour::find($_GET['tour_id']);
+        }
         $this->mergeState([
             'title'                  => $this->model->title,
         ]);

@@ -2,11 +2,13 @@
 
 namespace App\Steps;
 
+use App\Models\Tour;
 use Vildanbina\LivewireWizard\Components\Step;
 
 class TourOne extends Step
 {
     protected string $view = 'livewire.tours.steps.first';
+    public $tour;
 
     /*
      * Initialize step fields
@@ -17,6 +19,9 @@ class TourOne extends Step
         $this->mergeState([
             'title'                  => $this->model->title,
         ]);
+        if (isset($_GET['tour_id'])) {
+            $this->tour = Tour::find($_GET['tour_id']);
+        }
     }
 
     /*

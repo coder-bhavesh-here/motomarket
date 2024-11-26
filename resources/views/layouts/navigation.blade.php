@@ -15,9 +15,15 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('tours')" :active="request()->routeIs('tours')">
-                        {{ __('Tours') }}
-                    </x-nav-link>
+                    @if (Auth::user()->role === 'agency')
+                        <x-nav-link :href="route('tours')" :active="request()->routeIs('tours')">
+                            {{ __('Tours') }}
+                        </x-nav-link>
+                    @elseif (Auth::user()->role === 'user')
+                        <x-nav-link :href="route('my-tours')" :active="request()->routeIs('my-tours')">
+                            {{ __('My Tours') }}
+                        </x-nav-link>
+                    @endif
                 </div>
             </div>
 
