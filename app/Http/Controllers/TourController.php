@@ -180,7 +180,7 @@ class TourController extends Controller
         if ($addonValues != null) {
             TourAddOn::where('tour_id', $tour_id)->delete();
             foreach ($addonValues as $addOn) {
-                if ($addOn['addon'] != null && $addOn['price'] != null) {
+                if (is_array($addOn) && count($addOn) > 0 && $addOn['addon'] != null && $addOn['price'] != null) {
                     $tourAddon = TourAddOn::create([
                         'addon' => $addOn['addon'],
                         'addon_price' => $addOn['price'],
@@ -193,7 +193,7 @@ class TourController extends Controller
         if ($dateValues != null) {
             TourPrice::where('tour_id', $tour_id)->delete();
             foreach ($dateValues as $date) {
-                if ($date['date'] != null && $date['qty'] != null) {
+                if (is_array($date) && count($date) > 0 && $date['date'] != null && $date['qty'] != null) {
                     TourPrice::create([
                         'date' => $date['date'],
                         'price' => $date['qty'],
