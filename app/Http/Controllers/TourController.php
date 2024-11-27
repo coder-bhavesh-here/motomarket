@@ -177,10 +177,20 @@ class TourController extends Controller
     {
         $tour_id = $request->tour_id;
         $addonValues = $request->addonValues;
+        echo "<pre>";
+        print_r($addonValues);
+        echo "</pre>";
         if ($addonValues != null) {
             TourAddOn::where('tour_id', $tour_id)->delete();
             foreach ($addonValues as $addOn) {
                 if (is_array($addOn) && count($addOn) > 0 && isset($addOn['addon']) && isset($addOn['price']) && $addOn['addon'] != null && $addOn['price'] != null) {
+                    echo "<pre>";
+                    print_r([
+                        'addon' => $addOn['addon'],
+                        'addon_price' => $addOn['price'],
+                        'tour_id' => $tour_id,
+                    ]);
+                    echo "</pre>";
                     $tourAddon = TourAddOn::create([
                         'addon' => $addOn['addon'],
                         'addon_price' => $addOn['price'],
@@ -189,6 +199,7 @@ class TourController extends Controller
                 }
             }
         }
+        exit;
         $dateValues = $request->dateValues;
         if ($dateValues != null) {
             TourPrice::where('tour_id', $tour_id)->delete();
