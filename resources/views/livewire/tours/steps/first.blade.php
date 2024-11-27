@@ -46,7 +46,7 @@
                 </div>
                 <div class="w-5/6">
                     <x-input placeholder="Mainly off road 90% fire roads 10% harder tracks"
-                        value="{{ isset($tour->riding_style_info) && $tour->riding_style_info }}"
+                        value="{{ isset($tour->riding_style_info) && $tour->riding_style_info ? $tour->riding_style_info : '' }}"
                         name="riding_style_info" />
                     <div class="text-sm text-gray-500 mt-2">
                         <span>Anything else you want to say about the riding style</span>
@@ -66,7 +66,12 @@
                             label="Beginner - rider will need support/advice from other riders to get through"
                             :checked="in_array(
                                 'Beginner',
-                                explode(',', isset($tour->rider_capability) && $tour->rider_capability ?? ''),
+                                explode(
+                                    ',',
+                                    isset($tour->rider_capability) && $tour->rider_capability
+                                        ? $tour->rider_capability
+                                        : '',
+                                ),
                             )" value="Beginner" name="rider_capability[]" />
                     </div>
                     <div class="mb-6">
@@ -74,14 +79,24 @@
                             label="Intermediate - Capable most of the time, but might need help when things are difficult"
                             :checked="in_array(
                                 'Intermediate',
-                                explode(',', isset($tour->rider_capability) && $tour->rider_capability ?? ''),
+                                explode(
+                                    ',',
+                                    isset($tour->rider_capability) && $tour->rider_capability
+                                        ? $tour->rider_capability
+                                        : '',
+                                ),
                             )" value="Intermediate" name="rider_capability[]" />
                     </div>
                     <div class="mb-3">
                         <x-checkbox id="expert" lg label="Expert - Can help other riders and always in control"
                             :checked="in_array(
                                 'Expert',
-                                explode(',', isset($tour->rider_capability) && $tour->rider_capability ?? ''),
+                                explode(
+                                    ',',
+                                    isset($tour->rider_capability) && $tour->rider_capability
+                                        ? $tour->rider_capability
+                                        : '',
+                                ),
                             )" value="Expert" name="rider_capability[]" />
                     </div>
                     <div class="text-sm text-gray-500">
@@ -100,7 +115,7 @@
                 </div>
                 <div class="w-5/6">
                     <x-input placeholder="Mainly off road 90% fire roads 10% harder tracks"
-                        value="{{ isset($tour->rider_capability_info) && $tour->rider_capability_info }}"
+                        value="{{ isset($tour->rider_capability_info) && $tour->rider_capability_info ? $tour->rider_capability_info : '' }}"
                         name="rider_capability_info" />
                     <div class="text-sm text-gray-500 mt-2">
                         <span>Anything else you want to say about the rider capability for this trip e.g. If you are a
@@ -118,7 +133,8 @@
                 <div class="w-3/6">
                     <div class="w-2/6 flex items-center">
                         <div><x-input name="duration_days"
-                                value="{{ isset($tour->duration_days) && $tour->duration_days }}" /></div>
+                                value="{{ isset($tour->duration_days) && $tour->duration_days ? $tour->duration_days : '' }}" />
+                        </div>
                         <div class="ml-2"><span>days</span></div>
                     </div>
                     <div class="text-sm text-gray-500 mt-2">
@@ -135,7 +151,8 @@
                 </div>
                 <div class="w-3/6">
                     <div class="w-2/6 flex items-center">
-                        <div><x-input name="rest_days" value="{{ isset($tour->rest_days) && $tour->rest_days }}" />
+                        <div><x-input name="rest_days"
+                                value="{{ isset($tour->rest_days) && $tour->rest_days ? $tour->rest_days : '0' }}" />
                         </div>
                         <div class="ml-2"><span>days</span></div>
                     </div>
@@ -154,7 +171,8 @@
                 </div>
                 <div class="w-3/6">
                     <div class="w-2/6">
-                        <x-input name="max_riders" value="{{ isset($tour->max_riders) && $tour->max_riders }}" />
+                        <x-input name="max_riders"
+                            value="{{ isset($tour->max_riders) && $tour->max_riders ? $tour->max_riders : '0' }}" />
                     </div>
                     <div class="text-sm text-gray-500 mt-2">
                         <span>Maximum number of riders in the trip.</span>
@@ -170,7 +188,8 @@
                 </div>
                 <div class="w-3/6">
                     <div class="w-2/6">
-                        <x-input name="guides" value="{{ isset($tour->guides) && $tour->guides }}" />
+                        <x-input name="guides"
+                            value="{{ isset($tour->guides) && $tour->guides ? $tour->guides : '0' }}" />
                     </div>
                     <div class="text-sm text-gray-500 mt-2">
                         <span>Roughly how many guides or leads will be part of the tour? (put '0' is this is a
@@ -251,7 +270,7 @@
                 </div>
                 <div class="w-5/6">
                     <x-input placeholder="Any adventure bike over 600cc" name="bike_specification"
-                        value="{{ isset($tour->bike_specification) && $tour->bike_specification }}" />
+                        value="{{ isset($tour->bike_specification) && $tour->bike_specification ? $tour->bike_specification : '' }}" />
                     <div class="text-sm text-gray-500 mt-2">
                         <span>Specify what type of bikes are allowed and which ones are not, if the rider can bring
                             their
@@ -269,7 +288,8 @@
                 <div class="w-3/6">
                     <div class="w-2/6 flex items-center">
                         <div><x-input name="tour_distance"
-                                value="{{ isset($tour->tour_distance) && $tour->tour_distance }}" /></div>
+                                value="{{ isset($tour->tour_distance) && $tour->tour_distance ? $tour->tour_distance : '' }}" />
+                        </div>
                         <div class="ml-2"><span>KM</span></div>
                     </div>
                     <div class="text-sm text-gray-500 mt-2">
