@@ -169,7 +169,7 @@
         function calculateTotalPrice() {
             let totalPrice = basePrice;
             $(".selectedAddOns:checked").each(function() {
-                totalPrice += parseFloat($(this).data("price"));
+                totalPrice += parseFloat($(this).data("price").replace(',', ''));
             });
             $("#total_price").html(totalPrice.toFixed(2));
         }
