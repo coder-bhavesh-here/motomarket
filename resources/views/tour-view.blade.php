@@ -91,7 +91,7 @@
             <div class="inline-flex justify-center items-center price">
                 <div>{{ \Carbon\Carbon::parse($price->date)->format('F d, Y') }}</div>
                 <div class="ml-16">€ {{ $price->price }}</div>
-                @if (auth()->user()->role === 'user')
+                @if (isset(auth()->user()) && auth()->user() != null && auth()->user()->role === 'user')
                     <div class="ml-16"><x-button onClick="window.location.href='/book/{{ $price->id }}'" outline
                             positive label="Book" /></div>
                 @endif
