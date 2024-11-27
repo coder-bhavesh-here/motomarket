@@ -177,20 +177,13 @@ class TourController extends Controller
     {
         $tour_id = $request->tour_id;
         $addonValues = $request->addonValues;
-        echo "<pre>";
-        print_r($addonValues);
-        echo "</pre>";
         if ($addonValues != null) {
+            $filteredaddonValues = array_filter($addonValues, function ($element) {
+                return !empty($element);
+            });
             TourAddOn::where('tour_id', $tour_id)->delete();
-            foreach ($addonValues as $addOn) {
+            foreach ($filteredaddonValues as $addOn) {
                 if (is_array($addOn) && count($addOn) > 0 && isset($addOn['addon']) && isset($addOn['price']) && $addOn['addon'] != null && $addOn['price'] != null) {
-                    echo "<pre>";
-                    print_r([
-                        'addon' => $addOn['addon'],
-                        'addon_price' => $addOn['price'],
-                        'tour_id' => $tour_id,
-                    ]);
-                    echo "</pre>";
                     $tourAddon = TourAddOn::create([
                         'addon' => $addOn['addon'],
                         'addon_price' => $addOn['price'],
@@ -199,11 +192,13 @@ class TourController extends Controller
                 }
             }
         }
-        exit;
         $dateValues = $request->dateValues;
         if ($dateValues != null) {
+            $filteredDateValues = array_filter($dateValues, function ($element) {
+                return !empty($element);
+            });
             TourPrice::where('tour_id', $tour_id)->delete();
-            foreach ($dateValues as $date) {
+            foreach ($filteredDateValues as $date) {
                 if (is_array($date) && count($date) > 0 && isset($date['date']) && isset($date['qty']) && $date['date'] != null && $date['qty'] != null) {
                     TourPrice::create([
                         'date' => $date['date'],
