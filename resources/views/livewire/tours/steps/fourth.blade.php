@@ -70,6 +70,7 @@
 </div>
 
 <script type="text/javascript">
+    // comment
     var priceI = {{ count($prices) }};
     $("#addDate").click(function() {
         ++priceI;
