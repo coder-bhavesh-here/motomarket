@@ -16,7 +16,7 @@ class ProfileController extends Controller
     {
         return view('home', [
             'user' => Auth::user(),
-            'tours' => Tour::with(['user'])->with('prices')->where('status', 'published')->get(),
+            'tours' => Tour::with(['user'])->with('prices')->with('images')->where('status', 'published')->get(),
         ]);
     }
 

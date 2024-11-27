@@ -12,7 +12,7 @@
                 <span class="tour-owner ml-4">By {{ $tour->user->name }}</span>
             </div>
             <div class="tour-details inline-flex">
-                <img src="https://photos.smugmug.com/Galleries/Motorcycles/i-jX3tNwR/0/K2H4fw8P5MqPD8SRLWSrRZm4479d3ZvH8HL773j2D/L/cj.photos-_CJ09043-L.jpg"
+                <img src="{{ isset($tour->images) && isset($tour->images[0]->image_path) ? asset('storage') . '/' . $tour->images[0]->image_path : 'https://photos.smugmug.com/Galleries/Motorcycles/i-jX3tNwR/0/K2H4fw8P5MqPD8SRLWSrRZm4479d3ZvH8HL773j2D/L/cj.photos-_CJ09043-L.jpg' }}"
                     alt="Tour photo">
                 <div class="tour-description ml-3 text-2xl">
                     <p>{!! substr($tour->tour_description, 0, 1000) !!}</p>
