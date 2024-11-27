@@ -184,7 +184,7 @@ class TourController extends Controller
             TourAddOn::where('tour_id', $tour_id)->delete();
             foreach ($filteredaddonValues as $addOn) {
                 if (is_array($addOn) && count($addOn) > 0 && isset($addOn['addon']) && isset($addOn['price']) && $addOn['addon'] != null && $addOn['price'] != null) {
-                    $tourAddon = TourAddOn::create([
+                    TourAddOn::create([
                         'addon' => $addOn['addon'],
                         'addon_price' => $addOn['price'],
                         'tour_id' => $tour_id,

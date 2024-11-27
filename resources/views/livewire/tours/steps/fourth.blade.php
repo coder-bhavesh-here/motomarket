@@ -86,7 +86,7 @@
         $("#addonTable").append('<tr><td><input type="text" class="w-full" name="addon[' + addonI +
             '][addon]" placeholder="Riding with a passenger. 2 up riding on one bike" class="form-control" /></td><td><input type="text" name="addon[' +
             addonI +
-            '][qty]" placeholder="300" class="form-control" /></td><td><button type="button" class="btn-danger remove-tr">Remove</button></td></tr>'
+            '][price]" placeholder="300" class="form-control" /></td><td><button type="button" class="btn-danger remove-tr">Remove</button></td></tr>'
         );
     });
 
