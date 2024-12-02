@@ -16,6 +16,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/book/{priceId}', [TourController::class, 'book'])->name('book');
     Route::post('/book', [TourController::class, 'bookTour'])->name('bookTour');
     Route::get('/my-tours', [TourController::class, 'myTours'])->name('my-tours');
+    Route::get('/bookings', [TourController::class, 'bookings'])->name('bookings');
     Route::get('/tours/create', [TourController::class, 'create'])->name('tours.create');
     Route::post('/tours/upload_image', [TourController::class, 'uploadImage'])->name('tours.upload');
     Route::post('/tours/publish_tour', [TourController::class, 'publishTour'])->name('tours.publish');

@@ -34,10 +34,10 @@
                             </td>
                             <td>{{ $tour->created_at }}</td>
                             <td>
-                                <i class="fa-solid fa-eye" />
+                                <a class="ml-3 fa-solid fa-eye" href="tour/{{ $tour->id }}"></a>
                                 <a class="ml-3 fa-solid fa-pencil"
                                     href="tours/create?tour_id={{ $tour->id }}&activeStep=0"></a>
-                                <i class="ml-3 fa-solid fa-trash" />
+                                {{-- <i class="ml-3 fa-solid fa-trash" /> --}}
                             </td>
                         </tr>
                     @endforeach

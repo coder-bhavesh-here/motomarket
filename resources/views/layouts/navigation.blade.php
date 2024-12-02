@@ -19,9 +19,12 @@
                         <x-nav-link :href="route('tours')" :active="request()->routeIs('tours')">
                             {{ __('Tours') }}
                         </x-nav-link>
+                        <x-nav-link :href="route('bookings')" :active="request()->routeIs('bookings')">
+                            {{ __('Bookings') }}
+                        </x-nav-link>
                     @elseif (Auth::user()->role === 'user')
                         <x-nav-link :href="route('my-tours')" :active="request()->routeIs('my-tours')">
-                            {{ __('My Tours') }}
+                            {{ __('My Bookings') }}
                         </x-nav-link>
                     @endif
                 </div>

@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BookingConfirmed;
+use App\Mail\BookingConfirmedAgency;
 use App\Models\Booking;
 use App\Models\Tour;
 use App\Models\TourAddOn;
 use App\Models\TourImage;
 use App\Models\TourPrice;
+use App\Models\User;
 use Hamcrest\Type\IsNumeric;
 use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\View\View;
 
 class TourController extends Controller
@@ -20,6 +24,27 @@ class TourController extends Controller
         $tours = Tour::where('user_id', $userId)->get();
         return view('tours-list', [
             'tours' => $tours
+        ]);
+    }
+
+    public function bookings()
+    {
+        $userId = auth()->user()->id;
+        $tourIds = Tour::where('user_id', $userId)->where('status', 'published')->pluck('id');
+        $bookings = Booking::select([
+            'tours.id',
+            'tours.title',
+            'bookings.name',
+            'bookings.dob',
+            'bookings.nationality',
+            'bookings.mobile_number',
+            'bookings.date',
+            'bookings.amount',
+            'tours.tour_distance',
+            'bookings.created_at',
+        ])->whereIn('bookings.tour_id', $tourIds)->leftJoin('tours', 'bookings.tour_id', 'tours.id')->get();
+        return view('bookings', [
+            'bookings' => $bookings
         ]);
     }
 
@@ -215,7 +240,32 @@ class TourController extends Controller
     {
         $bookingData = $request->all();
         $bookingData['user_id'] = auth()->user()->id;
-        $booking = Booking::create($bookingData);
+        $bookingCreated = Booking::create($bookingData);
+        $booking = Booking::select([
+            'tours.title',
+            'tours.rider_capability',
+            'tours.duration_days',
+            'tours.max_riders',
+            'tours.guides',
+            'bookings.date',
+            'bookings.id',
+            'tours.title',
+            'bookings.name',
+            'bookings.dob',
+            'bookings.nationality',
+            'bookings.driving_license_number',
+            'bookings.mobile_number',
+            'bookings.address',
+            'bookings.country',
+            'bookings.postcode',
+            'bookings.amount',
+            'tours.tour_distance',
+            'bookings.created_at',
+        ])->where('bookings.id', $bookingCreated->id)->leftJoin('tours', 'bookings.tour_id', 'tours.id')->get();
+        $tour = Tour::find($bookingCreated->tour_id);
+        $user = User::find($tour->user_id);
+        Mail::to($user->email)->send(new BookingConfirmedAgency($booking));
+        Mail::to(auth()->user()->email)->send(new BookingConfirmed($booking));
         echo json_encode(["message" => "Booking saved successfully", "booking" => $booking]);
     }
 }
