@@ -15,18 +15,15 @@
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
-                    @if (Auth::user()->role === 'agency')
-                        <x-nav-link :href="route('tours')" :active="request()->routeIs('tours')">
-                            {{ __('Tours') }}
-                        </x-nav-link>
-                        <x-nav-link :href="route('bookings')" :active="request()->routeIs('bookings')">
-                            {{ __('Bookings') }}
-                        </x-nav-link>
-                    @elseif (Auth::user()->role === 'user')
-                        <x-nav-link :href="route('my-tours')" :active="request()->routeIs('my-tours')">
-                            {{ __('My Bookings') }}
-                        </x-nav-link>
-                    @endif
+                    <x-nav-link :href="route('tours')" :active="request()->routeIs('tours')">
+                        {{ __('Tours') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('bookings')" :active="request()->routeIs('bookings')">
+                        {{ __('Bookings') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('my-tours')" :active="request()->routeIs('my-tours')">
+                        {{ __('My Bookings') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -34,7 +31,7 @@
             <div class="hidden sm:flex sm:items-center sm:ml-6 w-64">
                 <!-- Profile Button -->
                 <x-dropdown-link :href="route('profile.edit')"
-                    class="w-full text-gray-800 dark:text-gray-200 font-semibold hover:bg-gray-100 dark:hover:bg-gray-900 px-3 py-2 rounded-md transition duration-150 ease-in-out">
+                    class="w-full text-gray-800 dark:text-gray-200 font-semibold dark:hover:bg-gray-900 px-3 py-2 rounded-md transition duration-150 ease-in-out">
                     {{ Auth::user()->name }}
                 </x-dropdown-link>
 

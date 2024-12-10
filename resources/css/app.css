@@ -167,7 +167,7 @@ hr {
     font-size: 15px;
 }
 .tour-details img {
-    width: 40%;
+    width: 100%;
     max-height: fit-content;
 }
 .tour-details .tour-description {
@@ -176,7 +176,7 @@ hr {
 span.badge {
     padding: 7px 14px;
     border-radius: 10px;
-    font-size: 16px;
+    font-size: 14px;
     margin: 7px;
     background: lightgray;
     justify-content: center;
@@ -249,7 +249,7 @@ footer ul li {
 }
 .guest-logo {
     margin-top: 10px;
-    height: 180px;
+    height: 65px;
 }
 #drop-area {
     border: 2px dashed #ccc;

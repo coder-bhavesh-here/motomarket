@@ -12,10 +12,10 @@
                 <span class="tour-owner ml-4">By {{ $tour->user->name }}</span>
             </div>
             <div class="tour-details inline-flex">
-                <img src="{{ isset($tour->images) && isset($tour->images[0]->image_path) ? asset('storage') . '/' . $tour->images[0]->image_path : 'https://photos.smugmug.com/Galleries/Motorcycles/i-jX3tNwR/0/K2H4fw8P5MqPD8SRLWSrRZm4479d3ZvH8HL773j2D/L/cj.photos-_CJ09043-L.jpg' }}"
-                    alt="Tour photo">
-                <div class="tour-description ml-3 text-2xl">
-                    <p>{!! substr($tour->tour_description, 0, 1000) !!}</p>
+                <a href='/tour/{{ $tour->id }}'><img src="{{ isset($tour->images) && isset($tour->images[0]->image_path) ? asset('storage') . '/' . $tour->images[0]->image_path : 'https://photos.smugmug.com/Galleries/Motorcycles/i-jX3tNwR/0/K2H4fw8P5MqPD8SRLWSrRZm4479d3ZvH8HL773j2D/L/cj.photos-_CJ09043-L.jpg' }}"
+                    alt="Tour photo"></a>
+                <div class="tour-description ml-3">
+                    <p><a href='/tour/{{ $tour->id }}'>{!! substr($tour->tour_description, 0, 1000) !!}</a></p>
                     <div class="badges mt-5">
                         <span class="badge"><i
                                 class="fa-solid fa-signal"></i><span>{{ $tour->rider_capability }}</span></span>

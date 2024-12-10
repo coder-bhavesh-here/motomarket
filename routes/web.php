@@ -5,11 +5,12 @@ use App\Http\Controllers\TourController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', [ProfileController::class, 'home']);
+Route::get('/', [ProfileController::class, 'home'])->name('homepage');
+Route::get('/', [ProfileController::class, 'home'])->name('dashboard');
 Route::get('/tour/{tourId}', [TourController::class, 'show']);
 Route::get('/tour/book/{tourId}', [TourController::class, 'book']);
 
-Route::get('/dashboard', [ProfileController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/dashboard', [ProfileController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboards');
 
 Route::middleware('auth')->group(function () {
     Route::get('/tours', [TourController::class, 'index'])->name('tours');
