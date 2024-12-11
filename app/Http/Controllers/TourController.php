@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Mail\BookingConfirmed;
 use App\Mail\BookingConfirmedAgency;
 use App\Models\Booking;
+use App\Models\FavouriteTour;
 use App\Models\Tour;
 use App\Models\TourAddOn;
 use App\Models\TourImage;
@@ -64,6 +65,15 @@ class TourController extends Controller
             'bookings.created_at',
         ])->where('bookings.user_id', $userId)->leftJoin('tours', 'bookings.tour_id', 'tours.id')->get();
         return view('my-tours-list', [
+            'tours' => $tours
+        ]);
+    }
+
+    public function myFavouriteTours(): View
+    {
+        $favouriteTours = auth()->user()->favouriteTours->pluck('tour_id')->toArray();
+        $tours = Tour::whereIn('id', $favouriteTours)->get();
+        return view('favourite-tours-list', [
             'tours' => $tours
         ]);
     }
@@ -267,5 +277,21 @@ class TourController extends Controller
         Mail::to($user->email)->send(new BookingConfirmedAgency($booking));
         Mail::to(auth()->user()->email)->send(new BookingConfirmed($booking));
         echo json_encode(["message" => "Booking saved successfully", "booking" => $booking]);
+    }
+
+    function markFavourite(Request $request)
+    {
+        $bookingData = $request->all();
+        $bookingData['user_id'] = auth()->user()->id;
+        $favouriteTour = FavouriteTour::create($bookingData);
+        echo json_encode(["message" => "Tour marked as favourite.!", "favouriteTour" => $favouriteTour]);
+    }
+
+    function deleteFavourite(Request $request)
+    {
+        $tour_id = $request->tour_id;
+        $user_id = auth()->user()->id;
+        FavouriteTour::where('tour_id', $tour_id)->where('user_id', $user_id)->delete();
+        echo json_encode(["message" => "Tour removed from favourite.!"]);
     }
 }

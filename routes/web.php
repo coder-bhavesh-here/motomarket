@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [ProfileController::class, 'home'])->name('homepage');
 Route::get('/', [ProfileController::class, 'home'])->name('dashboard');
 Route::get('/tour/{tourId}', [TourController::class, 'show']);
+Route::post('/mark-as-favourite', [TourController::class, 'markFavourite']);
+Route::post('/delete-favourite', [TourController::class, 'deleteFavourite']);
 Route::get('/tour/book/{tourId}', [TourController::class, 'book']);
 
 Route::get('/dashboard', [ProfileController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboards');
@@ -17,6 +19,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/book/{priceId}', [TourController::class, 'book'])->name('book');
     Route::post('/book', [TourController::class, 'bookTour'])->name('bookTour');
     Route::get('/my-tours', [TourController::class, 'myTours'])->name('my-tours');
+    Route::get('/my-favourite-tours', [TourController::class, 'myFavouriteTours'])->name('my-favourite-tours');
     Route::get('/bookings', [TourController::class, 'bookings'])->name('bookings');
     Route::get('/tours/create', [TourController::class, 'create'])->name('tours.create');
     Route::post('/tours/upload_image', [TourController::class, 'uploadImage'])->name('tours.upload');

@@ -14,9 +14,10 @@ class ProfileController extends Controller
 {
     public function home(): View
     {
+        $tours = Tour::with(['user', 'prices', 'images', 'favourites'])->where('status', 'published')->get();
         return view('home', [
             'user' => Auth::user(),
-            'tours' => Tour::with(['user'])->with('prices')->with('images')->where('status', 'published')->get(),
+            'tours' => $tours,
         ]);
     }
 

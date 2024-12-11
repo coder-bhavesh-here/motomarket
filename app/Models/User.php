@@ -60,4 +60,9 @@ class User extends Authenticatable
     {
         return $this->hasMany(Tour::class);
     }
+
+    public function favouriteTours(): HasMany
+    {
+        return $this->hasMany(FavouriteTour::class);
+    }
 }

@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\Auth;
 
 class Tour extends Model
 {
@@ -29,6 +30,11 @@ class Tour extends Model
         'tour_distance',
         'countries',
     ];
+    protected $appends = ['is_favourite'];
+    public function getIsFavouriteAttribute()
+    {
+        return $this->favourites()->where('user_id', Auth::id())->exists();
+    }
 
     public const BIKE_INCLUDED = 'Bike included';
     public const BRING_OWN_BIKE = 'Bring own bike';
@@ -46,6 +52,11 @@ class Tour extends Model
     public function images(): HasMany
     {
         return $this->hasMany(TourImage::class);
+    }
+
+    public function favourites()
+    {
+        return $this->hasMany(FavouriteTour::class, 'tour_id');
     }
 
     /**

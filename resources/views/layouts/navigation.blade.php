@@ -24,6 +24,9 @@
                     <x-nav-link :href="route('my-tours')" :active="request()->routeIs('my-tours')">
                         {{ __('My Bookings') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('my-favourite-tours')" :active="request()->routeIs('my-favourite-tours')">
+                        {{ __('My Favourite Tours') }}
+                    </x-nav-link>
                 </div>
             </div>
 
@@ -38,7 +41,8 @@
                 <!-- Logout Form -->
                 <form method="POST" action="{{ route('logout') }}" class="w-full">
                     @csrf
-                    <x-dropdown-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                    <x-dropdown-link :href="route('logout')"
+                        onclick="event.preventDefault(); this.closest('form').submit();">
                         {{ __('Log Out') }}
                     </x-dropdown-link>
                 </form>
