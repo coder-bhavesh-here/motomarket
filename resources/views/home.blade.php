@@ -76,6 +76,9 @@
                     $(e.currentTarget).removeClass("favourite").addClass("unfavourite");
                 }
             },
+            error: function(error) {
+                window.location.href = "/login";
+            }
         });
     });
 
@@ -100,6 +103,9 @@
                     $(e.currentTarget).removeClass("unfavourite").addClass("favourite");
                 }
             },
+            error: function(error) {
+                window.location.href = "/login";
+            }
         });
     });
 </script>
