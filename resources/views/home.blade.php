@@ -9,7 +9,7 @@
     @foreach ($tours as $tour)
         <div class="tour-info">
             <div class="inline-flex justify-center items-center mb-3 mt-2">
-                <p class="tour-title">{{ $tour->title }} - {{ $tour->countries }}</p>
+                <a href='/tour/{{ $tour->id }}'><p class="tour-title">{{ $tour->title }} - {{ $tour->countries }}</p></a>
                 <span class="tour-owner ml-4">By {{ $tour->user->name }}</span>
             </div>
             <div class="tour-details inline-flex">
