@@ -20,9 +20,8 @@
                 </div>
                 <div class="w-5/6">
                     <div class="mb-6">
-                        <x-radio id="road_trip" lg value="Road"
-                            label="Road - Adventure on the road; its a road trip" :checked="isset($tour->riding_style) && $tour->riding_style == 'Road Trip'"
-                            name="riding_style" />
+                        <x-radio id="road_trip" lg value="Road" label="Road - Adventure on the road; its a road trip"
+                            :checked="isset($tour->riding_style) && $tour->riding_style == 'Road Trip'" name="riding_style" />
                     </div>
                     <div class="mb-6">
                         <x-radio id="adventure" lg value="Adventure" label="Adventure - Adventure ride on and off road"
@@ -45,7 +44,7 @@
                     Riding style more info
                 </div>
                 <div class="w-5/6">
-                    <x-input placeholder="Mainly off road 90% fire roads 10% harder tracks"
+                    <x-input
                         value="{{ isset($tour->riding_style_info) && $tour->riding_style_info ? $tour->riding_style_info : '' }}"
                         name="riding_style_info" />
                     <div class="text-sm text-gray-500 mt-2">
@@ -114,7 +113,7 @@
                     Rider capability more info
                 </div>
                 <div class="w-5/6">
-                    <x-input placeholder="Mainly off road 90% fire roads 10% harder tracks"
+                    <x-input
                         value="{{ isset($tour->rider_capability_info) && $tour->rider_capability_info ? $tour->rider_capability_info : '' }}"
                         name="rider_capability_info" />
                     <div class="text-sm text-gray-500 mt-2">
@@ -172,7 +171,7 @@
                 <div class="w-3/6">
                     <div class="w-2/6">
                         <x-input name="max_riders"
-                            value="{{ isset($tour->max_riders) && $tour->max_riders ? $tour->max_riders : '0' }}" />
+                            value="{{ isset($tour->max_riders) && $tour->max_riders ? $tour->max_riders : '' }}" />
                     </div>
                     <div class="text-sm text-gray-500 mt-2">
                         <span>Maximum number of riders in the trip.</span>
@@ -311,14 +310,12 @@
                         @endphp
                         <select name="countries" class="select2" style="width: 100%" multiple="multiple"
                             id="countries">
-                            <option {{ in_array('Europe', $countries) ? 'selected' : '' }} value="Europe">Europe
-                            </option>
-                            <option {{ in_array('Germany', $countries) ? 'selected' : '' }} value="Germany">Germany
-                            </option>
-                            <option {{ in_array('Portugal', $countries) ? 'selected' : '' }} value="Portugal">Portugal
-                            </option>
-                            <option {{ in_array('India', $countries) ? 'selected' : '' }} value="India">India
-                            </option>
+                            @foreach (config('countries.list') as $countryCode => $countryName)
+                                <option value="{{ $countryCode }}"
+                                    {{ in_array($countryCode, $countries) ? 'selected' : '' }}>
+                                    {{ $countryName }}
+                                </option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="text-sm text-gray-500 mt-2">
