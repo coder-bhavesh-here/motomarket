@@ -15,7 +15,7 @@
                     <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
                         {{ __('Personal Details') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('tours')" :active="request()->routeIs('tours')">
+                    <x-nav-link :href="route('tours')" :active="request()->routeIs(['tours', 'tours.profile', 'tours.settings'])">
                         {{ __('Tours') }}
                     </x-nav-link>
                     <x-nav-link :href="route('bookings')" :active="request()->routeIs('bookings')">
