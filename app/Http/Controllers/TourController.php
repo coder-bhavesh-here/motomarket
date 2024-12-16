@@ -10,11 +10,13 @@ use App\Models\Tour;
 use App\Models\TourAddOn;
 use App\Models\TourImage;
 use App\Models\TourPrice;
+use App\Models\TourSetting;
 use App\Models\User;
 use Hamcrest\Type\IsNumeric;
 use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 
 class TourController extends Controller
@@ -293,5 +295,56 @@ class TourController extends Controller
         $user_id = auth()->user()->id;
         FavouriteTour::where('tour_id', $tour_id)->where('user_id', $user_id)->delete();
         echo json_encode(["message" => "Tour removed from favourite.!"]);
+    }
+
+    function profile(Request $request)
+    {
+        return view('tour.profile.edit', [
+            'user' => $request->user(),
+        ]);
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $request->user()->fill($request->all());
+        $request->user()->tour_operation_name = $request->tour_operation_name;
+        $request->user()->tour_profile_picture = $request->tour_profile_picture;
+        $request->user()->tour_contact_number = $request->tour_contact_number;
+        $request->user()->tour_address = $request->tour_address;
+        $request->user()->tour_country = $request->tour_country;
+        $request->user()->tour_pincode = $request->tour_pincode;
+        $request->user()->tour_contact_email = $request->tour_contact_email;
+        $request->user()->tour_currency = $request->tour_currency;
+
+        if ($request->hasFile('tour_profile_picture')) {
+            $profilePicturePath = $request->file('tour_profile_picture')->store('uploads', 'public');
+            $request->user()->tour_profile_picture = $profilePicturePath;
+        }
+
+        $request->user()->save();
+
+        return Redirect::route('tours.profile')->with('status', 'profile-updated');
+    }
+
+    public function updateSettings(Request $request)
+    {
+        // If tour setting exists then update otherwise create a new setting
+        TourSetting::updateOrInsert(['user_id' => $request->user()->id], [
+            'bank_name' => $request->bank_name,
+            'bank_country' => $request->bank_country,
+            'iban' => $request->iban,
+            'swift' => $request->swift,
+            'account_number' => $request->account_number,
+            'sort_code' => $request->sort_code,
+            'account_name' => $request->account_name,
+        ]);
+        return Redirect::route('tours.settings.update')->with('status', 'profile-updated');
+    }
+
+    function tourSettings(Request $request)
+    {
+        return view('tour.profile.creation-settings', [
+            'tour_setting' => TourSetting::where('user_id', $request->user()->id)->first(),
+        ]);
     }
 }

@@ -16,7 +16,7 @@ return new class extends Migration
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->string('title');
-            $table->enum('riding_style', ['Road Trip', 'Adventure', 'Enduro']);
+            $table->enum('riding_style', ['Road', 'Adventure', 'Enduro']);
             $table->text('riding_style_info')->nullable();
             $table->enum('rider_capability', [Tour::BEGINNER, Tour::INTERMEDIATE, Tour::EXPERT]);
             $table->text('rider_capability_info')->nullable();

@@ -7,7 +7,7 @@
                     Tour Title
                 </div>
                 <div class="w-5/6">
-                    <x-input placeholder="Thrilling road trip to Faro, Algarve"
+                    <x-input placeholder="Give your tour an exciting name"
                         value="{{ isset($tour->title) ? $tour->title : '' }}" name="title" />
                 </div>
             </div>
@@ -20,8 +20,8 @@
                 </div>
                 <div class="w-5/6">
                     <div class="mb-6">
-                        <x-radio id="road_trip" lg value="Road Trip"
-                            label="Road Trip - Adventure on the road; its a road trip" :checked="isset($tour->riding_style) && $tour->riding_style == 'Road Trip'"
+                        <x-radio id="road_trip" lg value="Road"
+                            label="Road - Adventure on the road; its a road trip" :checked="isset($tour->riding_style) && $tour->riding_style == 'Road Trip'"
                             name="riding_style" />
                     </div>
                     <div class="mb-6">

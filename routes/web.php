@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProfileController::class, 'home'])->name('homepage');
+Route::get('/explore-tours', [ProfileController::class, 'exploreTours'])->name('explore-tours');
 Route::get('/', [ProfileController::class, 'home'])->name('dashboard');
 Route::get('/tour/{tourId}', [TourController::class, 'show']);
 Route::post('/mark-as-favourite', [TourController::class, 'markFavourite']);
@@ -16,6 +17,10 @@ Route::get('/dashboard', [ProfileController::class, 'dashboard'])->middleware(['
 
 Route::middleware('auth')->group(function () {
     Route::get('/tours', [TourController::class, 'index'])->name('tours');
+    Route::get('/tour-profile', [TourController::class, 'profile'])->name('tours.profile');
+    Route::patch('/tour-profile', [TourController::class, 'updateProfile'])->name('tours.profile.update');
+    Route::get('/tour-settings', [TourController::class, 'tourSettings'])->name('tours.settings');
+    Route::patch('/tour-settings', [TourController::class, 'updateSettings'])->name('tours.settings.update');
     Route::get('/book/{priceId}', [TourController::class, 'book'])->name('book');
     Route::post('/book', [TourController::class, 'bookTour'])->name('bookTour');
     Route::get('/my-tours', [TourController::class, 'myTours'])->name('my-tours');

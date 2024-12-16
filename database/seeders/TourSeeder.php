@@ -18,7 +18,7 @@ class TourSeeder extends Seeder
                 'user_id' => 3,
                 'title' => fake()->sentence(3),
                 'tour_description' => fake()->words(100, true),
-                'riding_style' => fake()->randomElement(['Road Trip', 'Adventure', 'Enduro']),
+                'riding_style' => fake()->randomElement(['Road', 'Adventure', 'Enduro']),
                 'riding_style_info' => fake()->paragraph,
                 'rider_capability' => fake()->randomElement([Tour::BEGINNER, Tour::INTERMEDIATE, Tour::EXPERT]),
                 'rider_capability_info' => fake()->paragraph,

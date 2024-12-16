@@ -14,8 +14,18 @@ class ProfileController extends Controller
 {
     public function home(): View
     {
-        $tours = Tour::with(['user', 'prices', 'images', 'favourites'])->where('status', 'published')->get();
+        $tours = Tour::with(['user', 'prices', 'images', 'favourites'])
+            ->where('is_featured', '1')->limit(6)->get();
         return view('home', [
+            'user' => Auth::user(),
+            'tours' => $tours,
+        ]);
+    }
+
+    public function exploreTours(): View
+    {
+        $tours = Tour::with(['user', 'prices', 'images', 'favourites'])->where('status', 'published')->get();
+        return view('explore-tours', [
             'user' => Auth::user(),
             'tours' => $tours,
         ]);
@@ -50,6 +60,10 @@ class ProfileController extends Controller
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
+        }
+        if ($request->hasFile('profile_picture')) {
+            $profilePicturePath = $request->file('profile_picture')->store('uploads', 'public');
+            $request->user()->profile_picture = $profilePicturePath;
         }
 
         $request->user()->save();

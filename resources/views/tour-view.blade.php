@@ -15,8 +15,9 @@
         <li>This tour is open to <b>{{ $tour->rider_capability }}</b> riders. Please let us know if you have
             specific requirements.
         </li>
-        <li>This tour is an <b>{{ $tour->riding_style }}</b> ride. Almost all of the trip is off road. (note:
-            60% of the ride is technical and 40% east dirt roads)
+        <li>This tour is
+            <b>{{ $tour->riding_style == 'Road' ? 'Road - Adventure on the road; its a road trip' : '' }} {{ $tour->riding_style == 'Adventure' ? 'Adventure - Adventure ride on and off road' : '' }} {{ $tour->riding_style == 'Enduro' ? 'Enduro - Almost all of the trip is off road' : '' }}</b>
+            {{ $tour->riding_style_info != '' ? "( Note: $tour->riding_style_info)" : '' }}
         </li>
         <li>Tour duration is: <b>{{ $tour->duration_days }} days with {{ $tour->rest_days }} rest day.</b></li>
         <li>Maximum number of riders is <b>{{ $tour->max_riders }}</b> and will include <b>{{ $tour->guides }}

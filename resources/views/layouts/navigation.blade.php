@@ -12,8 +12,8 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
-                        {{ __('Dashboard') }}
+                    <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
+                        {{ __('Personal Details') }}
                     </x-nav-link>
                     <x-nav-link :href="route('tours')" :active="request()->routeIs('tours')">
                         {{ __('Tours') }}
@@ -25,7 +25,7 @@
                         {{ __('My Bookings') }}
                     </x-nav-link>
                     <x-nav-link :href="route('my-favourite-tours')" :active="request()->routeIs('my-favourite-tours')">
-                        {{ __('My Favourite Tours') }}
+                        {{ __('My Favourites') }}
                     </x-nav-link>
                 </div>
             </div>
