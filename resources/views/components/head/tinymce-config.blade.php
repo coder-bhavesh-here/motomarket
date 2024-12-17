@@ -11,7 +11,6 @@
                     editor.setContent($("#description_val").val());
                 });
             }
-
         });
         tinymce.init({
             selector: 'textarea#included', // Replace this CSS selector to match the placeholder element for TinyMCE
@@ -22,7 +21,6 @@
                     editor.setContent($("#included_val").val());
                 });
             }
-
         });
         tinymce.init({
             selector: 'textarea#not_included', // Replace this CSS selector to match the placeholder element for TinyMCE
@@ -33,7 +31,16 @@
                     editor.setContent($("#not_included_val").val());
                 });
             }
-
+        });
+        tinymce.init({
+            selector: 'textarea#tour_meeting_location_notes', // Replace this CSS selector to match the placeholder element for TinyMCE
+            plugins: 'code table lists',
+            toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table',
+            setup: function(editor) {
+                editor.on('init', function(e) {
+                    editor.setContent($("#tour_meeting_location_notes_val").val());
+                });
+            }
         });
     </script>
 </div>

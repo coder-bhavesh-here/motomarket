@@ -21,7 +21,7 @@
                 <div class="w-5/6">
                     <div class="mb-6">
                         <x-radio id="road_trip" lg value="Road" label="Road - Adventure on the road; its a road trip"
-                            :checked="isset($tour->riding_style) && $tour->riding_style == 'Road Trip'" name="riding_style" />
+                            :checked="isset($tour->riding_style) && $tour->riding_style == 'Road'" name="riding_style" />
                     </div>
                     <div class="mb-6">
                         <x-radio id="adventure" lg value="Adventure" label="Adventure - Adventure ride on and off road"
@@ -320,6 +320,46 @@
                     </div>
                     <div class="text-sm text-gray-500 mt-2">
                         <span>Select all the countries that will part of the tour.</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="my-10 sm:px-6 lg:px-8">
+            <div class="flex items-center">
+                <div class="w-1/6">
+                    Tour Support
+                    <span class="flex text-sm text-gray-500">how much support will the rider get?</span>
+                </div>
+                <div class="w-5/6">
+                    <div class="mb-4">
+                        {{-- @dd($tour->support) --}}
+                        <x-radio id="full_with_vehicle" lg label="Fully Supported with support vehicle"
+                            value="Fully Supported with support vehicle" :checked="isset($tour->support) &&
+                                $tour->support == 'Fully Supported with support vehicle'" name="support" />
+                        <span class="flex text-sm text-gray-500 ml-9 my-1">A support vehicle will be availble for
+                            complete
+                            support during the trip</span>
+                    </div>
+                    <div class="mb-4">
+                        <x-radio id="full_without_vehicle" lg label="Fully Supported without a support vehicle"
+                            :checked="isset($tour->support) &&
+                                $tour->support == 'Fully Supported without a support vehicle'" value="Fully Supported without a support vehicle" name="support" />
+                        <span class="flex text-sm text-gray-500 ml-9 my-1">No support vehicle but the guide(s) and the
+                            team
+                            will support you with technical and riding assistance.</span>
+                    </div>
+                    <div class="mb-4">
+                        <x-radio id="group_supports" lg label="Group supports each other" :checked="isset($tour->support) && $tour->support == 'Group supports each other'"
+                            value="Group supports each other" name="support" />
+                        <span class="flex text-sm text-gray-500 ml-9 my-1">The group needs to support each other for
+                            technical and riding assistance</span>
+                    </div>
+                    <div class="mb-4">
+                        <x-radio id="no_support" lg label="No Support" :checked="isset($tour->support) && $tour->support == 'No Support'" value="No Support"
+                            name="support" />
+                        <span class="flex text-sm text-gray-500 ml-9 my-1">You need to be self-sufficient. There is no
+                            support or assistance planned for the trip.</span>
                     </div>
                 </div>
             </div>

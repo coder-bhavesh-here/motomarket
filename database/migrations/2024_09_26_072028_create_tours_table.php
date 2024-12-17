@@ -15,7 +15,7 @@ return new class extends Migration
         Schema::create('tours', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
-            $table->string('title');
+            $table->string(column: 'title');
             $table->enum('riding_style', ['Road', 'Adventure', 'Enduro']);
             $table->text('riding_style_info')->nullable();
             $table->enum('rider_capability', [Tour::BEGINNER, Tour::INTERMEDIATE, Tour::EXPERT]);

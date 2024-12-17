@@ -151,6 +151,7 @@ class TourController extends Controller
             $tour = Tour::find($postData['tour_id']);
             $tour->title = $postData['title'];
             $tour->riding_style = $postData['riding_style'];
+            $tour->support = $postData['support'];
             $tour->riding_style_info = $postData['riding_style_info'];
             $tour->rider_capability = $postData['rider_capability'];
             $tour->rider_capability_info = $postData['rider_capability_info'];
@@ -195,6 +196,8 @@ class TourController extends Controller
             'tour_description' => $postData['description'],
             'included' => $postData['included'],
             'not_included' => $postData['not_included'],
+            'tour_meeting_location_notes' => $postData['tour_meeting_location_notes'],
+            'tour_start_location' => $postData['tour_start_location'],
         ));
         echo json_encode(["message" => "Tour saved successfully", "tour_id" => $postData['tour_id']]);
     }

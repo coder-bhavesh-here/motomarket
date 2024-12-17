@@ -30,6 +30,14 @@ $(".submit-button").click(function (e) {
     return false;
 });
 
+document.querySelectorAll(".save-exit-button ").forEach(function (element) {
+    element.addEventListener("click", function () {
+        $(".next-button").trigger('click');
+        setTimeout(() => {
+            window.location.href = '/tours';
+        }, 500);
+    });
+});
 document.querySelectorAll(".next-button").forEach(function (element) {
     element.addEventListener("click", function () {
         const url = new URL(window.location.href);
@@ -39,7 +47,10 @@ document.querySelectorAll(".next-button").forEach(function (element) {
                 parseInt(url.searchParams.get("tour_id")) || undefined;
             let firstStepData = {};
             firstStepData.title = $("input[name=title]").val();
-            firstStepData.riding_style = $("input[name=riding_style]").val();
+            firstStepData.riding_style = $(
+                "input[name=riding_style]:checked"
+            ).val();
+            firstStepData.support = $("input[name=support]:checked").val();
             firstStepData.riding_style_info = $(
                 "input[name=riding_style_info]"
             ).val();
@@ -58,9 +69,13 @@ document.querySelectorAll(".next-button").forEach(function (element) {
             firstStepData.rest_days = $("input[name=rest_days]").val();
             firstStepData.max_riders = $("input[name=max_riders]").val();
             firstStepData.guides = $("input[name=guides]").val();
-            firstStepData.bike_option = $("input[name=bike_option]").val();
-            firstStepData.rent_gear = $("input[name=rent_gear]").val();
-            firstStepData.two_up_riding = $("input[name=two_up_riding]").val();
+            firstStepData.bike_option = $(
+                "input[name=bike_option]:checked"
+            ).val();
+            firstStepData.rent_gear = $("input[name=rent_gear]:checked").val();
+            firstStepData.two_up_riding = $(
+                "input[name=two_up_riding]:checked"
+            ).val();
             firstStepData.bike_specification = $(
                 "input[name=bike_specification]"
             ).val();
@@ -81,7 +96,6 @@ document.querySelectorAll(".next-button").forEach(function (element) {
                 },
                 dataType: "json",
                 success: function (response) {
-                    alert(response.message);
                     const nextStep = currentStep + 1;
                     url.searchParams.set("activeStep", nextStep);
                     url.searchParams.set("tour_id", response.tour_id);
@@ -103,9 +117,15 @@ document.querySelectorAll(".next-button").forEach(function (element) {
                 .get("description")
                 .getContent();
             secondStepData.included = tinymce.get("included").getContent();
+            secondStepData.tour_meeting_location_notes = tinymce
+                .get("tour_meeting_location_notes")
+                .getContent();
             secondStepData.not_included = tinymce
                 .get("not_included")
                 .getContent();
+            secondStepData.tour_start_location = $(
+                "#tour_start_location"
+            ).val();
             secondStepData.tour_id = tour_id;
             $.ajax({
                 type: "post",
@@ -118,7 +138,6 @@ document.querySelectorAll(".next-button").forEach(function (element) {
                 },
                 dataType: "json",
                 success: function (response) {
-                    alert(response.message);
                     const nextStep = currentStep + 1;
                     url.searchParams.set("activeStep", nextStep);
                     url.searchParams.set("tour_id", response.tour_id);
@@ -155,7 +174,6 @@ document.querySelectorAll(".next-button").forEach(function (element) {
                 },
                 dataType: "json",
                 success: function (response) {
-                    alert(response.message);
                     const nextStep = currentStep + 1;
                     url.searchParams.set("activeStep", nextStep);
                     url.searchParams.set("tour_id", response.tour_id);
@@ -182,6 +200,31 @@ document.querySelectorAll(".next-button").forEach(function (element) {
                     dateValues[index][key] = input.value;
                 }
             });
+            $.ajax({
+                type: "post",
+                url: "/tours/save-tour/fourthStep",
+                data: { tour_id, dateValues },
+                headers: {
+                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                        "content"
+                    ),
+                },
+                dataType: "json",
+                success: function (response) {
+                    const nextStep = currentStep + 1;
+                    url.searchParams.set("activeStep", nextStep);
+                    url.searchParams.set("tour_id", response.tour_id);
+                    window.location.href = url.toString();
+                },
+            });
+        }
+        if (currentStep === 4) {
+            let tour_id =
+                parseInt(url.searchParams.get("tour_id")) || undefined;
+            if (tour_id === undefined) {
+                alert("Invalid Tour");
+                return false;
+            }
             const addonInputs = document.querySelectorAll(
                 'input[name^="addon"]'
             );
@@ -199,7 +242,7 @@ document.querySelectorAll(".next-button").forEach(function (element) {
             $.ajax({
                 type: "post",
                 url: "/tours/save-tour/fourthStep",
-                data: { tour_id, addonValues, dateValues },
+                data: { tour_id, addonValues },
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
                         "content"
@@ -207,7 +250,6 @@ document.querySelectorAll(".next-button").forEach(function (element) {
                 },
                 dataType: "json",
                 success: function (response) {
-                    alert(response.message);
                     const nextStep = currentStep + 1;
                     url.searchParams.set("activeStep", nextStep);
                     url.searchParams.set("tour_id", response.tour_id);

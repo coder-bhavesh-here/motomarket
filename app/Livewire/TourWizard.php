@@ -6,6 +6,7 @@ use App\Models\Tour;
 use App\Steps\TourFive;
 use App\Steps\TourFour;
 use App\Steps\TourOne;
+use App\Steps\TourSix;
 use App\Steps\TourThree;
 use App\Steps\TourTwo;
 use Livewire\Livewire;
@@ -19,6 +20,7 @@ class TourWizard extends WizardComponent
         TourThree::class,
         TourFour::class,
         TourFive::class,
+        TourSix::class,
     ];
 
     public $tourId;
