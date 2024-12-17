@@ -10,6 +10,9 @@
             <x-nav-link :href="route('tours')" :active="request()->routeIs('tours')">
                 {{ __('Tour Advertising') }}
             </x-nav-link>
+            <x-nav-link :href="route('bookings')" :active="request()->routeIs('bookings')">
+                {{ __('Booking Orders') }}
+            </x-nav-link>
         </div>
     </x-slot>
 
@@ -39,8 +42,9 @@
                                 </td>
                                 <td>{{ isset($bookingsCount[$tour->id]) ? $bookingsCount[$tour->id] : 0 }}</td>
                                 <td>{{ isset($savedCount[$tour->id]) ? $savedCount[$tour->id] : 0 }}</td>
-                                <td>{{ isset($upcomingTours[$tour->id]) ? $upcomingTours[$tour->id] : '-' }}</td>
-                                <td>{{ $tour->created_at }}</td>
+                                <td>{{ isset($upcomingTours[$tour->id]) ? \Carbon\Carbon::parse($upcomingTours[$tour->id])->format('jS F Y') : '-' }}
+                                </td>
+                                <td>{{ \Carbon\Carbon::parse($tour->created_at)->format('jS F Y h:i A') }}</td>
                                 <td>
                                     <a class="ml-3 fa-solid fa-eye" href="tour/{{ $tour->id }}"
                                         onmouseover="openModal({{ $tour->id }})"></a>

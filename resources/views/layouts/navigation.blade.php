@@ -15,11 +15,8 @@
                     <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
                         {{ __('Personal Details') }}
                     </x-nav-link>
-                    <x-nav-link :href="route('tours')" :active="request()->routeIs(['tours', 'tours.profile', 'tours.settings'])">
+                    <x-nav-link :href="route('tours')" :active="request()->routeIs(['tours', 'tours.profile', 'tours.settings', 'bookings'])">
                         {{ __('Tours') }}
-                    </x-nav-link>
-                    <x-nav-link :href="route('bookings')" :active="request()->routeIs('bookings')">
-                        {{ __('Bookings') }}
                     </x-nav-link>
                     <x-nav-link :href="route('my-tours')" :active="request()->routeIs('my-tours')">
                         {{ __('My Bookings') }}
@@ -41,8 +38,7 @@
                 <!-- Logout Form -->
                 <form method="POST" action="{{ route('logout') }}" class="w-full">
                     @csrf
-                    <x-dropdown-link :href="route('logout')"
-                        onclick="event.preventDefault(); this.closest('form').submit();">
+                    <x-dropdown-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
                         {{ __('Log Out') }}
                     </x-dropdown-link>
                 </form>

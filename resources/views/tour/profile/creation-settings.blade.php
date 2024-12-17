@@ -10,6 +10,9 @@
             <x-nav-link :href="route('tours')" :active="request()->routeIs('tours')">
                 {{ __('Tour Advertising') }}
             </x-nav-link>
+            <x-nav-link :href="route('bookings')" :active="request()->routeIs('bookings')">
+                {{ __('Booking Orders') }}
+            </x-nav-link>
         </div>
     </x-slot>
 
