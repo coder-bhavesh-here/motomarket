@@ -12,9 +12,11 @@ use App\Models\TourImage;
 use App\Models\TourPrice;
 use App\Models\TourSetting;
 use App\Models\User;
+use Carbon\Carbon;
 use Hamcrest\Type\IsNumeric;
 use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
@@ -25,8 +27,30 @@ class TourController extends Controller
     {
         $userId = auth()->user()->id;
         $tours = Tour::where('user_id', $userId)->get();
+        $tourIds = Tour::where('user_id', $userId)->pluck('id')->toArray();
+        $bookingsCount = Booking::select('tour_id', DB::raw('COUNT(*) as booking_count'))
+            ->whereIn('tour_id', $tourIds)
+            ->groupBy('tour_id')
+            ->pluck('booking_count', 'tour_id')
+            ->toArray();
+        $savedCount = FavouriteTour::select('tour_id', DB::raw('COUNT(*) as saved_count'))
+            ->whereIn('tour_id', $tourIds)
+            ->groupBy('tour_id')
+            ->pluck('saved_count', 'tour_id')
+            ->toArray();
+        $today = Carbon::today()->toDateString(); // Get today's date in 'Y-m-d' format
+        $upcomingTours = DB::table('tour_prices')
+            ->select('tour_id', DB::raw('MIN(date) as next_tour_date')) // Get the earliest (MIN) date
+            ->whereIn('tour_id', $tourIds) // Filter only the passed tour IDs
+            ->where('date', '>=', $today) // Date should be today or in the future
+            ->groupBy('tour_id') // Group results by tour_id
+            ->pluck('next_tour_date', 'tour_id') // Return associative array: tour_id => next_tour_date
+            ->toArray();
         return view('tours-list', [
-            'tours' => $tours
+            'tours' => $tours,
+            'bookingsCount' => $bookingsCount,
+            'savedCount' => $savedCount,
+            'upcomingTours' => $upcomingTours,
         ]);
     }
 

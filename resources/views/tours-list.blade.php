@@ -22,6 +22,9 @@
                         <tr>
                             <th>Title</th>
                             <th>Status</th>
+                            <th>Total Bookings</th>
+                            <th>Liked/Saved By</th>
+                            <th>Latest Planned Tour on</th>
                             <th>Created At</th>
                             <th>Actions</th>
                         </tr>
@@ -34,6 +37,9 @@
                                     <span
                                         class="{{ $tour->status === 'draft' ? 'badge' : 'badge-positive' }}">{{ ucfirst($tour->status) }}</span>
                                 </td>
+                                <td>{{ isset($bookingsCount[$tour->id]) ? $bookingsCount[$tour->id] : 0 }}</td>
+                                <td>{{ isset($savedCount[$tour->id]) ? $savedCount[$tour->id] : 0 }}</td>
+                                <td>{{ isset($upcomingTours[$tour->id]) ? $upcomingTours[$tour->id] : '-' }}</td>
                                 <td>{{ $tour->created_at }}</td>
                                 <td>
                                     <a class="ml-3 fa-solid fa-eye" href="tour/{{ $tour->id }}"

@@ -16,7 +16,9 @@
             specific requirements.
         </li>
         <li>This tour is
-            <b>{{ $tour->riding_style == 'Road' ? 'Road - Adventure on the road; its a road trip' : '' }} {{ $tour->riding_style == 'Adventure' ? 'Adventure - Adventure ride on and off road' : '' }} {{ $tour->riding_style == 'Enduro' ? 'Enduro - Almost all of the trip is off road' : '' }}</b>
+            <b>{{ $tour->riding_style == 'Road' ? 'Road - Adventure on the road; its a road trip' : '' }}
+                {{ $tour->riding_style == 'Adventure' ? 'Adventure - Adventure ride on and off road' : '' }}
+                {{ $tour->riding_style == 'Enduro' ? 'Enduro - Almost all of the trip is off road' : '' }}</b>
             {{ $tour->riding_style_info != '' ? "( Note: $tour->riding_style_info)" : '' }}
         </li>
         <li>Tour duration is: <b>{{ $tour->duration_days }} days with {{ $tour->rest_days }} rest day.</b></li>
@@ -29,6 +31,22 @@
         <li>{{ $tour->two_up_riding ? 'The tour is for 2-up riding.' : 'The tour is not for 2-up riding. Only the rider on the bike.' }}
         </li>
         <li>We will covering: <b>{{ $tour->tour_distance }}Kms</b></li>
+        @if ($tour->support == 'Fully Supported with support vehicle')
+            <li><b>{{ $tour->support }}</b>: A support vehicle will be availble for complete support during the trip
+            </li>
+        @endif
+        @if ($tour->support == 'Fully Supported without a support vehicle')
+            <li><b>{{ $tour->support }}</b>: No support vehicle but the guide(s) and the team will support you with
+                technical and riding assistance</li>
+        @endif
+        @if ($tour->support == 'Group supports each other')
+            <li><b>{{ $tour->support }}</b>: The group needs to support each other for technical and riding assistance
+            </li>
+        @endif
+        @if ($tour->support == 'No Support')
+            <li><b>{{ $tour->support }}</b>: You need to be self-sufficient. There is no support or assistance planned
+                for the trip</li>
+        @endif
     </ul>
 </div>
 <div class="features p-6 inline-flex justify-center w-full">
@@ -81,6 +99,12 @@
     <hr>
     <div class="header">Description</div>
     {!! $tour->tour_description !!}
+</div>
+
+<div class="description p-6">
+    <hr>
+    <div class="header">Meetup Notes</div>
+    {!! $tour->tour_meeting_location_notes !!}
     <hr>
 </div>
 <div class="tour-prices p-6 text-2xl text-center">
