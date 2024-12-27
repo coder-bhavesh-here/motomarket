@@ -368,3 +368,10 @@ span.book-date.selected {
     border: 1px solid lightgray;
     border-radius: 6px;
 }
+.blog-details img {
+    width: 60%;
+    height: auto;
+}
+p.blog-title {
+    font-size: 22px;
+}
