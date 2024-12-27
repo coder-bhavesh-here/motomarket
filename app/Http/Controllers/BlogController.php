@@ -73,20 +73,22 @@ class BlogController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Blog $blog)
+    public function edit($blogId)
     {
+        $blog = Blog::find($blogId);
         return view('blogsbyrankothcj.edit', compact('blog'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Blog $blog)
+    public function update(Request $request, $blogId)
     {
+        $blog = Blog::find($blogId);
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240',
             'youtube_video_link' => 'nullable|url',
         ]);
         if ($request->file('image')) {
@@ -110,9 +112,9 @@ class BlogController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Blog $blog)
+    public function destroy($blogId)
     {
-        $blog->delete();
+        Blog::find($blogId)->delete();
         return redirect()->route('blogsbyrankothcj.index')->with('success', 'Blog deleted successfully.');
     }
 }

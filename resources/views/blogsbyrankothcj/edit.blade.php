@@ -32,11 +32,16 @@
                     <div class="flex items-center mt-4">
                         <div class="w-1/6">Image</div>
                         <div class="w-5/6">
-                            <input type="file" name="image" id="image" class="form-control">
+                            <input type="file" accept="image/jpeg, image/png, image/jpg, image/gif" name="image"
+                                id="image" class="form-control" onchange="previewImage(event)">
+
                             @if (isset($blog->image))
                                 <img src="{{ asset('storage/' . $blog->image) }}" alt="Blog Image" class="mt-2"
-                                    style="max-width: 150px;">
+                                    style="max-width: 150px;" id="preImage">
                             @endif
+                            <div id="imagePreview" class="mt-2">
+                                <!-- Preview will be displayed here -->
+                            </div>
                         </div>
                     </div>
                     <hr>
@@ -60,4 +65,44 @@
             </div>
         </div>
     </div>
+    <script>
+        function previewImage(event) {
+            const file = event.target.files[0]; // Get the selected file
+            const previewDiv = document.getElementById('imagePreview');
+            const existingImage = document.getElementById('existingPreview');
+            const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/gif'];
+            const maxSize = 10240 * 1024; // 10 MB in bytes
+
+            // Clear any previous preview or messages
+            previewDiv.innerHTML = '';
+            if (existingImage) {
+                existingImage.style.display = 'none';
+            }
+
+            // Validate file
+            if (file) {
+                if (!allowedTypes.includes(file.type)) {
+                    alert('Invalid file type. Please upload a JPEG, PNG, JPG, or GIF image.');
+                    return;
+                }
+
+                if (file.size > maxSize) {
+                    alert('File is too large. Maximum size is 10 MB.');
+                    return;
+                }
+
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result; // Set the image source
+                    img.style.maxWidth = '150px'; // Set the image preview size
+                    previewDiv.appendChild(img); // Add the image to the preview div
+                    $("#preImage").remove();
+                };
+
+                reader.readAsDataURL(file); // Read the file as a data URL
+            }
+        }
+    </script>
 </x-app-layout>
