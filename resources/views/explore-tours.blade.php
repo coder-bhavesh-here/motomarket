@@ -9,7 +9,9 @@
     @foreach ($tours as $tour)
         <div class="tour-info">
             <div class="inline-flex justify-center items-center mb-3 mt-2">
-                <a href='/tour/{{ $tour->id }}'><p class="tour-title">{{ $tour->title }} - {{ $tour->countries }}</p></a>
+                <a href='/tour/{{ $tour->id }}'>
+                    <p class="tour-title">{{ $tour->title }} - {{ $tour->countries }}</p>
+                </a>
                 <span class="tour-owner ml-4">By {{ $tour->user->name }}</span>
             </div>
             <div class="tour-details inline-flex">
@@ -33,8 +35,7 @@
                         <span class="badge"><i class="fa fa-user"></i><span>{{ $tour->max_riders }}
                                 Riders & {{ $tour->guides }} Guides</span></span>
                         <span class="badge"><i
-                                class="fa fa-motorcycle"></i><span>{{ \Illuminate\Support\Str::limit($tour->riding_style_info, $limit = 15, $end = '...') }}
-                                Guides</span></span>
+                                class="fa fa-motorcycle"></i><span>{{ \Illuminate\Support\Str::limit($tour->riding_style_info, $limit = 15, $end = '...') }}</span></span>
                         <span class="badge"><i
                                 class="fa-solid fa-star"></i><span>{{ $tour->bike_option }}</span></span>
                     </div>

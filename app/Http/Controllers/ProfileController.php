@@ -61,10 +61,23 @@ class ProfileController extends Controller
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
-        if ($request->hasFile('profile_picture')) {
-            $profilePicturePath = $request->file('profile_picture')->store('uploads', 'public');
-            $request->user()->profile_picture = $profilePicturePath;
+        if ($request->has('cropped_image')) {
+            $croppedImage = $request->input('cropped_image');
+            $imageName = 'profile-' . $request->user()->id . '.png';
+            $imagePath = storage_path('app/public/uploads/' . $imageName);
+
+            list($type, $data) = explode(';', $croppedImage);
+            list(, $data) = explode(',', $data);
+            $decodedData = base64_decode($data);
+
+            file_put_contents($imagePath, $decodedData);
+            $request->user()->profile_picture = 'uploads/' . $imageName;
         }
+
+        // if ($request->hasFile('profile_picture')) {
+        //     $profilePicturePath = $request->file('profile_picture')->store('uploads', 'public');
+        //     $request->user()->profile_picture = $profilePicturePath;
+        // }
 
         $request->user()->save();
 

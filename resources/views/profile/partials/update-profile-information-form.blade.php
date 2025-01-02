@@ -1,4 +1,6 @@
 <section>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
     <header>
         <h2 class="text-lg font-medium text-gray-900 dark:text-gray-100">
             {{ __('Profile Information') }}
@@ -19,12 +21,31 @@
 
         <div>
             <x-input-label for="profile_picture" :value="__('Profile Picture')" />
-            <div class="profile-picture" style="display: flex;justify-content: center;align-items: center;">
+            <div id="croppie-container" style="display: none;"></div>
+            <div id="profile-picture-preview" style="display: flex; justify-content: center; align-items: center;">
+                <img id="profile-picture-img" style="height: 250px; width: 250px;"
+                    src="{{ $user->profile_picture ? asset('storage/' . $user->profile_picture) : asset('storage/uploads/profile.jpg') }}"
+                    alt="Profile Picture" class="rounded-full">
+            </div>
+            {{-- <div class="profile-picture" style="display: flex;justify-content: center;align-items: center;">
                 <img style="height: 250px; width: 250px;"
                     src="{{ $user->profile_picture ? asset('storage/' . $user->profile_picture) : asset('storage/uploads/profile.jpg') }}"
                     alt="Profile Picture" class="rounded-full w-16 h-16">
+            </div> --}}
+            <div class="flex items-center justify-between">
+                <button id="crop-button" class="mb-2 mt-2 px-4 py-2 bg-indigo-600 text-white rounded-md mr-5"
+                    style="display: none;">Crop</button>
+                <input id="profile_picture" name="profile_picture" type="file"
+                    class="mt-1 block w-full text-sm text-gray-600 dark:text-gray-400 
+                file:mr-4 file:py-2 file:px-4 
+                file:rounded-md file:border-0 
+                file:text-sm file:font-semibold 
+                file:bg-indigo-50 file:text-indigo-700 
+                hover:file:bg-indigo-100 mb-2"
+                    accept="image/*">
             </div>
-
+            {{-- <button id="crop-button" class="mt-2 px-4 py-2 bg-indigo-600 text-white rounded-md"
+                style="display: none;">Crop</button>
             <input id="profile_picture" name="profile_picture" type="file"
                 class="mt-1 block w-full text-sm text-gray-600 dark:text-gray-400 
                           file:mr-4 file:py-2 file:px-4 
@@ -32,9 +53,10 @@
                           file:text-sm file:font-semibold 
                           file:bg-indigo-50 file:text-indigo-700 
                           hover:file:bg-indigo-100 mb-2"
-                accept="image/*" />
+                accept="image/*" /> --}}
             <span class="text-gray-500">Note: For best visibility try to upload square image.</span>
             <x-input-error class="mt-2" :messages="$errors->get('profile_picture')" />
+
         </div>
 
         <div>
@@ -79,4 +101,61 @@
             @endif
         </div>
     </form>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const croppieContainer = document.getElementById('croppie-container');
+            const profilePicturePreview = document.getElementById('profile-picture-preview');
+            const profilePictureInput = document.getElementById('profile_picture');
+            const cropButton = document.getElementById('crop-button');
+            const croppieInstance = new Croppie(croppieContainer, {
+                viewport: {
+                    width: 250,
+                    height: 250,
+                    type: 'circle'
+                },
+                boundary: {
+                    width: 300,
+                    height: 300
+                },
+                showZoomer: true
+            });
+
+            profilePictureInput.addEventListener('change', function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        profilePicturePreview.style.display = 'none';
+                        croppieContainer.style.display = 'block';
+                        cropButton.style.display = 'inline-block';
+                        croppieInstance.bind({
+                            url: e.target.result
+                        });
+                    };
+                    reader.readAsDataURL(file);
+                }
+            });
+
+            cropButton.addEventListener('click', function() {
+                croppieInstance.result({
+                    type: 'base64',
+                    format: 'png',
+                    size: 'viewport'
+                }).then(function(croppedImage) {
+                    const inputElement = document.createElement('input');
+                    inputElement.type = 'hidden';
+                    inputElement.name = 'cropped_image';
+                    inputElement.value = croppedImage;
+                    profilePictureInput.form.appendChild(inputElement);
+
+                    profilePicturePreview.style.display = 'block';
+                    profilePicturePreview.innerHTML =
+                        `<img src="${croppedImage}" class="rounded-full w-16 h-16">`;
+                    croppieContainer.style.display = 'none';
+                    cropButton.style.display = 'none';
+                });
+            });
+        });
+    </script>
+
 </section>
