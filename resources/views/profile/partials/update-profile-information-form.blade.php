@@ -21,20 +21,12 @@
 
         <div>
             <x-input-label for="profile_picture" :value="__('Profile Picture')" />
-            <div id="croppie-container" style="display: none;"></div>
-            <div id="profile-picture-preview" style="display: flex; justify-content: center; align-items: center;">
-                <img id="profile-picture-img" style="height: 250px; width: 250px;"
-                    src="{{ $user->profile_picture ? asset('storage/' . $user->profile_picture) : asset('storage/uploads/profile.jpg') }}"
-                    alt="Profile Picture" class="rounded-full">
-            </div>
             {{-- <div class="profile-picture" style="display: flex;justify-content: center;align-items: center;">
                 <img style="height: 250px; width: 250px;"
                     src="{{ $user->profile_picture ? asset('storage/' . $user->profile_picture) : asset('storage/uploads/profile.jpg') }}"
                     alt="Profile Picture" class="rounded-full w-16 h-16">
             </div> --}}
             <div class="flex items-center justify-between">
-                <button id="crop-button" class="mb-2 mt-2 px-4 py-2 bg-indigo-600 text-white rounded-md mr-5"
-                    style="display: none;">Crop</button>
                 <input id="profile_picture" name="profile_picture" type="file"
                     class="mt-1 block w-full text-sm text-gray-600 dark:text-gray-400 
                 file:mr-4 file:py-2 file:px-4 
@@ -44,16 +36,16 @@
                 hover:file:bg-indigo-100 mb-2"
                     accept="image/*">
             </div>
-            {{-- <button id="crop-button" class="mt-2 px-4 py-2 bg-indigo-600 text-white rounded-md"
-                style="display: none;">Crop</button>
-            <input id="profile_picture" name="profile_picture" type="file"
-                class="mt-1 block w-full text-sm text-gray-600 dark:text-gray-400 
-                          file:mr-4 file:py-2 file:px-4 
-                          file:rounded-md file:border-0 
-                          file:text-sm file:font-semibold 
-                          file:bg-indigo-50 file:text-indigo-700 
-                          hover:file:bg-indigo-100 mb-2"
-                accept="image/*" /> --}}
+            <div id="profile-picture-preview" style="display: flex; justify-content: center; align-items: center;">
+                <img id="profile-picture-img" style="height: 250px; width: 250px;"
+                    src="{{ $user->profile_picture ? asset('storage/' . $user->profile_picture) : asset('storage/uploads/profile.jpg') }}"
+                    alt="Profile Picture" class="rounded-full">
+            </div>
+            <div id="croppie-container" style="display: none;"></div>
+            <div class="w-full text-center">
+                <button id="crop-button" class="mb-2 mt-2 px-4 py-2 bg-indigo-600 text-white rounded-md mr-5"
+                    style="display: none;">Save</button>
+            </div>
             <span class="text-gray-500">Note: For best visibility try to upload square image.</span>
             <x-input-error class="mt-2" :messages="$errors->get('profile_picture')" />
 
