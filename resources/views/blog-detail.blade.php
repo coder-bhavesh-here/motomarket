@@ -18,7 +18,10 @@
         <h1 class="blog-title text-3xl text-black my-5">{{ $blog->title }}</h1>
         <div class="blog-media mb-4 flex justify-center" style="width: 40%">
             @if ($blog->image)
-                <img width="70%" src="{{ asset('storage/' . $blog->image) }}" alt="Blog Image" class="blog-full-image">
+                <img width="70%" src="http://92.205.108.194/wom-admin/public/storage/".{{ $blog->image }}"
+                    alt="Blog Image" class="blog-full-image">
+
+                {{-- <img width="70%" src="{{ asset('storage/' . $blog->image) }}" alt="Blog Image" class="blog-full-image"> --}}
             @elseif ($videoId)
                 <iframe width="100%" height="400" src="https://www.youtube.com/embed/{{ $videoId }}"
                     frameborder="0" allowfullscreen></iframe>
