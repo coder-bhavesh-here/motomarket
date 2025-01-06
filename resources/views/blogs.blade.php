@@ -28,7 +28,7 @@
                     <a href='/blogs/{{ $blog->id }}' class="flex justify-center">
                         @if ($blog->image)
                             {{-- <img src="{{ asset('storage/' . $blog->image) }}" alt="Blog Image" class="blog-image"> --}}
-                            <img src="http://92.205.108.194/wom-admin/public/storage/".{{ $blog->image }}"
+                            <img src="http://92.205.108.194/wom-admin/public/storage/{{ $blog->image }}"
                                 alt="Blog Image" class="blog-image">
                         @elseif (getYoutubeVideoId($blog->youtube_video_link ?? ''))
                             <div style="width: 40%;">
