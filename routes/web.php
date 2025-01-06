@@ -19,7 +19,6 @@ Route::get('/dashboard', [ProfileController::class, 'dashboard'])->middleware(['
 Route::get('/blogs', [BlogController::class, 'list'])->name('blogs.list');
 Route::get('/blogs/{blog}', [BlogController::class, 'show'])->name('blogs.show');
 Route::middleware('auth')->group(function () {
-    Route::resource('blogsbyrankothcj', BlogController::class);
     Route::get('/tours', [TourController::class, 'index'])->name('tours');
     Route::get('/tour-profile', [TourController::class, 'profile'])->name('tours.profile');
     Route::patch('/tour-profile', [TourController::class, 'updateProfile'])->name('tours.profile.update');
