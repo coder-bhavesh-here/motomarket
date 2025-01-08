@@ -17,6 +17,7 @@ Route::get('/tour/book/{tourId}', [TourController::class, 'book']);
 Route::get('/dashboard', [ProfileController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboards');
 
 Route::get('/blogs', [BlogController::class, 'list'])->name('blogs.list');
+Route::get('/faqs', [BlogController::class, 'faqList'])->name('faqs.list');
 Route::get('/blogs/{blog}', [BlogController::class, 'show'])->name('blogs.show');
 Route::middleware('auth')->group(function () {
     Route::get('/tours', [TourController::class, 'index'])->name('tours');

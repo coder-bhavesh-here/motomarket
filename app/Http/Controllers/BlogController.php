@@ -66,8 +66,14 @@ class BlogController extends Controller
 
     public function list()
     {
-        $blogs = Blog::latest()->get();
+        $blogs = Blog::where('is_faq', '0')->latest()->get();
         return view('blogs', compact('blogs'));
+    }
+
+    public function faqList()
+    {
+        $blogs = Blog::where('is_faq', '1')->latest()->get();
+        return view('faqs', compact('blogs'));
     }
 
     /**

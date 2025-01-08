@@ -375,3 +375,7 @@ span.book-date.selected {
 p.blog-title {
     font-size: 22px;
 }
+
+.accordion-item .collapse {
+    visibility: visible !important;
+}
