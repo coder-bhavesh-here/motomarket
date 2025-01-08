@@ -34,9 +34,10 @@
                 </h2>
                 <div id="collapse{{ $key }}" class="accordion-collapse show"
                     aria-labelledby="heading{{ $key }}" data-bs-parent="#accordionExample">
-                    <div class="accordion-body flex-col justify-items-center">
+                    <div class="accordion-body flex justify-items-center">
                         @if ($blog->image)
-                            <img src="{{ asset('storage/' . $blog->image) }}" alt="FAQ Image" class="blog-image">
+                            <img style="width: 200px" src="{{ asset('storage/' . $blog->image) }}" alt="FAQ Image"
+                                class="blog-image">
                         @elseif (getYoutubeVideoId($blog->youtube_video_link ?? ''))
                             <div style="width: 40%;">
                                 <iframe width="100%" height="400"
@@ -44,7 +45,7 @@
                                     frameborder="0" allowfullscreen></iframe>
                             </div>
                         @endif
-                        <p class="mt-3" style="width: 60%">
+                        <p class="ml-3" style="width: 60%">
                             {!! Str::limit(strip_tags($blog->content), 500, '...') !!}
                         </p>
                     </div>
