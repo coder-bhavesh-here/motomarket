@@ -33,15 +33,16 @@
     </div>
     <!-- Social Icons -->
     <div class="flex justify-center space-x-4">
-        <a href="https://facebook.com" target="_blank" class="text-white hover:text-yellow-500 text-2xl">
+        <a href="https://www.facebook.com/WorldonMotoAdventures" target="_blank"
+            class="text-white hover:text-yellow-500 text-2xl">
             <i class="fab fa-facebook"></i> <!-- Font Awesome -->
         </a>
-        <a href="https://youtube.com" target="_blank" class="text-white hover:text-yellow-500 text-2xl">
+        {{-- <a href="https://youtube.com" target="_blank" class="text-white hover:text-yellow-500 text-2xl">
             <i class="fab fa-youtube"></i>
         </a>
         <a href="https://instagram.com" target="_blank" class="text-white hover:text-yellow-500 text-2xl">
             <i class="fab fa-instagram"></i>
-        </a>
+        </a> --}}
     </div>
     </div>
 </body>
