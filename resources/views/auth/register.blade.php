@@ -34,7 +34,7 @@
 
         <!-- Register Section -->
         <div class="w-full lg:w-4/12 bg-white shadow-md">
-            <div class="flex flex-col justify-start pt-32 items-center min-h-screen sm:w-full lg:h-full px-6 py-12">
+            <div class="flex flex-col justify-start pt-20 items-center min-h-screen sm:w-full lg:h-full px-6 py-12">
                 <!-- Logo and Header -->
                 <div class="flex flex-row justify-center items-center mb-6">
                     <img class="w-28 lg:w-28" src="{{ asset('images/logo.png') }}" alt="Logo">
@@ -56,17 +56,18 @@
                         <div>
                             <label for="name"
                                 class="block text-2xl lg:text-sm font-medium text-gray-700">Name</label>
-                            <x-text-input id="name" class="block text-2xl lg:text-sm w-full mt-1" type="text"
-                                name="name" :value="old('name')" required autofocus autocomplete="name" />
+                            <x-text-input id="name"
+                                class="{{ is_array($errors->get('name')) && !empty($errors->get('name')) ? 'error-input' : '' }} block text-2xl lg:text-sm w-full mt-1"
+                                type="text" name="name" :value="old('name')" autofocus autocomplete="name" />
                             <x-input-error :messages="$errors->get('name')" class="mt-2 text-2xl lg:text-sm" />
                         </div>
-
                         <!-- Email Address -->
                         <div>
                             <label for="email"
                                 class="block text-2xl lg:text-sm font-medium text-gray-700">Email</label>
-                            <x-text-input id="email" class="block text-2xl lg:text-sm w-full mt-1" type="email"
-                                name="email" :value="old('email')" required autocomplete="username" />
+                            <x-text-input id="email"
+                                class="{{ is_array($errors->get('email')) && !empty($errors->get('email')) ? 'error-input' : '' }} block text-2xl lg:text-sm w-full mt-1"
+                                type="email" name="email" :value="old('email')" autocomplete="username" />
                             <x-input-error :messages="$errors->get('email')" class="mt-2 text-2xl lg:text-sm" />
                         </div>
 
@@ -74,25 +75,22 @@
                         <div>
                             <label for="password"
                                 class="block text-2xl lg:text-sm font-medium text-gray-700">Password</label>
-                            <x-text-input id="password" class="block text-2xl lg:text-sm w-full mt-1" type="password"
-                                name="password" required autocomplete="new-password" />
+                            <div class="flex flex-row justify-center items-center">
+                                <x-text-input id="password"
+                                    class="w-full {{ is_array($errors->get('password')) && !empty($errors->get('password')) ? 'error-input' : '' }} block text-2xl lg:text-sm mt-1 mr-1"
+                                    type="password" name="password" autocomplete="new-password" />
+                                <i class="fa fa-eye" aria-hidden="true" id="showHidePassword"
+                                    style="font-size:20px; right: 50px; top: 45%; cursor: pointer;"></i>
+                            </div>
                             <x-input-error :messages="$errors->get('password')" class="mt-2 text-2xl lg:text-sm" />
-                        </div>
-
-                        <!-- Confirm Password -->
-                        <div>
-                            <label for="password_confirmation"
-                                class="block text-2xl lg:text-sm font-medium text-gray-700">Confirm Password</label>
-                            <x-text-input id="password_confirmation" class="block text-2xl lg:text-sm w-full mt-1"
-                                type="password" name="password_confirmation" required autocomplete="new-password" />
-                            <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2 text-2xl lg:text-sm" />
                         </div>
 
                         <!-- Terms and Conditions -->
                         <div class="flex items-center">
-                            <input type="checkbox" id="terms-conditions" class="mr-2" required>
+                            <input type="checkbox" id="terms-conditions" name="terms-conditions"
+                                class="mr-2 {{ is_array($errors->get('terms-conditions')) && !empty($errors->get('terms-conditions')) ? 'error-input' : '' }}">
                             <label for="terms-conditions" class="text-sm text-gray-600">
-                                I agree to the terms and conditions
+                                Accept <a href="#">Terms and Condition</a> & <a href="#">Privacy Policy</a>
                             </label>
                         </div>
 
@@ -137,6 +135,20 @@
 
         showImage(currentIndex);
         startSlider();
+    });
+    const showHidePass = document.getElementById('showHidePassword');
+    const userPassword = document.getElementById('password');
+
+    showHidePass.addEventListener('click', function(e) {
+        let showHideAttr = userPassword.getAttribute('type');
+
+        if (showHideAttr === 'password') {
+            showHideAttr = 'text';
+        } else {
+            showHideAttr = 'password';
+        }
+        userPassword.setAttribute('type', showHideAttr);
+        this.classList.toggle('fa-eye-slash');
     });
 </script>
 

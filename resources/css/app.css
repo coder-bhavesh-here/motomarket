@@ -402,3 +402,6 @@ p.blog-title {
     padding: 6px 20px;
     font-size: 18px;
 }
+.error-input {
+    border: 1px solid red;
+}
