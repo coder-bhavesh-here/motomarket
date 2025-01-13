@@ -35,7 +35,7 @@
 
         <!-- Login Section -->
         <div class="w-full lg:w-4/12 bg-white shadow-md">
-            <div class="flex flex-col justify-center items-center min-h-screen sm:w-full lg:h-full px-6 py-12">
+            <div class="flex flex-col justify-start pt-32 items-center min-h-screen sm:w-full lg:h-full px-6 py-12">
                 <!-- Logo and Header -->
                 <div class="flex flex-row justify-center items-center mb-6">
                     <img class="w-28 lg:w-28" src="{{ asset('images/logo.png') }}" alt="Logo">
