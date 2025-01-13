@@ -10,6 +10,7 @@ use App\Models\Tour;
 use App\Models\TourAddOn;
 use App\Models\TourImage;
 use App\Models\TourPrice;
+use App\Models\TourQuestion;
 use App\Models\TourSetting;
 use App\Models\User;
 use Carbon\Carbon;
@@ -114,8 +115,10 @@ class TourController extends Controller
     public function show($tourId): View
     {
         $tour = Tour::find($tourId);
+        $tourQuestions = TourQuestion::where('tour_id', $tourId)->get();
+        $tour->tourQuestions = $tourQuestions;
         return view('tour-detail', [
-            'tour' => $tour
+            'tour' => $tour,
         ]);
     }
     public function book($priceId): View
@@ -373,5 +376,25 @@ class TourController extends Controller
         return view('tour.profile.creation-settings', [
             'tour_setting' => TourSetting::where('user_id', $request->user()->id)->first(),
         ]);
+    }
+
+    function answerQuestion(Request $request, $questionId)
+    {
+        $question = TourQuestion::find($questionId);
+        $question->answer = $request->answer;
+        $question->answered_by = auth()->user()->id;
+        $question->is_answered = true;
+        $question->save();
+        return redirect()->back();
+    }
+
+    function askQuestion(Request $request, $tourId)
+    {
+        $question = TourQuestion::create([
+            'tour_id' => $tourId,
+            'question' => $request->question,
+            'questioned_by' => auth()->user()->id
+        ]);
+        return redirect()->back();
     }
 }

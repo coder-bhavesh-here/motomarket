@@ -225,6 +225,10 @@ span.badge span {
     font-size: 20px;
     color: black;
 }
+.tour-questions .header {
+    font-size: 20px;
+    color: black;
+}
 .tour-prices .price {
     padding: 25px;
 }
