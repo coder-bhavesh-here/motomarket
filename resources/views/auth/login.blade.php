@@ -57,9 +57,10 @@
                         <div>
                             <label for="email"
                                 class="block text-2xl lg:text-sm font-medium text-gray-700">Email</label>
-                            <x-text-input id="email"
-                                class="{{ is_array($errors->get('email')) && !empty($errors->get('email')) ? 'error-input' : '' }} block text-2xl lg:text-sm w-full mt-1"
-                                type="email" name="email" :value="old('email')" autofocus autocomplete="username" />
+                            <input id="email"
+                                class="{{ is_array($errors->get('email')) && !empty($errors->get('email')) ? 'error-input' : '' }} block text-2xl lg:text-sm w-full mt-1 border rounded-lg shadow-sm"
+                                type="email" name="email" :value="old('email')" autofocus
+                                autocomplete="username" />
                             <x-input-error :messages="$errors->get('email')" class="mt-2 text-2xl lg:text-sm" />
                         </div>
 
@@ -67,8 +68,8 @@
                         <div>
                             <label for="password"
                                 class="block text-2xl lg:text-sm font-medium text-gray-700">Password</label>
-                            <x-text-input id="password"
-                                class="{{ is_array($errors->get('password')) && !empty($errors->get('password')) ? 'error-input' : '' }} block text-2xl lg:text-sm w-full mt-1"
+                            <input id="password"
+                                class="{{ is_array($errors->get('password')) && !empty($errors->get('password')) ? 'error-input' : '' }} block text-2xl lg:text-sm w-full mt-1 border rounded-lg shadow-sm"
                                 type="password" name="password" autocomplete="current-password" />
                             <x-input-error :messages="$errors->get('password')" class="mt-2 text-2xl lg:text-sm" />
                         </div>

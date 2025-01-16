@@ -56,8 +56,8 @@
                         <div>
                             <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
                             <input id="name" name="name" type="text"
-                                class="w-full mt-1 px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
-                                value="{{ old('name') }}" required autocomplete="name">
+                                class="w-full mt-1 px-3 py-2 border rounded-lg shadow-sm" value="{{ old('name') }}"
+                                required autocomplete="name">
                             <x-input-error :messages="$errors->get('name')" class="mt-2 text-sm text-red-600" />
                         </div>
 
@@ -65,8 +65,8 @@
                         <div>
                             <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
                             <input id="email" name="email" type="email"
-                                class="w-full mt-1 px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
-                                value="{{ old('email') }}" required autocomplete="email">
+                                class="w-full mt-1 px-3 py-2 border rounded-lg shadow-sm" value="{{ old('email') }}"
+                                required autocomplete="email">
                             <x-input-error :messages="$errors->get('email')" class="mt-2 text-sm text-red-600" />
                         </div>
 
@@ -75,8 +75,8 @@
                             <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
                             <div class="relative">
                                 <input id="password" name="password" type="password"
-                                    class="w-full mt-1 px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
-                                    required autocomplete="new-password">
+                                    class="w-full mt-1 px-3 py-2 border rounded-lg shadow-sm" required
+                                    autocomplete="new-password">
                                 <span class="absolute inset-y-0 right-3 flex items-center cursor-pointer">
                                     <i class="fa fa-eye" id="showHidePassword"></i>
                                 </span>
@@ -95,7 +95,7 @@
 
                         <!-- Sign Up Button -->
                         <button type="submit"
-                            class="w-full py-2 px-4 primary-button text-white font-semibold rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500">
+                            class="w-full py-2 px-4 primary-button text-white font-semibold rounded-lg shadow-md hover:bg-green-600 focus:ring-green-500">
                             Sign up
                         </button>
                     </form>
