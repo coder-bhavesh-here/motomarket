@@ -46,7 +46,7 @@
                 </div>
 
                 <!-- Form Section -->
-                <div class="w-full max-w-2xl">
+                <div class="w-full max-w-md mx-auto mt-8 p-6 bg-white">
                     <h2 class="text-3xl lg:text-2xl font-semibold text-gray-700 mb-4 text-center">Login to your account
                     </h2>
 
