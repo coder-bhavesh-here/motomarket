@@ -90,7 +90,7 @@
 
                         <!-- Sign Up Link -->
                         <div class="text-center mt-6">
-                            <p class="text-sm text-gray-600">Don't have a WorldOnMoto account?</p>
+                            <p class="text-sm text-gray-600">Don’t have a WorldonMoto.com account?</p>
                             <a class="underline text-sm" href="{{ route('register') }}">
                                 {{ __('Sign up here') }}
                             </a>

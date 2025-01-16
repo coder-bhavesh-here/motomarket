@@ -4,9 +4,9 @@
 <head>
     <title>Register | World On Moto</title>
     @vite('resources/css/app.css')
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    {{-- <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> --}}
+    {{-- <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet"> --}}
 </head>
 
 <body class="bg-gray-100">
@@ -34,7 +34,7 @@
 
         <!-- Register Section -->
         <div class="w-full lg:w-4/12 bg-white shadow-md">
-            <div class="flex flex-col justify-start pt-20 items-center min-h-screen sm:w-full lg:h-full px-6 py-12">
+            <div class="flex flex-col justify-start pt-20 items-center min-h-screen sm:w-full lg:h-full px-24 py-12">
                 <!-- Logo and Header -->
                 <div class="flex flex-row justify-center items-center mb-6">
                     <img class="w-28 lg:w-28" src="{{ asset('images/logo.png') }}" alt="Logo">
@@ -45,70 +45,66 @@
                 </div>
 
                 <!-- Form Section -->
-                <div class="w-full max-w-2xl">
-                    <h2 class="text-3xl lg:text-2xl font-semibold text-gray-700 mb-4 text-center">Create your account
-                    </h2>
+                <div class="w-full max-w-md mx-auto mt-8 p-6 bg-white">
 
-                    <form method="POST" action="{{ route('register') }}" class="space-y-4">
+                    <h2 class="text-2xl font-semibold text-gray-700 mb-4 text-center">Create your account</h2>
+
+                    <form method="POST" action="{{ route('register') }}" class="space-y-2">
                         @csrf
 
                         <!-- Name -->
                         <div>
-                            <label for="name"
-                                class="block text-2xl lg:text-sm font-medium text-gray-700">Name</label>
-                            <x-text-input id="name"
-                                class="{{ is_array($errors->get('name')) && !empty($errors->get('name')) ? 'error-input' : '' }} block text-2xl lg:text-sm w-full mt-1"
-                                type="text" name="name" :value="old('name')" autofocus autocomplete="name" />
-                            <x-input-error :messages="$errors->get('name')" class="mt-2 text-2xl lg:text-sm" />
+                            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
+                            <input id="name" name="name" type="text"
+                                class="w-full mt-1 px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                                value="{{ old('name') }}" required autocomplete="name">
+                            <x-input-error :messages="$errors->get('name')" class="mt-2 text-sm text-red-600" />
                         </div>
-                        <!-- Email Address -->
+
+                        <!-- Email -->
                         <div>
-                            <label for="email"
-                                class="block text-2xl lg:text-sm font-medium text-gray-700">Email</label>
-                            <x-text-input id="email"
-                                class="{{ is_array($errors->get('email')) && !empty($errors->get('email')) ? 'error-input' : '' }} block text-2xl lg:text-sm w-full mt-1"
-                                type="email" name="email" :value="old('email')" autocomplete="username" />
-                            <x-input-error :messages="$errors->get('email')" class="mt-2 text-2xl lg:text-sm" />
+                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+                            <input id="email" name="email" type="email"
+                                class="w-full mt-1 px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                                value="{{ old('email') }}" required autocomplete="email">
+                            <x-input-error :messages="$errors->get('email')" class="mt-2 text-sm text-red-600" />
                         </div>
 
                         <!-- Password -->
                         <div>
-                            <label for="password"
-                                class="block text-2xl lg:text-sm font-medium text-gray-700">Password</label>
-                            <div class="flex flex-row justify-center items-center">
-                                <x-text-input id="password"
-                                    class="w-full {{ is_array($errors->get('password')) && !empty($errors->get('password')) ? 'error-input' : '' }} block text-2xl lg:text-sm mt-1 mr-1"
-                                    type="password" name="password" autocomplete="new-password" />
-                                <i class="fa fa-eye" aria-hidden="true" id="showHidePassword"
-                                    style="font-size:20px; right: 50px; top: 45%; cursor: pointer;"></i>
+                            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
+                            <div class="relative">
+                                <input id="password" name="password" type="password"
+                                    class="w-full mt-1 px-3 py-2 border rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-green-500 focus:border-green-500"
+                                    required autocomplete="new-password">
+                                <span class="absolute inset-y-0 right-3 flex items-center cursor-pointer">
+                                    <i class="fa fa-eye" id="showHidePassword"></i>
+                                </span>
                             </div>
-                            <x-input-error :messages="$errors->get('password')" class="mt-2 text-2xl lg:text-sm" />
+                            <x-input-error :messages="$errors->get('password')" class="mt-2 text-sm text-red-600" />
                         </div>
 
                         <!-- Terms and Conditions -->
-                        <div class="flex items-center">
-                            <input type="checkbox" id="terms-conditions" name="terms-conditions"
-                                class="mr-2 {{ is_array($errors->get('terms-conditions')) && !empty($errors->get('terms-conditions')) ? 'error-input' : '' }}">
-                            <label for="terms-conditions" class="text-sm text-gray-600">
-                                Accept <a href="#">Terms and Condition</a> & <a href="#">Privacy Policy</a>
+                        <div class="flex items-center" style="margin-top: 30px !important;">
+                            <input type="checkbox" id="terms-conditions" name="terms-conditions" class="w-4 h-4">
+                            <label for="terms-conditions" class="ml-2 text-sm text-gray-600 font-medium">
+                                Accept <a href="#" class="text-green underline">Terms and Condition</a> & <a
+                                    href="#" class="text-green underline">Privacy Policy</a>
                             </label>
                         </div>
 
-                        <!-- Register Button -->
-                        <div>
-                            <button class="w-full primary-button">
-                                {{ __('Register') }}
-                            </button>
-                        </div>
-
-                        <!-- Login Link -->
-                        <div class="text-center mt-6">
-                            <p class="text-sm text-gray-600">Already have an account?</p>
-                            <a class="underline text-sm" href="{{ route('login') }}">
-                                {{ __('Sign in here') }}
-                            </a>
-                        </div>
+                        <!-- Sign Up Button -->
+                        <button type="submit"
+                            class="w-full py-2 px-4 primary-button text-white font-semibold rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500">
+                            Sign up
+                        </button>
                     </form>
+
+                    <!-- Sign In Link -->
+                    <div class="text-center mt-6">
+                        <p class="text-sm text-gray-600">Have an account? <br><a href="{{ route('login') }}"
+                                class="text-black underline font-medium">Sign in here</a></p>
+                    </div>
                 </div>
             </div>
         </div>

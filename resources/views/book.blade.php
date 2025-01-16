@@ -160,9 +160,27 @@
 
     <div class="mt-4">
         <x-button primary label="Confirm Booking" id="confirmBooking" />
+        {{-- stripe integration --}}
+        {{-- On the application, while making a booking user will have two options to choose from:
+        If the tour date is less than 1 month away, user will have to pay with 100% of the total price.
+        If the tour date is more than 1 month away, user will have to pay with 25% of the total price.
+        All the payments will be made through stripe. Also, the payment will be credited to the account of CJ only at this time. --}}
+        @if ($selectedDate->date < now()->addMonth())
+            @php
+                // Pay 100% of the total price
+                $totalPrice = $selectedDate->price;
+            @endphp
+        @else
+            @php
+                // Pay 25% of the total price
+                $totalPrice = $selectedDate->price * 0.25;
+            @endphp
+        @endif
+        <x-button primary label="Pay {{ $totalPrice }} with Stripe" id="payWithStripe" />
     </div>
 </div>
 <script>
+    
     $(document).ready(function() {
         const basePrice = parseFloat($("#tour_price").val().replace(',', '')); // Get the base tour price
 
