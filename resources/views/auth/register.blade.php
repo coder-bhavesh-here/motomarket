@@ -39,7 +39,7 @@
                 <div class="flex flex-row justify-center items-center mb-6">
                     <img class="w-28 lg:w-28" src="{{ asset('images/logo.png') }}" alt="Logo">
                     <div class="ml-4">
-                        <h1 class="text-3xl lg:text-3xl font-bold text-gray-800 logo-text">WORLD ON MOTO</h1>
+                        <h1 class="text-4xl lg:text-4xl font-bold text-gray-800 logo-text">WORLD ON MOTO</h1>
                         <p class="text-2xl lg:text-lg text-gray-600">Explore the world on a motorbike</p>
                     </div>
                 </div>
