@@ -54,10 +54,10 @@
                         @csrf
 
                         <!-- Email Address -->
-                        <div>
-                            <label for="email"
-                                class="block text-2xl lg:text-sm font-medium text-gray-700">Email</label>
-                            <input id="email"
+                        <div class="flex items-center">
+                            <label style="width: 70px; text-align: right;" for="email"
+                                class="block text-2xl lg:text-sm font-medium text-gray-700 mr-2">Email</label>
+                            <input style="width: 325px;" id="email"
                                 class="{{ is_array($errors->get('email')) && !empty($errors->get('email')) ? 'error-input' : '' }} block text-2xl lg:text-sm w-full mt-1 border rounded-lg shadow-sm"
                                 type="email" name="email" :value="old('email')" autofocus
                                 autocomplete="username" />
@@ -65,18 +65,18 @@
                         </div>
 
                         <!-- Password -->
-                        <div>
-                            <label for="password"
-                                class="block text-2xl lg:text-sm font-medium text-gray-700">Password</label>
-                            <input id="password"
+                        <div class="flex items-center">
+                            <label style="w" for="password"
+                                class="block text-2xl lg:text-sm font-medium text-gray-700 mr-2">Password</label>
+                            <input style="wid" id="password"
                                 class="{{ is_array($errors->get('password')) && !empty($errors->get('password')) ? 'error-input' : '' }} block text-2xl lg:text-sm w-full mt-1 border rounded-lg shadow-sm"
                                 type="password" name="password" autocomplete="current-password" />
                             <x-input-error :messages="$errors->get('password')" class="mt-2 text-2xl lg:text-sm" />
                         </div>
 
                         <!-- Remember Me -->
-                        <div>
-                            <button class="w-full primary-button">
+                        <div class="text-center">
+                            <button class="w-2/4 primary-button">
                                 {{ __('Sign in') }}
                             </button>
                         </div>

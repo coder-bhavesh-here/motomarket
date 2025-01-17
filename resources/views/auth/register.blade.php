@@ -53,39 +53,51 @@
                         @csrf
 
                         <!-- Name -->
-                        <div>
-                            <label for="name" class="block text-sm font-medium text-gray-700">Name</label>
-                            <input id="name" name="name" type="text"
+                        <div class="flex items-center">
+                            <label style="width: 70px; text-align: right;" for="name"
+                                class="block text-sm font-medium text-gray-700 mr-2">Name</label>
+                            <input style="width: 320px;" id="name" name="name" type="text"
                                 class="w-full mt-1 px-3 py-2 border rounded-lg shadow-sm" value="{{ old('name') }}"
                                 required autocomplete="name">
                             <x-input-error :messages="$errors->get('name')" class="mt-2 text-sm text-red-600" />
                         </div>
 
                         <!-- Email -->
-                        <div>
-                            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
-                            <input id="email" name="email" type="email"
+                        <div class="flex items-center">
+                            <label style="width: 70px; text-align: right;" for="email"
+                                class="block text-sm font-medium text-gray-700 mr-2">Email</label>
+                            <input style="width: 320px;" id="email" name="email" type="email"
                                 class="w-full mt-1 px-3 py-2 border rounded-lg shadow-sm" value="{{ old('email') }}"
                                 required autocomplete="email">
                             <x-input-error :messages="$errors->get('email')" class="mt-2 text-sm text-red-600" />
                         </div>
 
                         <!-- Password -->
-                        <div>
-                            <label for="password" class="block text-sm font-medium text-gray-700">Password</label>
-                            <div class="relative">
-                                <input id="password" name="password" type="password"
+                        <div class="flex items-center">
+                            <label style="width: 70px; text-align: right;" for="password"
+                                class="block text-sm font-medium text-gray-700 mr-2">Password</label>
+                            <div class="flex items-center">
+                                <input style="width: 320px;" id="password" name="password" type="password"
                                     class="w-full mt-1 px-3 py-2 border rounded-lg shadow-sm" required
                                     autocomplete="new-password">
-                                <span class="absolute inset-y-0 right-3 flex items-center cursor-pointer">
-                                    <i class="fa fa-eye" id="showHidePassword"></i>
+                                <span id="showHidePassword"
+                                    class="ml-3 inset-y-0 right-3 flex items-center cursor-pointer">
+                                    {{-- <i class="fa fa-eye" id="showHidePassword"></i> --}}
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M2 12C2 12 5 5 12 5C19 5 22 12 22 12C22 12 19 19 12 19C5 19 2 12 2 12Z"
+                                            stroke="#1E293B" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path
+                                            d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"
+                                            stroke="#1E293B" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
                                 </span>
                             </div>
                             <x-input-error :messages="$errors->get('password')" class="mt-2 text-sm text-red-600" />
                         </div>
 
                         <!-- Terms and Conditions -->
-                        <div class="flex items-center" style="margin-top: 30px !important;">
+                        <div class="flex items-center justify-center" style="margin-top: 30px !important;">
                             <input type="checkbox" id="terms-conditions" name="terms-conditions" class="w-4 h-4">
                             <label for="terms-conditions" class="ml-2 text-sm text-gray-600 font-medium">
                                 Accept <a href="#" class="text-green underline">Terms and Condition</a> & <a
@@ -94,10 +106,12 @@
                         </div>
 
                         <!-- Sign Up Button -->
-                        <button type="submit"
-                            class="w-full py-2 px-4 primary-button text-white font-semibold rounded-lg shadow-md hover:bg-green-600 focus:ring-green-500">
-                            Sign up
-                        </button>
+                        <div class="text-center">
+                            <button type="submit"
+                                class="w-2/4 py-2 px-4 primary-button text-white font-semibold rounded-lg shadow-md hover:bg-green-600 focus:ring-green-500">
+                                Sign up
+                            </button>
+                        </div>
                     </form>
 
                     <!-- Sign In Link -->
@@ -144,7 +158,6 @@
             showHideAttr = 'password';
         }
         userPassword.setAttribute('type', showHideAttr);
-        this.classList.toggle('fa-eye-slash');
     });
 </script>
 
