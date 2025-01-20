@@ -15,7 +15,7 @@ class ProfileController extends Controller
     public function home(): View
     {
         $tours = Tour::with(['user', 'prices', 'images', 'favourites'])
-            ->where('is_featured', '1')->limit(6)->get();
+            ->where('is_featured', operator: '1')->limit(6)->get();
         return view('home', [
             'user' => Auth::user(),
             'tours' => $tours,

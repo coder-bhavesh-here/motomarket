@@ -911,7 +911,7 @@
 <body class="font-sans antialiased dark:bg-black dark:text-white/50">
     <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
         <div class="relative min-h-screen flex flex-col selection:bg-[#FF2D20] selection:text-white">
-            <div class="relative w-full px-6">
+            <div class="relative w-full">
                 <header class="grid grid-cols-2 items-center gap-2 lg:grid-cols-3">
                     <div class="flex lg:justify-start lg:col-start-1">
                         <a href="/"><img class="guest-logo" src="{{ asset('images/logo.png') }}"

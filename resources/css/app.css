@@ -249,15 +249,15 @@ span.badge span {
     font-size: 18px;
 }
 footer {
-    background-color: lightgray;
+    background-color: #334155;
+    color: white !important;
 }
 footer ul {
     margin: 10px;
     padding: 10px;
 }
 footer ul li {
-    padding: 10px;
-    border-bottom: 1px solid gray;
+    padding: 5px;
 }
 .logo {
     height: 55px;
@@ -412,6 +412,13 @@ p.blog-title {
     border-radius: 5px;
     padding: 6px 20px;
     font-size: 18px;
+}
+.secondary-button {
+    background-color: #1e293b !important;
+    color: #cbd5e1 !important;
+    padding: 7px 14px;
+    border-radius: 6px;
+    font-size: 14px;
 }
 .error-input {
     border: 1px solid red;
