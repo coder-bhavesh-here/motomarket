@@ -1,10 +1,7 @@
 @include('guest-header')
-<main class="mt-6">
-    <div class="brand-name">
-        <hr>
-        <b style="font-size: 32px; color:black; margin: 5% 0;">Motorbike Tours</b>
-        <hr>
-    </div>
+<main class="px-28">
+    <p class="text-green font-semibold"><u><a href="/">Home</a></u> > Tour Search Results</p>
+    <input type="text" class="mt-5 w-full rounded-md" placeholder="This is where customers can edit from">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     @foreach ($tours as $tour)
         <div class="tour-info">

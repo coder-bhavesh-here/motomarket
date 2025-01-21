@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [ProfileController::class, 'home'])->name('homepage');
+Route::get('/new-home', [ProfileController::class, 'newHome'])->name('homepage');
 Route::get('/explore-tours', [ProfileController::class, 'exploreTours'])->name('explore-tours');
 Route::get('/', [ProfileController::class, 'home'])->name('dashboard');
 Route::get('/tour/{tourId}', [TourController::class, 'show']);
