@@ -119,34 +119,38 @@
             <x-button type="submit" outline positive label="Ask" />
         </form>
     @endif
-    @foreach ($tour->tourQuestions as $question)
-        <div style="box-shadow: gray 0px 0px 10px -6px;" class="p-4">
-            <div><b>Question (by {{ $question->questionedBy->name }}) on
-                    {{ \Carbon\Carbon::parse($question->created_at)->format('F d, Y') }}:</b>
-                {{ $question->question }}</div>
-            @if ($question->is_answered)
-                @if (Auth::check() && Auth::user()->id == $question->answered_by)
-                    <form action="/tour-questions/answer/{{ $question->id }}" method="post">
-                        @csrf
-                        <x-input type="text" label="Answer" name="answer" value="{{ $question->answer }}" />
-                        <x-button type="submit" outline positive label="Update" />
-                    </form>
+    @if ($tour->tourQuestions->isEmpty())
+        <div class="text-center text-2xl">No questions yet.</div>
+    @else
+        @foreach ($tour->tourQuestions as $question)
+            <div style="box-shadow: gray 0px 0px 10px -6px;" class="p-4">
+                <div><b>Question (by {{ $question->questionedBy->name }}) on
+                        {{ \Carbon\Carbon::parse($question->created_at)->format('F d, Y') }}:</b>
+                    {{ $question->question }}</div>
+                @if ($question->is_answered)
+                    @if (Auth::check() && Auth::user()->id == $question->answered_by)
+                        <form action="/tour-questions/answer/{{ $question->id }}" method="post">
+                            @csrf
+                            <x-input type="text" label="Answer" name="answer" value="{{ $question->answer }}" />
+                            <x-button type="submit" outline positive label="Update" />
+                        </form>
+                    @else
+                        <div><b>Answer (By Tour Host):</b>{{ $question->answer }}
+                        </div>
+                    @endif
                 @else
-                    <div><b>Answer (By Tour Host):</b>{{ $question->answer }}
-                    </div>
+                    @if (Auth::check() && Auth::user()->id == $tour->user_id)
+                        {{-- Answer the question if the user is the tour creator --}}
+                        <form action="/tour-questions/answer/{{ $question->id }}" method="post">
+                            @csrf
+                            <x-input type="text" label="Answer" name="answer" />
+                            <x-button type="submit" outline positive label="Answer" />
+                        </form>
+                    @endif
                 @endif
-            @else
-                @if (Auth::check() && Auth::user()->id == $tour->user_id)
-                    {{-- Answer the question if the user is the tour creator --}}
-                    <form action="/tour-questions/answer/{{ $question->id }}" method="post">
-                        @csrf
-                        <x-input type="text" label="Answer" name="answer" />
-                        <x-button type="submit" outline positive label="Answer" />
-                    </form>
-                @endif
-            @endif
-        </div>
-    @endforeach
+            </div>
+        @endforeach
+    @endif
     <hr>
 </div>
 <div class="tour-prices p-6 text-2xl text-center">
