@@ -60,7 +60,7 @@
                                 class="block text-2xl lg:text-sm font-medium text-gray-700 mr-2">Name</label>
                             <input id="name" name="name" type="text"
                                 class="sm:max-md:min-w-[320px] sm:max-w-[calc(100%-162px)] w-full mt-1 px-3 py-2 border rounded-lg shadow-sm"
-                                value="{{ old('name') }}" required autocomplete="name">
+                                value="{{ old('name') }}" autocomplete="name">
                             <x-input-error :messages="$errors->get('name')" class="mt-2 text-2xl lg:text-sm text-red-600" />
                         </div>
 
@@ -70,7 +70,7 @@
                                 class="block text-2xl lg:text-sm font-medium text-gray-700 mr-2">Email</label>
                             <input id="email" name="email" type="email"
                                 class="sm:max-md:min-w-[320px] sm:max-w-[calc(100%-162px)] w-full mt-1 px-3 py-2 border rounded-lg shadow-sm"
-                                value="{{ old('email') }}" required autocomplete="email">
+                                value="{{ old('email') }}" autocomplete="email">
                             <x-input-error :messages="$errors->get('email')" class="mt-2 text-2xl lg:text-sm text-red-600" />
                         </div>
 
@@ -81,7 +81,7 @@
                             <div class="flex items-center w-full">
                                 <input id="password" name="password" type="password"
                                     class="sm:max-md:min-w-[340px] w-full mt-1 px-3 py-2 border rounded-lg shadow-sm"
-                                    required autocomplete="new-password">
+                                    autocomplete="new-password">
                                 <span id="showHidePassword"
                                     class="ml-3 inset-y-0 right-3 flex items-center cursor-pointer">
                                     {{-- <i class="fa fa-eye" id="showHidePassword"></i> --}}
