@@ -423,3 +423,6 @@ p.blog-title {
 .error-input {
     border: 1px solid red;
 }
+.text-red-600 {
+    font-weight: 500;
+}
