@@ -12,7 +12,7 @@
 <body class="bg-gray-100">
     <div class="w-full flex flex-col lg:flex-row sm:justify-center sm:items-center sm:h-screen">
         <!-- Image Section -->
-        <div class="hidden lg:block lg:w-8/12">
+        <div class="hidden lg:block lg:w-[65%]">
             {{-- A slider of images images/bike1.jpg, images/bike2.jpg, images/bike3.jpg, images/bike4.jpg, images/bike5.jpg, images/bike6.jpg --}}
             <div id="imageSlider" class="relative h-screen w-full overflow-hidden">
                 <!-- Slider Images -->
@@ -34,8 +34,9 @@
         </div>
 
         <!-- Login Section -->
-        <div class="w-full lg:w-4/12 bg-white shadow-md">
-            <div class="flex flex-col justify-start pt-32 items-center min-h-screen sm:w-full lg:h-full px-6 py-12">
+        <div class="w-full lg:w-[35%] bg-white shadow-md">
+            <div
+                class="flex flex-col justify-center lg:justify-start lg:pt-32 items-center min-h-screen sm:w-full lg:h-full px-6 py-12">
                 <!-- Logo and Header -->
                 <div class="flex flex-row justify-center items-center mb-6">
                     <img class="w-28 lg:w-28" src="{{ asset('images/logo.png') }}" alt="Logo">
@@ -46,7 +47,7 @@
                 </div>
 
                 <!-- Form Section -->
-                <div class="w-full max-w-md mx-auto mt-8 p-6 bg-white">
+                <div class="w-full mx-auto mt-8 p-6 bg-white">
                     <h2 class="text-3xl lg:text-2xl font-semibold text-gray-700 mb-4 text-center">Login to your account
                     </h2>
 
@@ -55,22 +56,25 @@
 
                         <!-- Email Address -->
                         <div class="flex items-center">
-                            <label style="width: 70px; text-align: right;" for="email"
+                            <label style="width: 118px; text-align: right;" for="email"
                                 class="block text-2xl lg:text-sm font-medium text-gray-700 mr-2">Email</label>
-                            <input style="width: 325px;" id="email"
-                                class="{{ is_array($errors->get('email')) && !empty($errors->get('email')) ? 'error-input' : '' }} block text-2xl lg:text-sm w-full mt-1 border rounded-lg shadow-sm"
+                            <input id="email"
+                                class="sm:max-md:min-w-[320px] sm:max-w-[calc(100%-162px)] w-full {{ is_array($errors->get('email')) && !empty($errors->get('email')) ? 'error-input' : '' }} block text-2xl lg:text-sm w-full mt-1 border rounded-lg shadow-sm"
                                 type="email" name="email" :value="old('email')" autofocus
                                 autocomplete="username" />
-                            <x-input-error :messages="$errors->get('email')" class="mt-2 text-2xl lg:text-sm" />
                         </div>
 
                         <!-- Password -->
                         <div class="flex items-center">
-                            <label style="w" for="password"
+                            <label style="width: 118px; text-align: right;" for="password"
                                 class="block text-2xl lg:text-sm font-medium text-gray-700 mr-2">Password</label>
-                            <input style="wid" id="password"
-                                class="{{ is_array($errors->get('password')) && !empty($errors->get('password')) ? 'error-input' : '' }} block text-2xl lg:text-sm w-full mt-1 border rounded-lg shadow-sm"
+                            <input id="password"
+                                class="sm:max-md:min-w-[320px] sm:max-w-[calc(100%-162px)] w-full {{ is_array($errors->get('password')) && !empty($errors->get('password')) ? 'error-input' : '' }} block text-2xl lg:text-sm w-full mt-1 border rounded-lg shadow-sm"
                                 type="password" name="password" autocomplete="current-password" />
+                        </div>
+
+                        <div class="text-center">
+                            <x-input-error :messages="$errors->get('email')" class="mt-2 text-2xl lg:text-sm" />
                             <x-input-error :messages="$errors->get('password')" class="mt-2 text-2xl lg:text-sm" />
                         </div>
 
@@ -83,16 +87,16 @@
 
                         <!-- Forgot Password -->
                         <div class="text-center mt-4">
-                            <p class="text-sm text-gray-600">Forgot your password?</p>
-                            <a class="underline text-sm" href="{{ route('password.request') }}">
+                            <p class="text-2xl lg:text-sm text-gray-600">Forgot your password?</p>
+                            <a class="underline text-2xl lg:text-sm" href="{{ route('password.request') }}">
                                 {{ __('Reset it here') }}
                             </a>
                         </div>
 
                         <!-- Sign Up Link -->
                         <div class="text-center mt-6">
-                            <p class="text-sm text-gray-600">Don’t have a WorldonMoto.com account?</p>
-                            <a class="underline text-sm" href="{{ route('register') }}">
+                            <p class="text-2xl lg:text-sm text-gray-600">Don’t have a WorldonMoto.com account?</p>
+                            <a class="underline text-2xl lg:text-sm" href="{{ route('register') }}">
                                 {{ __('Sign up here') }}
                             </a>
                         </div>
