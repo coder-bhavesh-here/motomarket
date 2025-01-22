@@ -61,7 +61,6 @@
                             <input id="name" name="name" type="text"
                                 class="sm:max-md:min-w-[320px] sm:max-w-[calc(100%-162px)] w-full mt-1 px-3 py-2 border rounded-lg shadow-sm"
                                 value="{{ old('name') }}" autocomplete="name">
-                            <x-input-error :messages="$errors->get('name')" class="mt-2 text-2xl lg:text-sm text-red-600" />
                         </div>
 
                         <!-- Email -->
@@ -71,7 +70,6 @@
                             <input id="email" name="email" type="email"
                                 class="sm:max-md:min-w-[320px] sm:max-w-[calc(100%-162px)] w-full mt-1 px-3 py-2 border rounded-lg shadow-sm"
                                 value="{{ old('email') }}" autocomplete="email">
-                            <x-input-error :messages="$errors->get('email')" class="mt-2 text-2xl lg:text-sm text-red-600" />
                         </div>
 
                         <!-- Password -->
@@ -95,7 +93,6 @@
                                     </svg>
                                 </span>
                             </div>
-                            <x-input-error :messages="$errors->get('password')" class="mt-2 text-2xl lg:text-sm text-red-600" />
                         </div>
 
                         <!-- Terms and Conditions -->
@@ -105,6 +102,12 @@
                                 Accept <a href="#" class="text-green underline">Terms and Condition</a> & <a
                                     href="#" class="text-green underline">Privacy Policy</a>
                             </label>
+                        </div>
+
+                        <div class="text-center">
+                            <x-input-error :messages="$errors->get('name')" class="mt-2 text-2xl lg:text-sm" />
+                            <x-input-error :messages="$errors->get('email')" class="mt-2 text-2xl lg:text-sm" />
+                            <x-input-error :messages="$errors->get('password')" class="mt-2 text-2xl lg:text-sm" />
                         </div>
 
                         <!-- Sign Up Button -->
