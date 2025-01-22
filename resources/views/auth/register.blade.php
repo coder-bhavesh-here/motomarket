@@ -95,6 +95,12 @@
                             </div>
                         </div>
 
+                        <div class="text-center">
+                            <x-input-error :messages="$errors->get('name')" class="mt-2 text-2xl lg:text-sm" />
+                            <x-input-error :messages="$errors->get('email')" class="mt-2 text-2xl lg:text-sm" />
+                            <x-input-error :messages="$errors->get('password')" class="mt-2 text-2xl lg:text-sm" />
+                        </div>
+
                         <!-- Terms and Conditions -->
                         <div class="flex items-center justify-center" style="margin-top: 30px !important;">
                             <input type="checkbox" id="terms-conditions" name="terms-conditions" class="w-4 h-4">
@@ -102,12 +108,6 @@
                                 Accept <a href="#" class="text-green underline">Terms and Condition</a> & <a
                                     href="#" class="text-green underline">Privacy Policy</a>
                             </label>
-                        </div>
-
-                        <div class="text-center">
-                            <x-input-error :messages="$errors->get('name')" class="mt-2 text-2xl lg:text-sm" />
-                            <x-input-error :messages="$errors->get('email')" class="mt-2 text-2xl lg:text-sm" />
-                            <x-input-error :messages="$errors->get('password')" class="mt-2 text-2xl lg:text-sm" />
                         </div>
 
                         <!-- Sign Up Button -->
