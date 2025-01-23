@@ -119,7 +119,7 @@
             <x-button type="submit" outline positive label="Ask" />
         </form>
     @endif
-    @if ($tour->tourQuestions != null && $tour->tourQuestions->isEmpty())
+    @if ($tour->tourQuestions == null)
         <div class="text-center text-2xl">No questions yet.</div>
     @else
         @foreach ($tour->tourQuestions as $question)
