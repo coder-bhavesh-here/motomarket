@@ -416,6 +416,7 @@ p.blog-title {
     background-color: #556b2f !important;
     color: white !important;
     border-radius: 5px;
+    border: unset !important;
     padding: 6px 20px;
     font-size: 18px;
 }
