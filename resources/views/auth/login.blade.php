@@ -92,6 +92,19 @@
                                     class="w-full mt-2 {{ is_array($errors->get('password')) && !empty($errors->get('password')) ? 'error-input' : '' }} block text-2xl lg:text-sm w-full mt-1 border rounded-lg shadow-sm"
                                     type="password" name="password" autocomplete="current-password" />
                             </td>
+                            <td class="w-[82px]">
+                                <span id="showHidePassword"
+                                    class="ml-3 inset-y-0 right-3 flex items-center cursor-pointer">
+                                    {{-- <i class="fa fa-eye" id="showHidePassword"></i> --}}
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M2 12C2 12 5 5 12 5C19 5 22 12 22 12C22 12 19 19 12 19C5 19 2 12 2 12Z"
+                                            stroke="#1E293B" stroke-linecap="round" stroke-linejoin="round" />
+                                        <path
+                                            d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"
+                                            stroke="#1E293B" stroke-linecap="round" stroke-linejoin="round" />
+                                    </svg>
+                            </td>
                         </tr>
                         <tr>
                             <td colspan="2" class="w-full">
@@ -104,7 +117,7 @@
                         <tr>
                             <td class="w-[82px]"></td>
                             <td class="w-[283px]">
-                                <button class="mt-5 w-full primary-button">
+                                <button class="mt-5 w-full primary-button font-bold">
                                     {{ __('Sign in') }}
                                 </button>
                             </td>
@@ -161,6 +174,19 @@
         // Initial Display
         showImage(currentIndex);
         startSlider();
+    });
+    const showHidePass = document.getElementById('showHidePassword');
+    const userPassword = document.getElementById('password');
+
+    showHidePass.addEventListener('click', function(e) {
+        let showHideAttr = userPassword.getAttribute('type');
+
+        if (showHideAttr === 'password') {
+            showHideAttr = 'text';
+        } else {
+            showHideAttr = 'password';
+        }
+        userPassword.setAttribute('type', showHideAttr);
     });
 </script>
 
