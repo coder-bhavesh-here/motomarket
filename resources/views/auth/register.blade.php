@@ -2,17 +2,24 @@
 {{--  This page should be responsive --}}
 
 <head>
-    <title>Register | World On Moto</title>
+    <title>Sign up | WorldonMoto</title>
     @vite('resources/css/app.css')
-    {{-- <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin> --}}
-    {{-- <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet"> --}}
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
+    <style>
+        td {
+            padding: 0;
+            border: unset;
+        }
+    </style>
 </head>
 
 <body class="bg-gray-100">
     <div class="w-full flex flex-col lg:flex-row sm:justify-center sm:items-center sm:h-screen">
         <!-- Image Section -->
-        <div class="hidden xl:block xl:w-[65%]">
+        <div class="hidden lg:block lg:w-[65%]">
+            {{-- A slider of images images/bike1.jpg, images/bike2.jpg, images/bike3.jpg, images/bike4.jpg, images/bike5.jpg, images/bike6.jpg --}}
             <div id="imageSlider" class="relative h-screen w-full overflow-hidden">
                 <!-- Slider Images -->
                 <div class="slider-images h-screen w-full">
@@ -32,54 +39,66 @@
             </div>
         </div>
 
-        <!-- Register Section -->
-        <div class="w-full xl:w-[35%] bg-white shadow-md">
+        <!-- Login Section -->
+        <div class="w-full lg:w-[35%] bg-white shadow-md">
             <div
-                class="flex flex-col justify-center lg:justify-start lg:pt-20 items-center min-h-screen sm:w-full lg:h-full">
+                class="flex flex-col justify-center lg:justify-start lg:pt-32 items-center min-h-screen sm:w-full lg:h-full px-6 py-12">
                 <!-- Logo and Header -->
-                <div class="flex flex-row justify-center items-center mb-6">
-                    <img class="w-28 lg:w-28" src="{{ asset('images/logo.png') }}" alt="Logo">
-                    <div class="ml-4">
-                        <h1 class="text-4xl lg:text-4xl font-bold text-gray-800 logo-text">WORLD ON MOTO</h1>
-                        <p class="text-2xl lg:text-lg text-gray-600">Explore the world on a motorbike</p>
-                    </div>
+                <div class="flex flex-row justify-center items-center mb-6 px-16">
+                    <img src="{{ asset('images/logo-text.png') }}"
+                        alt="World On Moto - Explore the world on a motorbike">
                 </div>
 
                 <!-- Form Section -->
-                <div class="w-full mx-auto mt-8 p-6 bg-white">
 
-                    <h2 class="text-3xl lg:text-2xl font-semibold text-gray-700 mb-4 text-center">Create your account
-                    </h2>
+                <form method="POST" action="{{ route('register') }}" class="space-y-4">
+                    @csrf
+                    <table>
+                        <tr>
+                            <td class="w-[82px]">
+                            </td>
+                            <td class="w-[283px]">
+                                <h2 class="text-3xl lg:text-2xl font-semibold text-gray-700 mb-5 mt-5 text-center">
+                                    Create your account
+                                </h2>
+                            </td>
+                        </tr>
 
-                    <form method="POST" action="{{ route('register') }}" class="space-y-2">
-                        @csrf
-
-                        <!-- Name -->
-                        <div class="flex items-center">
-                            <label style="min-width: 118px; text-align: right;" for="name"
-                                class="block text-2xl lg:text-sm font-medium text-gray-700 mr-2">Name</label>
-                            <input id="name" name="name" type="text"
-                                class="sm:max-md:min-w-[320px] sm:max-w-[calc(100%-162px)] w-full mt-1 px-3 py-2 border rounded-lg shadow-sm"
-                                value="{{ old('name') }}" autocomplete="name">
-                        </div>
-
-                        <!-- Email -->
-                        <div class="flex items-center">
-                            <label style="min-width: 118px; text-align: right;" for="email"
-                                class="block text-2xl lg:text-sm font-medium text-gray-700 mr-2">Email</label>
-                            <input id="email" name="email" type="email"
-                                class="sm:max-md:min-w-[320px] sm:max-w-[calc(100%-162px)] w-full mt-1 px-3 py-2 border rounded-lg shadow-sm"
-                                value="{{ old('email') }}" autocomplete="email">
-                        </div>
-
-                        <!-- Password -->
-                        <div class="flex items-center">
-                            <label style="min-width: 118px; text-align: right;" for="password"
-                                class="block text-2xl lg:text-sm font-medium text-gray-700 mr-2">Password</label>
-                            <div class="flex items-center w-full">
-                                <input id="password" name="password" type="password"
-                                    class="sm:max-md:min-w-[340px] w-full mt-1 px-3 py-2 border rounded-lg shadow-sm"
-                                    autocomplete="new-password">
+                        <tr>
+                            <td class="w-[82px]">
+                                <label style="text-align: right;" for="name"
+                                    class="block text-2xl lg:text-sm font-medium text-gray-700 mr-2 mt-5">Name</label>
+                            </td>
+                            <td class="w-[283px]">
+                                <input id="name"
+                                    class="w-full mt-5 {{ is_array($errors->get('name')) && !empty($errors->get('name')) ? 'error-input' : '' }} block text-2xl lg:text-sm w-full mt-1 border rounded-lg shadow-sm"
+                                    type="text" name="name" :value="old('name')" autofocus
+                                    autocomplete="username" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="w-[82px]">
+                                <label style="text-align: right;" for="email"
+                                    class="block text-2xl lg:text-sm font-medium text-gray-700 mr-2 mt-2">Email</label>
+                            </td>
+                            <td class="w-[283px]">
+                                <input id="email"
+                                    class="w-full mt-2 {{ is_array($errors->get('email')) && !empty($errors->get('email')) ? 'error-input' : '' }} block text-2xl lg:text-sm w-full mt-1 border rounded-lg shadow-sm"
+                                    type="email" name="email" :value="old('email')" autofocus
+                                    autocomplete="username" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="w-[82px]">
+                                <label style="text-align: right;" for="password"
+                                    class="block text-2xl lg:text-sm font-medium text-gray-700 mr-2 mt-2">Password</label>
+                            </td>
+                            <td class="w-[283px]">
+                                <input id="password"
+                                    class="w-full mt-2 {{ is_array($errors->get('password')) && !empty($errors->get('password')) ? 'error-input' : '' }} block text-2xl lg:text-sm w-full mt-1 border rounded-lg shadow-sm"
+                                    type="password" name="password" autocomplete="current-password" />
+                            </td>
+                            <td class="w-[82px]">
                                 <span id="showHidePassword"
                                     class="ml-3 inset-y-0 right-3 flex items-center cursor-pointer">
                                     {{-- <i class="fa fa-eye" id="showHidePassword"></i> --}}
@@ -92,45 +111,62 @@
                                             stroke="#1E293B" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                 </span>
-                            </div>
-                        </div>
-
-                        <div class="text-center">
-                            <x-input-error :messages="$errors->get('name')" class="mt-2 text-2xl lg:text-sm" />
-                            <x-input-error :messages="$errors->get('email')" class="mt-2 text-2xl lg:text-sm" />
-                            <x-input-error :messages="$errors->get('password')" class="mt-2 text-2xl lg:text-sm" />
-                        </div>
-
-                        <!-- Terms and Conditions -->
-                        <div class="flex items-center justify-center" style="margin-top: 30px !important;">
-                            <input type="checkbox" id="terms-conditions" name="terms-conditions" class="w-4 h-4">
-                            <label for="terms-conditions" class="ml-2 text-2xl lg:text-sm text-gray-600 font-medium">
-                                Accept <a href="#" class="text-green underline">Terms and Condition</a> & <a
-                                    href="#" class="text-green underline">Privacy Policy</a>
-                            </label>
-                        </div>
-
-                        <!-- Sign Up Button -->
-                        <div class="text-center">
-                            <button type="submit"
-                                class="w-2/4 py-2 px-4 primary-button text-white font-semibold rounded-lg shadow-md hover:bg-green-600 focus:ring-green-500">
-                                Sign up
-                            </button>
-                        </div>
-                    </form>
-
-                    <!-- Sign In Link -->
-                    <div class="text-center mt-6">
-                        <p class="text-2xl lg:text-sm text-gray-600">Have an account? <br><a
-                                href="{{ route('login') }}" class="text-black underline font-medium">Sign in here</a>
-                        </p>
-                    </div>
-                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="w-full">
+                                <div class="text-center mt-5">
+                                    <x-input-error :messages="$errors->get('name')" class="mt-2 text-2xl lg:text-sm" />
+                                    <x-input-error :messages="$errors->get('email')" class="mt-2 text-2xl lg:text-sm" />
+                                    <x-input-error :messages="$errors->get('password')" class="mt-2 text-2xl lg:text-sm" />
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="w-full">
+                                <div class="text-right mt-5">
+                                    <input type="checkbox" id="terms-conditions" name="terms-conditions"
+                                        class="w-4 h-4">
+                                    <label for="terms-conditions"
+                                        class="ml-2 text-2xl lg:text-sm text-gray-600 font-medium">
+                                        Accept
+                                        <a href="#" class="text-green font-bold underline">
+                                            Terms and Condition
+                                        </a>
+                                        &
+                                        <a href="#" class="text-green font-bold underline">
+                                            Privacy Policy
+                                        </a>
+                                    </label>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="w-[82px]"></td>
+                            <td class="w-[283px]">
+                                <button class="mt-5 w-full primary-button font-bold">
+                                    {{ __('Sign up') }}
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="w-[82px]"></td>
+                            <td class="w-[283px]">
+                                <div class="text-center mt-10">
+                                    <p style="letter-spacing: -0.4;" class="text-sm font-medium text-gray-600">Already
+                                        have an account?</p>
+                                    <a class="underline text-sm font-bold" href="{{ route('login') }}">
+                                        {{ __('Sign in here') }}
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
+                </form>
             </div>
         </div>
     </div>
 </body>
-
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const images = document.querySelectorAll('#imageSlider .slider-images img');
@@ -146,9 +182,10 @@
             setInterval(() => {
                 currentIndex = (currentIndex + 1) % images.length;
                 showImage(currentIndex);
-            }, 5000);
+            }, 5000); // Change image every 5 seconds
         };
 
+        // Initial Display
         showImage(currentIndex);
         startSlider();
     });

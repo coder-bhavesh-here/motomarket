@@ -2,7 +2,7 @@
 {{--  This page should be responsive --}}
 
 <head>
-    <title>Login | World On Moto</title>
+    <title>Sign in | WorldonMoto</title>
     @vite('resources/css/app.css')
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,12 +44,9 @@
             <div
                 class="flex flex-col justify-center lg:justify-start lg:pt-32 items-center min-h-screen sm:w-full lg:h-full px-6 py-12">
                 <!-- Logo and Header -->
-                <div class="flex flex-row justify-center items-center mb-6">
-                    <img class="w-28 lg:w-28" src="{{ asset('images/logo.png') }}" alt="Logo">
-                    <div class="ml-5">
-                        <h1 class="font-bold text-gray-800 logo-text">WORLD ON MOTO</h1>
-                        <p class="tagline-text">Explore the world on a motorbike</p>
-                    </div>
+                <div class="flex flex-row justify-center items-center mb-6 px-16">
+                    <img src="{{ asset('images/logo-text.png') }}"
+                        alt="World On Moto - Explore the world on a motorbike">
                 </div>
 
                 <!-- Form Section -->
@@ -73,11 +70,11 @@
                         <tr>
                             <td class="w-[82px]">
                                 <label style="text-align: right;" for="email"
-                                    class="block text-2xl lg:text-sm font-medium text-gray-700 mr-2 mt-10">Email</label>
+                                    class="block text-2xl lg:text-sm font-medium text-gray-700 mr-2 mt-5">Email</label>
                             </td>
                             <td class="w-[283px]">
                                 <input id="email"
-                                    class="w-full mt-10 {{ is_array($errors->get('email')) && !empty($errors->get('email')) ? 'error-input' : '' }} block text-2xl lg:text-sm w-full mt-1 border rounded-lg shadow-sm"
+                                    class="w-full mt-5 {{ is_array($errors->get('email')) && !empty($errors->get('email')) ? 'error-input' : '' }} block text-2xl lg:text-sm w-full mt-1 border rounded-lg shadow-sm"
                                     type="email" name="email" :value="old('email')" autofocus
                                     autocomplete="username" />
                             </td>
@@ -104,6 +101,7 @@
                                             d="M12 15C13.6569 15 15 13.6569 15 12C15 10.3431 13.6569 9 12 9C10.3431 9 9 10.3431 9 12C9 13.6569 10.3431 15 12 15Z"
                                             stroke="#1E293B" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
+                                </span>
                             </td>
                         </tr>
                         <tr>
