@@ -91,7 +91,7 @@
                             </td>
                             <td class="w-[82px]">
                                 <span id="showHidePassword"
-                                    class="ml-3 inset-y-0 right-3 flex items-center cursor-pointer">
+                                    class="ml-3 mt-2 inset-y-0 right-3 flex items-center cursor-pointer">
                                     {{-- <i class="fa fa-eye" id="showHidePassword"></i> --}}
                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
                                         xmlns="http://www.w3.org/2000/svg">
