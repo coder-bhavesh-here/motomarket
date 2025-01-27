@@ -6,6 +6,9 @@
     @vite('resources/css/app.css')
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    {{-- Favicon --}}
+    <link rel="icon" href="{{ asset('images/logo.png') }}" type="image/png">
+    {{-- Font Awesome --}}
     <link href="https://fonts.googleapis.com/css2?family=Righteous&display=swap" rel="stylesheet">
     <style>
         td {
@@ -119,6 +122,7 @@
                                     <x-input-error :messages="$errors->get('name')" class="mt-2 text-2xl lg:text-sm" />
                                     <x-input-error :messages="$errors->get('email')" class="mt-2 text-2xl lg:text-sm" />
                                     <x-input-error :messages="$errors->get('password')" class="mt-2 text-2xl lg:text-sm" />
+                                    <x-input-error :messages="$errors->get('terms-conditions')" class="mt-2 text-2xl lg:text-sm" />
                                 </div>
                             </td>
                         </tr>

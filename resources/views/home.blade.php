@@ -926,17 +926,6 @@
                     @if (Route::has('login'))
                         <nav class="-mx-3 flex flex-1 justify-center">
                             @auth
-                                <a href="{{ url('/profile') }}"
-                                    class="rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-                                    {{ auth()->user()->name }}
-                                </a>
-                                <form method="POST" action="{{ route('logout') }}">
-                                    @csrf
-                                    <x-responsive-nav-link :href="route('logout')"
-                                        onclick="event.preventDefault(); this.closest('form').submit();">
-                                        {{ __('Log Out') }}
-                                    </x-responsive-nav-link>
-                                </form>
                             @else
                                 <a href="{{ route('login') }}"
                                     class="font-bold rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
@@ -949,22 +938,41 @@
                                         Sign up
                                     </a>
                                 @endif
-                                <span class="ml-3">
-                                    <svg width="47" height="47" viewBox="0 0 47 47" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="23.5" cy="23.5" r="23.5" fill="#556B2F" />
-                                        <path
-                                            d="M31.375 33.75V31.5833C31.375 30.4341 30.9009 29.3319 30.057 28.5192C29.2131 27.7065 28.0685 27.25 26.875 27.25H20.125C18.9315 27.25 17.7869 27.7065 16.943 28.5192C16.0991 29.3319 15.625 30.4341 15.625 31.5833V33.75"
-                                            stroke="white" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                        <path
-                                            d="M23.5 22.9167C25.9853 22.9167 28 20.9766 28 18.5833C28 16.1901 25.9853 14.25 23.5 14.25C21.0147 14.25 19 16.1901 19 18.5833C19 20.9766 21.0147 22.9167 23.5 22.9167Z"
-                                            stroke="white" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                    </svg>
-                                </span>
-
                             @endauth
+                            <span class="icon-box ml-4">   
+                                <svg width="36" height="27" viewBox="0 0 36 27" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M19.209 1.93164H23.1898L28.1658 17.2861" stroke="#D1E7AB" stroke-width="1.7" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M28.1663 21.3805C30.3649 21.3805 32.1471 19.5473 32.1471 17.2859C32.1471 15.0246 30.3649 13.1914 28.1663 13.1914C25.9678 13.1914 24.1855 15.0246 24.1855 17.2859C24.1855 19.5473 25.9678 21.3805 28.1663 21.3805Z" stroke="#D1E7AB" stroke-width="1.7" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M6.27181 21.3805C8.47034 21.3805 10.2526 19.5473 10.2526 17.2859C10.2526 15.0246 8.47034 13.1914 6.27181 13.1914C4.07328 13.1914 2.29102 15.0246 2.29102 17.2859C2.29102 19.5473 4.07328 21.3805 6.27181 21.3805Z" stroke="#D1E7AB" stroke-width="1.7" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M6.26953 9.09668C10.6484 9.09668 14.2311 12.7818 14.2311 17.2857H20.2023C20.2023 12.7818 23.785 9.09668 28.1639 9.09668C28.9601 9.09668 29.8557 9.19904 30.5524 9.50613" stroke="#D1E7AB" stroke-width="1.7" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                    <path d="M24.1847 6.02539H18.2135L17.8155 6.63957C16.2231 9.30102 13.2375 10.7341 10.252 10.1199" stroke="#D1E7AB" stroke-width="1.7" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>                         
+                            </span>
+                            <span class="icon-box ml-4">
+                                <svg style="margin-left: 7px; margin-top: 3px;" width="24" height="22" viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M21.0794 2.96982C20.5362 2.4247 19.8907 1.99217 19.1799 1.69705C18.4692 1.40192 17.7071 1.25 16.9376 1.25C16.168 1.25 15.4059 1.40192 14.6952 1.69705C13.9844 1.99217 13.3389 2.4247 12.7957 2.96982L11.9619 3.81444L11.1281 2.96982C10.5849 2.4247 9.9394 1.99217 9.22865 1.69705C8.51789 1.40192 7.75587 1.25 6.98629 1.25C6.2167 1.25 5.45468 1.40192 4.74392 1.69705C4.03317 1.99217 3.38767 2.4247 2.84443 2.96982C0.548821 5.26544 0.408053 9.14199 3.29923 12.0873L11.9619 20.75L20.6246 12.0873C23.5158 9.14199 23.375 5.26544 21.0794 2.96982Z" stroke="#D1E7AB" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                </svg>
+                            </span>
+                            <span class="ml-4">
+                                @auth
+                                    <a href="{{ url('/profile') }}">  
+                                @endauth
+                                <svg width="47" height="47" viewBox="0 0 47 47" fill="none"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <circle cx="23.5" cy="23.5" r="23.5" fill="#556B2F" />
+                                    <path
+                                        d="M31.375 33.75V31.5833C31.375 30.4341 30.9009 29.3319 30.057 28.5192C29.2131 27.7065 28.0685 27.25 26.875 27.25H20.125C18.9315 27.25 17.7869 27.7065 16.943 28.5192C16.0991 29.3319 15.625 30.4341 15.625 31.5833V33.75"
+                                        stroke="white" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                    <path
+                                        d="M23.5 22.9167C25.9853 22.9167 28 20.9766 28 18.5833C28 16.1901 25.9853 14.25 23.5 14.25C21.0147 14.25 19 16.1901 19 18.5833C19 20.9766 21.0147 22.9167 23.5 22.9167Z"
+                                        stroke="white" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" />
+                                </svg>
+                                @auth
+                                    </a>
+                                @endauth
+                            </span>
                         </nav>
                     @endif
                 </header>

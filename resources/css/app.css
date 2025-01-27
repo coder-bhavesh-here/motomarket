@@ -433,3 +433,11 @@ p.blog-title {
 .text-red-600 {
     font-weight: 500;
 }
+.icon-box {
+    padding-top: 10px;
+    padding-left: 5px;
+    background: #556B2F;
+    border-radius: 25px;
+    height: 47px;
+    width: 47px;
+}
