@@ -162,25 +162,55 @@
         <x-button primary label="Confirm Booking" id="confirmBooking" />
         {{-- stripe integration --}}
         {{-- On the application, while making a booking user will have two options to choose from:
-        If the tour date is less than 1 month away, user will have to pay with 100% of the total price.
-        If the tour date is more than 1 month away, user will have to pay with 25% of the total price.
+        If the tour date is less than 2 month away, user will have to pay with 100% of the total price.
+        If the tour date is more than 2 month away, user will have to pay with 25% of the total price.
         All the payments will be made through stripe. Also, the payment will be credited to the account of CJ only at this time. --}}
-        @if ($selectedDate->date < now()->addMonth())
+        @if ($selectedDate->date < now()->addMonths(2))
             @php
                 // Pay 100% of the total price
-                $totalPrice = $selectedDate->price;
+                $pay = $totalPrice = $selectedDate->price;
             @endphp
         @else
             @php
                 // Pay 25% of the total price
                 $totalPrice = $selectedDate->price * 0.25;
+                $pay = $selectedDate->price;
             @endphp
+            <button class="make-payment primary-button" data-id="{{ $selectedDate->id }}"
+                data-price="{{ $totalPrice }}" id="payWithStripe">Pay 25% - <span
+                    id="twentyFivePay">{{ $totalPrice }}</span>£</button>
         @endif
-        <x-button primary label="Pay {{ $totalPrice }} with Stripe" id="payWithStripe" />
+        <button class="make-payment primary-button" data-id="{{ $selectedDate->id }}"
+            data-price="{{ $pay }}" id="payWithStripe">Pay 100% - <span
+                id="hundredPay">{{ $pay }}</span>£</button>
     </div>
 </div>
 <script>
-    
+    // on click of .make-payment send the id and price to makePayment route
+    $(".make-payment").click(function(e) {
+        const id = $(this).data("id");
+        alert(id);
+        const price = $(this).data("price");
+        alert(price);
+        $.ajax({
+            type: "POST",
+            url: "/payment",
+            data: {
+                id,
+                price
+            },
+            dataType: "JSON",
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                    "content"
+                ),
+            },
+            success: function(response) {
+                alert(response.redirect_url)
+                window.location.href(response.redirect_url);
+            }
+        });
+    });
     $(document).ready(function() {
         const basePrice = parseFloat($("#tour_price").val().replace(',', '')); // Get the base tour price
 
@@ -190,6 +220,10 @@
                 totalPrice += parseFloat($(this).data("price").replace(',', ''));
             });
             $("#total_price").html(totalPrice.toFixed(2));
+            $("#hundredPay").html(totalPrice.toFixed(2));
+            $("#hundredPay").parent().attr("data-price", totalPrice.toFixed(2));
+            $("#twentyFivePay").html((totalPrice * 0.25).toFixed(2));
+            $("#twentyFivePay").parent().attr("data-price", (totalPrice * 0.25).toFixed(2));
         }
         $(".selectedAddOns").on("click", function() {
             calculateTotalPrice();

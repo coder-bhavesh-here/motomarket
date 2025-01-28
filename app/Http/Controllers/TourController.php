@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Stripe\StripeClient;
 
 class TourController extends Controller
 {
@@ -121,6 +122,48 @@ class TourController extends Controller
             'tour' => $tour,
         ]);
     }
+
+    public function makePayment(Request $request)
+    {
+        //  validate the request
+        $request->validate([
+            'id' => 'required|numeric',
+            'price' => 'required'
+        ]);
+        $tourPriceDetails = TourPrice::find($request->id);
+        $tour = Tour::find($tourPriceDetails->tour_id);
+        $image = TourImage::where('tour_id', $tour->id)->first();
+        if ($image != null) {
+            $imagePath = asset('storage') . '/' . $image->image_path;
+        } else {
+            $imagePath = asset('images/bike4.jpg');
+        }
+        // stripe integration to generate the payment link
+        // create a stripe product
+        $stripe = new StripeClient(env('STRIPE_SECRET_KEY'));
+        $product = $stripe->products->create([
+            'name' => 'Tour Payment',
+            'description' => 'Payment for : ' . $tour->title,
+            'images' => [$imagePath],
+        ]);
+        // create a stripe price
+        $price = $stripe->prices->create([
+            'product' => $product->id,
+            'unit_amount' => 2000,
+            'currency' => 'usd',
+        ]);
+        // create a payment link
+        $paymentLink = $stripe->paymentLinks->create([
+            'line_items' => [[
+                'price' => $price->id,
+                'quantity' => 1,
+            ]],
+        ]);
+        // redirect to the payment link
+        return redirect($paymentLink->url);
+        // return json_encode(['redirect_url' => $paymentLink->url]);
+    }
+
     public function book($priceId): View
     {
         $price = TourPrice::find($priceId);
