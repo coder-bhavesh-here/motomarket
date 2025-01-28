@@ -442,9 +442,9 @@ p.blog-title {
     width: 47px;
 }
 .truncated-text {
-    display: inline-block; /* or block, depending on your use case */
-    max-width: 45ch; /* Limits text to 45 characters */
-    white-space: nowrap; /* Prevents text from wrapping */
-    overflow: hidden; /* Hides overflowed text */
-    text-overflow: ellipsis; /* Adds the ellipsis */
+    display: inline-block;
+    max-width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
