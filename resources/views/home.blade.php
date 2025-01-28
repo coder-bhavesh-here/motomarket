@@ -976,18 +976,24 @@
                                 @auth
                                     <a href="{{ url('/profile') }}">
                                     @endauth
-                                    <svg width="47" height="47" viewBox="0 0 47 47" fill="none"
-                                        xmlns="http://www.w3.org/2000/svg">
-                                        <circle cx="23.5" cy="23.5" r="23.5" fill="#556B2F" />
-                                        <path
-                                            d="M31.375 33.75V31.5833C31.375 30.4341 30.9009 29.3319 30.057 28.5192C29.2131 27.7065 28.0685 27.25 26.875 27.25H20.125C18.9315 27.25 17.7869 27.7065 16.943 28.5192C16.0991 29.3319 15.625 30.4341 15.625 31.5833V33.75"
-                                            stroke="#D1E7AB" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                        <path
-                                            d="M23.5 22.9167C25.9853 22.9167 28 20.9766 28 18.5833C28 16.1901 25.9853 14.25 23.5 14.25C21.0147 14.25 19 16.1901 19 18.5833C19 20.9766 21.0147 22.9167 23.5 22.9167Z"
-                                            stroke="#D1E7AB" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                    </svg>
+                                    @if ($user && $user != null && $user->profile_picture)
+                                        <img id="profile-picture-img" style="height: 47px; width: 47px;"
+                                            src="{{ asset('storage/' . $user->profile_picture) }}" alt="Profile Picture"
+                                            class="rounded-full">
+                                    @else
+                                        <svg width="47" height="47" viewBox="0 0 47 47" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <circle cx="23.5" cy="23.5" r="23.5" fill="#556B2F" />
+                                            <path
+                                                d="M31.375 33.75V31.5833C31.375 30.4341 30.9009 29.3319 30.057 28.5192C29.2131 27.7065 28.0685 27.25 26.875 27.25H20.125C18.9315 27.25 17.7869 27.7065 16.943 28.5192C16.0991 29.3319 15.625 30.4341 15.625 31.5833V33.75"
+                                                stroke="#D1E7AB" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                            <path
+                                                d="M23.5 22.9167C25.9853 22.9167 28 20.9766 28 18.5833C28 16.1901 25.9853 14.25 23.5 14.25C21.0147 14.25 19 16.1901 19 18.5833C19 20.9766 21.0147 22.9167 23.5 22.9167Z"
+                                                stroke="#D1E7AB" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </svg>
+                                    @endif
                                     @auth
                                     </a>
                                 @endauth
