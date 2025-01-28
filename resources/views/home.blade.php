@@ -994,7 +994,7 @@
                                                 class="rounded-md aspect-square object-cover h-full w-full"
                                                 src="{{ isset($tour->images) && isset($tour->images[0]->image_path) ? asset('storage') . '/' . $tour->images[0]->image_path : 'https://photos.smugmug.com/Galleries/Motorcycles/i-jX3tNwR/0/K2H4fw8P5MqPD8SRLWSrRZm4479d3ZvH8HL773j2D/L/cj.photos-_CJ09043-L.jpg' }}"
                                                 alt="Tour photo"></a>
-                                        <h3 class="text-base font-semibold mt-2 text-green">{{ $tour->title }}</h3>
+                                        <h3 class="text-base font-semibold mt-2 text-green truncated-text">{{ $tour->title }}</h3>
                                     </div>
                                     <p class="text-sm text-gray-600 flex items-center align-center mt-8">
                                         <span>
