@@ -204,7 +204,7 @@
                 ),
             },
             success: function(response) {
-                window.location.href(response.redirect_url);
+                window.location.href = response.redirect_url;
             }
         });
     });
