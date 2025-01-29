@@ -160,8 +160,8 @@ class TourController extends Controller
             ]],
         ]);
         // redirect to the payment link
-        return redirect($paymentLink->url);
-        // return json_encode(['redirect_url' => $paymentLink->url]);
+        // return redirect($paymentLink->url);
+        return json_encode(['redirect_url' => $paymentLink->url]);
     }
 
     public function book($priceId): View

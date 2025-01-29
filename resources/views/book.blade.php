@@ -189,9 +189,7 @@
     // on click of .make-payment send the id and price to makePayment route
     $(".make-payment").click(function(e) {
         const id = $(this).data("id");
-        alert(id);
         const price = $(this).data("price");
-        alert(price);
         $.ajax({
             type: "POST",
             url: "/payment",
@@ -206,7 +204,6 @@
                 ),
             },
             success: function(response) {
-                alert(response.redirect_url)
                 window.location.href(response.redirect_url);
             }
         });
