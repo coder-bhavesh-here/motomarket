@@ -31,12 +31,28 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function exploreTours(): View
+    public function exploreTours(Request $request): View
     {
-        $tours = Tour::with(['user', 'prices', 'images', 'favourites'])->where('status', 'published')->get();
+        // Check if request has search parameter
+        $search = $request->get('search');
+        // If yes then the search tours where the name is like the search parameter 
+        // or the user.tour_operation_name is like the search parameter
+        // or the user.name is like the search parameter
+
+        $tourQuery = Tour::with(['user', 'prices', 'images', 'favourites']);
+        if ($search) {
+            $tourQuery = $tourQuery->where('title', 'like', "%" . $search . "%");
+            $tourQuery = $tourQuery->orWhereHas('user', function ($query) use ($search) {
+                $query->where('tour_operation_name', 'like', "%" . $search . "%");
+                $query->orWhere('name', 'like', "%" . $search . "%");
+            });
+        }
+        // dd($tourQuery->toSql());
+        $tours = $tourQuery->where('status', 'published')->get();
         return view('explore-tours', [
             'user' => Auth::user(),
             'tours' => $tours,
+            'search' => $search
         ]);
     }
 

@@ -7,7 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/payment', [TourController::class, 'makePayment'])->name('makePayment');
-Route::get('/', [ProfileController::class, 'home'])->name('homepage');
+Route::get('/', [ProfileController::class, 'home'])->name('temp-homepage');
 Route::get('/new-home', [ProfileController::class, 'newHome'])->name('homepage');
 Route::get('/explore-tours', [ProfileController::class, 'exploreTours'])->name('explore-tours');
 Route::get('/', [ProfileController::class, 'home'])->name('dashboard');

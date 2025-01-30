@@ -163,16 +163,9 @@ hr {
     margin: 15px 0 !important;
 }
 .tour-info {
-    padding: 16px;
-    border: 1px solid #ededed80;
+    padding: 8px 0;
     border-radius: 10px;
     margin: 10px 0;
-    background-color: #ededed80;
-}
-.tour-info .tour-title {
-    font-size: 28px;
-    color: #696868;
-    font-weight: bold;
 }
 .tour-info .tour-owner {
     font-size: 15px;
@@ -180,19 +173,25 @@ hr {
 .tour-details img {
     width: 100%;
     max-height: fit-content;
+    border-radius: 10px 0 0 10px;
 }
 .tour-details .tour-description {
-    width: 60%;
+    width: 65%;
+    padding: 10px 25px;
+    border-radius: 0 10px 10px 0;
+    background-color: #f1f5f9;
 }
 span.badge {
     padding: 7px 14px;
     border-radius: 10px;
     font-size: 14px;
     margin: 7px;
-    background: lightgray;
+    color: black;
+    background: white;
     justify-content: center;
     align-items: center;
     display: inline-flex;
+    height: 50px;
 }
 span.badge-positive {
     padding: 7px 14px;
@@ -215,7 +214,7 @@ span.badge span {
 .links a {
     border: 1px solid #d3d3d3;
     border-radius: 10px;
-    padding: 10px;
+    padding: 20px;
 }
 .links {
     margin: 14px;
@@ -412,6 +411,13 @@ p.blog-title {
     letter-spacing: -0.6;
     font-weight: 600;
 }
+.button-text {
+    background-color: #556b2f;
+    padding: 8px 24px;
+    border: unset !important;
+    border-radius: 5px;
+    color: white !important;
+}
 .primary-button {
     background-color: #556b2f !important;
     color: white !important;
@@ -447,4 +453,7 @@ p.blog-title {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+.badge img {
+    width: 33px;
 }
