@@ -50,7 +50,7 @@
                     </a>
                     <p>
                         <a href='/tour/{{ $tour->id }}' class="text-xl text-black font-normal">
-                            {{ Str::limit(strip_tags($tour->tour_description), 1000) }}
+                            {{ Str::limit(strip_tags($tour->tour_description), 700) }}
                         </a>
                     </p>
                     <div class="badges mt-5 flex flex-wrap items-center">
