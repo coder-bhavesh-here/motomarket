@@ -183,15 +183,16 @@ hr {
 }
 span.badge {
     padding: 7px 14px;
-    border-radius: 10px;
+    border-radius: 5px;
     font-size: 14px;
-    margin: 7px;
+    margin: 0 10px 10px 0;
     color: black;
     background: white;
+    border: 1px solid #949494;
     justify-content: center;
     align-items: center;
     display: inline-flex;
-    height: 50px;
+    height: 48px;
 }
 span.badge-positive {
     padding: 7px 14px;
