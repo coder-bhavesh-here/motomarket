@@ -72,8 +72,6 @@
                                 <span>{{ $tour->prices[0]->date . ($tour->prices->count() > 1 ? ' (+' . ($tour->prices->count() - 1) . ' more)' : '') }}</span>
                             </span>
                         @endif
-                        {{-- @foreach ($tour->prices as $tourDateWise)
-                        @endforeach --}}
                         <span class="badge">
                             <img src="{{ asset('images') . '/earth.svg' }}" alt="">
                             <span>{{ $tour->countries }}</span></span>
@@ -88,17 +86,19 @@
                             <img src="{{ asset('images') . '/helmet.svg' }}" alt="">
                             <span>{{ $tour->bike_option }}</span></span>
                     </div>
-                    <div class="links">
+                    <div class="links flex items-center">
+                        <a href='/tour/{{ $tour->id }}' class="button-text">Tour Details</a>
                         @if ($tour->is_favourite)
                             <a class="unfavourite">
-                                <i class="fa-solid fa-heart" data-id="{{ $tour->id }}"></i>
+                                <img style="height: 50px; width: 50px;"
+                                    src="{{ asset('images') . '/heart-filled.svg' }}" data-id="{{ $tour->id }}">
                             </a>
                         @else
                             <a class="favourite">
-                                <i class="fa-regular fa-heart" data-id="{{ $tour->id }}"></i>
+                                <img style="height: 50px; width: 50px;"
+                                    src="{{ asset('images') . '/heart-plain.svg' }}" data-id="{{ $tour->id }}">
                             </a>
                         @endif
-                        <a href='/tour/{{ $tour->id }}' class="button-text">Tour Details</a>
                     </div>
                 </div>
             </div>
@@ -108,7 +108,7 @@
 <script>
     $(document).on("click", ".favourite", function(e) {
         e.preventDefault();
-        const icon = $(this).find("i");
+        const icon = $(this).find("img");
         const tourId = icon.attr("data-id");
 
         $.ajax({
@@ -123,7 +123,7 @@
             },
             success: function(response) {
                 if (response.message === "Tour marked as favourite.!") {
-                    icon.removeClass("fa-regular").addClass("fa-solid");
+                    icon.attr("src", "{{ asset('images') . '/heart-filled.svg' }}");
                     $(e.currentTarget).removeClass("favourite").addClass("unfavourite");
                 }
             },
@@ -135,7 +135,7 @@
 
     $(document).on("click", ".unfavourite", function(e) {
         e.preventDefault();
-        const icon = $(this).find("i");
+        const icon = $(this).find("img");
         const tourId = icon.attr("data-id");
 
         $.ajax({
@@ -150,7 +150,7 @@
             },
             success: function(response) {
                 if (response.message === "Tour removed from favourite.!") {
-                    icon.removeClass("fa-solid").addClass("fa-regular");
+                    icon.attr("src", "{{ asset('images') . '/heart-plain.svg' }}");
                     $(e.currentTarget).removeClass("unfavourite").addClass("favourite");
                 }
             },
