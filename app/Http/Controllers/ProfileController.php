@@ -45,7 +45,7 @@ class ProfileController extends Controller
                 });
         }
 
-        $tours = $query->where('status', 'published')->paginate(2);
+        $tours = $query->where('status', 'published')->paginate(4);
 
         if ($request->ajax()) {
             $viewData = [];
