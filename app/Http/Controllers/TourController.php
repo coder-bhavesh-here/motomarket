@@ -15,13 +15,13 @@ use App\Models\TourSetting;
 use App\Models\User;
 use Carbon\Carbon;
 use Hamcrest\Type\IsNumeric;
-use Illuminate\Container\Attributes\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Stripe\StripeClient;
+use Illuminate\Support\Facades\Auth;
 
 class TourController extends Controller
 {
@@ -125,11 +125,11 @@ class TourController extends Controller
 
     public function makePayment(Request $request)
     {
-        //  validate the request
         $request->validate([
             'id' => 'required|numeric',
             'price' => 'required'
         ]);
+
         $tourPriceDetails = TourPrice::find($request->id);
         $tour = Tour::find($tourPriceDetails->tour_id);
         $image = TourImage::where('tour_id', $tour->id)->first();
@@ -138,30 +138,80 @@ class TourController extends Controller
         } else {
             $imagePath = asset('images/bike4.jpg');
         }
-        // stripe integration to generate the payment link
-        // create a stripe product
         $stripe = new StripeClient(env('STRIPE_SECRET_KEY'));
         $product = $stripe->products->create([
             'name' => 'Tour Payment',
             'description' => 'Payment for : ' . $tour->title,
             'images' => [$imagePath],
         ]);
-        // create a stripe price
+
+        // create a stripe price with actual amount from request
         $price = $stripe->prices->create([
             'product' => $product->id,
-            'unit_amount' => 2000,
+            'unit_amount' => $request->price * 100, // Convert to cents
             'currency' => 'usd',
         ]);
-        // create a payment link
-        $paymentLink = $stripe->paymentLinks->create([
+
+        $session = $stripe->checkout->sessions->create([
+            'payment_method_types' => ['card'],
             'line_items' => [[
                 'price' => $price->id,
                 'quantity' => 1,
             ]],
+            'mode' => 'payment',
+            'success_url' => route('payment.success') . '?session_id={CHECKOUT_SESSION_ID}&tour_price_id=' . $request->id,
+            'cancel_url' => route('payment.cancel'),
+            'metadata' => [
+                'tour_price_id' => $request->id,
+                'user_id' => Auth::id()
+            ]
         ]);
-        // redirect to the payment link
-        // return redirect($paymentLink->url);
-        return json_encode(['redirect_url' => $paymentLink->url]);
+
+        return json_encode(['redirect_url' => $session->url]);
+    }
+
+    public function paymentSuccess(Request $request)
+    {
+        if (!$request->session_id) {
+            return redirect()->route('homepage');
+        }
+
+        $stripe = new StripeClient(env('STRIPE_SECRET_KEY'));
+        $session = $stripe->checkout->sessions->retrieve($request->session_id);
+
+        if ($session->payment_status === 'paid') {
+            // Get tour price details to access the date
+            $tourPrice = TourPrice::find($session->metadata->tour_price_id);
+            dd($session->metadata);
+            // Create booking record
+            $booking = Booking::create([
+                'tour_id' => $tourPrice->tour_id,
+                'name' => $session->metadata->name,
+                'address' => $session->metadata->address,
+                'postcode' => $session->metadata->postcode,
+                'country' => $session->metadata->country,
+                'mobile_number' => $session->metadata->mobile_number,
+                'dob' => $session->metadata->dob,
+                'user_id' => $session->metadata->user_id,
+                'amount' => $session->amount_total / 100, // Convert from cents
+                'payment_id' => $session->payment_intent,
+                'status' => 'confirmed',
+                'date' => $tourPrice->date // Add the tour date from TourPrice
+            ]);
+
+            // Send confirmation emails
+            $tour = Tour::find($booking->tour_id);
+            $user = User::find($tour->user_id);
+
+            Mail::to($user->email)->send(new BookingConfirmedAgency($booking));
+            Mail::to(Auth::user()->email)->send(new BookingConfirmed($booking));
+
+            return redirect()->route('booking.confirmation', $booking->id)
+                ->with('success', 'Payment successful! Your booking is confirmed.');
+        }
+
+        return redirect()->route('homepage')
+            ->with('error', 'Payment was not successful. Please try again.');
     }
 
     public function book($priceId): View

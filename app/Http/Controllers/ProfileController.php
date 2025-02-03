@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
+use Illuminate\Http\JsonResponse;
 
 class ProfileController extends Controller
 {
@@ -31,28 +32,38 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function exploreTours(Request $request): View
+    public function exploreTours(Request $request): View|JsonResponse
     {
-        // Check if request has search parameter
         $search = $request->get('search');
-        // If yes then the search tours where the name is like the search parameter 
-        // or the user.tour_operation_name is like the search parameter
-        // or the user.name is like the search parameter
+        $query = Tour::with(['user', 'prices', 'images', 'favourites']);
 
-        $tourQuery = Tour::with(['user', 'prices', 'images', 'favourites']);
         if ($search) {
-            $tourQuery = $tourQuery->where('title', 'like', "%" . $search . "%");
-            $tourQuery = $tourQuery->orWhereHas('user', function ($query) use ($search) {
-                $query->where('tour_operation_name', 'like', "%" . $search . "%");
-                $query->orWhere('name', 'like', "%" . $search . "%");
-            });
+            $query->where('title', 'like', '%' . $search . '%')
+                ->orWhereHas('user', function ($query) use ($search) {
+                    $query->where('tour_operation_name', 'like', '%' . $search . '%')
+                        ->orWhere('name', 'like', '%' . $search . '%');
+                });
         }
-        // dd($tourQuery->toSql());
-        $tours = $tourQuery->where('status', 'published')->get();
+
+        $tours = $query->where('status', 'published')->paginate(2);
+
+        if ($request->ajax()) {
+            $viewData = [];
+            foreach ($tours as $tour) {
+                if ($tour->status === 'published') {
+                    $viewData[] = [
+                        'html' => view('partials.tour-card', compact('tour'))->render()
+                    ];
+                }
+            }
+            return response()->json(['tours' => $viewData]);
+        }
+        $countries = config('countries.list');
         return view('explore-tours', [
             'user' => Auth::user(),
             'tours' => $tours,
-            'search' => $search
+            'search' => $search,
+            'countries' => $countries
         ]);
     }
 

@@ -23,5 +23,7 @@ class Booking extends Model
         'address',
         'country',
         'postcode',
+        'payment_id',
+        'status',
     ];
 }

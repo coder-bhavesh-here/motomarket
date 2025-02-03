@@ -154,17 +154,7 @@
     </div>
 
     <div class="mt-4">
-        <x-checkbox label="Please agree to our tour terms and cancellation policy. You can read it here->"
-            wire:model="agreeTerms" />
-    </div>
-
-    <div class="mt-4">
-        <x-button primary label="Confirm Booking" id="confirmBooking" />
-        {{-- stripe integration --}}
-        {{-- On the application, while making a booking user will have two options to choose from:
-        If the tour date is less than 2 month away, user will have to pay with 100% of the total price.
-        If the tour date is more than 2 month away, user will have to pay with 25% of the total price.
-        All the payments will be made through stripe. Also, the payment will be credited to the account of CJ only at this time. --}}
+        <div id="validation-errors" class="text-red-600 mb-4 hidden"></div>
         @if ($selectedDate->date < now()->addMonths(2))
             @php
                 // Pay 100% of the total price
@@ -186,10 +176,49 @@
     </div>
 </div>
 <script>
-    // on click of .make-payment send the id and price to makePayment route
+    function validateForm() {
+        const requiredFields = {
+            name: "Name",
+            dob: "Date of Birth",
+            nationality: "Nationality",
+            driving_license_number: "Driving License Number",
+            mobile_number: "Mobile Number",
+            address: "Address",
+            country: "Country",
+            postcode: "Postcode"
+        };
+
+        let errors = [];
+
+        // Check each required field
+        Object.entries(requiredFields).forEach(([field, label]) => {
+            if (!$(`#${field}`).val()) {
+                errors.push(`${label} is required`);
+            }
+        });
+
+        // Display errors if any
+        const errorDiv = $("#validation-errors");
+        if (errors.length > 0) {
+            errorDiv.html(errors.join('<br>')).removeClass('hidden');
+            return false;
+        }
+
+        errorDiv.addClass('hidden');
+        return true;
+    }
+
     $(".make-payment").click(function(e) {
+        e.preventDefault();
+
+        // First validate the form
+        if (!validateForm()) {
+            return false;
+        }
+
         const id = $(this).data("id");
         const price = $(this).data("price");
+
         $.ajax({
             type: "POST",
             url: "/payment",
@@ -199,15 +228,14 @@
             },
             dataType: "JSON",
             headers: {
-                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                    "content"
-                ),
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             success: function(response) {
                 window.location.href = response.redirect_url;
             }
         });
     });
+
     $(document).ready(function() {
         const basePrice = parseFloat($("#tour_price").val().replace(',', '')); // Get the base tour price
 

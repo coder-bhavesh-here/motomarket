@@ -7,6 +7,8 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::post('/payment', [TourController::class, 'makePayment'])->name('makePayment');
+Route::get('/success', [ProfileController::class, 'home'])->name('payment.success');
+Route::get('/cancel', [ProfileController::class, 'home'])->name('payment.cancel');
 Route::get('/', [ProfileController::class, 'home'])->name('temp-homepage');
 Route::get('/new-home', [ProfileController::class, 'newHome'])->name('homepage');
 Route::get('/explore-tours', [ProfileController::class, 'exploreTours'])->name('explore-tours');
@@ -48,5 +50,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/tour-questions/ask/{tourId}', [TourController::class, 'askQuestion'])->name('tour-questions.ask');
     Route::post('/tour-questions/answer/{questionId}', [TourController::class, 'answerQuestion'])->name('tour-questions.answer');
 });
+
+Route::get('/payment/success', [TourController::class, 'paymentSuccess'])->name('payment.success');
+Route::get('/payment/cancel', [TourController::class, 'paymentCancel'])->name('payment.cancel');
 
 require __DIR__ . '/auth.php';
