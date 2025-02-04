@@ -160,7 +160,7 @@
 </main>
 
 <!-- Filter Modal -->
-<div id="filterModal" class="fixed inset-0 backdrop-blur-sm z-50" style="background: #ffffff70;">
+<div id="filterModal" class="fixed inset-0 backdrop-blur-sm z-50 hidden" style="background: #ffffff70;">
     <div class="bg-white rounded-lg p-8 max-w-[75%] mx-auto mt-20 relative" style="box-shadow: 0 0 10px 0px gray;">
         <svg onclick="closeFilterModal()"
             class="cursor-pointer absolute m-4 top-4 right-4 text-gray-500 hover:text-gray-700 w-6 h-6" width="32"
