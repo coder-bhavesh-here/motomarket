@@ -60,54 +60,54 @@
             <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
                 <tr>
                     <td><strong>Booking ID:</strong></td>
-                    <td>{{ $booking[0]->id }}</td>
+                    <td>{{ $booking->id }}</td>
                 </tr>
                 <tr>
                     <td><strong>Tour Date:</strong></td>
-                    <td>{{ $booking[0]->date }}</td>
+                    <td>{{ $booking->date }}</td>
                 </tr>
                 <tr>
                     <td><strong>Amount Paid:</strong></td>
-                    <td>₹{{ $booking[0]->amount }}</td>
+                    <td>₹{{ $booking->amount }}</td>
                 </tr>
                 <tr>
                     <td><strong>Add-ons:</strong></td>
-                    <td>{{ $booking[0]->addons }}</td>
+                    <td>{{ $booking->addons }}</td>
                 </tr>
             </table>
             <h3>Customer Details:</h3>
             <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
                 <tr>
                     <td><strong>Name:</strong></td>
-                    <td>{{ $booking[0]->name }}</td>
+                    <td>{{ $booking->name }}</td>
                 </tr>
                 <tr>
                     <td><strong>Date of Birth:</strong></td>
-                    <td>{{ $booking[0]->dob }}</td>
+                    <td>{{ $booking->dob }}</td>
                 </tr>
                 <tr>
                     <td><strong>Nationality:</strong></td>
-                    <td>{{ $booking[0]->nationality }}</td>
+                    <td>{{ $booking->nationality }}</td>
                 </tr>
                 <tr>
                     <td><strong>Driving License Number:</strong></td>
-                    <td>{{ $booking[0]->driving_license_number }}</td>
+                    <td>{{ $booking->driving_license_number }}</td>
                 </tr>
                 <tr>
                     <td><strong>Mobile Number:</strong></td>
-                    <td>{{ $booking[0]->mobile_number }}</td>
+                    <td>{{ $booking->mobile_number }}</td>
                 </tr>
                 <tr>
                     <td><strong>Address:</strong></td>
-                    <td>{{ $booking[0]->address }}</td>
+                    <td>{{ $booking->address }}</td>
                 </tr>
                 <tr>
                     <td><strong>Country:</strong></td>
-                    <td>{{ $booking[0]->country }}</td>
+                    <td>{{ $booking->country }}</td>
                 </tr>
                 <tr>
                     <td><strong>Postcode:</strong></td>
-                    <td>{{ $booking[0]->postcode }}</td>
+                    <td>{{ $booking->postcode }}</td>
                 </tr>
             </table>
             <p>Please review the booking and prepare for the customer's tour accordingly.</p>

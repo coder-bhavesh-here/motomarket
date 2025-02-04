@@ -55,52 +55,52 @@
             <h1>Booking Confirmation</h1>
         </div>
         <div class="content">
-            <h2>Hello {{ $booking[0]->name }},</h2>
+            <h2>Hello {{ $booking->name }},</h2>
             <p>Thank you for booking your tour with us! Here are your booking details:</p>
             <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
                 <tr>
                     <td><strong>Booking ID:</strong></td>
-                    <td>{{ $booking[0]->id }}</td>
+                    <td>{{ $booking->id }}</td>
                 </tr>
                 <tr>
                     <td><strong>Tour Date:</strong></td>
-                    <td>{{ $booking[0]->date }}</td>
+                    <td>{{ $booking->date }}</td>
                 </tr>
                 <tr>
                     <td><strong>Amount Paid:</strong></td>
-                    <td>€{{ $booking[0]->amount }}</td>
+                    <td>€{{ $booking->amount }}</td>
                 </tr>
                 <tr>
                     <td><strong>Name:</strong></td>
-                    <td>{{ $booking[0]->name }}</td>
+                    <td>{{ $booking->name }}</td>
                 </tr>
                 <tr>
                     <td><strong>Date of Birth:</strong></td>
-                    <td>{{ $booking[0]->dob }}</td>
+                    <td>{{ $booking->dob }}</td>
                 </tr>
                 <tr>
                     <td><strong>Nationality:</strong></td>
-                    <td>{{ $booking[0]->nationality }}</td>
+                    <td>{{ $booking->nationality }}</td>
                 </tr>
                 <tr>
                     <td><strong>Driving License Number:</strong></td>
-                    <td>{{ $booking[0]->driving_license_number }}</td>
+                    <td>{{ $booking->driving_license_number }}</td>
                 </tr>
                 <tr>
                     <td><strong>Mobile Number:</strong></td>
-                    <td>{{ $booking[0]->mobile_number }}</td>
+                    <td>{{ $booking->mobile_number }}</td>
                 </tr>
                 <tr>
                     <td><strong>Address:</strong></td>
-                    <td>{{ $booking[0]->address }}</td>
+                    <td>{{ $booking->address }}</td>
                 </tr>
                 <tr>
                     <td><strong>Country:</strong></td>
-                    <td>{{ $booking[0]->country }}</td>
+                    <td>{{ $booking->country }}</td>
                 </tr>
                 <tr>
                     <td><strong>Postcode:</strong></td>
-                    <td>{{ $booking[0]->postcode }}</td>
+                    <td>{{ $booking->postcode }}</td>
                 </tr>
             </table>
             <p>If you have any questions or need to make changes to your booking, feel free to contact us.</p>

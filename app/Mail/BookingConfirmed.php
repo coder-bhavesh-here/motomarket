@@ -3,6 +3,7 @@
 namespace App\Mail;
 
 use App\Models\Booking;
+use App\Models\Tour;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -25,12 +26,13 @@ class BookingConfirmed extends Mailable
      */
     public function envelope(): Envelope
     {
+        $tour = Tour::find($this->booking->tour_id);
         return new Envelope(
             from: new Address('info@worldonmoto.com', 'World On Moto'),
             replyTo: [
                 new Address('hello@worldonmoto.com', 'World On Moto'),
             ],
-            subject: 'Booking Confirmed for : ' . $this->booking[0]->title,
+            subject: 'Booking Confirmed for : ' . $tour->title,
         );
     }
 
