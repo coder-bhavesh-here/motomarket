@@ -219,7 +219,7 @@ class TourController extends Controller
             Mail::to($user->email)->send(new BookingConfirmedAgency($booking));
             Mail::to(Auth::user()->email)->send(new BookingConfirmed($booking));
 
-            return redirect()->route('booking.confirmation', $booking->id)
+            return redirect()->route('my-tours')
                 ->with('success', 'Payment successful! Your booking is confirmed.');
         }
 
