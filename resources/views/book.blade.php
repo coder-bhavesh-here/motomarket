@@ -218,13 +218,37 @@
 
         const id = $(this).data("id");
         const price = $(this).data("price");
-
+        const addons = $("input[name='addons[]']:checked")
+            .map(function() {
+                return $(this).val();
+            }).get().join(",");
+        const date = $("#date").val();
+        const amount = $("#total_price").html();
+        const name = $("#name").val();
+        const dob = $("#dob").val();
+        const nationality = $("#nationality").val();
+        const driving_license_number = $("#driving_license_number").val();
+        const mobile_number = $("#mobile_number").val();
+        const address = $("#address").val();
+        const country = $("#country").val();
+        const postcode = $("#postcode").val();
         $.ajax({
             type: "POST",
             url: "/payment",
             data: {
                 id,
-                price
+                price,
+                addons,
+                date,
+                amount,
+                name,
+                dob,
+                nationality,
+                driving_license_number,
+                mobile_number,
+                address,
+                country,
+                postcode
             },
             dataType: "JSON",
             headers: {

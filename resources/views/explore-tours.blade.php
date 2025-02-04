@@ -1,4 +1,33 @@
 @include('new-header')
+<style>
+    td {
+        border: unset;
+    }
+
+    .select2-container--default .select2-selection--multiple {
+        border-color: #d1d5db;
+        line-height: 1.5rem;
+    }
+
+    .select2-container--default .select2-selection--multiple .select2-selection__choice {
+        background-color: #1E293B !important;
+        color: white !important;
+        border: 1px solid white;
+    }
+
+    .select2-container--default .select2-selection--multiple .select2-selection__choice__remove {
+        color: white !important;
+    }
+
+    .select2 select2-container select2-container--default {
+        margin-bottom: 8px !important;
+    }
+
+    .select2-container--default .select2-selection--multiple .select2-selection__choice__remove:hover,
+    .select2-container--default .select2-selection--multiple .select2-selection__choice__remove:focus {
+        background-color: #1E293B !important;
+    }
+</style>
 <main class="px-28">
     <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > Tour Search Results</p>
     <form action="/explore-tours" method="GET">
@@ -131,93 +160,153 @@
 </main>
 
 <!-- Filter Modal -->
-<div id="filterModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
-    <div class="bg-white rounded-lg p-8 max-w-2xl mx-auto mt-20 relative">
-        <button onclick="closeFilterModal()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-            </svg>
-        </button>
+<div id="filterModal" class="fixed inset-0 backdrop-blur-sm z-50" style="background: #ffffff70;">
+    <div class="bg-white rounded-lg p-8 max-w-[75%] mx-auto mt-20 relative" style="box-shadow: 0 0 10px 0px gray;">
+        <svg onclick="closeFilterModal()"
+            class="cursor-pointer absolute m-4 top-4 right-4 text-gray-500 hover:text-gray-700 w-6 h-6" width="32"
+            height="31" viewBox="0 0 32 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.56836 1.4082L30.6327 29.4725" stroke="black" stroke-width="2" stroke-linecap="round" />
+            <path d="M29.6973 1.4082L1.63293 29.4725" stroke="black" stroke-width="2" stroke-linecap="round" />
+        </svg>
 
-        <h2 class="text-4xl font-semibold mb-6 text-black text-center">Edit Filters</h2>
 
-        <form id="filterForm" class="space-y-6">
-            <!-- Countries -->
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Countries</label>
-                <select id="countries" name="countries[]" multiple
-                    class="w-full rounded-md border-gray-300 shadow-sm select2">
-                    @foreach ($countries as $country)
-                        <option value="{{ $country }}">{{ $country }}</option>
-                    @endforeach
-                </select>
-            </div>
+        <h2 class="text-4xl font-semibold mt-4 mb-6 text-black text-center">Edit Filters</h2>
 
-            <!-- Minimum Touring Days -->
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Minimum Touring Days</label>
-                <input type="number" name="min_days" min="1"
-                    class="w-full rounded-md border-gray-300 shadow-sm">
-            </div>
+        <div class="w-full justify-items-center">
+            <form id="filterForm" class="w-3/4 space-y-6">
+                <table class="w-full">
+                    <!-- Countries -->
+                    <tr>
+                        <td class="pb-6" style="text-align: right !important;width: 30%;">
+                            <label class="block text-xl font-medium text-gray-700"
+                                style="margin-top: -15%;">Countries</label>
+                        </td>
+                        <td class="pb-6">
+                            <select id="countries" name="countries[]" multiple
+                                class="w-full rounded-md border-gray-300 shadow-sm select2">
+                                @foreach ($countries as $country)
+                                    <option value="{{ $country }}">{{ $country }}</option>
+                                @endforeach
+                            </select>
+                            <span class="text-sm font-normal text-[#0F172A] mt-2">
+                                Add all the countries you want to travel in. Leave it empty if you want to see featured
+                                trips from around the world.
+                            </span>
+                        </td>
+                    </tr>
 
-            <!-- Price Range -->
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Price Range</label>
-                <div class="space-y-2">
-                    <label class="flex items-center">
-                        <input type="radio" name="price_range" value="0-1000" class="mr-2">
-                        <span>Under £1,000</span>
-                    </label>
-                    <label class="flex items-center">
-                        <input type="radio" name="price_range" value="1000-2500" class="mr-2">
-                        <span>£1,000 - £2,500</span>
-                    </label>
-                    <label class="flex items-center">
-                        <input type="radio" name="price_range" value="2500-5000" class="mr-2">
-                        <span>£2,500 - £5,000</span>
-                    </label>
-                    <label class="flex items-center">
-                        <input type="radio" name="price_range" value="5000+" class="mr-2">
-                        <span>£5,000+</span>
-                    </label>
-                </div>
-            </div>
+                    <!-- Minimum Touring Days -->
+                    <tr>
+                        <td class="pb-6" style="text-align: right !important;width: 30%;">
+                            <label class="block text-xl font-medium text-gray-700" style="margin-top: -15%;">Minimum
+                                Touring Days</label>
+                        </td>
+                        <td class="pb-6">
+                            <div class="flex items-center mb-2">
+                                <input type="number" name="min_days" min="1"
+                                    class="w-1/4 rounded-md border-gray-300 shadow-sm">
+                                <span class="ml-2 text-sm text-black font-medium">days</span>
+                            </div>
+                            <span class="text-sm font-normal text-[#0F172A] mt-2">How long do you want the tour to be?
+                                Type
+                                the least amount of days you want tour for.
+                                If you type “5” you will get tours that are five days or longer.</span>
+                        </td>
+                    </tr>
 
-            <!-- Tour Start Date -->
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Show tours starting after</label>
-                <input type="date" name="start_date" class="w-full rounded-md border-gray-300 shadow-sm">
-            </div>
+                    <!-- Price Range -->
+                    <tr>
+                        <td class="pb-6" style="text-align: right !important;width: 30%;">
+                            <label class="block text-xl font-medium text-gray-700" style="margin-top: -15%;">Maximum
+                                tour price</label>
+                        </td>
+                        <td class="pb-6">
+                            <div class="flex items-center mb-2 text-black font-medium text-sm">
+                                <input type="number" name="min_days" min="1"
+                                    class="w-1/4 rounded-md border-gray-300 shadow-sm">
+                                <span class="ml-5 flex items-center">
+                                    <input type="radio" name="max_price"><span class="ml-1">EUR</span>
+                                </span>
+                                <span class="ml-4 flex items-center">
+                                    <input type="radio" name="max_price"><span class="ml-1">USD</span>
+                                </span>
+                                <span class="ml-4 flex items-center">
+                                    <input type="radio" name="max_price"><span class="ml-1">GBP</span>
+                                </span>
+                            </div>
+                            <span class="text-sm font-normal text-[#0F172A] mt-2">What’s the maximum you want to spend
+                                on the tour? You can also select the currency. We will convert accordingly. EUR - Euro,
+                                USD - US dollor, GBP - UK Sterling</span>
+                        </td>
+                    </tr>
 
-            <!-- Tour Type -->
-            <div>
-                <label class="block text-sm font-medium text-gray-700 mb-2">Tour Type</label>
-                <div class="space-y-2">
-                    <label class="flex items-center">
-                        <input type="checkbox" name="tour_type[]" value="road" class="mr-2">
-                        <span>Road</span>
-                    </label>
-                    <label class="flex items-center">
-                        <input type="checkbox" name="tour_type[]" value="adventure" class="mr-2">
-                        <span>Adventure</span>
-                    </label>
-                    <label class="flex items-center">
-                        <input type="checkbox" name="tour_type[]" value="enduro" class="mr-2">
-                        <span>Enduro</span>
-                    </label>
-                </div>
-            </div>
+                    <tr>
+                        <td class="pb-6" style="text-align: right !important;width: 30%;">
+                            <label class="block text-xl font-medium text-gray-700" style="margin-top: -15%;">Show
+                                tours starting after</label>
+                        </td>
+                        <td class="pb-6">
+                            <div class="flex items-center mb-2 text-black font-medium text-sm">
+                                <input type="date" name="start"
+                                    class="w-1/4 rounded-md border-gray-300 shadow-sm">
+                            </div>
+                            <span class="text-sm font-normal text-[#0F172A] mt-2">Select the date that you want tours
+                                to be starting from or after. We will show you tours that start after the date you
+                                select. </span>
+                        </td>
+                    </tr>
 
-            <div class="flex justify-end space-x-4 pt-4">
-                <button type="button" onclick="clearFilters()"
-                    class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
-                    Clear All
-                </button>
-                <button type="submit" class="px-4 py-2 bg-green text-white rounded-md hover:bg-dark-green">
-                    Apply Filters
-                </button>
-            </div>
-        </form>
+
+                    <!-- Tour Type -->
+                    <tr>
+                        <td class="pb-6" style="text-align: right !important;width: 30%;align-content: baseline;">
+                            <label class="block text-xl font-medium text-gray-700">Tour
+                                type</label>
+                        </td>
+                        <td class="pb-6">
+                            <span class="text-sm font-normal text-[#0F172A] mt-2">Select the type of tour you want to
+                                do. You can select multiple options. You need to
+                                select at least one.</span>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="tour_type[]" value="road" class="mr-2">
+                                    <span class="font-medium text-black">Road</span>
+                                    <span class="font-normal ml-4 italic text-[#0F172A]">All on the road; black
+                                        top</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="tour_type[]" value="adventure" class="mr-2">
+                                    <span class="font-medium text-black">Adventure</span>
+                                    <span class="font-normal ml-4 italic text-[#0F172A]">Off and on road; dirt and
+                                        road</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="tour_type[]" value="enduro" class="mr-2">
+                                    <span class="font-medium text-black">Enduro</span>
+                                    <span class="font-normal ml-4 italic text-[#0F172A]">Almost always off-road</span>
+                                </label>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Buttons -->
+                    <tr>
+                        <td colspan="2" class="pt-6">
+                            <div class="flex justify-end space-x-4">
+                                <button type="button" onclick="clearFilters()"
+                                    class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
+                                    Clear All
+                                </button>
+                                <button type="submit"
+                                    class="px-4 py-2 bg-green text-white rounded-md hover:bg-dark-green">
+                                    Apply Filters
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+            </form>
+        </div>
     </div>
 </div>
 
@@ -340,6 +429,7 @@
     $(document).ready(function() {
         $('#countries').select2({
             placeholder: 'Select countries',
+            width: '100%',
             allowClear: true,
             dropdownParent: $('#filterModal') // This ensures the dropdown appears above the modal
         });

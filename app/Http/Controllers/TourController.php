@@ -162,6 +162,17 @@ class TourController extends Controller
             'success_url' => route('payment.success') . '?session_id={CHECKOUT_SESSION_ID}&tour_price_id=' . $request->id,
             'cancel_url' => route('payment.cancel'),
             'metadata' => [
+                "date" => $request->date,
+                "amount" => $request->amount,
+                "addons" => $request->addons,
+                "nationality" => $request->nationality,
+                "driving_license_number" => $request->driving_license_number,
+                "name" => $request->name,
+                "address" => $request->address,
+                "postcode" => $request->postcode,
+                "country" => $request->country,
+                "mobile_number" => $request->mobile_number,
+                "dob" => $request->dob,
                 'tour_price_id' => $request->id,
                 'user_id' => Auth::id()
             ]
@@ -182,17 +193,19 @@ class TourController extends Controller
         if ($session->payment_status === 'paid') {
             // Get tour price details to access the date
             $tourPrice = TourPrice::find($session->metadata->tour_price_id);
-            dd($session->metadata);
             // Create booking record
             $booking = Booking::create([
                 'tour_id' => $tourPrice->tour_id,
                 'name' => $session->metadata->name,
                 'address' => $session->metadata->address,
+                'nationality' => $session->metadata->nationality,
+                'driving_license_number' => $session->metadata->driving_license_number,
                 'postcode' => $session->metadata->postcode,
                 'country' => $session->metadata->country,
                 'mobile_number' => $session->metadata->mobile_number,
                 'dob' => $session->metadata->dob,
                 'user_id' => $session->metadata->user_id,
+                'addons' => $session->metadata->addons,
                 'amount' => $session->amount_total / 100, // Convert from cents
                 'payment_id' => $session->payment_intent,
                 'status' => 'confirmed',
