@@ -18,6 +18,8 @@ class TourOne extends Step
         // dd($this->model);
         $this->mergeState([
             'title'                  => $this->model->title,
+            'bike_insurance'         => $this->model->bike_insurance,
+            'insurance_notes'        => $this->model->insurance_notes,
         ]);
         if (isset($_GET['tour_id'])) {
             $this->tour = Tour::find($_GET['tour_id']);
@@ -40,6 +42,8 @@ class TourOne extends Step
         $tour = $this->model;
 
         $tour->title     = $state['title'];
+        $tour->bike_insurance = $state['bike_insurance'];
+        $tour->insurance_notes = $state['insurance_notes'];
 
         $tour->save();
     }

@@ -364,5 +364,58 @@
                 </div>
             </div>
         </div>
+        <div class="my-10 sm:px-6 lg:px-8">
+            <div class="flex items-center">
+                <div class="w-1/6">
+                    Bike Insurance
+                </div>
+                <div class="w-5/6">
+                    <div class="mb-4">
+                        <x-checkbox id="included_in_price" lg label="Included in the price"
+                            value="{{ App\Models\Tour::INCLUDED_IN_PRICE }}" :checked="in_array(
+                                App\Models\Tour::INCLUDED_IN_PRICE,
+                                explode(',', isset($tour->bike_insurance) ? $tour->bike_insurance : ''),
+                            )"
+                            name="bike_insurance[]" />
+                    </div>
+                    <div class="mb-4">
+                        <x-checkbox id="addon_supplier" lg label="Add on or can be purchased from another supplier"
+                            value="{{ App\Models\Tour::ADDON_OR_ANOTHER_SUPPLIER }}" :checked="in_array(
+                                App\Models\Tour::ADDON_OR_ANOTHER_SUPPLIER,
+                                explode(',', isset($tour->bike_insurance) ? $tour->bike_insurance : ''),
+                            )"
+                            name="bike_insurance[]" />
+                    </div>
+                    <div class="mb-4">
+                        <x-checkbox id="must_purchase" lg label="The rider must purchase from a supplier"
+                            value="{{ App\Models\Tour::MUST_PURCHASE }}" :checked="in_array(
+                                App\Models\Tour::MUST_PURCHASE,
+                                explode(',', isset($tour->bike_insurance) ? $tour->bike_insurance : ''),
+                            )"
+                            name="bike_insurance[]" />
+                    </div>
+                    <div class="mb-4">
+                        <x-checkbox id="not_required" lg label="Is not required"
+                            value="{{ App\Models\Tour::NOT_REQUIRED }}" :checked="in_array(
+                                App\Models\Tour::NOT_REQUIRED,
+                                explode(',', isset($tour->bike_insurance) ? $tour->bike_insurance : ''),
+                            )" name="bike_insurance[]" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="my-10 sm:px-6 lg:px-8">
+            <div class="flex items-center">
+                <div class="w-1/6">
+                    Other insurance notes
+                </div>
+                <div class="w-5/6">
+                    <textarea id="insurance_notes" name="insurance_notes" class="mt-1 block w-full rounded-md border-gray-300"
+                        rows="4">{{ isset($tour->insurance_notes) ? $tour->insurance_notes : '' }}</textarea>
+                    <span class="flex text-sm text-gray-500 my-1">Specify what other cover or insurance you
+                        provide especially during an emergency, accident or breakdown.</span>
+                </div>
+            </div>
+        </div>
     </div>
 </form>

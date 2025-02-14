@@ -298,6 +298,8 @@ class TourController extends Controller
             $tour->bike_specification = $postData['bike_specification'];
             $tour->tour_distance = $postData['tour_distance'];
             $tour->countries = $postData['countries'];
+            $tour->bike_insurance = $postData['bike_insurance'];
+            $tour->insurance_notes = $postData['insurance_notes'];
         } else {
             $tour = new Tour([
                 'user_id' => $userId,
@@ -316,6 +318,8 @@ class TourController extends Controller
                 'bike_specification' => $postData['bike_specification'],
                 'tour_distance' => $postData['tour_distance'],
                 'countries' => $postData['countries'],
+                'bike_insurance' => $postData['bike_insurance'],
+                'insurance_notes' => $postData['insurance_notes'],
             ]);
         }
         $tour->save();

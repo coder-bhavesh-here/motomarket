@@ -29,6 +29,8 @@ class Tour extends Model
         'bike_specification',
         'tour_distance',
         'countries',
+        'bike_insurance',
+        'insurance_notes',
     ];
     protected $appends = ['is_favourite'];
     public function getIsFavouriteAttribute()
@@ -42,6 +44,10 @@ class Tour extends Model
     public const BEGINNER = 'Beginner';
     public const INTERMEDIATE = 'Intermediate';
     public const EXPERT = 'Expert';
+    public const INCLUDED_IN_PRICE = 'included_in_price';
+    public const ADDON_OR_ANOTHER_SUPPLIER = 'addon_or_another_supplier';
+    public const MUST_PURCHASE = 'must_purchase';
+    public const NOT_REQUIRED = 'not_required';
 
     /**
      * Relationship with the TourImage model

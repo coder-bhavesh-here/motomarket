@@ -73,6 +73,17 @@ document.querySelectorAll(".save-exit-button ").forEach(function (element) {
             ).val();
             firstStepData.tour_distance = $("input[name=tour_distance]").val();
             firstStepData.countries = $("#countries").val().join(",");
+            firstStepData.bike_insurance = $(
+                "input[name='bike_insurance[]']:checked"
+            )
+                .map(function () {
+                    return $(this).val();
+                })
+                .get()
+                .join(",");
+            firstStepData.insurance_notes = $(
+                "textarea[name=insurance_notes]"
+            ).val();
             if (tour_id) {
                 firstStepData.tour_id = tour_id;
             }
@@ -295,6 +306,17 @@ document.querySelectorAll(".next-button").forEach(function (element) {
             ).val();
             firstStepData.tour_distance = $("input[name=tour_distance]").val();
             firstStepData.countries = $("#countries").val().join(",");
+            firstStepData.bike_insurance = $(
+                "input[name='bike_insurance[]']:checked"
+            )
+                .map(function () {
+                    return $(this).val();
+                })
+                .get()
+                .join(",");
+            firstStepData.insurance_notes = $(
+                "textarea[name=insurance_notes]"
+            ).val();
             if (tour_id) {
                 firstStepData.tour_id = tour_id;
             }
