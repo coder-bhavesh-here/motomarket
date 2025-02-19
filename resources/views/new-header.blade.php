@@ -931,16 +931,16 @@
     <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
         <div class="relative min-h-screen flex flex-col selection:bg-[#FF2D20] selection:text-white">
             <div class="relative w-full">
-                <header class="grid grid-cols-2 items-center gap-2 wommd:grid-cols-3 py-5 px-4">
+                <header class="grid grid-cols-2 items-center gap-2 wommd:grid-cols-3 pt-5 px-4">
                     <a href="{{ route('homepage') }}">
-                        <div class="flex items-center lg:justify-center lg:col-start-1">
-                            <img class="wommd:w-3/4" src="{{ asset('images/logo-text.png') }}" alt="Logo">
+                        <div class="flex items-center lg:justify-start lg:col-start-1">
+                            <img class="wommd:w-2/4 ml-8" src="{{ asset('images/logo-text.png') }}" alt="Logo">
                         </div>
                     </a>
                     <div class="womxs:max-wommd:hidden lg:justify-center lg:col-start-2">
                     </div>
                     @if (Route::has('login'))
-                        <nav class="-mx-3 hidden womsm:flex flex-1 items-center justify-center">
+                        <nav class="-mx-3 hidden womsm:flex flex-1 items-center justify-end mr-8">
                             @auth
                             @else
                                 <a href="{{ route('login') }}"

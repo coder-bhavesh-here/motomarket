@@ -10,7 +10,7 @@
     </div>
 </form>
 {{-- </div> --}}
-<div class="w-auto mx-auto py-8">
+<div class="w-auto mx-auto">
     <div class="grid grid-cols-1 womsm:grid-cols-2 wommd:grid-cols-4 p-[2%]">
         <!-- Tour Card -->
         @foreach ($tours as $tour_sr => $tour)
