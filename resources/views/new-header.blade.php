@@ -1028,10 +1028,10 @@
                                         <span class="justify-self-start ml-2">Saved Tours</span>
                                     </div>
                                     <div class="inline-flex justify-self-center items-center">
-                                        <span
-                                            class="{{ $user && $user != null && $user->profile_picture ? '' : 'icon-box' }} ml-4 justify-self-end mr-2">
-                                            @auth
-                                                <a href="{{ url('/profile') }}">
+                                        @auth
+                                            <a href="{{ url('/profile') }}">
+                                                <span
+                                                    class="{{ $user && $user != null && $user->profile_picture ? '' : 'icon-box' }} ml-4 justify-self-end mr-2">
                                                 @endauth
                                                 @if ($user && $user != null && $user->profile_picture)
                                                     <img id="profile-picture-img" style="height: 47px; width: 47px;"
@@ -1041,10 +1041,10 @@
                                                     <img src="{{ asset('images/user.png') }}" alt="">
                                                 @endif
                                                 @auth
-                                                </a>
-                                            @endauth
-                                        </span>
-                                        <span class="justify-self-start ml-2">My Profile</span>
+                                                </span>
+                                                <span class="justify-self-start ml-2">My Profile</span>
+                                            </a>
+                                        @endauth
                                     </div>
                                 </div>
                             @else
