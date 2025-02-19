@@ -3,14 +3,15 @@
 {{-- Search form --}}
 <form action="/explore-tours" method="GET">
     <div class="flex flex-col justify-center items-center">
-        <p class="text-2xl font-semibold text-black mt-5">Where in the world do you want to go?</p>
-        <input type="text" name="search" class="mt-5 w-1/4 rounded-md text-black" placeholder="Eg: Portugal">
+        <p class="womsm:text-sm wommd:text-2xl font-semibold text-black mt-5">Where do you want to go?</p>
+        <input type="text" name="search"
+            class="mt-5 w-[80%] womsm:max-wommd:w-[60%] wommd:w-[25%] rounded-md text-black" placeholder="Eg: Portugal">
         <button type="submit" class="primary-button mt-5">Search for tours</button>
     </div>
 </form>
 {{-- </div> --}}
 <div class="w-auto mx-auto py-8">
-    <div class="grid grid-cols-2 p-10 md:grid-cols-4">
+    <div class="grid grid-cols-1 womsm:grid-cols-2 wommd:grid-cols-4 p-[2%]">
         <!-- Tour Card -->
         @foreach ($tours as $tour_sr => $tour)
             @if ($tour_sr < 8)
@@ -76,30 +77,34 @@
         </button>
     </div>
 </div>
-<div class="flex mt-5 max-w-7xl mx-auto py-8 gap-8">
-    <div class="w-1/2 bg-[#E2E8F0] p-5 rounded-md">
-        <p class="text-3xl font-semibold m-2 text-[#0F172A]">About WorldonMoto.com</p>
-        <p class="text-xl font-normal m-2 text-[#0F172A]">Welcome to WorldOnMoto, where motorcycle
-            enthusiasts connect
-            with epic adventures worldwide! Discover thrilling routes, meet passionate riders, and
-            explore unforgettable journeys—all on one platform designed for riders, by riders.</p>
-        <button class="secondary-button mt-2">read more</button>
+<div>
+    <div class="grid grid-cols-1 wommd:grid-cols-2 mt-5 max-w-7xl mx-5 py-8 gap-8 justify-self-center">
+        <div class="bg-[#E2E8F0] p-5 rounded-md">
+            <p class="text-xl womsm:3xl font-semibold m-2 text-[#0F172A]">About WorldonMoto.com</p>
+            <p class="text-xs womsm:text-xl font-normal m-2 text-[#0F172A]">Welcome to WorldOnMoto, where motorcycle
+                enthusiasts connect
+                with epic adventures worldwide! Discover thrilling routes, meet passionate riders, and
+                explore unforgettable journeys—all on one platform designed for riders, by riders.</p>
+            <button class="secondary-button mt-2">read more</button>
+        </div>
+        <div class="bg-[#E2E8F0] p-5 rounded-md">
+            <p class="text-xl womsm:3xl font-semibold m-2 text-[#0F172A]">Our very first post here...</p>
+            <p class="text-xs womsm:text-xl font-normal m-2 text-[#0F172A]">Welcome to WorldOnMoto, where motorcycle
+                enthusiasts connect with epic adventures worldwide! Discover thrilling routes, meet
+                passionate riders, and explore unforgettable journeys—all on one platform designed for
+                riders, by riders.</p>
+            <button class="secondary-button mt-2">read more</button>
+        </div>
     </div>
-    <div class="w-1/2 bg-[#E2E8F0] p-5 rounded-md">
-        <p class="text-3xl font-semibold m-2 text-[#0F172A]">Our very first post here...</p>
-        <p class="text-xl font-normal m-2 text-[#0F172A]">Welcome to WorldOnMoto, where motorcycle
-            enthusiasts connect with epic adventures worldwide! Discover thrilling routes, meet
-            passionate riders, and explore unforgettable journeys—all on one platform designed for
-            riders, by riders.</p>
-        <button class="secondary-button mt-2">read more</button>
+    <div
+        class="mt-2 mb-10 max-w-7xl mx-5 py-8 justify-self-center justify-items-start wommd:justify-items-center text-start wommd:text-center bg-[#E2E8F0] p-5 rounded-md">
+        <p class="font-semibold m-2 text-xl womsm:3xl text-[#0F172A]">Do you organise motorbike tours?</p>
+        <p class="text-xs womsm:text-xl m-2 wommd:py-5 wommd:px-10 text-[#0F172A]">We are inviting motorcycle adventure
+            tour
+            operators from around the world to join us. Together we can provide to best experience to our
+            fellow riders looking to explore the world on a motorbike!</p>
+        <button class="secondary-button mt-2">find out more</button>
     </div>
-</div>
-<div class="mt-2 mb-10 max-w-7xl mx-auto py-8 justify-items-center text-center bg-[#E2E8F0] p-5 rounded-md">
-    <p class="font-semibold m-2 text-3xl text-[#0F172A]">Do you organise motorbike tours?</p>
-    <p class="text-xl m-2 py-5 px-10 text-[#0F172A]">We are inviting motorcycle adventure tour
-        operators from around the world to join us. Together we can provide to best experience to our
-        fellow riders looking to explore the world on a motorbike!</p>
-    <button class="secondary-button mt-2">find out more</button>
 </div>
 
 <script>

@@ -899,6 +899,25 @@
                 --tw-ring-color: rgb(255 255 255 / var(--tw-ring-opacity))
             }
         }
+
+        .slide-left {
+            transform: translateX(0) !important;
+        }
+
+        .slide-down {
+            transform: translateX(100%) !important;
+        }
+
+        /* Optional: Add smooth scrolling to the popup content */
+        #fullScreenPopup {
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Optional: Hide scrollbar when not scrolling */
+        #fullScreenPopup::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
     </style>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
@@ -912,89 +931,144 @@
     <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
         <div class="relative min-h-screen flex flex-col selection:bg-[#FF2D20] selection:text-white">
             <div class="relative w-full">
-                <header class="grid grid-cols-2 items-center gap-2 lg:grid-cols-3 p-10">
+                <header class="grid grid-cols-2 items-center gap-2 wommd:grid-cols-3 py-5 px-4">
                     <a href="{{ route('homepage') }}">
                         <div class="flex items-center lg:justify-center lg:col-start-1">
-                            <img class="w-3/4" src="{{ asset('images/logo-text.png') }}" alt="Logo">
+                            <img class="wommd:w-3/4" src="{{ asset('images/logo-text.png') }}" alt="Logo">
                         </div>
                     </a>
-                    <div class="flex lg:justify-center lg:col-start-2">
+                    <div class="womxs:max-wommd:hidden lg:justify-center lg:col-start-2">
                     </div>
                     @if (Route::has('login'))
-                        <nav class="-mx-3 flex flex-1 justify-center">
+                        <nav class="-mx-3 hidden womsm:flex flex-1 items-center justify-center">
                             @auth
                             @else
                                 <a href="{{ route('login') }}"
-                                    class="font-bold rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                                    class="font-bold text-xs wommd:text-base rounded-md womsm:max-wommd:p-2 px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
                                     Sign in
                                 </a>
 
-                                @if (Route::has('register'))
-                                    <a href="{{ route('register') }}"
-                                        class="font-bold rounded-md px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
-                                        Sign up
-                                    </a>
-                                @endif
+                                <a href="{{ route('register') }}"
+                                    class="font-bold text-xs wommd:text-base rounded-md womsm:max-wommd:p-2 px-3 py-2 text-black ring-1 ring-transparent transition hover:text-black/70 focus:outline-none focus-visible:ring-[#FF2D20] dark:text-white dark:hover:text-white/80 dark:focus-visible:ring-white">
+                                    Sign up
+                                </a>
                             @endauth
-                            <span class="icon-box ml-4">
-                                <svg width="36" height="27" viewBox="0 0 36 27" fill="none"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path d="M19.209 1.93164H23.1898L28.1658 17.2861" stroke="#D1E7AB"
-                                        stroke-width="1.7" stroke-miterlimit="10" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                    <path
-                                        d="M28.1663 21.3805C30.3649 21.3805 32.1471 19.5473 32.1471 17.2859C32.1471 15.0246 30.3649 13.1914 28.1663 13.1914C25.9678 13.1914 24.1855 15.0246 24.1855 17.2859C24.1855 19.5473 25.9678 21.3805 28.1663 21.3805Z"
-                                        stroke="#D1E7AB" stroke-width="1.7" stroke-miterlimit="10"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                    <path
-                                        d="M6.27181 21.3805C8.47034 21.3805 10.2526 19.5473 10.2526 17.2859C10.2526 15.0246 8.47034 13.1914 6.27181 13.1914C4.07328 13.1914 2.29102 15.0246 2.29102 17.2859C2.29102 19.5473 4.07328 21.3805 6.27181 21.3805Z"
-                                        stroke="#D1E7AB" stroke-width="1.7" stroke-miterlimit="10"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                    <path
-                                        d="M6.26953 9.09668C10.6484 9.09668 14.2311 12.7818 14.2311 17.2857H20.2023C20.2023 12.7818 23.785 9.09668 28.1639 9.09668C28.9601 9.09668 29.8557 9.19904 30.5524 9.50613"
-                                        stroke="#D1E7AB" stroke-width="1.7" stroke-miterlimit="10"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                    <path
-                                        d="M24.1847 6.02539H18.2135L17.8155 6.63957C16.2231 9.30102 13.2375 10.7341 10.252 10.1199"
-                                        stroke="#D1E7AB" stroke-width="1.7" stroke-miterlimit="10"
-                                        stroke-linecap="round" stroke-linejoin="round" />
-                                </svg>
-                            </span>
-                            <span class="icon-box ml-4">
-                                <svg style="margin-left: 7px; margin-top: 3px;" width="24" height="22"
-                                    viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path
-                                        d="M21.0794 2.96982C20.5362 2.4247 19.8907 1.99217 19.1799 1.69705C18.4692 1.40192 17.7071 1.25 16.9376 1.25C16.168 1.25 15.4059 1.40192 14.6952 1.69705C13.9844 1.99217 13.3389 2.4247 12.7957 2.96982L11.9619 3.81444L11.1281 2.96982C10.5849 2.4247 9.9394 1.99217 9.22865 1.69705C8.51789 1.40192 7.75587 1.25 6.98629 1.25C6.2167 1.25 5.45468 1.40192 4.74392 1.69705C4.03317 1.99217 3.38767 2.4247 2.84443 2.96982C0.548821 5.26544 0.408053 9.14199 3.29923 12.0873L11.9619 20.75L20.6246 12.0873C23.5158 9.14199 23.375 5.26544 21.0794 2.96982Z"
-                                        stroke="#D1E7AB" stroke-width="2" stroke-linecap="round"
-                                        stroke-linejoin="round" />
-                                </svg>
-                            </span>
+                            @auth
+                                <span class="icon-box ml-4">
+                                    <img src="{{ asset('images/motorcycle.svg') }}" alt="Bike">
+                                </span>
+                                <span class="icon-box ml-4">
+                                    <svg style="margin-left: 7px; margin-top: 3px;" width="24" height="22"
+                                        viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                        <path
+                                            d="M21.0794 2.96982C20.5362 2.4247 19.8907 1.99217 19.1799 1.69705C18.4692 1.40192 17.7071 1.25 16.9376 1.25C16.168 1.25 15.4059 1.40192 14.6952 1.69705C13.9844 1.99217 13.3389 2.4247 12.7957 2.96982L11.9619 3.81444L11.1281 2.96982C10.5849 2.4247 9.9394 1.99217 9.22865 1.69705C8.51789 1.40192 7.75587 1.25 6.98629 1.25C6.2167 1.25 5.45468 1.40192 4.74392 1.69705C4.03317 1.99217 3.38767 2.4247 2.84443 2.96982C0.548821 5.26544 0.408053 9.14199 3.29923 12.0873L11.9619 20.75L20.6246 12.0873C23.5158 9.14199 23.375 5.26544 21.0794 2.96982Z"
+                                            stroke="#D1E7AB" stroke-width="2" stroke-linecap="round"
+                                            stroke-linejoin="round" />
+                                    </svg>
+                                </span>
+                            @endauth
                             <span class="ml-4">
                                 @auth
                                     <a href="{{ url('/profile') }}">
                                     @endauth
                                     @if ($user && $user != null && $user->profile_picture)
                                         <img id="profile-picture-img" style="height: 47px; width: 47px;"
-                                            src="{{ asset('storage/' . $user->profile_picture) }}" alt="Profile Picture"
-                                            class="rounded-full">
+                                            src="{{ asset('storage/' . $user->profile_picture) }}"
+                                            alt="Profile Picture" class="rounded-full">
                                     @else
-                                        <svg width="47" height="47" viewBox="0 0 47 47" fill="none"
-                                            xmlns="http://www.w3.org/2000/svg">
-                                            <circle cx="23.5" cy="23.5" r="23.5" fill="#556B2F" />
-                                            <path
-                                                d="M31.375 33.75V31.5833C31.375 30.4341 30.9009 29.3319 30.057 28.5192C29.2131 27.7065 28.0685 27.25 26.875 27.25H20.125C18.9315 27.25 17.7869 27.7065 16.943 28.5192C16.0991 29.3319 15.625 30.4341 15.625 31.5833V33.75"
-                                                stroke="#D1E7AB" stroke-width="2" stroke-linecap="round"
-                                                stroke-linejoin="round" />
-                                            <path
-                                                d="M23.5 22.9167C25.9853 22.9167 28 20.9766 28 18.5833C28 16.1901 25.9853 14.25 23.5 14.25C21.0147 14.25 19 16.1901 19 18.5833C19 20.9766 21.0147 22.9167 23.5 22.9167Z"
-                                                stroke="#D1E7AB" stroke-width="2" stroke-linecap="round"
-                                                stroke-linejoin="round" />
-                                        </svg>
+                                        <img src="{{ asset('images/user.png') }}" alt="">
                                     @endif
                                     @auth
                                     </a>
                                 @endauth
                             </span>
                         </nav>
+                        <img class="block womsm:hidden justify-self-end" onclick="openPopup()"
+                            src="{{ asset('images/menu.png') }}" alt="Menu">
                     @endif
                 </header>
+
+                <!-- Add this right after your existing header section -->
+                <div id="fullScreenPopup"
+                    class="fixed womsm:hidden inset-0 transform translate-x-full transition-transform duration-300 ease-in-out bg-[#EEEEEE] z-50">
+                    <div class="relative w-full h-full py-14 px-4">
+                        <!-- Close button -->
+                        <button onclick="closePopup()" style="border: unset !important"
+                            class="absolute bottom-20 left-1/2 z-50">
+                            <svg width="32" height="31" viewBox="0 0 32 31" fill="none"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path d="M2.56836 1.4082L30.6327 29.4725" stroke="black" stroke-width="2"
+                                    stroke-linecap="round" />
+                                <path d="M29.6973 1.4082L1.63293 29.4725" stroke="black" stroke-width="2"
+                                    stroke-linecap="round" />
+                            </svg>
+                        </button>
+
+                        <!-- Content container -->
+                        <div class="text-center font-semibold text-base text-black h-full overflow-y-auto p-8">
+                            WorldonMoto.com
+                            @auth
+                                <div class="grid grid-cols-1 mt-[15%] justify-evenly h-[40%]">
+                                    <div class="inline-flex justify-self-center items-center">
+                                        <span class="icon-box ml-4 justify-self-end mr-2">
+                                            <img src="{{ asset('images/motorcycle.svg') }}" alt="Bike">
+                                        </span>
+                                        <span class="justify-self-start ml-2">Open Tours</span>
+                                    </div>
+                                    <div class="inline-flex justify-self-center items-center">
+                                        <span class="icon-box ml-4 justify-self-end mr-2">
+                                            <svg style="margin-left: 7px; margin-top: 3px;" width="24" height="22"
+                                                viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M21.0794 2.96982C20.5362 2.4247 19.8907 1.99217 19.1799 1.69705C18.4692 1.40192 17.7071 1.25 16.9376 1.25C16.168 1.25 15.4059 1.40192 14.6952 1.69705C13.9844 1.99217 13.3389 2.4247 12.7957 2.96982L11.9619 3.81444L11.1281 2.96982C10.5849 2.4247 9.9394 1.99217 9.22865 1.69705C8.51789 1.40192 7.75587 1.25 6.98629 1.25C6.2167 1.25 5.45468 1.40192 4.74392 1.69705C4.03317 1.99217 3.38767 2.4247 2.84443 2.96982C0.548821 5.26544 0.408053 9.14199 3.29923 12.0873L11.9619 20.75L20.6246 12.0873C23.5158 9.14199 23.375 5.26544 21.0794 2.96982Z"
+                                                    stroke="#D1E7AB" stroke-width="2" stroke-linecap="round"
+                                                    stroke-linejoin="round" />
+                                            </svg>
+                                        </span>
+                                        <span class="justify-self-start ml-2">Saved Tours</span>
+                                    </div>
+                                    <div class="inline-flex justify-self-center items-center">
+                                        <span
+                                            class="{{ $user && $user != null && $user->profile_picture ? '' : 'icon-box' }} ml-4 justify-self-end mr-2">
+                                            @auth
+                                                <a href="{{ url('/profile') }}">
+                                                @endauth
+                                                @if ($user && $user != null && $user->profile_picture)
+                                                    <img id="profile-picture-img" style="height: 47px; width: 47px;"
+                                                        src="{{ asset('storage/' . $user->profile_picture) }}"
+                                                        alt="Profile Picture" class="rounded-full">
+                                                @else
+                                                    <img src="{{ asset('images/user.png') }}" alt="">
+                                                @endif
+                                                @auth
+                                                </a>
+                                            @endauth
+                                        </span>
+                                        <span class="justify-self-start ml-2">My Profile</span>
+                                    </div>
+                                </div>
+                            @else
+                                <div class="bg-white p-4 text-sm font-bold mt-10 mb-4">
+                                    <a href="{{ route('login') }}">Sign in</a>
+                                </div>
+                                <div class="bg-white p-4 text-sm font-bold">
+                                    <a href="{{ route('register') }}">Sign up</a>
+                                </div>
+                            @endauth
+                        </div>
+                    </div>
+                </div>
+                <!-- Add this right before the closing </body> tag -->
+                <script>
+                    function openPopup() {
+                        const popup = document.getElementById('fullScreenPopup');
+                        popup.classList.add('slide-left');
+                        document.body.style.overflow = 'hidden';
+                    }
+
+                    function closePopup() {
+                        const popup = document.getElementById('fullScreenPopup');
+                        popup.classList.remove('slide-left');
+                        document.body.style.overflow = '';
+                    }
+                </script>

@@ -422,9 +422,11 @@ p.blog-title {
     color: white !important;
     border-radius: 5px;
     border: unset !important;
+    font-weight: 700;
     padding: 6px 20px;
-    font-size: 20px;
+    font-size: 16px;
 }
+
 .secondary-button {
     background-color: #1e293b !important;
     color: #cbd5e1 !important;

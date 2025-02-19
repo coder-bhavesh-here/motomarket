@@ -14,6 +14,12 @@ export default {
 
     theme: {
         extend: {
+            screens: {
+                womxs: "280px",
+                womsm: "540px",
+                wommd: "1080px",
+                womlg: "1920px",
+            },
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
             },
