@@ -173,7 +173,6 @@ hr {
 .tour-details img {
     width: 100%;
     max-height: fit-content;
-    border-radius: 10px 0 0 10px;
     min-height: -webkit-fill-available;
 }
 .tour-details .tour-description {
