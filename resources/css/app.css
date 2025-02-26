@@ -174,9 +174,9 @@ hr {
     width: 100%;
     max-height: fit-content;
     border-radius: 10px 0 0 10px;
+    min-height: -webkit-fill-available;
 }
 .tour-details .tour-description {
-    width: 65%;
     padding: 10px 25px;
     border-radius: 0 10px 10px 0;
     background-color: #f1f5f9;

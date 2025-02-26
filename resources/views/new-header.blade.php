@@ -934,7 +934,8 @@
                 <header class="grid grid-cols-2 items-center gap-2 wommd:grid-cols-3 pt-5 px-4">
                     <a href="{{ route('homepage') }}">
                         <div class="flex items-center lg:justify-start lg:col-start-1">
-                            <img class="wommd:w-2/4 ml-8" src="{{ asset('images/logo-text.png') }}" alt="Logo">
+                            <img class="womsm:w-2/4 wommd:w-2/4 ml-8" src="{{ asset('images/logo-text.png') }}"
+                                alt="Logo">
                         </div>
                     </a>
                     <div class="womxs:max-wommd:hidden lg:justify-center lg:col-start-2">

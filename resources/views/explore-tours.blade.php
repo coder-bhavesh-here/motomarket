@@ -28,30 +28,39 @@
         background-color: #1E293B !important;
     }
 </style>
-<main class="px-28">
+<main class="mt-2 px-12">
     <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > Tour Search Results</p>
-    <form action="/explore-tours" method="GET">
-        <input type="text" value="{{ $search }}" name="search" class="mt-5 w-1/4 rounded-md text-black">
-        <button class="ml-5 button-text text-base font-bold">Search for tours</button>
-    </form>
-    <div class="mt-10 mb-20 flex items-center cursor-pointer" onclick="openFilterModal()">
-        <svg width="31" height="31" viewBox="0 0 31 31" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M29.6104 1.51868H1.875L12.9691 16.1283V26.2284L18.5162 29.3171V16.1283L29.6104 1.51868Z"
-                stroke="#556B2F" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-        </svg>
-        <span class="text-green underline font-bold text-sm ml-3">Edit Filters</span>
+    <div class="grid grid-cols-1 wommd:grid-cols-2">
+        <form action="/explore-tours" method="GET" class="grid grid-cols-1 wommd:grid-cols-2">
+            <input type="text" value="{{ $search }}" name="search" class="mt-3 w-full rounded-md text-black">
+            <button class="wommd:ml-5 wommd:w-1/2 mt-2 button-text text-base font-bold">Search for tours</button>
+        </form>
+        <div class="grid grid-cols-2 wommd:grid-cols-4">
+            <div
+                class="p-2 wommd:justify-self-end wommd:col-span-3 max-w-44 bg-[#F1F5F9] mt-2 flex items-center cursor-pointer rounded border border-[#556B2F]">
+                <img src="{{ asset('images/save.png') }}" alt="">
+                <span class="text-green underline font-bold text-sm ml-3">save this search</span>
+            </div>
+            <div class="mt-2 flex items-center cursor-pointer justify-self-end" onclick="openFilterModal()">
+                <img src="{{ asset('images/filter.png') }}" alt="">
+                <span class="text-green underline font-bold text-sm ml-3">Edit Filters</span>
+            </div>
+        </div>
     </div>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <div id="tours-container">
         @foreach ($tours as $tour)
             @if ($tour->status === 'published')
                 <div class="tour-info rounded-3xl">
-                    <div class="tour-details inline-flex">
-                        <a href='/tour/{{ $tour->id }}' style="width: 35%"><img
-                                class="aspect-square object-cover h-full w-full"
-                                src="{{ isset($tour->images) && isset($tour->images[0]->image_path) ? asset('storage') . '/' . $tour->images[0]->image_path : 'https://photos.smugmug.com/Galleries/Motorcycles/i-jX3tNwR/0/K2H4fw8P5MqPD8SRLWSrRZm4479d3ZvH8HL773j2D/L/cj.photos-_CJ09043-L.jpg' }}"
-                                alt="Tour photo"></a>
-                        <div class="tour-description">
+                    <div class="tour-details grid grid-cols-1 womsm:grid-cols-3">
+                        <div class="h-[90px] womsm:h-auto">
+                            <a href='/tour/{{ $tour->id }}'>
+                                <img class="aspect-square object-cover h-full w-full"
+                                    src="{{ isset($tour->images) && isset($tour->images[0]->image_path) ? asset('storage') . '/' . $tour->images[0]->image_path : 'https://photos.smugmug.com/Galleries/Motorcycles/i-jX3tNwR/0/K2H4fw8P5MqPD8SRLWSrRZm4479d3ZvH8HL773j2D/L/cj.photos-_CJ09043-L.jpg' }}"
+                                    alt="Tour photo">
+                            </a>
+                        </div>
+                        <div class="tour-description womsm:col-span-2">
                             <div class="inline-flex justify-center items-center my-3">
                                 @php
                                     $profile_picture =
@@ -122,7 +131,7 @@
                                 <div class="left">
                                     @if ($tour->prices->count() > 0)
                                         <span
-                                            class="text-4xl text-black">{{ number_format($tour->prices[0]->price) . '£' }}</span>
+                                            class="text-4xl text-black">{{ '£' . number_format($tour->prices[0]->price, 0, '.', ',') }}</span>
                                     @endif
                                 </div>
                                 <div class="links flex items-center">
