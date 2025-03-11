@@ -159,7 +159,7 @@ button .bg-positive-500 {
         display: none;
     }
     .accordion-button {
-        font-size: 1.5rem !important;
+        font-size: 18px !important;
     }
 }
 hr {
@@ -472,7 +472,7 @@ p.blog-title {
 }
   @media (min-width: 1080px) { /* Assuming 'wommd' starts at 768px */
     .accordion-button {
-      font-size: 2.25rem !important; /* Equivalent to text-4xl */
+      font-size: 20px !important; /* Equivalent to text-4xl */
     }
   }
 .slick-prev,

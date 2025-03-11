@@ -87,10 +87,10 @@
                                 </a>
                             </div>
                             <a href='/tour/{{ $tour->id }}'>
-                                <p class="py-2 text-3xl font-semibold text-black">{{ $tour->title }}</p>
+                                <p class="py-2 text-lg womsm:text-xl wommd:text-2xl font-semibold text-black">{{ $tour->title }}</p>
                             </a>
                             <p>
-                                <a href='/tour/{{ $tour->id }}' class="text-xl text-black font-normal">
+                                <a href='/tour/{{ $tour->id }}' class="text-sm womsm:text-base wommd:text-lg text-black font-normal">
                                     {{ Str::limit(strip_tags($tour->tour_description), 700) }}
                                 </a>
                             </p>
@@ -131,7 +131,7 @@
                                 <div class="left">
                                     @if ($tour->prices->count() > 0)
                                         <span
-                                            class="text-4xl text-black">{{ '£' . number_format($tour->prices[0]->price, 0, '.', ',') }}</span>
+                                            class="text-lg womsm:text-xl wommd:text-2xl text-black">{{ '£' . number_format($tour->prices[0]->price, 0, '.', ',') }}</span>
                                     @endif
                                 </div>
                                 <div class="links flex items-center">
