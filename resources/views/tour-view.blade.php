@@ -117,7 +117,7 @@
             <img src="{{ asset('images/like.png') }}" alt="Included">
             <span class="ml-3 text-sm womsm:text-2xl wommd:text-4xl font-bold text-[#556B2F]">What’s included</span>
         </div>
-        <div class="text-xs womsm:text-sm wommd:text-2xl text-[#0F172A]">
+        <div class="text-xs mt-6 womsm:text-sm wommd:text-2xl wommd:mr-12 text-[#0F172A]">
             {!! $tour->included !!}
         </div>
     </div>
@@ -126,7 +126,7 @@
             <img src="{{ asset('images/dislike.png') }}" alt="Not Included">
             <span class="ml-3 text-sm womsm:text-2xl wommd:text-4xl font-bold text-[#B91C1C]">What’s not included</span>
         </div>
-        <div class="text-xs womsm:text-sm wommd:text-2xl text-[#0F172A]">
+        <div class="text-xs mt-6 womsm:text-sm wommd:text-2xl text-[#0F172A]">
             {!! $tour->not_included !!}
         </div>
     </div>
