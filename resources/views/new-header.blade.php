@@ -927,14 +927,14 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="font-sans antialiased dark:bg-black dark:text-white/50">
+<body class="antialiased dark:bg-black dark:text-white/50">
     <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
         <div class="relative min-h-screen flex flex-col selection:bg-[#FF2D20] selection:text-white">
             <div class="relative w-full">
-                <header class="grid grid-cols-2 items-center gap-2 wommd:grid-cols-3 pt-5 px-4">
+                <header class="grid grid-cols-2 items-center gap-2 wommd:grid-cols-3 pt-2 px-4">
                     <a href="{{ route('homepage') }}">
                         <div class="flex items-center lg:justify-start lg:col-start-1">
-                            <img class="womsm:w-2/4 wommd:w-2/4 ml-8" src="{{ asset('images/logo-text.png') }}"
+                            <img class="womsm:w-2/4 wommd:w-2/4 ml-2" src="{{ asset('images/logo-text.png') }}"
                                 alt="Logo">
                         </div>
                     </a>
@@ -970,9 +970,12 @@
                             @endauth
                             <span class="ml-4">
                                 @auth
+                                    @php
+                                        $user = Auth::user();
+                                    @endphp
                                     <a href="{{ url('/profile') }}">
                                     @endauth
-                                    @if ($user && $user != null && $user->profile_picture)
+                                    @if (isset($user) && $user != null && $user->profile_picture)
                                         <img id="profile-picture-img" style="height: 47px; width: 47px;"
                                             src="{{ asset('storage/' . $user->profile_picture) }}"
                                             alt="Profile Picture" class="rounded-full">
@@ -1030,19 +1033,19 @@
                                     </div>
                                     <div class="inline-flex justify-self-center items-center">
                                         @auth
+                                            <span
+                                                class="{{ $user && $user != null && $user->profile_picture ? '' : 'icon-box' }} ml-4 justify-self-end mr-2">
+                                            @endauth
+                                            @if ($user && $user != null && $user->profile_picture)
+                                                <img id="profile-picture-img" style="height: 47px; width: 47px;"
+                                                    src="{{ asset('storage/' . $user->profile_picture) }}"
+                                                    alt="Profile Picture" class="rounded-full">
+                                            @else
+                                                <img src="{{ asset('images/user.png') }}" alt="">
+                                            @endif
+                                            @auth
+                                            </span>
                                             <a href="{{ url('/profile') }}">
-                                                <span
-                                                    class="{{ $user && $user != null && $user->profile_picture ? '' : 'icon-box' }} ml-4 justify-self-end mr-2">
-                                                @endauth
-                                                @if ($user && $user != null && $user->profile_picture)
-                                                    <img id="profile-picture-img" style="height: 47px; width: 47px;"
-                                                        src="{{ asset('storage/' . $user->profile_picture) }}"
-                                                        alt="Profile Picture" class="rounded-full">
-                                                @else
-                                                    <img src="{{ asset('images/user.png') }}" alt="">
-                                                @endif
-                                                @auth
-                                                </span>
                                                 <span class="justify-self-start ml-2">My Profile</span>
                                             </a>
                                         @endauth
@@ -1050,10 +1053,12 @@
                                 </div>
                             @else
                                 <div class="bg-white p-4 text-sm font-bold mt-10 mb-4">
-                                    <a href="{{ route('login') }}">Sign in</a>
+                                    <a style="color: black; text-decoration: none;" href="{{ route('login') }}">Sign
+                                        in</a>
                                 </div>
                                 <div class="bg-white p-4 text-sm font-bold">
-                                    <a href="{{ route('register') }}">Sign up</a>
+                                    <a style="color: black; text-decoration: none;" href="{{ route('register') }}">Sign
+                                        up</a>
                                 </div>
                             @endauth
                         </div>

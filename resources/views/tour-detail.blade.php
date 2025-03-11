@@ -1,4 +1,5 @@
-@include('guest-header')
-<main class="mt-6">
+@include('new-header')
+<main class="mt-6 px-6">
     @include('tour-view')
-    @include('footer')
+</main>
+@include('footer')

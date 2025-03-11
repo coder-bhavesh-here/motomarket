@@ -28,7 +28,7 @@
         background-color: #1E293B !important;
     }
 </style>
-<main class="mt-2 px-12">
+<main class="mt-2 px-6">
     <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > Tour Search Results</p>
     <div class="grid grid-cols-1 wommd:grid-cols-2">
         <form action="/explore-tours" method="GET" class="grid grid-cols-1 wommd:grid-cols-2">

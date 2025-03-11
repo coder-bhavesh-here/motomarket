@@ -158,6 +158,9 @@ button .bg-positive-500 {
     #menuToggle {
         display: none;
     }
+    .accordion-button {
+        font-size: 1.5rem !important;
+    }
 }
 hr {
     margin: 15px 0 !important;
@@ -226,9 +229,6 @@ span.badge span {
 .tour-details ul li {
     margin-top: 10px;
 }
-.include-details {
-    font-size: 18px;
-}
 .description .header {
     font-size: 20px;
     color: black;
@@ -239,6 +239,9 @@ span.badge span {
 }
 .tour-prices .price {
     padding: 25px;
+}
+.accordion-button:not(.collapsed) {
+    background-color: #f2f2f2 !important;
 }
 .price button {
     background-color: #3f53d9;
@@ -359,6 +362,13 @@ th {
     max-height: 500px;
     margin-right: 20px;
 }
+@media (max-width: 540px) {
+    .slider .slide-images {
+        min-height: 120px;
+        max-height: 120px;
+        margin-right: 8px;
+    }
+}
 
 span.book-date {
     background: gray;
@@ -456,4 +466,48 @@ p.blog-title {
 }
 .badge img {
     width: 33px;
+}
+.bg-customlightgreen {
+    background-color: #5a6b2f17;
+}
+  @media (min-width: 1080px) { /* Assuming 'wommd' starts at 768px */
+    .accordion-button {
+      font-size: 2.25rem !important; /* Equivalent to text-4xl */
+    }
+  }
+.slick-prev,
+.slick-next {
+    width: 40px; /* Adjust size as needed */
+    height: 40px;
+    z-index: 1000;
+}
+.slick-prev {
+    background: url('../../public/images/left.png') no-repeat center center;
+    background-size: contain;
+    left: 50px; /* Adjust position */
+}
+.slick-next {
+    background: url('../../public/images/right.png') no-repeat center center;
+    background-size: contain;
+    right: 50px; /* Adjust position */
+}
+
+@media (max-width: 768px) {
+    .slick-prev,
+    .slick-next {
+        width: 30px; /* Adjust size for smaller screens */
+        height: 30px;
+    }
+    .slick-prev {
+        left: 20px; /* Adjust position for smaller screens */
+    }
+    .slick-next {
+        right: 20px; /* Adjust position for smaller screens */
+    }
+}
+
+/* Remove default arrow text */
+.slick-prev::before,
+.slick-next::before {
+  display: none;
 }
