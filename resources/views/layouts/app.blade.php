@@ -33,8 +33,8 @@
 </head>
 
 
-<body class="antialiased dark:bg-black dark:text-white/50">
-    <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50">
+<body class="antialiased dark:bg-black dark:text-white/50 bg-[#f9fafb]">
+    <div class="bg-gray-50 text-black/50 dark:bg-black dark:text-white/50" style="max-width: 1920px; width: 100%; margin: 0 auto;">
         <div class="relative min-h-screen flex flex-col selection:bg-[#FF2D20] selection:text-white">
             <div class="relative w-full">
                 <header class="grid grid-cols-2 items-center gap-2 wommd:grid-cols-3 pt-5 px-4">
