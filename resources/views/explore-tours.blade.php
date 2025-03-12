@@ -60,7 +60,7 @@
                                     alt="Tour photo">
                             </a>
                         </div>
-                        <div class="tour-description womsm:col-span-2">
+                        <div class="tour-description womsm:col-span-2 relative">
                             <div class="inline-flex justify-center items-center my-3">
                                 @php
                                     $profile_picture =
@@ -127,7 +127,7 @@
                                     <img src="{{ asset('images') . '/helmet.svg' }}" alt="">
                                     <span>{{ $tour->bike_option }}</span></span>
                             </div>
-                            <div class="flex items-center justify-between font-semibold">
+                            <div class="relative wommd:absolute flex items-center justify-between font-semibold bottom-0 w-full">
                                 <div class="left">
                                     @if ($tour->prices->count() > 0)
                                         <span
@@ -169,7 +169,7 @@
 </main>
 
 <!-- Filter Modal -->
-<div id="filterModal" class="fixed inset-0 backdrop-blur-sm z-50 hidden" style="background: #ffffff70;">
+<div id="filterModal" class="absolute inset-0 backdrop-blur-sm z-50 hidden" style="background: #ffffff70;">
     <div class="bg-white rounded-lg p-8 max-w-[75%] mx-auto mt-20 relative" style="box-shadow: 0 0 10px 0px gray;">
         <svg onclick="closeFilterModal()"
             class="cursor-pointer absolute m-4 top-4 right-4 text-gray-500 hover:text-gray-700 w-6 h-6" width="32"
@@ -298,17 +298,109 @@
                         </td>
                     </tr>
 
+                    <!-- Tour Level -->
+                    <tr>
+                        <td class="pb-6" style="text-align: right !important;width: 30%;align-content: baseline;">
+                            <label class="block text-xl font-medium text-gray-700">Tour
+                                level</label>
+                        </td>
+                        <td class="pb-6">
+                            <span class="text-sm font-normal text-[#0F172A] mt-2">Most tours are marked as for beginners, intermediate and/or expert riders. You can select accordingly here.</span>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="tour_level[]" value="Beginner" class="mr-2">
+                                    <span class="font-medium text-black">Beginner</span>
+                                    <span class="font-normal ml-4 italic text-[#0F172A]">you need support/advice from other riders</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="tour_level[]" value="Intermediate" class="mr-2">
+                                    <span class="font-medium text-black">Intermediate</span>
+                                    <span class="font-normal ml-4 italic text-[#0F172A]">capable most of the time need almost no help</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="tour_level[]" value="Expert" class="mr-2">
+                                    <span class="font-medium text-black">Expert</span>
+                                    <span class="font-normal ml-4 italic text-[#0F172A]">can help other riders and always in control</span>
+                                </label>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Bike options -->
+                    <tr>
+                        <td class="pb-6" style="text-align: right !important;width: 30%;align-content: baseline;">
+                            <label class="block text-xl font-medium text-gray-700">Bike options</label>
+                        </td>
+                        <td class="pb-6">
+                            <span class="text-sm font-normal text-[#0F172A] mt-2">Select if you are looking for tours that will rent you the bike or tours where you can bring your own bike. You can select both if you like.</span>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="bike_options[]" value="own_bike" class="mr-2">
+                                    <span class="font-medium text-black">Bring my own bike</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="bike_options[]" value="rental_included" class="mr-2">
+                                    <span class="font-medium text-black">Bike rental or included</span>
+                                </label>
+                            </div>
+                        </td>
+                    </tr>
+                    
+                    <!-- Bike options -->
+                    <tr>
+                        <td class="pb-6" style="text-align: right !important;width: 30%;align-content: baseline;">
+                            <label class="block text-xl font-medium text-gray-700">Bike options</label>
+                        </td>
+                        <td class="pb-6">
+                            <span class="text-sm font-normal text-[#0F172A] mt-2">Select if you are looking for tours that will rent riding gear or tours where you can bring your own riding gear. You can select both if you like.</span>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="riding_gear[]" value="own_riding_gear" class="mr-2">
+                                    <span class="font-medium text-black">Bring my own riding gear</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="riding_gear[]" value="riding_rental_included" class="mr-2">
+                                    <span class="font-medium text-black">Riding gear rental or included</span>
+                                </label>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <!-- Two-up riding -->
+                    <tr>
+                        <td class="pb-6" style="text-align: right !important;width: 30%;align-content: baseline;">
+                            <label class="block text-xl font-medium text-gray-700">Two-up riding</label>
+                        </td>
+                        <td class="pb-6">
+                            <span class="text-sm font-normal text-[#0F172A] mt-2">Select if you looking for trips that allows riding with a pillion passenger, or not or both.</span>
+                            <div class="space-y-2">
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="two_riding[]" value="yes" class="mr-2">
+                                    <span class="font-medium text-black">Show trips that allow two-up riding on a bike</span>
+                                </label>
+                                <label class="flex items-center">
+                                    <input type="checkbox" name="two_riding[]" value="no" class="mr-2">
+                                    <span class="font-medium text-black">Show trips that allow a single rider per bike</span>
+                                </label>
+                            </div>
+                        </td>
+                    </tr>
+
                     <!-- Buttons -->
                     <tr>
                         <td colspan="2" class="pt-6">
-                            <div class="flex justify-end space-x-4">
-                                <button type="button" onclick="clearFilters()"
-                                    class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50">
-                                    Clear All
-                                </button>
+                            <div class="flex justify-evenly space-x-4">
                                 <button type="submit"
-                                    class="px-4 py-2 bg-green text-white rounded-md hover:bg-dark-green">
-                                    Apply Filters
+                                    class="px-4 py-2 bg-green text-white rounded-md hover:bg-dark-green primary-button">
+                                    Show Trips
+                                </button>
+                                <button type="button" onclick="clearFilters()"
+                                    class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 primary-button">
+                                    Close
+                                </button>
+                                <button type="button" onclick="clearFilters()"
+                                    class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 primary-button">
+                                    Reset to default
                                 </button>
                             </div>
                         </td>

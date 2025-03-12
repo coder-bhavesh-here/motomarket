@@ -7,7 +7,7 @@
                     alt="Tour photo">
             </a>
         </div>
-        <div class="tour-description womsm:col-span-2">
+        <div class="tour-description relative womsm:col-span-2">
             <div class="inline-flex justify-center items-center my-3">
                 @php
                     $profile_picture =
@@ -74,7 +74,7 @@
                     <img src="{{ asset('images') . '/helmet.svg' }}" alt="">
                     <span>{{ $tour->bike_option }}</span></span>
             </div>
-            <div class="flex items-center justify-between font-semibold">
+            <div class="relative wommd:absolute flex items-center justify-between font-semibold bottom-0 w-full">
                 <div class="left">
                     @if ($tour->prices->count() > 0)
                         <span
