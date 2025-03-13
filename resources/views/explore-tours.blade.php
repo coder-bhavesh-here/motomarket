@@ -170,7 +170,7 @@
 
 <!-- Filter Modal -->
 <div id="filterModal" class="absolute inset-0 backdrop-blur-sm z-50 hidden" style="background: #ffffff70;">
-    <div class="bg-white rounded-lg p-8 max-w-[75%] mx-auto mt-20 relative" style="box-shadow: 0 0 10px 0px gray;">
+    <div class="bg-white rounded-lg py-4 px-2 wommd:p-8 womsm:max-w-[80%] wommd:max-w-[75%] womsm:mx-auto womsm:mt-20 relative" style="box-shadow: 0 0 10px 0px gray;">
         <svg onclick="closeFilterModal()"
             class="cursor-pointer absolute m-4 top-4 right-4 text-gray-500 hover:text-gray-700 w-6 h-6" width="32"
             height="31" viewBox="0 0 32 31" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -179,18 +179,17 @@
         </svg>
 
 
-        <h2 class="text-4xl font-semibold mt-4 mb-6 text-black text-center">Edit Filters</h2>
+        <h2 class="text-base womsm:text-xl wommd:text-2xl font-semibold ml-5 wommd:ml-0 mt-4 mb-6 text-black text-left wommd:text-center">Edit Filters</h2>
 
         <div class="w-full justify-items-center">
-            <form id="filterForm" class="w-3/4 space-y-6">
+            <form id="filterForm" class="w-full womsm:w-5/6 wommd:w-3/4 space-y-6">
                 <table class="w-full">
                     <!-- Countries -->
-                    <tr>
-                        <td class="pb-6" style="text-align: right !important;width: 30%;">
-                            <label class="block text-xl font-medium text-gray-700"
-                                style="margin-top: -15%;">Countries</label>
-                        </td>
-                        <td class="pb-6">
+                    <div class="grid w-full grid-cols-2 wommd:grid-cols-3">
+                        <div class="wommd:pb-6 w-full">
+                            <label class="block text-sm womsm:text-base wommd:text-lg text-black font-medium text-left wommd:text-right wommd:mr-3 wommd:w-[-15%]">Countries</label>
+                        </div>
+                        <div class="pb-6 col-span-2 w-full">
                             <select id="countries" name="countries[]" multiple
                                 class="w-full rounded-md border-gray-300 shadow-sm select2">
                                 @foreach ($countries as $country)
@@ -201,8 +200,8 @@
                                 Add all the countries you want to travel in. Leave it empty if you want to see featured
                                 trips from around the world.
                             </span>
-                        </td>
-                    </tr>
+                        </div>
+                    </div>
 
                     <!-- Minimum Touring Days -->
                     <tr>
