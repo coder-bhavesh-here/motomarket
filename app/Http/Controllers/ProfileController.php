@@ -91,10 +91,15 @@ class ProfileController extends Controller
 
         // Filter by bike options (own bike, rental, etc.)
         if (!empty($filters['bike_options'])) {
-            if ($filters['bike_options'] === 'own_bike') {
-                $query->whereIn('bike_option', Tour::BRING_OWN_BIKE);
+            if (count($filters['bike_options']) > 1) {
+                $query->whereIn('bike_option', [Tour::BRING_OWN_BIKE, Tour::BIKE_RENTAL, Tour::BIKE_INCLUDED]);
             } else {
-                $query->whereIn('bike_option', [Tour::BIKE_RENTAL, Tour::BIKE_INCLUDED]);
+                if ( in_array('own_bike', $filters['bike_options'])) {
+                    $query->whereIn('bike_option', [Tour::BRING_OWN_BIKE]);
+                } 
+                if ( in_array('rental_included', $filters['bike_options'])) {
+                    $query->whereIn('bike_option', [Tour::BIKE_RENTAL, Tour::BIKE_INCLUDED]);
+                }
             }
         }
         if (!empty($filters['riding_gear'])) {
@@ -103,7 +108,7 @@ class ProfileController extends Controller
 
         // Filter by two-riding option (yes/no)
         if (!empty($filters['two_riding'])) {
-            $query->where('two_up_riding', $filters['two_riding'][0]); // Assuming it's a single-value array
+            $query->where('two_up_riding', ($filters['two_riding'][0] === 'yes' ? 1 : 0)); // Assuming it's a single-value array
         }
         
         $tours = $query->where('status', 'published')->paginate(4);
