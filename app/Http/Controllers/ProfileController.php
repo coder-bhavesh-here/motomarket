@@ -81,8 +81,13 @@ class ProfileController extends Controller
 
         // Filter by tour level (Beginner, Intermediate, etc.)
         if (!empty($filters['tour_level'])) {
-            $query->whereIn('rider_capability', $filters['tour_level']);
+            $query->where(function ($q) use ($filters) {
+                foreach ($filters['tour_level'] as $capability) {
+                    $q->orWhereRaw("FIND_IN_SET(?, rider_capability)", [$capability]);
+                }
+            });
         }
+
 
         // Filter by bike options (own bike, rental, etc.)
         if (!empty($filters['bike_options'])) {
