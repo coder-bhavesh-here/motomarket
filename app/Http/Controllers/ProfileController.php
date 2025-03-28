@@ -34,6 +34,7 @@ class ProfileController extends Controller
 
     public function exploreTours(Request $request): View|JsonResponse
     {
+        // dd($request->all());
         $search = $request->get('search');
         $query = Tour::with(['user', 'prices', 'images', 'favourites']);
 
@@ -45,6 +46,56 @@ class ProfileController extends Controller
                 });
         }
 
+        $filters = $request->all();
+
+        // Filter by selected countries (handling comma-separated values)
+        if (!empty($filters['countries'])) {
+            $query->where(function ($q) use ($filters) {
+                foreach ($filters['countries'] as $country) {
+                    $q->orWhereRaw("FIND_IN_SET(?, countries)", [$country]);
+                }
+            });
+        }
+
+        // Filter by minimum days
+        if (!empty($filters['min_days'])) {
+            $query->where('duration_days', '>=', $filters['min_days']);
+        }
+
+        // Filter by max price (assuming 'max_price' is a numeric value)
+        if (!empty($filters['max_price']) && is_numeric($filters['max_price'])) {
+            $query->whereHas('prices', function ($q) use ($filters) {
+                $q->where('price', '<=', $filters['max_price']);
+            });
+        }
+
+        // Filter by tour type (road, enduro, etc.)
+        if (!empty($filters['tour_type'])) {
+            $query->whereIn('riding_style', $filters['tour_type']);
+        }
+
+        // Filter by tour level (Beginner, Intermediate, etc.)
+        if (!empty($filters['tour_level'])) {
+            $query->whereIn('rider_capability', $filters['tour_level']);
+        }
+
+        // Filter by bike options (own bike, rental, etc.)
+        if (!empty($filters['bike_options'])) {
+            if ($filters['bike_options'] === 'own_bike') {
+                $query->whereIn('bike_option', Tour::BRING_OWN_BIKE);
+            } else {
+                $query->whereIn('bike_option', [Tour::BIKE_RENTAL, Tour::BIKE_INCLUDED]);
+            }
+        }
+        if (!empty($filters['riding_gear'])) {
+            $query->whereIn('rent_gear', $filters['riding_gear']);
+        }
+
+        // Filter by two-riding option (yes/no)
+        if (!empty($filters['two_riding'])) {
+            $query->where('two_up_riding', $filters['two_riding'][0]); // Assuming it's a single-value array
+        }
+        
         $tours = $query->where('status', 'published')->paginate(4);
 
         if ($request->ajax()) {

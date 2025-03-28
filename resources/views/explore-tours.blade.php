@@ -91,7 +91,7 @@
                             </a>
                             <p>
                                 <a href='/tour/{{ $tour->id }}' class="text-sm womsm:text-base wommd:text-lg text-black font-normal">
-                                    {{ Str::limit(strip_tags($tour->tour_description), 700) }}
+                                    {{ Str::limit(strip_tags($tour->tour_description), 500) }}
                                 </a>
                             </p>
                             <div class="badges mt-5 flex flex-wrap items-center">
@@ -182,7 +182,7 @@
         <h2 class="text-base womsm:text-xl wommd:text-2xl font-semibold ml-5 wommd:ml-0 mt-4 mb-6 text-black text-left wommd:text-center">Edit Filters</h2>
 
         <div class="w-full justify-items-center">
-            <form id="filterForm" class="w-full womsm:w-5/6 wommd:w-3/4 space-y-6">
+            <form id="filterForm" class="w-full womsm:w-5/6 wommd:w-3/4 space-y-6 px-4">
                 <table class="w-full">
                     <!-- Countries -->
                     <div class="grid w-full grid-cols-2 wommd:grid-cols-3">
@@ -204,206 +204,215 @@
                     </div>
 
                     <!-- Minimum Touring Days -->
-                    <tr>
-                        <td class="pb-6" style="text-align: right !important;width: 30%;">
-                            <label class="block text-xl font-medium text-gray-700" style="margin-top: -15%;">Minimum
-                                Touring Days</label>
-                        </td>
-                        <td class="pb-6">
+                    <div class="grid w-full grid-cols-2 wommd:grid-cols-3">
+                        <div class="wommd:pb-6 w-full">
+                            <label class="block text-sm womsm:text-base wommd:text-lg text-black font-medium text-left wommd:text-right wommd:mr-3 wommd:w-[-15%]">
+                            Minimum Touring Days
+                            </label>
+                        </div>
+                        <div class="pb-6 col-span-2 w-full">
                             <div class="flex items-center mb-2">
                                 <input type="number" name="min_days" min="1"
-                                    class="w-1/4 rounded-md border-gray-300 shadow-sm">
+                                    class="w-full womsm:w-2/4 rounded-md border-gray-300 shadow-sm">
                                 <span class="ml-2 text-sm text-black font-medium">days</span>
                             </div>
                             <span class="text-sm font-normal text-[#0F172A] mt-2">How long do you want the tour to be?
                                 Type
                                 the least amount of days you want tour for.
-                                If you type “5” you will get tours that are five days or longer.</span>
-                        </td>
-                    </tr>
-
-                    <!-- Price Range -->
-                    <tr>
-                        <td class="pb-6" style="text-align: right !important;width: 30%;">
-                            <label class="block text-xl font-medium text-gray-700" style="margin-top: -15%;">Maximum
-                                tour price</label>
-                        </td>
-                        <td class="pb-6">
-                            <div class="flex items-center mb-2 text-black font-medium text-sm">
-                                <input type="number" name="min_days" min="1"
-                                    class="w-1/4 rounded-md border-gray-300 shadow-sm">
-                                <span class="ml-5 flex items-center">
-                                    <input type="radio" name="max_price"><span class="ml-1">EUR</span>
-                                </span>
-                                <span class="ml-4 flex items-center">
-                                    <input type="radio" name="max_price"><span class="ml-1">USD</span>
-                                </span>
-                                <span class="ml-4 flex items-center">
-                                    <input type="radio" name="max_price"><span class="ml-1">GBP</span>
-                                </span>
+                                If you type “5” you will get tours that are five days or longer.
+                            </span>
+                        </div>
+                    </div>
+                    <div class="grid w-full grid-cols-2 wommd:grid-cols-3">
+                        <div class="wommd:pb-6 w-full">
+                            <label class="block text-sm womsm:text-base wommd:text-lg text-black font-medium text-left wommd:text-right wommd:mr-3 wommd:w-[-15%]">
+                            Maximum tour price
+                            </label>
+                        </div>
+                        <div class="pb-6 col-span-2 w-full">
+                            <div class="grid grid-cols-1 womsm:grid-cols-4 items-center mb-2 text-black font-medium text-sm">
+                                <input type="number" name="max_price" min="1"
+                                    class="w-full rounded-md mb-3 womsm:mb-1 border-gray-300 shadow-sm">
+                                <div class="flex">
+                                    <span class="womsm:ml-5 flex items-center">
+                                        <input type="radio" name="currency"><span class="ml-1">EUR</span>
+                                    </span>
+                                    <span class="ml-4 flex items-center">
+                                        <input type="radio" name="currency"><span class="ml-1">USD</span>
+                                    </span>
+                                    <span class="ml-4 flex items-center">
+                                        <input type="radio" name="currency"><span class="ml-1">GBP</span>
+                                    </span>
+                                </div>
                             </div>
-                            <span class="text-sm font-normal text-[#0F172A] mt-2">What’s the maximum you want to spend
-                                on the tour? You can also select the currency. We will convert accordingly. EUR - Euro,
-                                USD - US dollor, GBP - UK Sterling</span>
-                        </td>
-                    </tr>
+                            <span class="text-sm font-normal text-[#0F172A] mt-2">
+                                What’s the maximum you want to spend on the tour? You can also select the currency. We will convert accordingly. EUR - Euro, USD - US dollor, GBP - UK Sterling
+                            </span>
+                        </div>
+                    </div>
 
-                    <tr>
-                        <td class="pb-6" style="text-align: right !important;width: 30%;">
-                            <label class="block text-xl font-medium text-gray-700" style="margin-top: -15%;">Show
-                                tours starting after</label>
-                        </td>
-                        <td class="pb-6">
-                            <div class="flex items-center mb-2 text-black font-medium text-sm">
-                                <input type="date" name="start"
-                                    class="w-1/4 rounded-md border-gray-300 shadow-sm">
+                    <div class="grid w-full grid-cols-2 wommd:grid-cols-3">
+                        <div class="wommd:pb-6 w-full">
+                            <label class="block text-sm womsm:text-base wommd:text-lg text-black font-medium text-left wommd:text-right wommd:mr-3 wommd:w-[-15%]">
+                            Show tours starting after
+                            </label>
+                        </div>
+                        <div class="pb-6 col-span-2 w-full">
+                            <div class="flex items-center mb-2">
+                                <input type="date" name="start" class="w-2/4 rounded-md border-gray-300 shadow-sm">
+                                <span class="ml-2 text-sm text-black font-medium">days</span>
                             </div>
-                            <span class="text-sm font-normal text-[#0F172A] mt-2">Select the date that you want tours
-                                to be starting from or after. We will show you tours that start after the date you
-                                select. </span>
-                        </td>
-                    </tr>
+                            <span class="text-sm font-normal text-[#0F172A] mt-2">
+                                Select the date that you want tours to be starting from or after. We will show you tours that start after the date you select.
+                            </span>
+                        </div>
+                    </div>
 
-
-                    <!-- Tour Type -->
-                    <tr>
-                        <td class="pb-6" style="text-align: right !important;width: 30%;align-content: baseline;">
-                            <label class="block text-xl font-medium text-gray-700">Tour
-                                type</label>
-                        </td>
-                        <td class="pb-6">
-                            <span class="text-sm font-normal text-[#0F172A] mt-2">Select the type of tour you want to
-                                do. You can select multiple options. You need to
-                                select at least one.</span>
-                            <div class="space-y-2">
+                    <div class="grid w-full grid-cols-2 wommd:grid-cols-3">
+                        <div class="wommd:pb-6 w-full">
+                            <label class="block text-sm womsm:text-base wommd:text-lg text-black font-medium text-left wommd:text-right wommd:mr-3 wommd:w-[-15%]">
+                            Tour type
+                            </label>
+                        </div>
+                        <div class="pb-6 col-span-2 w-full">
+                            <span class="text-sm font-normal text-[#0F172A] mt-2">
+                            Select the type of tour you want to do. You can select multiple options. You need to select at least one.
+                            </span>
+                            <div class="space-y-2 mt-2">
                                 <label class="flex items-center">
                                     <input type="checkbox" name="tour_type[]" value="road" class="mr-2">
-                                    <span class="font-medium text-black">Road</span>
-                                    <span class="font-normal ml-4 italic text-[#0F172A]">All on the road; black
+                                    <span class="text-sm font-medium text-black">Road</span>
+                                    <span class="text-sm font-normal ml-4 italic text-[#0F172A]">All on the road; black
                                         top</span>
                                 </label>
                                 <label class="flex items-center">
                                     <input type="checkbox" name="tour_type[]" value="adventure" class="mr-2">
-                                    <span class="font-medium text-black">Adventure</span>
-                                    <span class="font-normal ml-4 italic text-[#0F172A]">Off and on road; dirt and
+                                    <span class="text-sm font-medium text-black">Adventure</span>
+                                    <span class="text-sm font-normal ml-4 italic text-[#0F172A]">Off and on road; dirt and
                                         road</span>
                                 </label>
                                 <label class="flex items-center">
                                     <input type="checkbox" name="tour_type[]" value="enduro" class="mr-2">
-                                    <span class="font-medium text-black">Enduro</span>
-                                    <span class="font-normal ml-4 italic text-[#0F172A]">Almost always off-road</span>
+                                    <span class="text-sm font-medium text-black">Enduro</span>
+                                    <span class="text-sm font-normal ml-4 italic text-[#0F172A]">Almost always off-road</span>
                                 </label>
                             </div>
-                        </td>
-                    </tr>
+                        </div>
+                    </div>
 
-                    <!-- Tour Level -->
-                    <tr>
-                        <td class="pb-6" style="text-align: right !important;width: 30%;align-content: baseline;">
-                            <label class="block text-xl font-medium text-gray-700">Tour
-                                level</label>
-                        </td>
-                        <td class="pb-6">
-                            <span class="text-sm font-normal text-[#0F172A] mt-2">Most tours are marked as for beginners, intermediate and/or expert riders. You can select accordingly here.</span>
-                            <div class="space-y-2">
+                    <div class="grid w-full grid-cols-2 wommd:grid-cols-3">
+                        <div class="wommd:pb-6 w-full">
+                            <label class="block text-sm womsm:text-base wommd:text-lg text-black font-medium text-left wommd:text-right wommd:mr-3 wommd:w-[-15%]">
+                            Tour level
+                            </label>
+                        </div>
+                        <div class="pb-6 col-span-2 w-full">
+                            <span class="text-sm font-normal text-[#0F172A] mt-2">
+                            Most tours are marked as for beginners, intermediate and/or expert riders. You can select accordingly here.
+                            </span>
+                            <div class="space-y-2 mt-2">
                                 <label class="flex items-center">
                                     <input type="checkbox" name="tour_level[]" value="Beginner" class="mr-2">
-                                    <span class="font-medium text-black">Beginner</span>
-                                    <span class="font-normal ml-4 italic text-[#0F172A]">you need support/advice from other riders</span>
+                                    <span class="font-medium text-sm text-black">Beginner</span>
+                                    <span class="text-sm font-normal ml-4 italic text-[#0F172A]">you need support/advice from other riders</span>
                                 </label>
                                 <label class="flex items-center">
                                     <input type="checkbox" name="tour_level[]" value="Intermediate" class="mr-2">
-                                    <span class="font-medium text-black">Intermediate</span>
-                                    <span class="font-normal ml-4 italic text-[#0F172A]">capable most of the time need almost no help</span>
+                                    <span class="font-medium text-sm text-black">Intermediate</span>
+                                    <span class="text-sm font-normal ml-4 italic text-[#0F172A]">capable most of the time need almost no help</span>
                                 </label>
                                 <label class="flex items-center">
                                     <input type="checkbox" name="tour_level[]" value="Expert" class="mr-2">
-                                    <span class="font-medium text-black">Expert</span>
-                                    <span class="font-normal ml-4 italic text-[#0F172A]">can help other riders and always in control</span>
+                                    <span class="font-medium text-sm text-black">Expert</span>
+                                    <span class="text-sm font-normal ml-4 italic text-[#0F172A]">can help other riders and always in control</span>
                                 </label>
                             </div>
-                        </td>
-                    </tr>
+                        </div>
+                    </div>
 
-                    <!-- Bike options -->
-                    <tr>
-                        <td class="pb-6" style="text-align: right !important;width: 30%;align-content: baseline;">
-                            <label class="block text-xl font-medium text-gray-700">Bike options</label>
-                        </td>
-                        <td class="pb-6">
-                            <span class="text-sm font-normal text-[#0F172A] mt-2">Select if you are looking for tours that will rent you the bike or tours where you can bring your own bike. You can select both if you like.</span>
-                            <div class="space-y-2">
+                    <div class="grid w-full grid-cols-2 wommd:grid-cols-3">
+                        <div class="wommd:pb-6 w-full">
+                            <label class="block text-sm womsm:text-base wommd:text-lg text-black font-medium text-left wommd:text-right wommd:mr-3 wommd:w-[-15%]">
+                            Bike options
+                            </label>
+                        </div>
+                        <div class="pb-6 col-span-2 w-full">
+                            <span class="text-sm font-normal text-[#0F172A] mt-2">
+                            Select if you are looking for tours that will rent you the bike or tours where you can bring your own bike. You can select both if you like.
+                            </span>
+                            <div class="space-y-2 mt-2">
                                 <label class="flex items-center">
                                     <input type="checkbox" name="bike_options[]" value="own_bike" class="mr-2">
-                                    <span class="font-medium text-black">Bring my own bike</span>
+                                    <span class="font-medium text-black text-sm">Bring my own bike</span>
                                 </label>
                                 <label class="flex items-center">
                                     <input type="checkbox" name="bike_options[]" value="rental_included" class="mr-2">
-                                    <span class="font-medium text-black">Bike rental or included</span>
+                                    <span class="font-medium text-black text-sm">Bike rental or included</span>
                                 </label>
                             </div>
-                        </td>
-                    </tr>
+                        </div>
+                    </div>
                     
-                    <!-- Bike options -->
-                    <tr>
-                        <td class="pb-6" style="text-align: right !important;width: 30%;align-content: baseline;">
-                            <label class="block text-xl font-medium text-gray-700">Bike options</label>
-                        </td>
-                        <td class="pb-6">
-                            <span class="text-sm font-normal text-[#0F172A] mt-2">Select if you are looking for tours that will rent riding gear or tours where you can bring your own riding gear. You can select both if you like.</span>
-                            <div class="space-y-2">
+                    <div class="grid w-full grid-cols-2 wommd:grid-cols-3">
+                        <div class="wommd:pb-6 w-full">
+                            <label class="block text-sm womsm:text-base wommd:text-lg text-black font-medium text-left wommd:text-right wommd:mr-3 wommd:w-[-15%]">
+                            Riding gear options
+                            </label>
+                        </div>
+                        <div class="pb-6 col-span-2 w-full">
+                            <span class="text-sm font-normal text-[#0F172A] mt-2">
+                                Select if you are looking for tours that will rent riding gear or tours where you can bring your own riding gear. You can select both if you like.
+                            </span>
+                            <div class="space-y-2 mt-2">
                                 <label class="flex items-center">
-                                    <input type="checkbox" name="riding_gear[]" value="own_riding_gear" class="mr-2">
-                                    <span class="font-medium text-black">Bring my own riding gear</span>
+                                    <input type="checkbox" name="riding_gear[]" value="0" class="mr-2">
+                                    <span class="font-medium text-black text-sm">Bring my own riding gear</span>
                                 </label>
                                 <label class="flex items-center">
-                                    <input type="checkbox" name="riding_gear[]" value="riding_rental_included" class="mr-2">
-                                    <span class="font-medium text-black">Riding gear rental or included</span>
+                                    <input type="checkbox" name="riding_gear[]" value="1" class="mr-2">
+                                    <span class="font-medium text-black text-sm">Riding gear rental or included</span>
                                 </label>
                             </div>
-                        </td>
-                    </tr>
-
-                    <!-- Two-up riding -->
-                    <tr>
-                        <td class="pb-6" style="text-align: right !important;width: 30%;align-content: baseline;">
-                            <label class="block text-xl font-medium text-gray-700">Two-up riding</label>
-                        </td>
-                        <td class="pb-6">
-                            <span class="text-sm font-normal text-[#0F172A] mt-2">Select if you looking for trips that allows riding with a pillion passenger, or not or both.</span>
-                            <div class="space-y-2">
+                        </div>
+                    </div>
+                    
+                    <div class="grid w-full grid-cols-2 wommd:grid-cols-3">
+                        <div class="wommd:pb-6 w-full">
+                            <label class="block text-sm womsm:text-base wommd:text-lg text-black font-medium text-left wommd:text-right wommd:mr-3 wommd:w-[-15%]">
+                            Two-up riding
+                            </label>
+                        </div>
+                        <div class="pb-6 col-span-2 w-full">
+                            <span class="text-sm font-normal text-[#0F172A] mt-2">
+                            Select if you looking for trips that allows riding with a pillion passenger, or not or both.
+                            </span>
+                            <div class="space-y-2  mt-2">
                                 <label class="flex items-center">
                                     <input type="checkbox" name="two_riding[]" value="yes" class="mr-2">
-                                    <span class="font-medium text-black">Show trips that allow two-up riding on a bike</span>
+                                    <span class="text-sm font-medium text-black">Show trips that allow two-up riding on a bike</span>
                                 </label>
                                 <label class="flex items-center">
                                     <input type="checkbox" name="two_riding[]" value="no" class="mr-2">
-                                    <span class="font-medium text-black">Show trips that allow a single rider per bike</span>
+                                    <span class="text-sm font-medium text-black">Show trips that allow a single rider per bike</span>
                                 </label>
                             </div>
-                        </td>
-                    </tr>
-
-                    <!-- Buttons -->
-                    <tr>
-                        <td colspan="2" class="pt-6">
-                            <div class="flex justify-evenly space-x-4">
-                                <button type="submit"
-                                    class="px-4 py-2 bg-green text-white rounded-md hover:bg-dark-green primary-button">
-                                    Show Trips
-                                </button>
-                                <button type="button" onclick="clearFilters()"
-                                    class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 primary-button">
-                                    Close
-                                </button>
-                                <button type="button" onclick="clearFilters()"
-                                    class="px-4 py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 primary-button">
-                                    Reset to default
-                                </button>
-                            </div>
-                        </td>
-                    </tr>
+                        </div>
+                    </div>
+                    
+                    <div class="flex justify-evenly space-x-4">
+                        <button type="submit"
+                            class="womsm:px-4 womsm:py-2 bg-green text-white rounded-md hover:bg-dark-green primary-button">
+                            Show Trips
+                        </button>
+                        <button type="button" onclick="closeFilterModal()"
+                            class="womsm:px-4 womsm:py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 primary-button">
+                            Close
+                        </button>
+                        <button type="button" onclick="clearFilters()"
+                            class="womsm:px-4 womsm:py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 primary-button">
+                            Reset to default
+                        </button>
+                    </div>
                 </table>
             </form>
         </div>
@@ -421,11 +430,30 @@
         isLoading = true;
         $('#loading').removeClass('hidden');
 
+        const urlParams = new URLSearchParams(window.location.search);
+
+        const countries = urlParams.getAll('countries[]'); // Array of selected countries
+        const minDays = urlParams.get('min_days'); // Minimum days
+        const maxPrice = urlParams.get('max_price'); // Maximum price
+        const start = urlParams.get('start'); // Start date
+        const tourType = urlParams.getAll('tour_type[]'); // Array of tour types
+        const tourLevel = urlParams.getAll('tour_level[]'); // Array of tour levels
+        const bikeOptions = urlParams.getAll('bike_options[]'); // Array of bike options
+        const ridingGear = urlParams.getAll('riding_gear[]'); // Array of bike options
+        const twoRiding = urlParams.getAll('two_riding[]'); // Array for two-riding preference
         $.ajax({
             type: "GET",
             url: "/explore-tours",
             data: {
                 page: page + 1,
+                countries: countries,
+                minDays: minDays,
+                maxPrice: maxPrice,
+                start: start,
+                tourType: tourType,
+                tourLevel: tourLevel,
+                bikeOptions: bikeOptions,
+                twoRiding: twoRiding,
                 search: $('input[name="search"]').val()
             },
             dataType: "JSON",
@@ -522,6 +550,7 @@
     }
 
     function clearFilters() {
+        $("#countries").val(null).trigger("change");
         document.getElementById('filterForm').reset();
     }
 
@@ -533,39 +562,76 @@
             allowClear: true,
             dropdownParent: $('#filterModal') // This ensures the dropdown appears above the modal
         });
-    });
+        const urlParams = new URLSearchParams(window.location.search);
 
-    // Handle form submission
-    $('#filterForm').on('submit', function(e) {
-        e.preventDefault();
-        const formData = new FormData(this);
+        // Populate select (multi-select) fields
+        const countries = urlParams.getAll("countries[]");
+        if (countries.length > 0) {
+            $("#countries").val(countries).trigger("change"); // Update Select2
+        }
 
-        // Show loading state
-        $('#loading').removeClass('hidden');
+        // Populate text/number/date inputs
+        const fieldMappings = {
+            "min_days": "min_days",
+            "start": "start",
+            "max_price": "max_price"
+        };
+        
+        for (const param in fieldMappings) {
+            const value = urlParams.get(param);
+            if (value) {
+                document.querySelector(`input[name="${fieldMappings[param]}"]`).value = value;
+            }
+        }
 
-        $.ajax({
-            url: '/explore-tours',
-            type: 'GET',
-            data: formData,
-            processData: false,
-            contentType: false,
-            success: function(response) {
-                $('#tours-container').html(''); // Clear existing tours
-                response.tours.forEach(tour => {
-                    $('#tours-container').append(tour.html);
+        // Populate checkboxes (multi-value parameters)
+        const multiValueParams = ["tour_type", "tour_level", "bike_options", "riding_gear", "two_riding"];
+        
+        multiValueParams.forEach(param => {
+            const values = urlParams.getAll(`${param}[]`);
+            if (values.length > 0) {
+                document.querySelectorAll(`input[name="${param}[]"]`).forEach(checkbox => {
+                    if (values.includes(checkbox.value)) {
+                        checkbox.checked = true;
+                    }
                 });
-                closeFilterModal();
-                page = 1; // Reset pagination
-                hasMoreData = true; // Reset infinite scroll
-            },
-            error: function(error) {
-                console.error('Error applying filters:', error);
-            },
-            complete: function() {
-                $('#loading').addClass('hidden');
             }
         });
     });
+
+    // Handle form submission
+    // $('#filterForm').on('submit', function(e) {
+    //     const formData = new FormData(this);
+    //     console.log('formData', formData);
+        
+    //     e.preventDefault();
+
+    //     // Show loading state
+    //     $('#loading').removeClass('hidden');
+
+    //     $.ajax({
+    //         url: '/explore-tours',
+    //         type: 'GET',
+    //         data: formData,
+    //         processData: false,
+    //         contentType: false,
+    //         success: function(response) {
+    //             $('#tours-container').html(''); // Clear existing tours
+    //             response.tours.forEach(tour => {
+    //                 $('#tours-container').append(tour.html);
+    //             });
+    //             closeFilterModal();
+    //             page = 1; // Reset pagination
+    //             hasMoreData = true; // Reset infinite scroll
+    //         },
+    //         error: function(error) {
+    //             console.error('Error applying filters:', error);
+    //         },
+    //         complete: function() {
+    //             $('#loading').addClass('hidden');
+    //         }
+    //     });
+    // });
 
     // Close modal when clicking outside
     window.onclick = function(event) {
