@@ -68,6 +68,11 @@ class ProfileController extends Controller
                 $q->where('price', '<=', $filters['max_price']);
             });
         }
+        if (!empty($filters['start'])) {
+            $query->whereHas('prices', function ($q) use ($filters) {
+                $q->where('date', '>=', $filters['start']);
+            });
+        }
 
         // Filter by tour type (road, enduro, etc.)
         if (!empty($filters['tour_type'])) {
