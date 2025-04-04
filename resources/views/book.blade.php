@@ -27,7 +27,7 @@
                     @if ($profile_picture != '')
                         <img src="{{ asset('storage') . '/' . ($tour->user->tour_profile_picture != '' ? $tour->user->tour_profile_picture : $tour->user->profile_picture) }}"
                             alt="Tour operator picture"
-                            style="width: 25px; height: 25px; border-radius: 20px;">
+                            style="width: 40px; height: 40px; border-radius: 20px;">
                     @endif
                     <a href="#" class="underline">
                         <span
@@ -144,12 +144,12 @@
     </div>
     <div class="m-10">
         <div class="rounded-2xl bg-[#556B2F0F]">
-            {{-- <img class="max-h-[300px] rounded-lg object-cover h-full w-full"
+            <img class="max-h-[300px] rounded-lg object-cover h-full w-full"
                 src="{{ isset($tour->images) && isset($tour->images[0]->image_path) ? asset('storage') . '/' . $tour->images[0]->image_path : 'https://photos.smugmug.com/Galleries/Motorcycles/i-jX3tNwR/0/K2H4fw8P5MqPD8SRLWSrRZm4479d3ZvH8HL773j2D/L/cj.photos-_CJ09043-L.jpg' }}"
-                alt="Tour photo"> --}}
-            <img class="max-h-[300px] rounded-xl object-cover h-full w-full"
-                src="https://images.wanderon.in/blogs/new/2023/03/stones-at-chandrataal-lake-1.jpg"
                 alt="Tour photo">
+            {{-- <img class="max-h-[300px] rounded-xl object-cover h-full w-full"
+                src="https://images.wanderon.in/blogs/new/2023/03/stones-at-chandrataal-lake-1.jpg"
+                alt="Tour photo"> --}}
             <div class="content p-10">
                 <div class="inline-flex justify-center items-center">
                     <span class="text-black font-bold text-lg womsm:text-xl wommd:text-2xl">YOUR BOOKING</span>
