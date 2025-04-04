@@ -82,16 +82,8 @@
                     <td>{{ $booking->name }}</td>
                 </tr>
                 <tr>
-                    <td><strong>Date of Birth:</strong></td>
-                    <td>{{ $booking->dob }}</td>
-                </tr>
-                <tr>
                     <td><strong>Nationality:</strong></td>
                     <td>{{ $booking->nationality }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Driving License Number:</strong></td>
-                    <td>{{ $booking->driving_license_number }}</td>
                 </tr>
                 <tr>
                     <td><strong>Mobile Number:</strong></td>

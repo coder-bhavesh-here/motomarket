@@ -9,9 +9,11 @@
     <button onclick="document.getElementById('fileElem').click()">Select files</button>
 </div>
 <div id="preview" class="inline-flex mt-10 w-full">
-    @foreach ($images as $image)
+    @if ($images)
+        @foreach ($images as $image)
         <img src="{{ asset('storage') . '/' . $image->image_path }}"><span data-id="{{ $image->id }}">X</span>
-    @endforeach
+        @endforeach
+    @endif
 </div>
 
 <div class="mb-5 mt-5">

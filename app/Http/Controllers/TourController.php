@@ -166,13 +166,11 @@ class TourController extends Controller
                 "amount" => $request->amount,
                 "addons" => $request->addons,
                 "nationality" => $request->nationality,
-                "driving_license_number" => $request->driving_license_number,
                 "name" => $request->name,
                 "address" => $request->address,
                 "postcode" => $request->postcode,
                 "country" => $request->country,
                 "mobile_number" => $request->mobile_number,
-                "dob" => $request->dob,
                 'tour_price_id' => $request->id,
                 'user_id' => Auth::id()
             ]
@@ -199,11 +197,9 @@ class TourController extends Controller
                 'name' => $session->metadata->name,
                 'address' => $session->metadata->address,
                 'nationality' => $session->metadata->nationality,
-                'driving_license_number' => $session->metadata->driving_license_number,
                 'postcode' => $session->metadata->postcode,
                 'country' => $session->metadata->country,
                 'mobile_number' => $session->metadata->mobile_number,
-                'dob' => $session->metadata->dob,
                 'user_id' => $session->metadata->user_id,
                 'addons' => $session->metadata->addons,
                 'amount' => $session->amount_total / 100, // Convert from cents
