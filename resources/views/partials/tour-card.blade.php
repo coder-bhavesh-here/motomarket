@@ -74,7 +74,7 @@
                     <img src="{{ asset('images') . '/helmet.svg' }}" alt="">
                     <span>{{ $tour->bike_option }}</span></span>
             </div>
-            <div class="relative wommd:absolute flex items-center justify-between font-semibold bottom-0 w-full">
+            <div class="relative flex items-center justify-between font-semibold bottom-0 w-full">
                 <div class="left">
                     @if ($tour->prices->count() > 0)
                         <span
