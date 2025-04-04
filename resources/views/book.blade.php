@@ -1,7 +1,7 @@
 @include('new-header')
 <wireui:scripts />
-<div class="w-full inline-flex">
-    <div class="w-3/4">
+<div class="w-full grid grid-cols-1 xl:grid-cols-4">
+    <div class="col-span-3">
         <div class="px-4 py-6">
             <meta name="csrf-token" content="{{ csrf_token() }}">
             <div class="sm:px-6 lg:px-8">
@@ -122,7 +122,7 @@
             <div class="mt-6">
                 <div class="my-10 sm:px-6 lg:px-8">
                     <h2 class="text-xl font-extrabold text-black">ADD ONS</h2>
-                    <div class="mt-4 text-black font-medium w-2/3">
+                    <div class="mt-4 text-black font-medium w-full wommd:w-2/3">
                         @foreach ($tour->addOns as $addOn)
                             <div class="inline-flex w-full items-center py-1">
                                 <div class="w-2/3">
@@ -142,7 +142,7 @@
             </div>
         </div>
     </div>
-    <div class="w-1/4 m-10">
+    <div class="m-10">
         <div class="rounded-2xl bg-[#556B2F0F]">
             {{-- <img class="max-h-[300px] rounded-lg object-cover h-full w-full"
                 src="{{ isset($tour->images) && isset($tour->images[0]->image_path) ? asset('storage') . '/' . $tour->images[0]->image_path : 'https://photos.smugmug.com/Galleries/Motorcycles/i-jX3tNwR/0/K2H4fw8P5MqPD8SRLWSrRZm4479d3ZvH8HL773j2D/L/cj.photos-_CJ09043-L.jpg' }}"
@@ -180,10 +180,12 @@
                         <span>{{$selectedDate->price}}£</span>
                     </div>
                 </div>
-                <div class="mt-6 border-t border-black pt-4">
+                <div class="mt-6 border-t inline-flex items-center justify-between border-black pt-4 w-full">
                     <input type="hidden" id="tour_price" value="{{ number_format($selectedDate->price, 2) }}">
-                    <h2 class="text-xl font-semibold">Total Tour Price : <strong><span
-                                id="total_price">{{ number_format($selectedDate->price, 2) }}£</span></strong></h2>
+                    <span class="text-black font-semibold">Total</span> 
+                    <strong>
+                        <span class="text-2xl text-black" id="total_price">{{ number_format($selectedDate->price, 2) }}£</span>
+                    </strong>
                 </div>
                 <div class="mt-4">
                     <div id="validation-errors" class="text-red-600 mb-4 hidden"></div>
