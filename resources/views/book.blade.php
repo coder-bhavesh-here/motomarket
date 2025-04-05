@@ -1,5 +1,54 @@
 @include('new-header')
+<style>
+    ul li {
+        margin-top: 1.25rem;
+    }
+</style>
 <wireui:scripts />
+
+<!-- Filter Modal -->
+<div id="filterModal" class="absolute inset-0 backdrop-blur-sm z-50 hidden" style="background: #ffffff70;">
+    <div class="bg-white rounded-lg py-4 px-2 wommd:p-8 womsm:max-w-[80%] wommd:max-w-[75%] womsm:mx-auto womsm:mt-20 relative" style="box-shadow: 0 0 10px 0px gray;">
+        <svg onclick="closeFilterModal()"
+            class="cursor-pointer absolute m-4 top-4 right-4 text-gray-500 hover:text-gray-700 w-6 h-6" width="32"
+            height="31" viewBox="0 0 32 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M2.56836 1.4082L30.6327 29.4725" stroke="black" stroke-width="2" stroke-linecap="round" />
+            <path d="M29.6973 1.4082L1.63293 29.4725" stroke="black" stroke-width="2" stroke-linecap="round" />
+        </svg>
+
+
+        <h2 class="text-base womsm:text-xl wommd:text-2xl font-semibold ml-5 wommd:ml-0 mt-4 mb-6 text-black text-left wommd:text-center">Payment and Refund Policy</h2>
+
+        <div class="w-full justify-items-center">
+            <div class="w-4/5 wommd:w-3/4 text-[#0F172A] font-bold text-sm womsm:text-base wommd:text-lg">
+                Here are our payment and refund policies in brief:
+            </div>
+            <div class="flex justify-center">
+                <ul style="list-style: disc;" class="pt-2 p-8 w-4/5 wommd:w-3/4 text-[#0F172A] font-normal text-xs womsm:text-sm wommd:text-base">
+                    <li>Full Payment: For tours starting less than 60 days from the booking date, full payment is required at the time of booking.</li>
+                    <li>Partial Payment: For tours starting more than 60 days from the booking date, a payment of 25% of the total tour price or the full payment required to confirm the booking. The remaining balance must be paid no later than 30 days before the tour start date.</li>
+                    <li>For tours booked with a 25% deposit, full payment is due 30 days before the tour start date.</li>
+                    <li>Ample notice and reminders will be provided to help ensure timely payment.</li>
+                    <li>You may cancel a tour up to 30 days before the tour start date.</li>
+                    <li>You can request a refund to their original payment method 30 days before the tour start date.</li>
+                    <li>Refunds will be processed after deducting a 5% servicing and bank handling charges.</li>
+                    <li>Users can opt to receive 100% of the payment as platform credit.</li>
+                    <li>Credits can be used to book future tours on the platform and are valid for 24 months from the date of issuance.</li>
+                    <li>If a user is unable to attend a tour after making the full payment for the booking they may transfer their booking to another WorldOnMoto.com member.</li>
+                </ul>
+            </div>
+            <div class="w-4/5 wommd:w-3/4">
+                <a href="#" class="text-green underline text-xs womsm:text-sm wommd:text-base">Read the full terms here</a>
+            </div>
+            <div class="flex justify-evenly space-x-4">
+                <button type="button" onclick="closeFilterModal()"
+                    class="mt-8 womsm:px-8 womsm:py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 primary-button">
+                    Close
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
 <div class="w-full grid grid-cols-1 xl:grid-cols-4">
     <div class="col-span-3">
         <div class="px-4 py-6">
@@ -212,11 +261,22 @@
         <div class="text-xs womsm:text-sm wommd:text-base text-[#0F172A]">
             <div class="mt-4">Since you tour is <b>more than 60 days</b> away, you can confirm your place by paying the <b>full tour price</b> or <b>25% of the price</b>.</div>
             <div class="mt-4">If you are paying the <b>25% of the tour price</b>, the full payment will need to be made before the 12.01.2025</div>
-            <div class="mt-4">Read more about our: <a href="#" class="text-green underline">payment terms and refund policy</a>.</div>
+            <div class="mt-4">Read more about our: <a onclick="openFilterModal()" class="text-green underline cursor-pointer">payment terms and refund policy</a>.</div>
         </div>
     </div>
 </div>
 <script>
+    function openFilterModal() {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+        document.getElementById('filterModal').classList.remove('hidden');
+    }
+
+    function closeFilterModal() {
+        document.getElementById('filterModal').classList.add('hidden');
+    }
     function validateForm() {
         const requiredFields = {
             name: "Name",
