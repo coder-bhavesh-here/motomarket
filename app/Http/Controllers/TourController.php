@@ -212,8 +212,8 @@ class TourController extends Controller
             $tour = Tour::find($booking->tour_id);
             $user = User::find($tour->user_id);
 
-            // Mail::to($user->email)->send(new BookingConfirmedAgency($booking));
-            // Mail::to(Auth::user()->email)->send(new BookingConfirmed($booking));
+            Mail::to($user->email)->send(new BookingConfirmedAgency($booking));
+            Mail::to(Auth::user()->email)->send(new BookingConfirmed($booking));
             return view('success', [
                 'tour' => $tour,
                 'date' => $tourPrice->date,
