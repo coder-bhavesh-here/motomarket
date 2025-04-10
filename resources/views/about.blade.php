@@ -1,6 +1,6 @@
 @include('new-header')
 <main class="mt-2 px-4 womsm:px-6 wommd:px-8">
-    <div class="text-green text-lg womsm:text-xl wommd:text-2xl font-bold">
+    <div class="text-center mt-4 text-green text-lg womsm:text-xl wommd:text-2xl font-bold">
         Discover the World on Two Wheels with WorldonMoto.com!
     </div>
     <div class="mt-5 text-[#0F172A] font-normal text-sm womsm:text-base wommd:text-lg">
