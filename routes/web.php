@@ -6,6 +6,9 @@ use App\Http\Controllers\TourController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
+Route::get('/about', function () {
+    return view('about');
+});
 Route::post('/payment', [TourController::class, 'makePayment'])->name('makePayment');
 Route::get('/success', [ProfileController::class, 'home'])->name('payment.success');
 Route::get('/cancel', [ProfileController::class, 'home'])->name('payment.cancel');
