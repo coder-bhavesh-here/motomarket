@@ -44,7 +44,7 @@
         <!-- Login Section -->
         <div class="w-full wommd:w-[35%] bg-white shadow-md">
             <div
-                class="flex flex-col wommd:justify-start wommd:pt-32 items-center min-h-screen womsm:w-full wommd:h-full px-6 py-12">
+                class="flex flex-col wommd:justify-start pt-0 short:pt-16 wommd:pt-32 items-center min-h-screen womsm:w-full wommd:h-full px-6 py-12">
                 <!-- Logo and Header -->
                 <div class="flex flex-row justify-center items-center mb-16 womsm:mb-6 px-16">
                     <img src="{{ asset('images/logo-text.png') }}" class="max-w-[250px] womsm:max-w-[300px] wommd:max-w-[350px]"

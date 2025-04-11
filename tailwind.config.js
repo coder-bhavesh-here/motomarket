@@ -19,6 +19,8 @@ export default {
                 womsm: "540px",
                 wommd: "1080px",
                 womlg: "1920px",
+                'tall': {'raw': '(min-height: 800px)'},
+                'short': {'raw': '(min-height: 600px)'},
             },
             fontFamily: {
                 sans: ["Figtree", ...defaultTheme.fontFamily.sans],
