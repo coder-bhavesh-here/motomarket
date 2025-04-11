@@ -115,7 +115,7 @@
                         <tr>
                             <td class="w-[82px]"></td>
                             <td class="w-[283px]">
-                                <button class="mt-5 w-full primary-button font-bold">
+                                <button class="mt-5 w-full primary-button font-bold" style="padding: 12px">
                                     {{ __('Sign in') }}
                                 </button>
                             </td>
