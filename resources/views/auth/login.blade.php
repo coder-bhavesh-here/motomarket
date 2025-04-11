@@ -70,11 +70,11 @@
                         <tr>
                             <td class="w-[82px]">
                                 <label style="text-align: right;" for="email"
-                                    class="block text-xs womsm:text-sm wommd:text-base font-medium text-gray-700 mr-2 mt-5">Email</label>
+                                    class="block text-sm wommd:text-base font-medium text-gray-700 mr-2 mt-5">Email</label>
                             </td>
                             <td class="w-[283px]">
                                 <input id="email"
-                                    class="w-full mt-5 {{ is_array($errors->get('email')) && !empty($errors->get('email')) ? 'error-input' : '' }} block text-xs womsm:text-sm wommd:text-base w-full mt-1 border rounded-lg shadow-sm"
+                                    class="w-full mt-5 {{ is_array($errors->get('email')) && !empty($errors->get('email')) ? 'error-input' : '' }} block text-sm wommd:text-base w-full mt-1 border rounded-lg shadow-sm"
                                     type="email" name="email" :value="old('email')" autofocus
                                     autocomplete="username" />
                             </td>
@@ -82,11 +82,11 @@
                         <tr>
                             <td class="w-[82px]">
                                 <label style="text-align: right;" for="password"
-                                    class="block text-xs womsm:text-sm wommd:text-base font-medium text-gray-700 mr-2 mt-2">Password</label>
+                                    class="block text-sm wommd:text-base font-medium text-gray-700 mr-2 mt-2">Password</label>
                             </td>
                             <td class="w-[283px]">
                                 <input id="password"
-                                    class="w-full mt-2 {{ is_array($errors->get('password')) && !empty($errors->get('password')) ? 'error-input' : '' }} block text-xs womsm:text-sm wommd:text-base w-full mt-1 border rounded-lg shadow-sm"
+                                    class="w-full mt-2 {{ is_array($errors->get('password')) && !empty($errors->get('password')) ? 'error-input' : '' }} block text-sm wommd:text-base w-full mt-1 border rounded-lg shadow-sm"
                                     type="password" name="password" autocomplete="current-password" />
                             </td>
                             <td class="w-[82px]">
@@ -107,8 +107,8 @@
                         <tr>
                             <td colspan="2" class="w-full">
                                 <div class="text-center mt-5">
-                                    <x-input-error :messages="$errors->get('email')" class="mt-2 text-xs womsm:text-sm wommd:text-base" />
-                                    <x-input-error :messages="$errors->get('password')" class="mt-2 text-xs womsm:text-sm wommd:text-base" />
+                                    <x-input-error :messages="$errors->get('email')" class="mt-2 text-sm wommd:text-base" />
+                                    <x-input-error :messages="$errors->get('password')" class="mt-2 text-sm wommd:text-base" />
                                 </div>
                             </td>
                         </tr>
@@ -124,8 +124,8 @@
                             <td class="w-[82px]"></td>
                             <td class="w-[283px]">
                                 <div class="text-center mt-10">
-                                    <p class="text-xs womsm:text-sm wommd:text-base font-medium text-gray-600">Forgot your password?</p>
-                                    <a class="underline text-xs womsm:text-sm wommd:text-base font-bold" href="{{ route('password.request') }}">
+                                    <p class="text-sm wommd:text-base font-medium text-gray-600">Forgot your password?</p>
+                                    <a class="underline text-sm wommd:text-base font-bold" href="{{ route('password.request') }}">
                                         {{ __('Reset it here') }}
                                     </a>
                                 </div>
@@ -135,10 +135,10 @@
                             <td class="w-[82px]"></td>
                             <td class="w-[283px]">
                                 <div class="text-center mt-10">
-                                    <p style="letter-spacing: -0.4;" class="text-xs womsm:text-sm wommd:text-base font-medium text-gray-600">
+                                    <p style="letter-spacing: -0.4;" class="text-sm wommd:text-base font-medium text-gray-600">
                                         Don’t have a WorldonMoto.com account?
                                     </p>
-                                    <a class="underline text-xs womsm:text-sm wommd:text-base font-bold" href="{{ route('register') }}">
+                                    <a class="underline text-sm wommd:text-base font-bold" href="{{ route('register') }}">
                                         {{ __('Sign up here') }}
                                     </a>
                                 </div>
