@@ -157,9 +157,9 @@
                             <td class="w-[82px]"></td>
                             <td class="w-[283px]">
                                 <div class="text-center mt-10">
-                                    <p style="letter-spacing: -0.4;" class="text-sm font-medium text-gray-600">Already
+                                    <p style="letter-spacing: -0.4;" class="text-sm wommd:text-base font-medium text-gray-600">Already
                                         have an account?</p>
-                                    <a class="underline text-sm font-bold" href="{{ route('login') }}">
+                                    <a class="underline text-sm wommd:text-base font-bold" href="{{ route('login') }}">
                                         {{ __('Sign in here') }}
                                     </a>
                                 </div>
