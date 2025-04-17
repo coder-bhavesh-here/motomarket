@@ -94,10 +94,10 @@ class ProfileController extends Controller
             if (count($filters['bike_options']) > 1) {
                 $query->whereIn('bike_option', [Tour::BRING_OWN_BIKE, Tour::BIKE_RENTAL, Tour::BIKE_INCLUDED]);
             } else {
-                if ( in_array('own_bike', $filters['bike_options'])) {
+                if (in_array('own_bike', $filters['bike_options'])) {
                     $query->whereIn('bike_option', [Tour::BRING_OWN_BIKE]);
-                } 
-                if ( in_array('rental_included', $filters['bike_options'])) {
+                }
+                if (in_array('rental_included', $filters['bike_options'])) {
                     $query->whereIn('bike_option', [Tour::BIKE_RENTAL, Tour::BIKE_INCLUDED]);
                 }
             }
@@ -110,7 +110,7 @@ class ProfileController extends Controller
         if (!empty($filters['two_riding'])) {
             $query->where('two_up_riding', ($filters['two_riding'][0] === 'yes' ? 1 : 0)); // Assuming it's a single-value array
         }
-        
+
         $tours = $query->where('status', 'published')->paginate(4);
 
         if ($request->ajax()) {
@@ -205,5 +205,10 @@ class ProfileController extends Controller
         $request->session()->regenerateToken();
 
         return Redirect::to('/');
+    }
+
+    public function verifyEmail()
+    {
+        return view('auth.verify');
     }
 }

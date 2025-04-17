@@ -9,6 +9,16 @@ use Illuminate\Support\Facades\Route;
 Route::get('/about', function () {
     return view('about');
 });
+Route::get('/invite-operators', function () {
+    return view('invite-operators');
+});
+Route::get('/investor', function () {
+    return view('investor');
+});
+Route::get('/partner', function () {
+    return view('partner');
+});
+Route::get('/verify', [ProfileController::class, 'verifyEmail'])->name('verifyEmail');
 Route::post('/payment', [TourController::class, 'makePayment'])->name('makePayment');
 Route::get('/success', [ProfileController::class, 'home'])->name('payment.success');
 Route::get('/cancel', [ProfileController::class, 'home'])->name('payment.cancel');

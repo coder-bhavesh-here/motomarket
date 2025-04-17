@@ -938,7 +938,7 @@
                                 alt="Logo">
                         </div>
                     </a>
-                    <div class="womxs:max-wommd:hidden lg:justify-center lg:col-start-2">
+                    <div class="hidden wommd:block lg:justify-center lg:col-start-2">
                     </div>
                     @if (Route::has('login'))
                         <nav class="-mx-3 hidden womsm:flex flex-1 items-center justify-end mr-8">
