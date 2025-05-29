@@ -133,6 +133,96 @@ class ProfileController extends Controller
         ]);
     }
 
+    public function tourManagement(Request $request): View|JsonResponse
+    {
+        // dd($request->all());
+        $search = $request->get('search');
+        $query = Tour::with(['user', 'prices', 'images', 'favourites']);
+
+        if ($search) {
+            $query->where('title', 'like', '%' . $search . '%')
+                ->orWhereHas('user', function ($query) use ($search) {
+                    $query->where('tour_operation_name', 'like', '%' . $search . '%')
+                        ->orWhere('name', 'like', '%' . $search . '%');
+                });
+        }
+
+        $tours = $query->where('status', 'published')->get();
+        $countries = config('countries.list');
+        return view('tour-management', [
+            'user' => Auth::user(),
+            'tours' => $tours,
+            'search' => $search,
+            'countries' => $countries
+        ]);
+    }
+    public function draftTourManagement(Request $request): View|JsonResponse
+    {
+        $search = $request->get('search');
+        $query = Tour::with(['user', 'prices', 'images', 'favourites']);
+
+        if ($search) {
+            $query->where('title', 'like', '%' . $search . '%')
+                ->orWhereHas('user', function ($query) use ($search) {
+                    $query->where('tour_operation_name', 'like', '%' . $search . '%')
+                        ->orWhere('name', 'like', '%' . $search . '%');
+                });
+        }
+
+        $tours = $query->where('status', 'draft')->get();
+        $countries = config('countries.list');
+        return view('drafts-tour-management', [
+            'user' => Auth::user(),
+            'tours' => $tours,
+            'search' => $search,
+            'countries' => $countries
+        ]);
+    }
+    public function hiddenTourManagement(Request $request): View|JsonResponse
+    {
+        $search = $request->get('search');
+        $query = Tour::with(['user', 'prices', 'images', 'favourites']);
+
+        if ($search) {
+            $query->where('title', 'like', '%' . $search . '%')
+                ->orWhereHas('user', function ($query) use ($search) {
+                    $query->where('tour_operation_name', 'like', '%' . $search . '%')
+                        ->orWhere('name', 'like', '%' . $search . '%');
+                });
+        }
+
+        $tours = $query->where('status', 'draft')->get();
+        $countries = config('countries.list');
+        return view('hidden-tour-management', [
+            'user' => Auth::user(),
+            'tours' => $tours,
+            'search' => $search,
+            'countries' => $countries
+        ]);
+    }
+    public function deletedTourManagement(Request $request): View|JsonResponse
+    {
+        $search = $request->get('search');
+        $query = Tour::with(['user', 'prices', 'images', 'favourites']);
+
+        if ($search) {
+            $query->where('title', 'like', '%' . $search . '%')
+                ->orWhereHas('user', function ($query) use ($search) {
+                    $query->where('tour_operation_name', 'like', '%' . $search . '%')
+                        ->orWhere('name', 'like', '%' . $search . '%');
+                });
+        }
+
+        $tours = $query->where('status', 'draft')->get();
+        $countries = config('countries.list');
+        return view('deleted-tour-management', [
+            'user' => Auth::user(),
+            'tours' => $tours,
+            'search' => $search,
+            'countries' => $countries
+        ]);
+    }
+
     /**
      * Display the user's profile form.
      */
@@ -210,5 +300,12 @@ class ProfileController extends Controller
     public function verifyEmail()
     {
         return view('auth.verify');
+    }
+
+    public function profiles()
+    {
+        return view('profile', [
+            'user' => auth()->user(),
+        ]);
     }
 }

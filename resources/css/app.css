@@ -11,6 +11,31 @@ body {
 .text-green {
     color: #556b2f !important;
 }
+.bg-green {
+ background-color: #556b2f;
+}
+.active-option {
+    background-color: #556b2f;
+    color: white;
+    border: 1px dashed white;
+    border-radius: 12px;
+}
+.management-option {
+    color: black;
+    border: 1px dashed black;
+    border-radius: 12px;
+}
+.active-management-option {
+    color: white !important;
+    border: 1px dashed black !important;
+}
+.normal-option {
+    background-color: white;
+    color: black;
+    border: 1px dashed black;
+    cursor: pointer;
+    border-radius: 12px;
+}
 .underlined {
     text-decoration: underline;
 }
@@ -196,6 +221,19 @@ span.badge {
     display: inline-flex;
     height: 48px;
 }
+span.edit-badge {
+    padding: 3px 7px;
+    border-radius: 5px;
+    font-size: 12px;
+    margin: 0 10px 10px 0;
+    color: black;
+    background: white;
+    border: 1px solid #949494;
+    justify-content: center;
+    align-items: center;
+    display: inline-flex;
+    height: 48px;
+}
 span.badge-positive {
     padding: 7px 14px;
     border-radius: 10px;
@@ -212,6 +250,12 @@ span.badge i {
     font-size: 20px;
 }
 span.badge span {
+    margin-left: 7px;
+}
+span.edit-badge i {
+    font-size: 16px;
+}
+span.edit-badge span {
     margin-left: 7px;
 }
 .links a {
@@ -329,6 +373,16 @@ th {
     border-radius: 7px;
     font-size: 18px;
 }
+.btn-orange {
+    min-height: 44px;
+    width: auto;
+    border: unset !important;
+    background-color: #FB5605 !important;
+    color: white !important;
+    border-radius: 7px;
+    padding: 3px 18px;
+    font-size: 14px;
+}
 #preview img {
     width: 150px;
     padding: 10px;
@@ -426,8 +480,31 @@ p.blog-title {
     border-radius: 5px;
     color: white !important;
 }
+.edit-button {
+    background-color: #556b2f;
+    padding: 4px 20px !important;
+    border: unset !important;
+    border-radius: 5px;
+    color: white !important;
+}
+.delete-button {
+    background-color: #B91C1C;
+    padding: 4px 20px !important;
+    border: unset !important;
+    border-radius: 5px;
+    color: white !important;
+}
 .primary-button {
     background-color: #556b2f !important;
+    color: white !important;
+    border-radius: 5px;
+    border: unset !important;
+    font-weight: 700;
+    padding: 6px 20px;
+    font-size: 16px;
+}
+.disabled-button {
+    background-color: #CACACA !important;
     color: white !important;
     border-radius: 5px;
     border: unset !important;
@@ -466,6 +543,9 @@ p.blog-title {
 }
 .badge img {
     width: 33px;
+}
+.edit-badge img {
+    width: 25px;
 }
 .bg-customlightgreen {
     background-color: #5a6b2f17;
@@ -510,4 +590,22 @@ p.blog-title {
 .slick-prev::before,
 .slick-next::before {
   display: none;
+}
+.text-orange {
+    color: #FB5605;
+}
+.bg-orange {
+    background: #FB5605;
+}
+.bg-parrot {
+    background: #4CA48A;
+}
+.bg-red {
+    background: #DF3E34;
+}
+.bg-yellow {
+    background: #F2C947;
+}
+.bg-gray {
+    background: #919191;
 }

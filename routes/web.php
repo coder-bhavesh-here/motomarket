@@ -25,6 +25,10 @@ Route::get('/cancel', [ProfileController::class, 'home'])->name('payment.cancel'
 Route::get('/', [ProfileController::class, 'home'])->name('temp-homepage');
 Route::get('/new-home', [ProfileController::class, 'newHome'])->name('homepage');
 Route::get('/explore-tours', [ProfileController::class, 'exploreTours'])->name('explore-tours');
+Route::get('/tour-management', [ProfileController::class, 'tourManagement'])->name('tour-management');
+Route::get('/draft-tour-management', [ProfileController::class, 'draftTourManagement'])->name('draft-tour-management');
+Route::get('/hidden-tour-management', [ProfileController::class, 'hiddenTourManagement'])->name('hidden-tour-management');
+Route::get('/deleted-tour-management', [ProfileController::class, 'deletedTourManagement'])->name('deleted-tour-management');
 Route::get('/', [ProfileController::class, 'home'])->name('dashboard');
 Route::get('/tour/{tourId}', [TourController::class, 'show']);
 Route::post('/mark-as-favourite', [TourController::class, 'markFavourite']);
@@ -38,6 +42,8 @@ Route::get('/faqs', [BlogController::class, 'faqList'])->name('faqs.list');
 Route::get('/blogs/{blog}', [BlogController::class, 'show'])->name('blogs.show');
 Route::middleware('auth')->group(function () {
     Route::get('/tours', [TourController::class, 'index'])->name('tours');
+    Route::get('/profiles', [ProfileController::class, 'profiles'])->name('profiles');
+
     Route::get('/tour-profile', [TourController::class, 'profile'])->name('tours.profile');
     Route::patch('/tour-profile', [TourController::class, 'updateProfile'])->name('tours.profile.update');
     Route::get('/tour-settings', [TourController::class, 'tourSettings'])->name('tours.settings');
@@ -46,6 +52,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/book', [TourController::class, 'bookTour'])->name('bookTour');
     Route::get('/my-tours', [TourController::class, 'myTours'])->name('my-tours');
     Route::get('/my-favourite-tours', [TourController::class, 'myFavouriteTours'])->name('my-favourite-tours');
+    Route::get('/your-tours', [TourController::class, 'yourTours'])->name('your-tours');
     Route::get('/bookings', [TourController::class, 'bookings'])->name('bookings');
     Route::get('/tours/create', [TourController::class, 'create'])->name('tours.create');
     Route::post('/tours/upload_image', [TourController::class, 'uploadImage'])->name('tours.upload');

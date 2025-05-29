@@ -97,12 +97,33 @@ class TourController extends Controller
         ]);
     }
 
-    public function myFavouriteTours(): View
+    public function myFavouriteTours(Request $request): View
     {
+        $search = $request->get('search');
         $favouriteTours = auth()->user()->favouriteTours->pluck('tour_id')->toArray();
-        $tours = Tour::whereIn('id', $favouriteTours)->get();
-        return view('favourite-tours-list', [
-            'tours' => $tours
+        $tours = Tour::whereIn('id', $favouriteTours);
+        if ($search) {
+            $tours->where('title', 'like', '%' . $search . '%');
+        }
+        $tours = $tours->get();
+        return view('favourites', [
+            'tours' => $tours,
+            'search' => $search
+        ]);
+    }
+
+    public function yourTours(Request $request): View
+    {
+        $search = $request->get('search');
+        $favouriteTours = auth()->user()->favouriteTours->pluck('tour_id')->toArray();
+        $tours = Tour::whereIn('id', $favouriteTours);
+        if ($search) {
+            $tours->where('title', 'like', '%' . $search . '%');
+        }
+        $tours = $tours->get();
+        return view('your-tours', [
+            'tours' => $tours,
+            'search' => $search
         ]);
     }
 

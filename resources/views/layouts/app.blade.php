@@ -44,7 +44,7 @@
                                 alt="Logo">
                         </div>
                     </a>
-                    <div class="womxs:max-wommd:hidden lg:justify-center lg:col-start-2">
+                    <div class="hidden wommd:block lg:justify-center lg:col-start-2">
                     </div>
                     @if (Route::has('login'))
                         <nav class="-mx-3 hidden womsm:flex flex-1 items-center justify-end mr-8">
@@ -65,13 +65,15 @@
                                     <img src="{{ asset('images/motorcycle.svg') }}" alt="Bike">
                                 </span>
                                 <span class="icon-box ml-4">
-                                    <svg style="margin-left: 7px; margin-top: 3px;" width="24" height="22"
-                                        viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                        <path
-                                            d="M21.0794 2.96982C20.5362 2.4247 19.8907 1.99217 19.1799 1.69705C18.4692 1.40192 17.7071 1.25 16.9376 1.25C16.168 1.25 15.4059 1.40192 14.6952 1.69705C13.9844 1.99217 13.3389 2.4247 12.7957 2.96982L11.9619 3.81444L11.1281 2.96982C10.5849 2.4247 9.9394 1.99217 9.22865 1.69705C8.51789 1.40192 7.75587 1.25 6.98629 1.25C6.2167 1.25 5.45468 1.40192 4.74392 1.69705C4.03317 1.99217 3.38767 2.4247 2.84443 2.96982C0.548821 5.26544 0.408053 9.14199 3.29923 12.0873L11.9619 20.75L20.6246 12.0873C23.5158 9.14199 23.375 5.26544 21.0794 2.96982Z"
-                                            stroke="#D1E7AB" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                    </svg>
+                                        <a href="/my-favourite-tours">
+                                        <svg style="margin-left: 7px; margin-top: 3px;" width="24" height="22"
+                                            viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path
+                                                d="M21.0794 2.96982C20.5362 2.4247 19.8907 1.99217 19.1799 1.69705C18.4692 1.40192 17.7071 1.25 16.9376 1.25C16.168 1.25 15.4059 1.40192 14.6952 1.69705C13.9844 1.99217 13.3389 2.4247 12.7957 2.96982L11.9619 3.81444L11.1281 2.96982C10.5849 2.4247 9.9394 1.99217 9.22865 1.69705C8.51789 1.40192 7.75587 1.25 6.98629 1.25C6.2167 1.25 5.45468 1.40192 4.74392 1.69705C4.03317 1.99217 3.38767 2.4247 2.84443 2.96982C0.548821 5.26544 0.408053 9.14199 3.29923 12.0873L11.9619 20.75L20.6246 12.0873C23.5158 9.14199 23.375 5.26544 21.0794 2.96982Z"
+                                                stroke="#D1E7AB" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </svg>
+                                    </a>
                                 </span>
                             @endauth
                             <span class="ml-4">
