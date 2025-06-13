@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\EmergencyContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TourController;
 use App\Models\User;
@@ -43,7 +44,9 @@ Route::get('/blogs/{blog}', [BlogController::class, 'show'])->name('blogs.show')
 Route::middleware('auth')->group(function () {
     Route::get('/tours', [TourController::class, 'index'])->name('tours');
     Route::get('/profiles', [ProfileController::class, 'profiles'])->name('profiles');
-
+    Route::get('/emergency-contacts', [EmergencyContactController::class, 'edit'])->name('emergency-contacts.edit');
+    Route::post('/emergency-contacts', [EmergencyContactController::class, 'update'])->name('emergency-contacts.update');
+    Route::post('/update-tour-profile-status', [ProfileController::class, 'updateTourProfileStatus']);
     Route::get('/tour-profile', [TourController::class, 'profile'])->name('tours.profile');
     Route::patch('/tour-profile', [TourController::class, 'updateProfile'])->name('tours.profile.update');
     Route::get('/tour-settings', [TourController::class, 'tourSettings'])->name('tours.settings');

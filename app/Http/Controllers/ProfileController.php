@@ -308,4 +308,12 @@ class ProfileController extends Controller
             'user' => auth()->user(),
         ]);
     }
+    public function updateTourProfileStatus(Request $request)
+    {
+        $user = auth()->user();
+        $user->tour_profile_enabled = $request->input('tour_profile');
+        $user->is_tour_policy_checked = $request->input('terms');
+        $user->save();
+        return response()->json(['message' => 'Tour profile status updated successfully.']);
+    }
 }

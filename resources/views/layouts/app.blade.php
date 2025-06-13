@@ -81,7 +81,7 @@
                                     @php
                                         $user = auth()->user();
                                     @endphp
-                                    <a href="{{ url('/profile') }}">
+                                    <a href="{{ url('/profiles') }}">
                                     @endauth
                                     @if ($user && $user != null && $user->profile_picture)
                                         <img id="profile-picture-img" style="height: 47px; width: 47px;"
@@ -141,7 +141,7 @@
                                     </div>
                                     <div class="inline-flex justify-self-center items-center">
                                         @auth
-                                            <a href="{{ url('/profile') }}">
+                                            <a href="{{ url('/profiles') }}">
                                                 <span
                                                     class="{{ $user && $user != null && $user->profile_picture ? '' : 'icon-box' }} ml-4 justify-self-end mr-2">
                                                 @endauth

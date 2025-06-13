@@ -70,4 +70,8 @@ class User extends Authenticatable
     {
         return $this->hasOne(TourSetting::class);
     }
+    public function emergencyContact()
+    {
+        return $this->hasOne(EmergencyContact::class);
+    }
 }

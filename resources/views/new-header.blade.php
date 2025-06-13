@@ -975,7 +975,7 @@
                                     @php
                                         $user = Auth::user();
                                     @endphp
-                                    <a href="{{ url('/profile') }}">
+                                    <a href="{{ url('/profiles') }}">
                                     @endauth
                                     @if (isset($user) && $user != null && $user->profile_picture)
                                         <img id="profile-picture-img" style="height: 47px; width: 47px;"
@@ -1047,7 +1047,7 @@
                                             @endif
                                             @auth
                                             </span>
-                                            <a href="{{ url('/profile') }}">
+                                            <a href="{{ url('/profiles') }}">
                                                 <span class="justify-self-start ml-2">My Profile</span>
                                             </a>
                                         @endauth
