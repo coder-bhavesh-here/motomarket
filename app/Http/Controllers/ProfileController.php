@@ -242,39 +242,104 @@ class ProfileController extends Controller
             'user' => $request->user(),
         ]);
     }
+    /**
+     * Display the user's profile form.
+     */
+    public function editTourProfile(Request $request): View
+    {
+        return view('tour-profile.edit', [
+            'user' => $request->user(),
+        ]);
+    }
 
     /**
      * Update the user's profile information.
      */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+    public function updated(Request $request): RedirectResponse
     {
-        $request->user()->fill($request->validated());
+        // $request->user()->fill($request->validated());
+        $user = $request->user();
+
+        // Map request fields to DB columns explicitly
+        $user->name = $request->input('name');
+        $user->nickname = $request->input('nickname');
+        $user->dob = $request->input('dob');
+        $user->contact_number = $request->input('contact_number');
+        $user->introduction = $request->input('introduction');
 
         if ($request->user()->isDirty('email')) {
             $request->user()->email_verified_at = null;
         }
-        if ($request->has('cropped_image')) {
-            $croppedImage = $request->input('cropped_image');
-            $imageName = 'profile-' . $request->user()->id . '.png';
-            $imagePath = storage_path('app/public/uploads/' . $imageName);
 
-            list($type, $data) = explode(';', $croppedImage);
-            list(, $data) = explode(',', $data);
-            $decodedData = base64_decode($data);
-
-            file_put_contents($imagePath, $decodedData);
-            $request->user()->profile_picture = 'uploads/' . $imageName;
+        $existingImages = $user->riding_images ?? [];
+        $newImages = [];
+        for ($i = 0; $i < 5; $i++) {
+            if ($request->hasFile("riding_images.$i")) {
+                $newImages[$i] = $request->file("riding_images.$i")->store('riding_images', 'public');
+            } else {
+                $newImages[$i] = $existingImages[$i] ?? null;
+            }
         }
-
-        // if ($request->hasFile('profile_picture')) {
-        //     $profilePicturePath = $request->file('profile_picture')->store('uploads', 'public');
-        //     $request->user()->profile_picture = $profilePicturePath;
-        // }
+        // Re-index array to avoid saving with gaps like [0 => 'img', 2 => 'img2']
+        $user->riding_images = array_values(array_filter($newImages));
+        $user->save();
 
         $request->user()->save();
 
-        return Redirect::route('profile.edit')->with('status', 'profile-updated');
+        return Redirect::route('profile.edit');
     }
+    public function tourProfileUpdated(Request $request): RedirectResponse
+    {
+        // $request->user()->fill($request->validated());
+        $user = $request->user();
+
+        // Map request fields to DB columns explicitly
+        $user->tour_operation_name = $request->input('name');
+        $user->tour_nickname = $request->input('nickname');
+        $user->tour_dob = $request->input('dob');
+        $user->tour_currency = $request->input('tour_currency');
+        $user->tour_contact_number = $request->input('contact_number');
+        $user->tour_contact_email = $request->input('email');
+        $user->tour_introduction = $request->input('introduction');
+        $existingImages = $user->tour_riding_images ?? [];
+        $newImages = [];
+        for ($i = 0; $i < 10; $i++) {
+            if ($request->hasFile("riding_images.$i")) {
+                $newImages[$i] = $request->file("riding_images.$i")->store('riding_images', 'public');
+            } else {
+                $newImages[$i] = $existingImages[$i] ?? null;
+            }
+        }
+        $user->tour_riding_images = array_values(array_filter($newImages));
+        $user->save();
+        $request->user()->save();
+        return Redirect::route('tour-profile.edit');
+    }
+
+    public function paymentEdit()
+    {
+        $user = auth()->user();
+        return view('payment.edit', compact('user'));
+    }
+
+    public function paymentUpdate(Request $request)
+    {
+        $user = auth()->user();
+        $validated = $request->validate([
+            'tour_currency' => 'nullable|string',
+            'bank_name' => 'nullable|string',
+            'bank_operating_country' => 'nullable|string',
+            'iban' => 'nullable|string',
+            'swift_bic' => 'nullable|string',
+            'bank_account_number' => 'nullable|string',
+            'sort_code' => 'nullable|string',
+            'account_name' => 'nullable|string',
+        ]);
+
+        $user->update($validated);
+        return redirect()->back()->with('success', 'Payment settings updated successfully.');
+    }
+
 
     /**
      * Delete the user's account.

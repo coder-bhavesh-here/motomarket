@@ -27,6 +27,14 @@ class User extends Authenticatable
         'email',
         'password',
         'role',
+        'tour_currency',
+        'bank_name',
+        'bank_operating_country',
+        'iban',
+        'swift_bic',
+        'bank_account_number',
+        'sort_code',
+        'account_name',
     ];
 
     /**
@@ -44,6 +52,11 @@ class User extends Authenticatable
      *
      * @return array<string, string>
      */
+    protected $casts = [
+        'riding_images' => 'array',
+        'tour_riding_images' => 'array',
+    ];
+
     protected function casts(): array
     {
         return [

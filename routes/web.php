@@ -42,6 +42,9 @@ Route::get('/blogs', [BlogController::class, 'list'])->name('blogs.list');
 Route::get('/faqs', [BlogController::class, 'faqList'])->name('faqs.list');
 Route::get('/blogs/{blog}', [BlogController::class, 'show'])->name('blogs.show');
 Route::middleware('auth')->group(function () {
+    // Route::post('/profile', function () {
+    //     dd('route matched');
+    // });
     Route::get('/tours', [TourController::class, 'index'])->name('tours');
     Route::get('/profiles', [ProfileController::class, 'profiles'])->name('profiles');
     Route::get('/emergency-contacts', [EmergencyContactController::class, 'edit'])->name('emergency-contacts.edit');
@@ -66,10 +69,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/tours/save-tour/thirdStep', [TourController::class, 'saveThirdStep']);
     Route::post('/tours/save-tour/fourthStep', [TourController::class, 'saveFourthStep']);
 
+    Route::get('/tour-profile', [ProfileController::class, 'editTourProfile'])->name('tour-profile.edit');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+    Route::patch('/profile-update', [ProfileController::class, 'updated'])->name('profile.updates');
+    Route::patch('/profile-update', [ProfileController::class, 'tourProfileUpdated'])->name('tour-profile.updates');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-
+    Route::get('/payment/edit', [ProfileController::class, 'paymentEdit'])->name('payment.edit');
+    Route::post('/payment/update', [ProfileController::class, 'paymentUpdate'])->name('payment.update');
     Route::post('/tour-questions/ask/{tourId}', [TourController::class, 'askQuestion'])->name('tour-questions.ask');
     Route::post('/tour-questions/answer/{questionId}', [TourController::class, 'answerQuestion'])->name('tour-questions.answer');
 });

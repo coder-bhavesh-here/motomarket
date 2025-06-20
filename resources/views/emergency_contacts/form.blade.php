@@ -60,7 +60,7 @@
     
         {{-- Action Buttons --}}
         <div class="flex flex-col sm:flex-row justify-between mt-12 gap-4">
-            <button type="button"
+            <button onclick="window.location.href='/profiles'" type="button"
                 class="w-full sm:w-1/2 border border-[#42552A] text-[#42552A] font-medium py-2 rounded">
                 Close
             </button>

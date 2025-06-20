@@ -13,6 +13,16 @@
             }
         });
         tinymce.init({
+            selector: 'textarea#introduction', // Replace this CSS selector to match the placeholder element for TinyMCE
+            plugins: 'code table lists',
+            toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table',
+            setup: function(editor) {
+                editor.on('init', function(e) {
+                    editor.setContent($("#introduction_val").val());
+                });
+            }
+        });
+        tinymce.init({
             selector: 'textarea#included', // Replace this CSS selector to match the placeholder element for TinyMCE
             plugins: 'code table lists',
             toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table',

@@ -13,13 +13,14 @@
     <div class="py-12">
         <div class="mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8">
+                <span class="text-orange text-xl font-semibold">Tour Profile</span>
                 <div class="w-full">
-                    <form method="POST" action="{{ route('profile.updates') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('tour-profile.updates') }}" class="mt-6 space-y-6" enctype="multipart/form-data">
                         @csrf
                         @method('PATCH')
 
                         {{-- <div>
-                            <x-input-label for="profile_picture" :value="__('Profile Picture')" />
+                            <label class="font-bold text-black" for="profile_picture" value="Profile Picture">Profile Picture</label>
                             <div class="profile-picture" style="display: flex;justify-content: center;align-items: center;">
                                 <img style="height: 250px; width: 250px;"
                                     src="{{ $user->profile_picture ? asset('storage/' . $user->profile_picture) : asset('storage/uploads/profile.jpg') }}"
@@ -51,49 +52,57 @@
                         </div> --}}
 
                         <div>
-                            <x-input-label for="name" :value="__('Name')" />
-                            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)"
+                            <label class="font-bold text-black" for="name" value="Name">Name</label>
+                            <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->tour_operation_name)"
                                 required autofocus autocomplete="name" />
                             <x-input-error class="mt-2" :messages="$errors->get('name')" />
                         </div>
                         <div>
-                            <x-input-label for="nickname" :value="__('Nickname')" />
-                            <x-text-input id="nickname" name="nickname" type="text" class="mt-1 block w-full" :value="old('nickname', $user->nickname)"
+                            <label class="font-bold text-black" for="nickname" value="Nickname">Nickname</label>
+                            <x-text-input id="nickname" name="nickname" type="text" class="mt-1 block w-full" :value="old('nickname', $user->tour_nickname)"
                                 required autofocus autocomplete="nickname" />
                             <x-input-error class="mt-2" :messages="$errors->get('nickname')" />
                         </div>
                         <div>
-                            <x-input-label for="dob" :value="__('DOB')" />
-                            <input type="date" name="dob" id="dob" class="w-full border-[#d1d5db] rounded-md" value="{{$user->dob}}">
+                            <label class="font-bold text-black" for="dob" value="DOB">DOB</label>
+                            <input type="date" name="dob" id="dob" class="w-full border-[#d1d5db] rounded-md" value="{{$user->tour_dob}}">
                             <x-input-error class="mt-2" :messages="$errors->get('dob')" />
                         </div>
                         <div>
-                            <x-input-label for="contact_number" :value="__('Contact')" />
-                            <x-text-input id="contact_number" name="contact_number" type="text" class="mt-1 block w-full" :value="old('contact_number', $user->contact_number)"
+                            <label class="font-bold text-black" for="contact_number" value="Contact">Contact</label>
+                            <x-text-input id="contact_number" name="contact_number" type="text" class="mt-1 block w-full" :value="old('contact_number', $user->tour_contact_number)"
                                 required autofocus autocomplete="contact_number" />
                             <x-input-error class="mt-2" :messages="$errors->get('contact_number')" />
                         </div>
 
                         <div>
-                            <x-input-label for="email" :value="__('Email')" />
-                            <x-text-input readonly disabled class="mt-1 block w-full" :value="old('email', $user->email)"
+                            <label class="font-bold text-black" for="email" value="Email">Email</label>
+                            <x-text-input name="email" id="email" class="mt-1 block w-full" :value="old('email', $user->tour_contact_email)"
                                 required autocomplete="username" />
                             <x-input-error class="mt-2" :messages="$errors->get('email')" />
                         </div>
 
                         <div>
-                            <input type="hidden" id="introduction_val" value="{{ $user->introduction }}">
-                            <x-input-label for="introduction" :value="__('Introduce Yourself')" />
+                            <label class="font-bold text-black mr-2" for="tour_currency">Tour Currency</label>
+                            <input type="radio" name="tour_currency" class="ml-2" <?= $user->tour_currency == 'euro' ? 'checked' : ''?> value="euro" id="euro"><label class="ml-1 text-black" for="euro">€ - Euro </label>
+                            <input type="radio" name="tour_currency" class="ml-2" <?= $user->tour_currency == 'gbp' ? 'checked' : ''?> value="gbp" id="gbp"><label class="ml-1 text-black" for="gbp">£ - GBP </label>
+                            <input type="radio" name="tour_currency" class="ml-2" <?= $user->tour_currency == 'usd' ? 'checked' : ''?> value="usd" id="usd"><label class="ml-1 text-black" for="usd">$ - USD </label>
+                            <x-input-error class="mt-2" :messages="$errors->get('tour_currency')" />
+                        </div>
+
+                        <div>
+                            <input type="hidden" id="introduction_val" value="{{ $user->tour_introduction }}">
+                            <label class="font-bold text-black" for="introduction" value="Introduce Yourself">Introduce Yourself</label>
                             <x-head.tinymce-config />
                             <x-textarea class="editorBlock" id="introduction" name="introduction" />
                         </div>
                         @php
-                            $ridingImages = is_array($user->riding_images) ? $user->riding_images : json_decode($user->riding_images ?? '[]', true);
+                            $ridingImages = is_array($user->tour_riding_images) ? $user->tour_riding_images : json_decode($user->tour_riding_images ?? '[]', true);
                         @endphp
                         <div>
-                            <x-input-label for="description" :value="__('Add upto 5 photos showcasing your riding')" />
+                            <label class="font-bold text-black" for="description" value="Add upto 10 photos showcasing your riding">Add upto 10 photos showcasing your riding</label>
                             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mt-4">
-                                @for ($i = 0; $i <= 4; $i++)
+                                @for ($i = 0; $i <= 9; $i++)
                                     <label for="riding_images_{{ $i }}"
                                         class="flex items-center justify-center w-full aspect-square border-2 border-dashed border-gray-300 rounded-md cursor-pointer hover:border-indigo-400 transition">
                                         <input type="file"
@@ -102,14 +111,6 @@
                                             accept="image/*"
                                             class="hidden"
                                             onchange="previewImage(this, 'preview_{{ $i }}')">
-                        
-                                        {{-- <div id="preview_{{ $i }}" class="flex items-center justify-center w-full h-full text-gray-400">
-                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none"
-                                                viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-                                                <path stroke-linecap="round" stroke-linejoin="round"
-                                                    d="M12 4v16m8-8H4" />
-                                            </svg>
-                                        </div> --}}
                                         <div id="preview_{{ $i }}" class="flex items-center justify-center w-full h-full overflow-hidden">
                                             @if (isset($ridingImages[$i]) && $ridingImages[$i] != '')
                                                 <img src="{{ asset('storage/' . $ridingImages[$i]) }}"
