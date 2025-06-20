@@ -72,7 +72,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/tour-profile', [ProfileController::class, 'editTourProfile'])->name('tour-profile.edit');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile-update', [ProfileController::class, 'updated'])->name('profile.updates');
-    Route::patch('/profile-update', [ProfileController::class, 'tourProfileUpdated'])->name('tour-profile.updates');
+    Route::patch('/tour-profile-update', [ProfileController::class, 'tourProfileUpdated'])->name('tour-profile.updates');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::get('/payment/edit', [ProfileController::class, 'paymentEdit'])->name('payment.edit');
     Route::post('/payment/update', [ProfileController::class, 'paymentUpdate'])->name('payment.update');
