@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
 use App\Models\Tour;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -380,5 +381,15 @@ class ProfileController extends Controller
         $user->is_tour_policy_checked = $request->input('terms');
         $user->save();
         return response()->json(['message' => 'Tour profile status updated successfully.']);
+    }
+    function showUser($nickname)
+    {
+        $user = User::whereRaw('LOWER(nickname) = ?', [strtolower($nickname)])->first();
+        return view('users.show', compact('user'));
+    }
+    function showTourUser($nickname)
+    {
+        $user = user::whereRaw('LOWER(tour_nickname) = ?', [strtolower($nickname)])->first();
+        return view('tour_operators.show', compact('user'));
     }
 }

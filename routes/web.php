@@ -19,6 +19,8 @@ Route::get('/investor', function () {
 Route::get('/partner', function () {
     return view('partner');
 });
+Route::get('/user/{nickname}', [ProfileController::class, 'showUser']);
+Route::get('/tour-operator/{nickname}', [ProfileController::class, 'showTourUser']);
 Route::get('/verify', [ProfileController::class, 'verifyEmail'])->name('verifyEmail');
 Route::post('/payment', [TourController::class, 'makePayment'])->name('makePayment');
 Route::get('/success', [ProfileController::class, 'home'])->name('payment.success');

@@ -83,7 +83,7 @@
                                     @endphp
                                     <a href="{{ url('/profiles') }}">
                                     @endauth
-                                    @if ($user && $user != null && $user->profile_picture)
+                                    @if (isset($user) && $user != null && $user->profile_picture)
                                         <img id="profile-picture-img" style="height: 47px; width: 47px;"
                                             src="{{ asset('storage/' . $user->profile_picture) }}"
                                             alt="Profile Picture" class="rounded-full">
