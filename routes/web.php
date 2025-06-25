@@ -28,10 +28,6 @@ Route::get('/cancel', [ProfileController::class, 'home'])->name('payment.cancel'
 Route::get('/', [ProfileController::class, 'home'])->name('temp-homepage');
 Route::get('/new-home', [ProfileController::class, 'newHome'])->name('homepage');
 Route::get('/explore-tours', [ProfileController::class, 'exploreTours'])->name('explore-tours');
-Route::get('/tour-management', [ProfileController::class, 'tourManagement'])->name('tour-management');
-Route::get('/draft-tour-management', [ProfileController::class, 'draftTourManagement'])->name('draft-tour-management');
-Route::get('/hidden-tour-management', [ProfileController::class, 'hiddenTourManagement'])->name('hidden-tour-management');
-Route::get('/deleted-tour-management', [ProfileController::class, 'deletedTourManagement'])->name('deleted-tour-management');
 Route::get('/', [ProfileController::class, 'home'])->name('dashboard');
 Route::get('/tour/{tourId}', [TourController::class, 'show']);
 Route::post('/mark-as-favourite', [TourController::class, 'markFavourite']);
@@ -47,6 +43,10 @@ Route::middleware('auth')->group(function () {
     // Route::post('/profile', function () {
     //     dd('route matched');
     // });
+    Route::get('/tour-management', [ProfileController::class, 'tourManagement'])->name('tour-management');
+    Route::get('/draft-tour-management', [ProfileController::class, 'draftTourManagement'])->name('draft-tour-management');
+    Route::get('/hidden-tour-management', [ProfileController::class, 'hiddenTourManagement'])->name('hidden-tour-management');
+    Route::get('/deleted-tour-management', [ProfileController::class, 'deletedTourManagement'])->name('deleted-tour-management');
     Route::get('/tours', [TourController::class, 'index'])->name('tours');
     Route::get('/profiles', [ProfileController::class, 'profiles'])->name('profiles');
     Route::get('/emergency-contacts', [EmergencyContactController::class, 'edit'])->name('emergency-contacts.edit');

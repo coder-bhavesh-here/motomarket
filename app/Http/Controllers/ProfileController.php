@@ -138,7 +138,7 @@ class ProfileController extends Controller
     {
         // dd($request->all());
         $search = $request->get('search');
-        $query = Tour::with(['user', 'prices', 'images', 'favourites']);
+        $query = Tour::with(['user', 'prices', 'images', 'favourites'])->where('user_id', Auth::user()->id);
 
         if ($search) {
             $query->where('title', 'like', '%' . $search . '%')
@@ -160,7 +160,7 @@ class ProfileController extends Controller
     public function draftTourManagement(Request $request): View|JsonResponse
     {
         $search = $request->get('search');
-        $query = Tour::with(['user', 'prices', 'images', 'favourites']);
+        $query = Tour::with(['user', 'prices', 'images', 'favourites'])->where('user_id', Auth::user()->id);
 
         if ($search) {
             $query->where('title', 'like', '%' . $search . '%')
@@ -182,7 +182,7 @@ class ProfileController extends Controller
     public function hiddenTourManagement(Request $request): View|JsonResponse
     {
         $search = $request->get('search');
-        $query = Tour::with(['user', 'prices', 'images', 'favourites']);
+        $query = Tour::with(['user', 'prices', 'images', 'favourites'])->where('user_id', Auth::user()->id);
 
         if ($search) {
             $query->where('title', 'like', '%' . $search . '%')
@@ -204,7 +204,7 @@ class ProfileController extends Controller
     public function deletedTourManagement(Request $request): View|JsonResponse
     {
         $search = $request->get('search');
-        $query = Tour::with(['user', 'prices', 'images', 'favourites']);
+        $query = Tour::with(['user', 'prices', 'images', 'favourites'])->where('user_id', Auth::user()->id);
 
         if ($search) {
             $query->where('title', 'like', '%' . $search . '%')
