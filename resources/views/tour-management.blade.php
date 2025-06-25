@@ -453,11 +453,11 @@
     }
 
     // Detect when user scrolls near bottom
-    $(window).scroll(function() {
-        if ($(window).scrollTop() + $(window).height() > $(document).height() - 350) {
-            loadMoreTours();
-        }
-    });
+    // $(window).scroll(function() {
+    //     if ($(window).scrollTop() + $(window).height() > $(document).height() - 350) {
+    //         loadMoreTours();
+    //     }
+    // });
 
     $(document).on("click", ".favourite", function(e) {
         e.preventDefault();
