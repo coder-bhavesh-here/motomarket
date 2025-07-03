@@ -13,6 +13,9 @@ class TourPrice extends Model
         'tour_id',
         'price',
         'date',
+        'end_date',
+        'duration_days',
+        'rest_days',
     ];
 
     /**

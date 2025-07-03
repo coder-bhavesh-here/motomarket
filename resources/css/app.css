@@ -624,3 +624,22 @@ p.blog-title {
     height: 100%;
     border: 0;
   }
+  .custom-orange-btn {
+    color: #FB5605 !important;
+    padding: 4px 16px;
+    border-radius: 6px;
+    border: 2px solid #FB5605 !important;
+    background-color: white !important;
+    font-weight: 700;
+    font-size: 14px;
+  }
+
+  .custom-green-btn {
+    color: #556B2F !important;
+    padding: 4px 16px;
+    border-radius: 6px;
+    border: 2px solid #556B2F !important;
+    background-color: white !important;
+    font-weight: 700;
+    font-size: 14px;
+  }

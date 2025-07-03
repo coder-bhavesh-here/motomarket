@@ -24,7 +24,28 @@ $(".submit-button").click(function (e) {
         dataType: "json",
         success: function (response) {
             alert(response.success);
-            window.location.href = "/tours";
+            window.location.href = "/tour-management";
+        },
+    });
+    return false;
+});
+$(".cancel-button").click(function (e) {
+    const url = new URL(window.location.href);
+    let tour_id = parseInt(url.searchParams.get("tour_id")) || undefined;
+    if (tour_id === undefined) {
+        alert("Invalid Tour");
+        return false;
+    }
+    $.ajax({
+        type: "get",
+        url: "/tours/cancel/"+tour_id,
+        headers: {
+            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+        },
+        dataType: "json",
+        success: function (response) {
+            alert(response.success);
+            window.location.href = "/tour-management";
         },
     });
     return false;
@@ -57,8 +78,8 @@ document.querySelectorAll(".save-exit-button ").forEach(function (element) {
             firstStepData.rider_capability_info = $(
                 "input[name=rider_capability_info]"
             ).val();
-            firstStepData.duration_days = $("input[name=duration_days]").val();
-            firstStepData.rest_days = $("input[name=rest_days]").val();
+            // firstStepData.duration_days = $("input[name=duration_days]").val();
+            // firstStepData.rest_days = $("input[name=rest_days]").val();
             firstStepData.max_riders = $("input[name=max_riders]").val();
             firstStepData.guides = $("input[name=guides]").val();
             firstStepData.bike_option = $(
@@ -461,36 +482,32 @@ document.querySelectorAll(".next-button").forEach(function (element) {
                 alert("Invalid Tour");
                 return false;
             }
-            const addonInputs = document.querySelectorAll(
-                'input[name^="addon"]'
-            );
-            const addonValues = [];
-            addonInputs.forEach((input) => {
-                const name = input.name; // Get the input's name attribute
-                const match = name.match(/addon\[(\d+)]\[(\w+)]/); // Match the index and key (date or qty)
-                if (match) {
-                    const index = match[1];
-                    const key = match[2];
-                    addonValues[index] = addonValues[index] || {};
-                    addonValues[index][key] = input.value;
-                }
-            });
+            let form = document.getElementById('addonForm');
+            console.log(form);
+            
+            let formData = new FormData(form);
+            formData.append('tour_id', tour_id);
             $.ajax({
-                type: "post",
-                url: "/tours/save-tour/fourthStep",
-                data: { tour_id, addonValues },
+                url: '/tours/save-tour/fifthStep',
+                method: 'POST',
+                data: formData,
+                contentType: false,
+                processData: false,
                 headers: {
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
                         "content"
                     ),
                 },
-                dataType: "json",
                 success: function (response) {
                     const nextStep = currentStep + 1;
                     url.searchParams.set("activeStep", nextStep);
                     url.searchParams.set("tour_id", response.tour_id);
                     window.location.href = url.toString();
                 },
+                error: function (xhr) {
+                    console.error(xhr.responseText);
+                    alert('Something went wrong.');
+                }
             });
         }
         return false;

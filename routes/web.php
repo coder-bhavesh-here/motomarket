@@ -63,6 +63,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/your-tours', [TourController::class, 'yourTours'])->name('your-tours');
     Route::get('/bookings', [TourController::class, 'bookings'])->name('bookings');
     Route::get('/tours/create', [TourController::class, 'create'])->name('tours.create');
+    Route::get('/tours/delete/{tourId}', [TourController::class, 'delete'])->name('tours.delete');
+    Route::get('/tours/cancel/{tourId}', [TourController::class, 'cancel'])->name('tours.cancel');
     Route::post('/tours/upload_image', [TourController::class, 'uploadImage'])->name('tours.upload');
     Route::post('/tours/publish_tour', [TourController::class, 'publishTour'])->name('tours.publish');
     Route::post('/tours/delete_image}', [TourController::class, 'deleteImage'])->name('tourImage.delete');
@@ -70,6 +72,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/tours/save-tour/secondStep', [TourController::class, 'saveSecondStep']);
     Route::post('/tours/save-tour/thirdStep', [TourController::class, 'saveThirdStep']);
     Route::post('/tours/save-tour/fourthStep', [TourController::class, 'saveFourthStep']);
+    Route::post('/tours/save-tour/fifthStep', [TourController::class, 'saveFifthStep']);
 
     Route::get('/tour-profile', [ProfileController::class, 'editTourProfile'])->name('tour-profile.edit');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

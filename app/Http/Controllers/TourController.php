@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Mail\BookingConfirmed;
 use App\Mail\BookingConfirmedAgency;
+use App\Models\Addon;
+use App\Models\AddonGroup;
 use App\Models\Booking;
 use App\Models\FavouriteTour;
 use App\Models\Tour;
@@ -14,6 +16,7 @@ use App\Models\TourQuestion;
 use App\Models\TourSetting;
 use App\Models\User;
 use Carbon\Carbon;
+use DateTime;
 use Hamcrest\Type\IsNumeric;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -249,6 +252,16 @@ class TourController extends Controller
             ->with('error', 'Payment was not successful. Please try again.');
     }
 
+    public function delete($tourId)
+    {
+        Tour::findOrFail($tourId)->delete();
+        return redirect()->route('tour-management');
+    }
+    public function cancel($tourId)
+    {
+        Tour::withTrashed()->find($tourId)->forceDelete();
+        return response()->json(['success' => 'Tour cancelled successfully.'], 200);
+    }
     public function book($priceId): View
     {
         $price = TourPrice::find($priceId);
@@ -310,8 +323,8 @@ class TourController extends Controller
             $tour->riding_style_info = $postData['riding_style_info'];
             $tour->rider_capability = $postData['rider_capability'];
             $tour->rider_capability_info = $postData['rider_capability_info'];
-            $tour->duration_days = $postData['duration_days'];
-            $tour->rest_days = $postData['rest_days'];
+            // $tour->duration_days = $postData['duration_days'];
+            // $tour->rest_days = $postData['rest_days'];
             $tour->max_riders = $postData['max_riders'];
             $tour->guides = $postData['guides'];
             $tour->bike_option = $postData['bike_option'];
@@ -330,8 +343,8 @@ class TourController extends Controller
                 'riding_style_info' => $postData['riding_style_info'],
                 'rider_capability' => $postData['rider_capability'],
                 'rider_capability_info' => $postData['rider_capability_info'],
-                'duration_days' => $postData['duration_days'],
-                'rest_days' => $postData['rest_days'],
+                // 'duration_days' => $postData['duration_days'],
+                // 'rest_days' => $postData['rest_days'],
                 'max_riders' => $postData['max_riders'],
                 'guides' => $postData['guides'],
                 'bike_option' => $postData['bike_option'],
@@ -375,22 +388,6 @@ class TourController extends Controller
     public function saveFourthStep(Request $request)
     {
         $tour_id = $request->tour_id;
-        $addonValues = $request->addonValues;
-        if ($addonValues != null) {
-            $filteredaddonValues = array_filter($addonValues, function ($element) {
-                return !empty($element);
-            });
-            TourAddOn::where('tour_id', $tour_id)->delete();
-            foreach ($filteredaddonValues as $addOn) {
-                if (is_array($addOn) && count($addOn) > 0 && isset($addOn['addon']) && isset($addOn['price']) && $addOn['addon'] != null && $addOn['price'] != null) {
-                    TourAddOn::create([
-                        'addon' => $addOn['addon'],
-                        'addon_price' => $addOn['price'],
-                        'tour_id' => $tour_id,
-                    ]);
-                }
-            }
-        }
         $dateValues = $request->dateValues;
         if ($dateValues != null) {
             $filteredDateValues = array_filter($dateValues, function ($element) {
@@ -398,16 +395,55 @@ class TourController extends Controller
             });
             TourPrice::where('tour_id', $tour_id)->delete();
             foreach ($filteredDateValues as $date) {
-                if (is_array($date) && count($date) > 0 && isset($date['date']) && isset($date['qty']) && $date['date'] != null && $date['qty'] != null) {
+                if (is_array($date) && count($date) > 0 && isset($date['date']) && isset($date['end_date']) && isset($date['rest_days']) && isset($date['price']) && $date['date'] != null && $date['end_date'] != null && $date['rest_days'] != null && $date['price'] != null) {
+                    $start_date = new DateTime($date['date']);
+                    $end_date = new DateTime($date['end_date']);
+
+                    $interval = $start_date->diff($end_date);
+                    $diff_days = $interval->days;
                     TourPrice::create([
                         'date' => $date['date'],
-                        'price' => $date['qty'],
+                        'end_date' => $date['end_date'],
+                        'rest_days' => $date['rest_days'],
+                        'duration_days' => $diff_days,
+                        'price' => $date['price'],
                         'tour_id' => $tour_id,
                     ]);
                 }
             }
         }
         echo json_encode(["message" => "Tour saved successfully", "tour_id" => $tour_id]);
+    }
+
+    public function saveFifthStep(Request $request)
+    {
+        $tour_id = $request->tour_id;
+        $groups = $request->input('groups');
+
+        foreach ($groups as $gIndex => $group) {
+            $addonGroup = AddonGroup::create([
+                'tour_id' => $tour_id,
+                'name' => $group['name'],
+                'is_required' => isset($group['is_required']),
+                'allow_multiple' => isset($group['is_multiple']),
+            ]);
+
+            foreach ($group['addons'] ?? [] as $aIndex => $addon) {
+                $imageField = "groups.$gIndex.addons.$aIndex.image";
+                $imagePath = $request->hasFile($imageField)
+                    ? $request->file($imageField)->store('addons', 'public')
+                    : null;
+
+                Addon::create([
+                    'addon_group_id' => $addonGroup->id,
+                    'name' => $addon['name'],
+                    'price' => $addon['price'],
+                    'image_path' => $imagePath,
+                ]);
+            }
+        }
+
+        return response()->json(['message' => 'Saved successfully', 'tour_id' => $tour_id]);
     }
 
     function bookTour(Request $request)

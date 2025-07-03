@@ -6,11 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Facades\Auth;
 
 class Tour extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     protected $fillable = [
         'user_id',
@@ -83,6 +85,10 @@ class Tour extends Model
     public function addOns(): HasMany
     {
         return $this->hasMany(TourAddOn::class);
+    }
+    public function addonGroups()
+    {
+        return $this->hasMany(AddonGroup::class);
     }
 
     /**
