@@ -120,7 +120,7 @@
                                     <a href='/tour/{{ $tour->id }}' class="edit-button text-xs wommd:text-sm">Bookings</a>
                                     <a href='/tour/{{ $tour->id }}' class="edit-button text-xs wommd:text-sm">View</a>
                                     <a href='/tour/{{ $tour->id }}' class="edit-button text-xs wommd:text-sm">Hide</a>
-                                    <a href='/tour/{{ $tour->id }}' class="delete-button text-xs wommd:text-sm">Delete</a>
+                                    <a href='/tours/delete/{{ $tour->id }}' class="delete-button text-xs wommd:text-sm">Delete</a>
                                 </div>
                             </div>
                         </div>
