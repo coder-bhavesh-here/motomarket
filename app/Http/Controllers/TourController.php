@@ -139,7 +139,7 @@ class TourController extends Controller
 
     public function show($tourId): View
     {
-        $tour = Tour::find($tourId);
+        $tour = Tour::withTrashed()->find($tourId);
         $tourQuestions = TourQuestion::where('tour_id', $tourId)->get();
         $tour->tourQuestions = $tourQuestions;
         return view('tour-detail', [
@@ -155,7 +155,7 @@ class TourController extends Controller
         ]);
 
         $tourPriceDetails = TourPrice::find($request->id);
-        $tour = Tour::find($tourPriceDetails->tour_id);
+        $tour = Tour::withTrashed()->find($tourPriceDetails->tour_id);
         $image = TourImage::where('tour_id', $tour->id)->first();
         if ($image != null) {
             $imagePath = asset('storage') . '/' . $image->image_path;
@@ -233,7 +233,7 @@ class TourController extends Controller
             ]);
 
             // Send confirmation emails
-            $tour = Tour::find($booking->tour_id);
+            $tour = Tour::withTrashed()->find($booking->tour_id);
             $user = User::find($tour->user_id);
 
             Mail::to($user->email)->send(new BookingConfirmedAgency($booking));
@@ -277,7 +277,7 @@ class TourController extends Controller
     public function publishTour(Request $request)
     {
         $tourId = $request->tour_id;
-        Tour::where('id', $tourId)->update(array(
+        Tour::withTrashed()->where('id', $tourId)->update(array(
             'status' => 'published',
         ));
         return response()->json(['success' => 'Tour published successfully.'], 200);
@@ -316,7 +316,7 @@ class TourController extends Controller
         $postData = $request->firstStepData;
         $userId = auth()->user()->id;
         if (isset($postData['tour_id']) && $postData['tour_id'] != null && is_numeric($postData['tour_id'])) {
-            $tour = Tour::find($postData['tour_id']);
+            $tour = Tour::withTrashed()->find($postData['tour_id']);
             $tour->title = $postData['title'];
             $tour->riding_style = $postData['riding_style'];
             $tour->support = $postData['support'];
@@ -364,7 +364,7 @@ class TourController extends Controller
     public function saveSecondStep(Request $request)
     {
         $postData = $request->secondStepData;
-        Tour::where('id', $postData['tour_id'])->update(array(
+        Tour::withTrashed()->where('id', $postData['tour_id'])->update(array(
             'tour_description' => $postData['description'],
             'included' => $postData['included'],
             'not_included' => $postData['not_included'],
@@ -377,7 +377,7 @@ class TourController extends Controller
     public function saveThirdStep(Request $request)
     {
         $postData = $request->thirdStepData;
-        Tour::where('id', $postData['tour_id'])->update(array(
+        Tour::withTrashed()->where('id', $postData['tour_id'])->update(array(
             'video_one' => $postData['video_link_one'],
             'video_two' => $postData['video_link_two'],
             'video_three' => $postData['video_link_three'],
@@ -472,7 +472,7 @@ class TourController extends Controller
             'tours.tour_distance',
             'bookings.created_at',
         ])->where('bookings.id', $bookingCreated->id)->leftJoin('tours', 'bookings.tour_id', 'tours.id')->get();
-        $tour = Tour::find($bookingCreated->tour_id);
+        $tour = Tour::withTrashed()->find($bookingCreated->tour_id);
         $user = User::find($tour->user_id);
         Mail::to($user->email)->send(new BookingConfirmedAgency($booking));
         Mail::to(auth()->user()->email)->send(new BookingConfirmed($booking));
