@@ -22,7 +22,7 @@ class TourOne extends Step
             'insurance_notes'        => $this->model->insurance_notes,
         ]);
         if (isset($_GET['tour_id'])) {
-            $this->tour = Tour::find($_GET['tour_id']);
+            $this->tour = Tour::withTrashed()->find($_GET['tour_id']);
         }
     }
 

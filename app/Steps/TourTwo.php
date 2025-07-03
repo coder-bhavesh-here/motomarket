@@ -18,7 +18,7 @@ class TourTwo extends Step
     public function mount()
     {
         if (isset($_GET['tour_id'])) {
-            $this->tour = Tour::find($_GET['tour_id']);
+            $this->tour = Tour::withTrashed()->find($_GET['tour_id']);
         }
         $this->mergeState([
             'title'                  => $this->model->title,

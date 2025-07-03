@@ -17,7 +17,7 @@ class TourSix extends Step
     {
         // dd($this->model);
         if (isset($_GET['tour_id'])) {
-            $this->tour = Tour::with(['prices', 'images'])->find($_GET['tour_id']);
+            $this->tour = Tour::with(['prices', 'images'])->withTrashed()->find($_GET['tour_id']);
         }
         $this->mergeState([
             'title'                  => $this->model->title,

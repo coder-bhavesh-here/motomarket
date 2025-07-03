@@ -27,6 +27,6 @@ class TourWizard extends WizardComponent
 
     public function model()
     {
-        return Tour::findOrNew($this->tourId);
+        return Tour::withTrashed()->findOrNew($this->tourId);
     }
 }

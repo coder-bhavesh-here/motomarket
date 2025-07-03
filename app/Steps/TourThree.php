@@ -21,7 +21,7 @@ class TourThree extends Step
         // dd($this->model);
         if (isset($_GET['tour_id'])) {
             $this->images = TourImage::where('tour_id', $_GET['tour_id'])->get();
-            $this->tour = Tour::find($_GET['tour_id']);
+            $this->tour = Tour::withTrashed()->find($_GET['tour_id']);
         }
         $this->mergeState([
             'title'                  => $this->model->title,

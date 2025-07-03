@@ -116,7 +116,7 @@
                             </ul>
                             <div class="relative col-span-2 flex items-center justify-start font-semibold bottom-0 w-full mt-2">
                                 <div class="flex items-center gap-2">
-                                    <a href='/tour/{{ $tour->id }}' class="edit-button text-xs wommd:text-sm">Edit</a>
+                                    <a href='/tours/create?activeStep=0&tour_id={{ $tour->id }}' class="edit-button text-xs wommd:text-sm">Edit</a>
                                     <a href='/tour/{{ $tour->id }}' class="edit-button text-xs wommd:text-sm">Bookings</a>
                                     <a href='/tour/{{ $tour->id }}' class="edit-button text-xs wommd:text-sm">View</a>
                                     <a href='/tour/{{ $tour->id }}' class="edit-button text-xs wommd:text-sm">Hide</a>
