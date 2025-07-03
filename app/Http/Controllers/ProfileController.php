@@ -214,7 +214,7 @@ class ProfileController extends Controller
                 });
         }
 
-        $tours = $query->where('status', 'draft')->onlyTrashed()->get();
+        $tours = $query->onlyTrashed()->get();
         $countries = config('countries.list');
         return view('deleted-tour-management', [
             'user' => Auth::user(),
