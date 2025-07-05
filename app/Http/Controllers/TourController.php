@@ -155,7 +155,7 @@ class TourController extends Controller
         ]);
 
         $tourPriceDetails = TourPrice::find($request->id);
-        $tour = Tour::withTrashed()->find($tourPriceDetails->tour_id);
+        $tour = Tour::find($tourPriceDetails->tour_id);
         $image = TourImage::where('tour_id', $tour->id)->first();
         if ($image != null) {
             $imagePath = asset('storage') . '/' . $image->image_path;
@@ -215,8 +215,12 @@ class TourController extends Controller
         if ($session->payment_status === 'paid') {
             // Get tour price details to access the date
             $tourPrice = TourPrice::find($session->metadata->tour_price_id);
+            $booked = Booking::where('tour_date_id', $session->metadata->tour_price_id)
+                ->where('user_id', auth()->user()->id)
+                ->orderBy('id', 'desc')
+                ->first();
             // Create booking record
-            $booking = Booking::create([
+            $data = [
                 'tour_id' => $tourPrice->tour_id,
                 'name' => $session->metadata->name,
                 'address' => $session->metadata->address,
@@ -225,12 +229,17 @@ class TourController extends Controller
                 'country' => $session->metadata->country,
                 'mobile_number' => $session->metadata->mobile_number,
                 'user_id' => $session->metadata->user_id,
-                'addons' => $session->metadata->addons,
                 'amount' => $session->amount_total / 100, // Convert from cents
                 'payment_id' => $session->payment_intent,
                 'status' => 'confirmed',
                 'date' => $tourPrice->date // Add the tour date from TourPrice
-            ]);
+            ];
+            if ($booked) {
+                $booked->update($data);
+                $booking = $booked;
+            } else {
+                $booking = Booking::create($data);
+            }
 
             // Send confirmation emails
             $tour = Tour::withTrashed()->find($booking->tour_id);
@@ -262,15 +271,53 @@ class TourController extends Controller
         Tour::withTrashed()->find($tourId)->forceDelete();
         return response()->json(['success' => 'Tour cancelled successfully.'], 200);
     }
-    public function book($priceId): View
+    public function bookAddon($priceId): View
     {
         $price = TourPrice::find($priceId);
-        $tour = Tour::with(['prices', 'addons'])->find($price->tour_id);
-        return view('book', [
+        $tour = Tour::with(['prices', 'addonGroups'])->find($price->tour_id);
+        return view('bookAddon', [
             'tour' => $tour,
             'nationalities' => ['India', 'Europe', 'US  '],
             'tourDates' => $tour->prices,
             'selectedDate' => $price
+        ]);
+    }
+    public function book($priceId): View
+    {
+        $price = TourPrice::find($priceId);
+        $booking = Booking::where('tour_date_id', $priceId)->where('user_id', auth()->user()->id)->first();
+        $addons = [];
+        if (isset($booking->addons) && $booking->addons != null) {
+            $addonIds = explode(',', $booking->addons);
+            $addons = Addon::with('group')->whereIn('id', $addonIds)->get();
+        }
+        $tour = Tour::with(['prices'])->find($price->tour_id);
+        return view('book', [
+            'tour' => $tour,
+            'nationalities' => ['India', 'Europe', 'US  '],
+            'tourDates' => $tour->prices,
+            'selectedDate' => $price,
+            'addons' => $addons
+        ]);
+    }
+    public function details($bookingId): View
+    {
+        $booking = Booking::find($bookingId);
+        $priceId = $booking->tour_date_id;
+        $price = TourPrice::find($priceId);
+        $booking = Booking::where('tour_date_id', $priceId)->where('user_id', auth()->user()->id)->first();
+        $addons = [];
+        if (isset($booking->addons) && $booking->addons != null) {
+            $addonIds = explode(',', $booking->addons);
+            $addons = Addon::with('group')->whereIn('id', $addonIds)->get();
+        }
+        $tour = Tour::with(['prices'])->find($price->tour_id);
+        return view('booked-detail', [
+            'tour' => $tour,
+            'nationalities' => ['India', 'Europe', 'US  '],
+            'tourDates' => $tour->prices,
+            'selectedDate' => $price,
+            'addons' => $addons
         ]);
     }
 
@@ -450,33 +497,8 @@ class TourController extends Controller
     {
         $bookingData = $request->all();
         $bookingData['user_id'] = auth()->user()->id;
-        $bookingCreated = Booking::create($bookingData);
-        $booking = Booking::select([
-            'tours.title',
-            'tours.rider_capability',
-            'tours.duration_days',
-            'tours.max_riders',
-            'tours.guides',
-            'bookings.date',
-            'bookings.id',
-            'tours.title',
-            'bookings.name',
-            'bookings.dob',
-            'bookings.nationality',
-            'bookings.driving_license_number',
-            'bookings.mobile_number',
-            'bookings.address',
-            'bookings.country',
-            'bookings.postcode',
-            'bookings.amount',
-            'tours.tour_distance',
-            'bookings.created_at',
-        ])->where('bookings.id', $bookingCreated->id)->leftJoin('tours', 'bookings.tour_id', 'tours.id')->get();
-        $tour = Tour::withTrashed()->find($bookingCreated->tour_id);
-        $user = User::find($tour->user_id);
-        Mail::to($user->email)->send(new BookingConfirmedAgency($booking));
-        Mail::to(auth()->user()->email)->send(new BookingConfirmed($booking));
-        echo json_encode(["message" => "Booking saved successfully", "booking" => $booking]);
+        $booked = Booking::create($bookingData);
+        echo json_encode(["redirect_url" => "/book/" . $booked->tour_date_id]);
     }
 
     function markFavourite(Request $request)

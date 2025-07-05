@@ -56,7 +56,9 @@ Route::middleware('auth')->group(function () {
     Route::patch('/tour-profile', [TourController::class, 'updateProfile'])->name('tours.profile.update');
     Route::get('/tour-settings', [TourController::class, 'tourSettings'])->name('tours.settings');
     Route::patch('/tour-settings', [TourController::class, 'updateSettings'])->name('tours.settings.update');
+    Route::get('/bookAddon/{tourId}', [TourController::class, 'bookAddon']);
     Route::get('/book/{priceId}', [TourController::class, 'book'])->name('book');
+    Route::get('/details/{bookingId}', [TourController::class, 'details'])->name('details');
     Route::post('/book', [TourController::class, 'bookTour'])->name('bookTour');
     Route::get('/my-tours', [TourController::class, 'myTours'])->name('my-tours');
     Route::get('/my-favourite-tours', [TourController::class, 'myFavouriteTours'])->name('my-favourite-tours');

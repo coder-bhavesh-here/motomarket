@@ -3,6 +3,12 @@ import forms from "@tailwindcss/forms";
 
 /** @type {import('tailwindcss').Config} */
 export default {
+    safelist: [
+        'peer-checked:flex',
+        'peer-checked:block',
+        'peer-checked:ring-4',
+        'peer-checked:grayscale-0'
+    ],          
     content: [
         "./vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php",
         "./vendor/vildanbina/livewire-wizard/resources/views/*.blade.php",

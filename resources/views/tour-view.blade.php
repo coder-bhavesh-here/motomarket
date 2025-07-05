@@ -162,8 +162,12 @@
                                     {{ \Carbon\Carbon::parse($price->date)->format('F d, Y') }}</div>
                                 <div class="text-xs womsm:text-sm wommd:text-base womsm:ml-8 wommd:ml-16 font-bold text-[#0F172A]">
                                     {{ '£' . number_format($price->price, 0, '.', ',') }}</div>
+                                @php
+                                    $hasAddons = $price->tour->addonGroups()->exists();
+                                    $bookUrl = $hasAddons ? "/bookAddon/{$price->id}" : "/book/{$price->id}";
+                                @endphp
                                 <div class="text-xs womsm:text-sm wommd:text-base womsm:ml-8 wommd:ml-16 font-bold text-[#0F172A]">
-                                    <a class="text-[#556B2F]" href="/book/{{ $price->id }}">BOOK</a>
+                                    <a class="text-[#556B2F]" href="{{ $bookUrl }}">BOOK</a>
                                 </div>
                             </div>
                             @php

@@ -5,7 +5,7 @@
             'euro' => '€',
             'usd' => '$',
             'gbp' => '£',
-            default => '£',
+            default => '€',
         };
         $initialCount = isset($prices) && $prices ? count($prices) : 0;
     @endphp

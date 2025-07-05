@@ -6,7 +6,7 @@
                 'euro' => '€',
                 'usd' => '$',
                 'gbp' => '£',
-                default => '£',
+                default => '€',
             };
         @endphp
         <div class="mb-4">

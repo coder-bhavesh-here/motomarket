@@ -101,82 +101,67 @@
                 </div>
             </div>
             <div class="mt-5">
-                {{-- <h2 class="text-2xl font-semibold">Select a Date</h2> --}}
                 <input type="hidden" value="{{ $tour->id }}" id="tour_id">
                 <input type="hidden" value="{{ $selectedDate->date }}" id="date">
-                {{-- <div class="mt-2 space-y-2">
-                    @foreach ($tourDates as $date)
-                        <a href="/book/{{ $date->id }}" class="mb-2"><span
-                                class="book-date {{ $date->id == $selectedDate->id ? 'selected' : '' }}">
-                                {{ \Carbon\Carbon::parse($date->date)->format('F d, Y') }}
-                                (€{{ number_format($date->price, 2) }})
-                            </span></a>
-                    @endforeach
-                </div> --}}
             </div>
         
-            <div class="mt-6">
-                <div class="my-10 sm:px-6 lg:px-8">
-                    <div class="flex items-center">
-                        <div class="w-full">
-                            <span class="form-label font-medium text-[#000F22]">Full Name</span>
-                            <div class="items-center">
-                                <x-input id="name" placeholder="Please provide your formal full name" />
-                            </div>
+            <div class="mt-6 px-8">
+                <div class="font-extrabold text-black mt-2 text-lg womsm:text-xl wommd:text-2xl">
+                    TOUR ADD-ONs
+                </div>
+                <div class="flex mt-2 mb-6">
+                    @foreach ($tour->addonGroups as $key => $group)
+                        <h2 class="text-lg text-green underline font-bold mr-2">{{ $group->name }} {{ ($key + 1) < count($tour->addonGroups) ? "|" : '' }}</h2>
+                    @endforeach
+                </div>
+                @foreach ($tour->addonGroups as $group)
+                
+                    <div class="mb-12">
+                        <h2 class="text-xl text-black font-bold">{{ $group->name }}</h2>
+                        <p class="text-sm text-black mb-4">
+                            {{ $group->is_required ? 'Mandatory. You must select one add-on from the list below.' : 'Optional. You can select multiple options.' }}
+                        </p>
+
+                        <div class="grid grid-cols-3 gap-6">
+                            @foreach ($group->addons as $addon)
+                            <label class="relative block h-64 cursor-pointer group">
+                                <!-- Hidden input with peer class -->
+                                <input 
+                                    type="checkbox"
+                                    name="addons[]"
+                                    value="{{ $addon->id }}"
+                                    data-price="{{ $addon->price }}"
+                                    data-name="{{ $group->name }} - {{ $addon->name }}"
+                                    class="sr-only peer addon-checkbox"
+                                />
+                            
+                                <!-- Addon card -->
+                                <div class="overflow-hidden rounded grayscale peer-checked:grayscale-0 relative">
+                                    <img 
+                                        src="{{ asset('storage/addons/0d6148c6ba176fe3cf777f2044ee6a6fbe0136a3.jpg') }}" 
+                                        {{-- src="{{ asset('storage/addons/' . $addon->image_path) }}"  --}}
+                                        class="w-full h-48 object-cover transition duration-200"
+                                    >
+                            
+                                    <div class="py-3 bg-white">
+                                        <h3 class="font-bold text-green">{{ $addon->name }}</h3>
+                                        <p class="text-green font-semibold mt-1">{{ $symbol }} {{ number_format($addon->price, 2) }}</p>
+                                    </div>
+                            
+                                    <!-- Checkmark (hidden by default, shows on peer-checked) -->
+                                </div>
+                                <div class="absolute top-2 right-2 hidden peer-checked:flex items-center justify-center w-full">
+                                    <img src="{{asset('images/check.png')}}" alt="Selected">
+                                </div>
+                            </label>
+                            @endforeach
                         </div>
                     </div>
-                </div>
-                <div class="my-10 sm:px-6 lg:px-8">
-                    <div class="flex items-center">
-                        <div class="w-full">
-                            <span class="form-label font-medium text-[#000F22]">Nationality</span>
-                            <div class="items-center">
-                                <x-input id="nationality" placeholder="Please provide your nationality" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="my-10 sm:px-6 lg:px-8">
-                    <div class="flex items-center">
-                        <div class="w-full">
-                            <span class="form-label font-medium text-[#000F22]">Your Address</span>
-                            <div class="items-center">
-                                <x-textarea id="address" placeholder="Please provide your address" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="my-10 sm:px-6 lg:px-8">
-                    <div class="flex items-center">
-                        <div class="w-full">
-                            <span class="form-label font-medium text-[#000F22]">Country</span>
-                            <div class="items-center">
-                                <x-input id="country" placeholder="Please provide country" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="my-10 sm:px-6 lg:px-8">
-                    <div class="flex items-center">
-                        <div class="w-full">
-                            <span class="form-label font-medium text-[#000F22]">Postcode</span>
-                            <div class="items-center">
-                                <x-input id="postcode" placeholder="Please provide postal code" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="my-10 sm:px-6 lg:px-8">
-                    <div class="flex items-center">
-                        <div class="w-full">
-                            <span class="form-label font-medium text-[#000F22]">Mobile</span>
-                            <div class="items-center">
-                                <x-input id="mobile_number" placeholder="Please provide mobile number" />
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
+        </div>
+        <div class="flex justify-center">
+            <button class="continue primary-button w-auto mb-4" data-id="{{ $selectedDate->id }}">Complete Booking Details</button>
         </div>
     </div>
     <div class="m-10">
@@ -205,65 +190,30 @@
                 </div>
                 <div class="text-[#000F22] addons-selected mt-6">
                     <div class="font-semibold text-sm womsm:text-base wommd:text-lg">Add ons selected:</div>
-                    <div id="addonsShow" class="font-medium">
-                        @php
-                            $addonPrices = 0;
-                        @endphp
-                        @foreach ($addons as $addon)
-                            <div class='w-full mt-4 inline-flex justify-between'>
-                                <span>{{ $addon->group->name }} - {{ $addon->name }}</span><span> {{$symbol}} {{ $addon->price }} </span>
-                            </div>
-                            @php
-                                $addonPrices = $addonPrices + $addon->price;
-                            @endphp
-                        @endforeach
-                    </div>
+                    <div id="addonsShow" class="font-medium"></div>
                 </div>
                 <div class="mt-6 border-t border-black pt-4 text-[#000F22]">
                     <div class="inline-flex justify-between w-full">
                         <span>Add ons price</span>
-                        <span>{{$symbol}} <span id="addonPrice">{{ $addonPrices }}</span></span>
+                        <span>{{ $symbol }} <span id="addonPrice">0.00</span></span>
                     </div>
                     <div class="mt-2 inline-flex justify-between w-full">
                         <span>Tour price</span>
-                        <span>{{$symbol}} {{$selectedDate->price}}</span>
+                        <span>{{ $symbol }} {{$selectedDate->price}}</span>
                     </div>
                 </div>
                 <div class="mt-6 border-t inline-flex items-center justify-between border-black pt-4 w-full">
-                    <input type="hidden" id="tour_price" value="{{ number_format($selectedDate->price + $addonPrices, 2) }}">
+                    <input type="hidden" id="tour_price" value="{{ number_format($selectedDate->price, 2) }}">
                     <span class="text-black font-semibold">Total</span> 
                     <strong>
-                        <span class="text-2xl text-black" id="total_price">{{$symbol}} {{ number_format($selectedDate->price + $addonPrices, 2) }}</span>
+                        <span class="text-2xl text-black">{{ $symbol }} </span>
+                        <span class="text-2xl text-black" id="total_price">{{ number_format($selectedDate->price, 2) }}</span>
                     </strong>
                 </div>
                 <div class="mt-4">
-                    <div id="validation-errors" class="text-red-600 mb-4 hidden"></div>
-                    @if ($selectedDate->date < now()->addMonths(2))
-                        @php
-                            // Pay 100% of the total price
-                            $pay = $totalPrice = $selectedDate->price + $addonPrices;
-                        @endphp
-                    @else
-                        @php
-                            // Pay 25% of the total price
-                            $totalPrice = ($selectedDate->price + $addonPrices) * 0.25;
-                            $pay = $selectedDate->price + $addonPrices;
-                        @endphp
-                        <button class="make-payment primary-button w-full mb-4" data-id="{{ $selectedDate->id }}"
-                            data-price="{{ $totalPrice }}" id="payWithStripe">Pay 25% - <span
-                                id="twentyFivePay">{{$symbol}} {{ $totalPrice }}</span></button>
-                    @endif
-                    <button class="make-payment primary-button w-full" data-id="{{ $selectedDate->id }}"
-                        data-price="{{ $pay }}" id="payWithStripe">Pay 100% - {{ $symbol }} <span id="hundredPay">{{ $pay }}</span></button>
+                    <button class="continue primary-button w-full mb-4" data-id="{{ $selectedDate->id }}">Complete Booking Details</button>
                 </div>
             </div>
-        </div>
-        <div class="text-xs womsm:text-sm wommd:text-base text-[#0F172A]">
-            @if (! $selectedDate->date < now()->addMonths(2))
-            <div class="mt-4">Since you tour is <b>more than 60 days</b> away, you can confirm your place by paying the <b>full tour price</b> or <b>25% of the price</b>.</div>
-            @endif
-            <div class="mt-4">If you are paying the <b>25% of the tour price</b>, the full payment will need to be made before the 12.01.2025</div>
-            <div class="mt-4">Read more about our: <a onclick="openFilterModal()" class="text-green underline cursor-pointer">payment terms and refund policy</a>.</div>
         </div>
     </div>
 </div>
@@ -309,43 +259,25 @@
         return true;
     }
 
-    $(".make-payment").click(function(e) {
+    $(".continue").click(function(e) {
         e.preventDefault();
-
-        // First validate the form
-        if (!validateForm()) {
-            return false;
-        }
-
-        const id = $(this).data("id");
-        const price = $(this).data("price");
         const addons = $("input[name='addons[]']:checked")
             .map(function() {
                 return $(this).val();
             }).get().join(",");
         const date = $("#date").val();
+        const tour_date_id = $(this).data('id');
+        const tour_id = $("#tour_id").val();
         const amount = $("#total_price").html();
-        const name = $("#name").val();
-        const nationality = $("#nationality").val();
-        const mobile_number = $("#mobile_number").val();
-        const address = $("#address").val();
-        const country = $("#country").val();
-        const postcode = $("#postcode").val();
         $.ajax({
             type: "POST",
-            url: "/payment",
+            url: "/book",
             data: {
-                id,
-                price,
+                tour_id,
+                tour_date_id,
                 addons,
                 date,
                 amount,
-                name,
-                nationality,
-                mobile_number,
-                address,
-                country,
-                postcode
             },
             dataType: "JSON",
             headers: {
@@ -359,14 +291,15 @@
 
     $(document).ready(function() {
         const basePrice = parseFloat($("#tour_price").val().replace(',', '')); // Get the base tour price
+        const currencySymbol = @json($symbol);
 
         function calculateTotalPrice() {
             let totalPrice = basePrice;
             $("#addonsShow").html('');
-            $(".selectedAddOns:checked").each(function() {
+            $(".addon-checkbox:checked").each(function() {
                 tempPrice = $(this).data("price");
-                tempName = $(this).data("value");
-                $("#addonsShow").append("<div class='w-full mt-4 inline-flex justify-between'><span>"+ tempName +"</span><span>"+ tempPrice +"£</span></div>");
+                tempName = $(this).data("name");
+                $("#addonsShow").append("<div class='w-full mt-4 inline-flex justify-between'><span>"+ tempName +"</span><span>" + currencySymbol + " " + tempPrice +"</span></div>");
                 totalPrice += parseFloat(tempPrice.replace(',', ''));
             });
             const addonPrice = totalPrice - basePrice;
@@ -378,7 +311,7 @@
             $("#twentyFivePay").html((totalPrice * 0.25).toFixed(2));
             $("#twentyFivePay").parent().attr("data-price", (totalPrice * 0.25).toFixed(2));
         }
-        $(".selectedAddOns").on("click", function() {
+        $(".addon-checkbox").on("click", function() {
             calculateTotalPrice();
         });
     });
