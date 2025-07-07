@@ -14,7 +14,7 @@
             </div>
             <div class="grid gap-y-6 mt-12">
                 <a href="/profile" class="primary-button">My Details</a>
-                <a class="primary-button">My Tours</a>
+                <a href="/your-tours" class="primary-button">My Tours</a>
                 <a class="primary-button">Favourites</a>
                 <a href="/emergency-contacts" class="primary-button">ICE</a>
                 <a class="primary-button">Verification</a>
