@@ -89,16 +89,20 @@
                                     @php
                                         $user = auth()->user();
                                     @endphp
-                                    <a href="{{ url('/profiles') }}">
-                                    @endauth
-                                    @if (isset($user) && $user != null && $user->profile_picture)
-                                        <img id="profile-picture-img" style="height: 47px; width: 47px;"
-                                            src="{{ asset('storage/' . $user->profile_picture) }}"
-                                            alt="Profile Picture" class="rounded-full">
+                                    <a href="{{  }}">
+                                @endauth
+                                @if (isset($user) && $user != null && $user->profile_picture)
+                                    <img id="profile-picture-img" style="height: 47px; width: 47px;"
+                                        src="{{ asset('storage/' . $user->profile_picture) }}"
+                                        alt="Profile Picture" class="rounded-full">
+                                @else
+                                    @if ($user === null)       
+                                        <a href="/login"><img src="{{ asset('images/user.png') }}" alt=""></a>
                                     @else
                                         <img src="{{ asset('images/user.png') }}" alt="">
                                     @endif
-                                    @auth
+                                @endif
+                                @auth
                                     </a>
                                 @endauth
                             </span>
@@ -116,7 +120,7 @@
                         <button onclick="closePopup()" style="border: unset !important"
                             class="absolute bottom-20 left-1/2 z-50">
                             <svg width="32" height="31" viewBox="0 0 32 31" fill="none"
-                                xmlns="http://www.w3.org/2000/svg">
+                                xmlns="http://www.w3.org/2000/svgurl('/profiles')">
                                 <path d="M2.56836 1.4082L30.6327 29.4725" stroke="black" stroke-width="2"
                                     stroke-linecap="round" />
                                 <path d="M29.6973 1.4082L1.63293 29.4725" stroke="black" stroke-width="2"

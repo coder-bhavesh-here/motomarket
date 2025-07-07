@@ -85,7 +85,7 @@
                 enthusiasts connect
                 with epic adventures worldwide! Discover thrilling routes, meet passionate riders, and
                 explore unforgettable journeys—all on one platform designed for riders, by riders.</p>
-            <button class="secondary-button mt-2">read more</button>
+            <a href="/about"><button class="secondary-button mt-2">read more</button></a>
         </div>
         <div class="bg-[#E2E8F0] p-5 rounded-md">
             <p class="text-xl womsm:text-2xl font-semibold m-2 text-[#0F172A]">Our very first post here...</p>
@@ -93,7 +93,7 @@
                 enthusiasts connect with epic adventures worldwide! Discover thrilling routes, meet
                 passionate riders, and explore unforgettable journeys—all on one platform designed for
                 riders, by riders.</p>
-            <button class="secondary-button mt-2">read more</button>
+            <a href="/blogs"><button class="secondary-button mt-2">read more</button></a>
         </div>
     </div>
     <div
@@ -103,7 +103,7 @@
             tour
             operators from around the world to join us. Together we can provide to best experience to our
             fellow riders looking to explore the world on a motorbike!</p>
-        <button class="secondary-button mt-2">find out more</button>
+            <a href="/invite-operators"><button class="secondary-button mt-2">find out more</button></a>
     </div>
 </div>
 

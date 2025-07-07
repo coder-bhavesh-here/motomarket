@@ -1,4 +1,4 @@
-@include('guest-header')
+@include('new-header')
 
 @php
     function getYoutubeVideoId($url)
@@ -12,10 +12,8 @@
     }
 @endphp
 <main class="mt-6">
-    <div class="brand-name">
-        <hr>
-        <b style="font-size: 32px; color:black; margin: 5% 0;">Blogs</b>
-        <hr>
+    <div class="brand-name ml-8">
+        <b style="font-size: 24px; color:black; margin: 5% 0;">WoM Blog</b>
     </div>
 
     @foreach ($blogs as $blog)

@@ -1,4 +1,4 @@
-@include('guest-header')
+@include('new-header')
 @php
     function getYoutubeVideoId($url)
     {
@@ -13,7 +13,12 @@
     $videoId = getYoutubeVideoId($blog->youtube_video_link ?? '');
 @endphp
 <main class="mt-6">
-    <a class="btn btn-primary m-0" href="/blogs">Blogs</a>
+    <div class="text-right">
+        <a class="mr-8 p-4 flex justify-end text-black underline" href="/blogs">
+            <svg style="width: 24px" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"><path d="m5 8 7 6V2L5 8zM3 2h1v12H3z"/></svg>
+            Go Back
+        </a>
+    </div>
     <div class="blog-container flex flex-col justify-center items-center">
         <h1 class="blog-title text-3xl text-black my-5">{{ $blog->title }}</h1>
         <div class="blog-media mb-4 flex justify-center" style="width: 40%">
