@@ -95,7 +95,7 @@
                                         src="{{ asset('storage/' . $user->profile_picture) }}"
                                         alt="Profile Picture" class="rounded-full">
                                 @else
-                                    @if ($user === null)       
+                                    @if (isset($user) && $user === null)       
                                         <a href="/login"><img src="{{ asset('images/user.png') }}" alt=""></a>
                                     @else
                                         <img src="{{ asset('images/user.png') }}" alt="">
