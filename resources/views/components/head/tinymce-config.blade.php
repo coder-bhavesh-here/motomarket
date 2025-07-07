@@ -5,7 +5,8 @@
         tinymce.init({
             selector: 'textarea#description', // Replace this CSS selector to match the placeholder element for TinyMCE
             plugins: 'code table lists',
-            toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table',
+            toolbar: 'bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist',
+            menubar: false,
             setup: function(editor) {
                 editor.on('init', function(e) {
                     editor.setContent($("#description_val").val());
@@ -15,7 +16,8 @@
         tinymce.init({
             selector: 'textarea#introduction', // Replace this CSS selector to match the placeholder element for TinyMCE
             plugins: 'code table lists',
-            toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table',
+            toolbar: 'bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist',
+            menubar: false,
             setup: function(editor) {
                 editor.on('init', function(e) {
                     editor.setContent($("#introduction_val").val());
@@ -25,7 +27,8 @@
         tinymce.init({
             selector: 'textarea#included', // Replace this CSS selector to match the placeholder element for TinyMCE
             plugins: 'code table lists',
-            toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table',
+            toolbar: 'bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist',
+            menubar: false,
             setup: function(editor) {
                 editor.on('init', function(e) {
                     editor.setContent($("#included_val").val());
@@ -35,7 +38,8 @@
         tinymce.init({
             selector: 'textarea#not_included', // Replace this CSS selector to match the placeholder element for TinyMCE
             plugins: 'code table lists',
-            toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table',
+            toolbar: 'bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist',
+            menubar: false,
             setup: function(editor) {
                 editor.on('init', function(e) {
                     editor.setContent($("#not_included_val").val());
@@ -45,7 +49,8 @@
         tinymce.init({
             selector: 'textarea#tour_meeting_location_notes', // Replace this CSS selector to match the placeholder element for TinyMCE
             plugins: 'code table lists',
-            toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table',
+            toolbar: 'bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist',
+            menubar: false,
             setup: function(editor) {
                 editor.on('init', function(e) {
                     editor.setContent($("#tour_meeting_location_notes_val").val());
@@ -55,7 +60,8 @@
         tinymce.init({
             selector: 'textarea#content', // Replace this CSS selector to match the placeholder element for TinyMCE
             plugins: 'code table lists',
-            toolbar: 'undo redo | blocks | bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist | code | table',
+            toolbar: 'bold italic | alignleft aligncenter alignright | indent outdent | bullist numlist',
+            menubar: false,
             setup: function(editor) {
                 editor.on('init', function(e) {
                     editor.setContent($("#content_val").val());

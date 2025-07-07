@@ -158,15 +158,15 @@
                         @foreach ($prices as $key => $price)
                             <div
                                 class="inline-flex rounded-sm w-full justify-between womsm:justify-start items-center p-3 {{ $tac % 2 === 0 ? 'bg-customlightgreen' : '' }}">
-                                <div class="text-xs womsm:text-sm wommd:text-base text-[#0F172A]">
+                                <div class="text-xs w-40 womsm:text-sm text-left wommd:text-base text-[#0F172A]">
                                     {{ \Carbon\Carbon::parse($price->date)->format('F d, Y') }}</div>
-                                <div class="text-xs womsm:text-sm wommd:text-base womsm:ml-8 wommd:ml-16 font-bold text-[#0F172A]">
+                                <div class="text-xs womsm:text-sm wommd:text-base womsm:ml-8 w-12 wommd:ml-16 font-bold text-[#0F172A]">
                                     {{ '£' . number_format($price->price, 0, '.', ',') }}</div>
                                 @php
                                     $hasAddons = $price->tour->addonGroups()->exists();
                                     $bookUrl = $hasAddons ? "/bookAddon/{$price->id}" : "/book/{$price->id}";
                                 @endphp
-                                <div class="text-xs womsm:text-sm wommd:text-base womsm:ml-8 wommd:ml-16 font-bold text-[#0F172A]">
+                                <div class="text-xs womsm:text-sm text-right wommd:text-base womsm:ml-8 wommd:ml-16 font-bold text-[#0F172A]">
                                     <a class="text-[#556B2F]" href="{{ $bookUrl }}">BOOK</a>
                                 </div>
                             </div>

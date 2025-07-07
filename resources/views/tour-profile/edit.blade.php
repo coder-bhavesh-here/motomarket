@@ -52,10 +52,16 @@
                         </div> --}}
 
                         <div>
-                            <label class="font-bold text-black" for="name" value="Name">Name</label>
+                            <label class="font-bold text-black" for="name" value="Name">First Name</label>
                             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->tour_operation_name)"
                                 required autofocus autocomplete="name" />
                             <x-input-error class="mt-2" :messages="$errors->get('name')" />
+                        </div>
+                        <div>
+                            <label class="font-bold text-black" for="tour_last_name" value="Last Name">Last Name</label>
+                            <x-text-input id="tour_last_name" name="tour_last_name" type="text" class="mt-1 block w-full" :value="old('tour_last_name', $user->tour_last_name)"
+                                required autofocus autocomplete="tour_last_name" />
+                            <x-input-error class="mt-2" :messages="$errors->get('tour_last_name')" />
                         </div>
                         <div>
                             <label class="font-bold text-black" for="nickname" value="Nickname">Nickname</label>

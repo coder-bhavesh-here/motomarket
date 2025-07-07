@@ -51,31 +51,37 @@
                         </div> --}}
 
                         <div>
-                            <x-input-label for="name" :value="__('Name')" />
+                            <label class="font-bold text-black" for="name">First Name</label>
                             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->name)"
                                 required autofocus autocomplete="name" />
                             <x-input-error class="mt-2" :messages="$errors->get('name')" />
                         </div>
                         <div>
-                            <x-input-label for="nickname" :value="__('Nickname')" />
+                            <label class="font-bold text-black" for="last_name">Last Name</label>
+                            <x-text-input id="last_name" name="last_name" type="text" class="mt-1 block w-full" :value="old('last_name', $user->last_name)"
+                                required autofocus autocomplete="name" />
+                            <x-input-error class="mt-2" :messages="$errors->get('last_name')" />
+                        </div>
+                        <div>
+                            <label class="font-bold text-black" for="nickname">Nickname</label>
                             <x-text-input id="nickname" name="nickname" type="text" class="mt-1 block w-full" :value="old('nickname', $user->nickname)"
                                 required autofocus autocomplete="nickname" />
                             <x-input-error class="mt-2" :messages="$errors->get('nickname')" />
                         </div>
                         <div>
-                            <x-input-label for="dob" :value="__('DOB')" />
+                            <label class="font-bold text-black" for="dob">DOB</label>
                             <input type="date" name="dob" id="dob" class="w-full border-[#d1d5db] rounded-md" value="{{$user->dob}}">
                             <x-input-error class="mt-2" :messages="$errors->get('dob')" />
                         </div>
                         <div>
-                            <x-input-label for="contact_number" :value="__('Contact')" />
+                            <label class="font-bold text-black" for="contact_number">Mobile</label>
                             <x-text-input id="contact_number" name="contact_number" type="text" class="mt-1 block w-full" :value="old('contact_number', $user->contact_number)"
                                 required autofocus autocomplete="contact_number" />
                             <x-input-error class="mt-2" :messages="$errors->get('contact_number')" />
                         </div>
 
                         <div>
-                            <x-input-label for="email" :value="__('Email')" />
+                            <label class="font-bold text-black" for="email">Email</label>
                             <x-text-input readonly disabled class="mt-1 block w-full" :value="old('email', $user->email)"
                                 required autocomplete="username" />
                             <x-input-error class="mt-2" :messages="$errors->get('email')" />
@@ -83,7 +89,7 @@
 
                         <div>
                             <input type="hidden" id="introduction_val" value="{{ $user->introduction }}">
-                            <x-input-label for="introduction" :value="__('Introduce Yourself')" />
+                            <label class="font-bold text-black" for="introduction">Introduce Yourself</label>
                             <x-head.tinymce-config />
                             <x-textarea class="editorBlock" id="introduction" name="introduction" />
                         </div>
@@ -91,7 +97,7 @@
                             $ridingImages = is_array($user->riding_images) ? $user->riding_images : json_decode($user->riding_images ?? '[]', true);
                         @endphp
                         <div>
-                            <x-input-label for="description" :value="__('Add upto 5 photos showcasing your riding')" />
+                            <label class="font-bold text-black" for="description">Add upto 5 photos showcasing your riding</label>
                             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mt-4">
                                 @for ($i = 0; $i <= 4; $i++)
                                     <label for="riding_images_{{ $i }}"

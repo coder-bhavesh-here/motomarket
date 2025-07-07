@@ -15,8 +15,8 @@
             </div>
         </ul>
         <ul class="womsm:max-wommd:text-right">
-            <li class="mb-2"><a href="invite-operators">Share your tours on WorldonMoto.com</a></li>
-            <li class="mb-2"><a href="/partner">Partner with us</a></li>
+            <li><a href="invite-operators">Share your tours on WorldonMoto.com</a></li>
+            <li><a href="/partner">Partner with us</a></li>
             <li><a href="/investor">Investor outreach</a></li>
         </ul>
         <ul class="womsm:col-span-2 wommd:text-right">

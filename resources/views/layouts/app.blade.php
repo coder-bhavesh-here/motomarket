@@ -89,7 +89,6 @@
                                     @php
                                         $user = auth()->user();
                                     @endphp
-                                    <a href="{{  }}">
                                 @endauth
                                 @if (isset($user) && $user != null && $user->profile_picture)
                                     <img id="profile-picture-img" style="height: 47px; width: 47px;"
