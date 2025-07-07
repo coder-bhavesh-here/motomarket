@@ -16,6 +16,7 @@
 <wireui:scripts />
 
 <div class="sm:px-6 lg:px-8">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > <u><a href="{{ route('explore-tours') }}">Tour Search</a></u> > <u><a href="/tour/{{ $tour->id }}">Tour Details</a></u> > Booking</p>
     <p class="mt-4 mb-2 font-semibold text-[#0F172A] text-lg womsm:text-xl wommd:text-2xl">
         {{ $tour->title }} - {{ $tour->countries }}
@@ -96,41 +97,103 @@
                         <span>Tour price</span>
                         <span>{{$symbol}} {{$selectedDate->price}}</span>
                     </div>
+                    <div class="mt-2 inline-flex justify-between w-full">
+                        <span>Already Paid</span>
+                        <span>{{$symbol}} {{$booking->amount}}</span>
+                    </div>
                 </div>
                 <div class="mt-6 border-t inline-flex items-center justify-between border-black pt-4 w-full">
                     <input type="hidden" id="tour_price" value="{{ number_format($selectedDate->price + $addonPrices, 2) }}">
                     <span class="text-black font-semibold">Total</span> 
                     <strong>
-                        <span class="text-2xl text-black" id="total_price">{{$symbol}} {{ number_format($selectedDate->price + $addonPrices, 2) }}</span>
+                        <span class="text-2xl text-black" id="total_price">{{$symbol}} {{ number_format(($selectedDate->price + $addonPrices) - $booking->amount, 2) }}</span>
                     </strong>
                 </div>
                 <div class="mt-4">
                     <div id="validation-errors" class="text-red-600 mb-4 hidden"></div>
-                    @if ($selectedDate->date < now()->addMonths(2))
+                    @if ($booking->amount < $selectedDate->price + $addonPrices)
                         @php
-                            // Pay 100% of the total price
-                            $pay = $totalPrice = $selectedDate->price + $addonPrices;
+                            $pay = ($selectedDate->price + $addonPrices) - $booking->amount;
                         @endphp
-                    @else
-                        @php
-                            // Pay 25% of the total price
-                            $totalPrice = ($selectedDate->price + $addonPrices) * 0.25;
-                            $pay = $selectedDate->price + $addonPrices;
-                        @endphp
-                        <button class="make-payment primary-button w-full mb-4" data-id="{{ $selectedDate->id }}"
-                            data-price="{{ $totalPrice }}" id="payWithStripe">Pay 25% - <span
-                                id="twentyFivePay">{{$symbol}} {{ $totalPrice }}</span></button>
+                        <button class="make-payment primary-button w-full" data-id="{{ $booking->id }}"
+                            data-price="{{ $pay }}" id="payWithStripe">Pay 75% - {{ $symbol }} <span id="hundredPay">{{ $pay }}</span></button>
                     @endif
-                    <button class="make-payment primary-button w-full" data-id="{{ $selectedDate->id }}"
-                        data-price="{{ $pay }}" id="payWithStripe">Pay 100% - {{ $symbol }} <span id="hundredPay">{{ $pay }}</span></button>
                 </div>
             </div>
         </div>
     </div>
     <div class="col-span-3">
         <div class="px-4 py-6">
-            <span>Quick Links</span>
+            <div>
+                <span class="text-black font-bold text-xl">Quick Links</span>
+            </div>
+            <div class="inline-flex mt-2">
+                <span class="underline text-black text-lg font-normal">
+                    <a href="/tour/{{$tour->id}}">Tour Page</a>
+                </span>
+                <span class="underline text-black text-lg font-normal ml-4">
+                    <a href="/tour-operator/{{$tour->user->tour_nickname}}">Tour Operator Info</a>
+                </span>
+            </div>
+            <div class="mt-8">
+                <span class="text-black font-bold text-xl">Your Actions</span>
+            </div>
+            <div class="mt-2 text-black">
+                <ul class="ml-5" style="list-style: disc">
+                    <li>Pay the outstanding amount before the 2025-03-15</li>
+                    <li>Agree to the tour operator indemnity terms</li>
+                    <li>Learn about sports and travel insurance for additional safety</li>
+                    <li>Make the travel arrangements to get to the starting point</li>
+                    <li>Driving License Proof</li>
+                    <li>Confirm your ICE (emergency contacts) are up to date</li>
+                </ul>
+            </div>
+            <div class="mt-8">
+                <span class="text-black font-bold text-xl">Meeting Location Details </span>
+            </div>
+            <div class="mt-2 text-black">
+                {!! $tour->tour_meeting_location_notes !!}
+            </div>
+            <div class="mt-4 text-black">
+                <a class="underline italic" href="{{ $tour->tour_start_location }}">{{ $tour->tour_start_location }}</a>
+            </div>
+            @if (count($otherUser) > 0)
+            <div class="mt-8">
+                <span class="text-black font-bold text-xl">Who’s joining you</span>
+            </div>
+            <div class="mt-2 text-black">
+                @if (count($otherUser) > 0)
+                    @foreach ($otherUser as $user)
+                    <img src="{{ asset('storage') . '/' . ($user->profile_picture != '' ? $user->profile_picture : '') }}"
+                        alt="Other users picture"
+                        style="width: 40px; height: 40px; border-radius: 20px;">
+                    @endforeach
+                @endif
+            </div>
+            @endif
         </div>
     </div>
 </div>
+<script>
+    $(".make-payment").click(function(e) {
+        e.preventDefault();
+        const id = $(this).data("id");
+        const price = $(this).data("price");
+        $.ajax({
+            type: "POST",
+            url: "/payment",
+            data: {
+                id,
+                price,
+            },
+            dataType: "JSON",
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            success: function(response) {
+                window.location.href = response.redirect_url;
+            }
+        });
+    });
+</script>
 @include('footer')

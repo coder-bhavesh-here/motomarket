@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Stripe\StripeClient;
 use Illuminate\Support\Facades\Auth;
+use Laravel\Pulse\Users;
 
 class TourController extends Controller
 {
@@ -153,7 +154,47 @@ class TourController extends Controller
             'id' => 'required|numeric',
             'price' => 'required'
         ]);
+        if (count($request->all()) == 2) {
+            $booking = Booking::find($request->id);
+            $tour = Tour::find($booking->tour_id);
+            $image = TourImage::where('tour_id', $tour->id)->first();
+            if ($image != null) {
+                $imagePath = asset('storage') . '/' . $image->image_path;
+            } else {
+                $imagePath = asset('images/bike4.jpg');
+            }
+            $stripe = new StripeClient(env('STRIPE_SECRET_KEY'));
+            $product = $stripe->products->create([
+                'name' => 'Tour Payment',
+                'description' => 'Payment for : ' . $tour->title,
+                'images' => [$imagePath],
+            ]);
 
+            // create a stripe price with actual amount from request
+            $price = $stripe->prices->create([
+                'product' => $product->id,
+                'unit_amount' => $request->price * 100, // Convert to cents
+                'currency' => 'usd',
+            ]);
+
+            $session = $stripe->checkout->sessions->create([
+                'payment_method_types' => ['card'],
+                'line_items' => [[
+                    'price' => $price->id,
+                    'quantity' => 1,
+                ]],
+                'mode' => 'payment',
+                'success_url' => route('payment.success') . '?session_id={CHECKOUT_SESSION_ID}&tour_booking_id=' . $request->id,
+                'cancel_url' => route('payment.cancel'),
+                'metadata' => [
+                    "amount" => $request->amount,
+                    'booking_id' => $request->id,
+                    'user_id' => Auth::id()
+                ]
+            ]);
+
+            return json_encode(['redirect_url' => $session->url]);
+        }
         $tourPriceDetails = TourPrice::find($request->id);
         $tour = Tour::find($tourPriceDetails->tour_id);
         $image = TourImage::where('tour_id', $tour->id)->first();
@@ -186,15 +227,7 @@ class TourController extends Controller
             'success_url' => route('payment.success') . '?session_id={CHECKOUT_SESSION_ID}&tour_price_id=' . $request->id,
             'cancel_url' => route('payment.cancel'),
             'metadata' => [
-                "date" => $request->date,
                 "amount" => $request->amount,
-                "addons" => $request->addons,
-                "nationality" => $request->nationality,
-                "name" => $request->name,
-                "address" => $request->address,
-                "postcode" => $request->postcode,
-                "country" => $request->country,
-                "mobile_number" => $request->mobile_number,
                 'tour_price_id' => $request->id,
                 'user_id' => Auth::id()
             ]
@@ -213,6 +246,28 @@ class TourController extends Controller
         $session = $stripe->checkout->sessions->retrieve($request->session_id);
 
         if ($session->payment_status === 'paid') {
+            if (isset($session->metadata->booking_id)) {
+                $booking = Booking::find($session->metadata->booking_id);
+                $tourPrice = TourPrice::find($booking->tour_date_id);
+                $data = [
+                    'amount' => ($session->amount_total / 100) + $booking->amount, // Convert from cents
+                    'payment_id' => $session->payment_intent,
+                    'status' => 'confirmed',
+                ];
+                $booking->update($data);
+                $tour = Tour::withTrashed()->find($booking->tour_id);
+                $user = User::find($tour->user_id);
+                Mail::to($user->email)->send(new BookingConfirmedAgency($booking));
+                Mail::to(Auth::user()->email)->send(new BookingConfirmed($booking));
+                return view('success', [
+                    'tour' => $tour,
+                    'date' => $tourPrice->date,
+                    'price' => $tourPrice->price,
+                    'booking' => $booking
+                ]);
+                return redirect()->route('my-tours')
+                    ->with('success', 'Payment successful! Your booking is confirmed.');
+            }
             // Get tour price details to access the date
             $tourPrice = TourPrice::find($session->metadata->tour_price_id);
             $booked = Booking::where('tour_date_id', $session->metadata->tour_price_id)
@@ -306,6 +361,12 @@ class TourController extends Controller
         $priceId = $booking->tour_date_id;
         $price = TourPrice::find($priceId);
         $booking = Booking::where('tour_date_id', $priceId)->where('user_id', auth()->user()->id)->first();
+        $otherUsers = Booking::where('tour_date_id', $booking->tour_date_id)
+            ->where('id', '!=', $booking->id)
+            ->pluck('user_id')
+            ->toArray();
+        $users = array_values($otherUsers);
+        $otherUser = User::whereIn('id', $users)->get();
         $addons = [];
         if (isset($booking->addons) && $booking->addons != null) {
             $addonIds = explode(',', $booking->addons);
@@ -314,10 +375,12 @@ class TourController extends Controller
         $tour = Tour::with(['prices'])->find($price->tour_id);
         return view('booked-detail', [
             'tour' => $tour,
+            'booking' => $booking,
             'nationalities' => ['India', 'Europe', 'US  '],
             'tourDates' => $tour->prices,
             'selectedDate' => $price,
-            'addons' => $addons
+            'addons' => $addons,
+            'otherUser' => $otherUser
         ]);
     }
 

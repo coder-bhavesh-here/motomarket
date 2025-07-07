@@ -60,7 +60,7 @@
             @if ($price > $booking->amount)
                 <div class="mt-2">You will need to <strong>pay the outstanding amount</strong> before the {{ $paymentDate->format('d-M-Y') }}.</div>
             @endif
-            <div class="mt-2">We have saved the booking in your account. You can <a href="/my-tours" class="text-green underline">see it here</a></div>
+            <div class="mt-2">We have saved the booking in your account. You can <a href="/details/{{$booking->id}}" class="text-green underline">see it here</a></div>
         </div>
     </div>
     <div class="mt-4 flex justify-center">

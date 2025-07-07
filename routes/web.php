@@ -23,8 +23,6 @@ Route::get('/user/{nickname}', [ProfileController::class, 'showUser']);
 Route::get('/tour-operator/{nickname}', [ProfileController::class, 'showTourUser']);
 Route::get('/verify', [ProfileController::class, 'verifyEmail'])->name('verifyEmail');
 Route::post('/payment', [TourController::class, 'makePayment'])->name('makePayment');
-Route::get('/success', [ProfileController::class, 'home'])->name('payment.success');
-Route::get('/cancel', [ProfileController::class, 'home'])->name('payment.cancel');
 Route::get('/', [ProfileController::class, 'home'])->name('temp-homepage');
 Route::get('/new-home', [ProfileController::class, 'newHome'])->name('homepage');
 Route::get('/explore-tours', [ProfileController::class, 'exploreTours'])->name('explore-tours');
