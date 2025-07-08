@@ -10,17 +10,17 @@
     <div class="text-center mt-4 text-green text-lg womsm:text-xl wommd:text-2xl font-bold">
         Calling All Motorcycle Tour Operators:
     </div>
-    <div class="text-center mt-4 text-green text-lg womsm:text-xl wommd:text-2xl font-bold">
+    <div class="text-center text-green text-lg womsm:text-xl wommd:text-2xl font-bold">
         Join the Adventure at WorldonMoto.com!
     </div>
     <div class="mt-5 text-[#0F172A] font-normal text-sm womsm:text-base wommd:text-lg text-center">
         We’re inviting motorcycle tour operators from across the globe to help riders of all ages and backgrounds explore the world on two wheels.
     </div>
-    <div class="mt-2 text-[#0F172A] font-normal text-sm womsm:text-base wommd:text-lg text-center">
+    <div class="text-[#0F172A] font-normal text-sm womsm:text-base wommd:text-lg text-center">
         Together, let’s inspire and connect adventurers everywhere.
     </div>
-    <div class="w-full flex justify-center">
-        <div class="bg-cover bg-center h-screen flex flex-col justify-center items-center text-white mt-6 rounded-lg"
+    {{-- <div class="w-full flex justify-center">
+        <div class="bg-cover bg-center flex flex-col justify-center items-center text-white mt-6 rounded-lg"
         style="background-image: url('{{ asset('images/bg.jpg') }}'); width: 95%;">
             <div class="text-center max-w-2xl h-full">
                 <!-- Main Heading -->
@@ -38,7 +38,31 @@
                 </div>
             </div>
         </div>
+    </div> --}}
+    <div class="w-full flex justify-center mt-6 relative min-h-[900px]">
+        <div class="w-[95%] relative rounded-lg">
+            <!-- Static image (no shifting on zoom) -->
+            <img src="{{ asset('images/bg.jpg') }}" alt="Background" 
+                 class="absolute inset-0 w-full h-full object-cover z-0" />
+    
+            <!-- Text content -->
+            <div class="relative flex justify-center items-center px-4 py-20 md:py-16 z-10">
+                <div class="text-center text-gray-800 max-w-2xl py-8 wommd:px-20 rounded-lg shadow-lg"
+                     style="background-color: #E2E8F05E;">
+                    <h2 class="text-lg md:text-2xl font-bold mb-4">Your Passion Meets Our Vision</h2>
+    
+                    <p class="text-sm md:text-base leading-relaxed mb-4">
+                        We understand that your love for motorcycles and adventure drives everything you do. It’s your expertise, local insights, and the unforgettable experiences you craft that leave a lasting impression on every rider who joins your tours. These memories are cherished for a lifetime—shared over campfires, in conversations, and in the hearts of riders from all walks of life.
+                    </p>
+    
+                    <p class="text-sm md:text-base leading-relaxed">
+                        But here’s the challenge: while the best way to explore the world is on a motorcycle, many aspiring adventurers struggle to find trusted, reliable tour operators online. At the same time, operators like you often find it hard to consistently reach the right audience.
+                    </p>
+                </div>
+            </div>
+        </div>
     </div>
+    
     <div class="w-full text-center mt-10 font-semibold text-lg womsm:text-xl wommd:text-2xl text-black">
         <div>Say Hello to WorldonMoto.com: Your Gateway to </div>
         <div>Adventure-Ready Riders</div>
@@ -50,7 +74,7 @@
         </div>
         <div>
             <div class="w-5/6">
-                <div class="text-[#0F172A] text-base womsm:text-lg wommd:text-xl font-semibold mt-5">
+                <div class="text-[#0F172A] text-base womsm:text-lg wommd:text-xl font-semibold">
                     All Your Audience in One Place
                 </div>
                 <div class="text-[#0F172A] text-sm womsm:text-base wommd:text-lg font-normal mt-5">
@@ -62,10 +86,10 @@
             </div>
         </div>
     </div>
-    <div class="grid grid-cols-1 wommd:grid-cols-2 gap-8 mt-8 w-full wommd:w-3/4 justify-self-center items-center">
+    <div class="grid grid-cols-1 wommd:grid-cols-2 gap-8 mt-8 w-full wommd:w-3/4 justify-self-center">
         <div>
             <div class="w-5/6">
-                <div class="text-[#0F172A] text-base womsm:text-lg wommd:text-xl font-semibold mt-5">
+                <div class="text-[#0F172A] text-base womsm:text-lg wommd:text-xl font-semibold">
                     Let Riders Come to You
                 </div>
                 <div class="text-[#0F172A] text-sm womsm:text-base wommd:text-lg font-normal mt-5">
@@ -86,13 +110,13 @@
             <img class="w-full rounded-xl max-h-[600px]" src="{{ asset('images/operator2.png') }}" alt="" srcset="">
         </div>
     </div>
-    <div class="grid grid-cols-1 wommd:grid-cols-2 gap-8 mt-8 w-full wommd:w-3/4 justify-self-center items-center">
+    <div class="grid grid-cols-1 wommd:grid-cols-2 gap-8 mt-8 w-full wommd:w-3/4 justify-self-center">
         <div>
             <img class="w-full rounded-xl max-h-[600px]" src="{{ asset('images/operator3.png') }}" alt="" srcset="">
         </div>
         <div>
             <div class="w-5/6">
-                <div class="text-[#0F172A] text-base womsm:text-lg wommd:text-xl font-semibold mt-5">
+                <div class="text-[#0F172A] text-base womsm:text-lg wommd:text-xl font-semibold">
                     Tools to Streamline Your Journey
                 </div>
                 <div class="text-[#0F172A] text-sm womsm:text-base wommd:text-lg font-normal mt-5">
