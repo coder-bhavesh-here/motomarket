@@ -33,7 +33,7 @@
     <div class="grid grid-cols-1 wommd:grid-cols-2">
         <form action="/explore-tours" method="GET" class="grid grid-cols-1 wommd:grid-cols-2">
             <input type="text" value="{{ $search }}" name="search" class="mt-3 w-full rounded-md text-black">
-            <button class="wommd:ml-5 wommd:w-1/2 mt-2 button-text text-base font-bold">Search for tours</button>
+            <button class="wommd:ml-5 wommd:w-1/2 mt-2 button-text text-base font-bold">Search</button>
         </form>
         <div class="grid grid-cols-2 wommd:grid-cols-4">
             <div

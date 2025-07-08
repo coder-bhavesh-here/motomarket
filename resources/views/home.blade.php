@@ -82,7 +82,7 @@
     </div>
     <div class="flex items-center align-center justify-center">
         <button class="primary-button mt-5" onclick="window.location.href='/explore-tours'">
-            Search for tours
+            Search
         </button>
     </div>
 </div>

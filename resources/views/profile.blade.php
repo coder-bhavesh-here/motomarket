@@ -1,4 +1,15 @@
 <x-app-layout>
+    <style>
+        a.btn-orange {
+            min-height: 36px !important;
+            color: white !important;
+            border-radius: 5px !important;
+            border: unset !important;
+            font-weight: 700 !important;
+            padding: 6px 20px !important;
+            font-size: 16px !important;
+        }
+    </style>
     <div class="grid grid-cols-1 wommd:grid-cols-2">
         <div class="text-center justify-self-center mt-52">
             <div class="text-[#0F172A] font-bold text-xs womsm:text-sm wommd:text-base mb-4">PERSONAL PROFILE</div>
@@ -66,13 +77,13 @@
                     <div class="text-base italic" style="max-width: 300px; text-align: left">If you are a tour operator, you can open a tour operator account with us. Then you can advertise tours on WorldonMoto.com</div>
                 </div>
                 <div class="grid gap-y-6 mt-12">
-                    <a href="/profile" class="primary-button">Tour Profile</a>
-                    <a class="primary-button">Payment Settings</a>
-                    <a href="/tour-management" class="primary-button">Tour Management</a>
-                    <a class="primary-button">Customers / Bookings</a>
-                    <a class="primary-button">Team</a>
-                    <a class="primary-button">Reports</a>
-                    <a class="primary-button">Verification</a>
+                    <a href="/profile" class="btn-orange">Tour Profile</a>
+                    <a class="btn-orange">Payment Settings</a>
+                    <a href="/tour-management" class="btn-orange">Tour Management</a>
+                    <a class="btn-orange">Customers / Bookings</a>
+                    <a class="btn-orange">Team</a>
+                    <a class="btn-orange">Reports</a>
+                    <a class="btn-orange">Verification</a>
                 </div>
             </div>
         </div>
