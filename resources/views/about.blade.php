@@ -1,5 +1,5 @@
 @include('new-header')
-<main class="mt-2 px-4 womsm:px-6 wommd:px-8">
+<main class="mt-2 px-4 womsm:px-10 wommd:px-16">
     <div class="text-center mt-4 text-green text-lg womsm:text-xl wommd:text-2xl font-bold">
         Discover the World on Two Wheels with WorldonMoto.com!
     </div>
@@ -55,7 +55,7 @@
         </div>
     </div>
 </main>
-<div class="bg-[#556B2F26] p-5 my-8">
+<div class="bg-[#556B2F26] p-5 mt-8">
     <div class="text-center font-bold text-[#0F172A] text-base womsm:text-lg wommd:text-xl">How It Works</div>
     <div class="flex justify-center my-5">
         <ol class="w-full womsm:w-1/2 wommd:w-1/3 grid gap-4 text-[#0F172A]">
