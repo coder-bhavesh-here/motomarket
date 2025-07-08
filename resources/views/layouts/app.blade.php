@@ -85,25 +85,22 @@
                                 </span>
                             @endauth
                             <span class="ml-4">
+                                <a href="{{ url('/profiles') }}">
                                 @auth
                                     @php
                                         $user = auth()->user();
                                     @endphp
-                                @endauth
-                                @if (isset($user) && $user != null && $user->profile_picture)
-                                    <img id="profile-picture-img" style="height: 47px; width: 47px;"
-                                        src="{{ asset('storage/' . $user->profile_picture) }}"
-                                        alt="Profile Picture" class="rounded-full">
-                                @else
-                                    @if (isset($user) && $user === null)       
-                                        <a href="/login"><img src="{{ asset('images/user.png') }}" alt=""></a>
+                                    @endauth
+                                    @if (isset($user) && $user != null && $user->profile_picture)
+                                        <img id="profile-picture-img" style="height: 47px; width: 47px;"
+                                            src="{{ asset('storage/' . $user->profile_picture) }}"
+                                            alt="Profile Picture" class="rounded-full">
                                     @else
                                         <img src="{{ asset('images/user.png') }}" alt="">
                                     @endif
-                                @endif
-                                @auth
-                                    </a>
-                                @endauth
+                                    @auth
+                                    @endauth
+                                </a>
                             </span>
                         </nav>
                         <img class="block womsm:hidden justify-self-end" onclick="openPopup()"

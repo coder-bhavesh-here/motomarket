@@ -1043,6 +1043,7 @@
                                         <span class="justify-self-start ml-2">Saved Tours</span>
                                     </div>
                                     <div class="inline-flex justify-self-center items-center">
+                                        <a href="{{ url('/profiles') }}">
                                         @auth
                                             <span
                                                 class="{{ $user && $user != null && $user->profile_picture ? '' : 'icon-box' }} ml-4 justify-self-end mr-2">
@@ -1052,16 +1053,13 @@
                                                     src="{{ asset('storage/' . $user->profile_picture) }}"
                                                     alt="Profile Picture" class="rounded-full">
                                             @else
-                                                <a href="{{ url('/profiles') }}">
                                                     <img src="{{ asset('images/user.png') }}" alt="">
-                                                <a
                                             @endif
                                             @auth
                                             </span>
-                                            <a href="{{ url('/profiles') }}">
                                                 <span class="justify-self-start ml-2">My Profile</span>
-                                            </a>
-                                        @endauth
+                                            @endauth
+                                        </a>
                                     </div>
                                 </div>
                             @else
