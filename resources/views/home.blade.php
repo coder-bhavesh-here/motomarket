@@ -6,7 +6,7 @@
         <p class="womsm:text-sm wommd:text-2xl font-semibold text-black mt-5">Where do you want to go?</p>
         <input type="text" name="search"
             class="mt-5 w-[80%] womsm:max-wommd:w-[60%] wommd:w-[25%] rounded-md text-black" placeholder="Eg: Portugal">
-        <button type="submit" class="primary-button mt-5">Search for tours</button>
+        <button type="submit" class="primary-button mt-5">Search</button>
     </div>
 </form>
 {{-- </div> --}}
