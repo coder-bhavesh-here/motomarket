@@ -29,6 +29,12 @@
                 <a class="primary-button">Favourites</a>
                 <a href="/emergency-contacts" class="primary-button">ICE</a>
                 <a class="primary-button">Verification</a>
+                <a href="#" class="primary-button" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                    Log Out
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="hidden">
+                    @csrf
+                </form>
             </div>
         </div>
 
