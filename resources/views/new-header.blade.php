@@ -991,11 +991,7 @@
                                             src="{{ asset('storage/' . $user->profile_picture) }}"
                                             alt="Profile Picture" class="rounded-full">
                                     @else
-                                        @if (isset($user) && $user === null)       
-                                            <a href="/login"><img src="{{ asset('images/user.png') }}" alt=""></a>
-                                        @else
-                                            <img src="{{ asset('images/user.png') }}" alt="">
-                                        @endif
+                                        <a href="/profiles"><img src="{{ asset('images/user.png') }}" alt=""></a>
                                     @endif
                                     @auth
                                     </a>
@@ -1056,7 +1052,9 @@
                                                     src="{{ asset('storage/' . $user->profile_picture) }}"
                                                     alt="Profile Picture" class="rounded-full">
                                             @else
-                                                <img src="{{ asset('images/user.png') }}" alt="">
+                                                <a href="{{ url('/profiles') }}">
+                                                    <img src="{{ asset('images/user.png') }}" alt="">
+                                                <a
                                             @endif
                                             @auth
                                             </span>

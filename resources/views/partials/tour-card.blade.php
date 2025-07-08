@@ -1,3 +1,12 @@
+@php
+    $currency = $tour->user->tour_currency;
+    $symbol = match ($currency) {
+        'euro' => '€',
+        'usd' => '$',
+        'gbp' => '£',
+        default => '€',
+    };
+@endphp
 <div class="tour-info rounded-3xl">
     <div class="tour-details grid grid-cols-1 womsm:grid-cols-3">
         <div class="h-[90px] womsm:h-auto">
@@ -8,31 +17,34 @@
             </a>
         </div>
         <div class="tour-description relative womsm:col-span-2">
-            <div class="inline-flex justify-center items-center my-3">
-                @php
-                    $profile_picture =
-                        $tour->user->tour_profile_picture != ''
-                            ? $tour->user->tour_profile_picture
-                            : ($tour->user->profile_picture != ''
-                                ? $tour->user->profile_picture
-                                : '');
-                    $tour_operation_name =
-                        $tour->user->tour_operation_name != ''
-                            ? $tour->user->tour_operation_name
-                            : ($tour->user->name != ''
-                                ? $tour->user->name
-                                : '');
-                @endphp
-                @if ($profile_picture != '')
-                    <img src="{{ asset('storage') . '/' . ($tour->user->tour_profile_picture != '' ? $tour->user->tour_profile_picture : $tour->user->profile_picture) }}"
-                        alt="Tour operator picture"
-                        style="width: 40px; height: 40ox; border-radius: 20px;">
-                @endif
-                <a href="#" class="underline">
-                    <span
-                        class="text-xl font-semibold text-black tour-owner ml-4">{{ $tour_operation_name }}</span>
-                </a>
-            </div>
+            @php
+                $nickname = trim($tour->user->tour_nickname ?? '');
+                $link = $nickname !== '' ? "/tour-operator/" . $nickname : "#";
+            @endphp
+            <a href="{{ $link }}">
+                <div class="inline-flex justify-center items-center my-3">
+                    @php
+                        $profile_picture =
+                            $tour->user->tour_profile_picture != ''
+                                ? $tour->user->tour_profile_picture
+                                : ($tour->user->profile_picture != ''
+                                    ? $tour->user->profile_picture
+                                    : '');
+                        $tour_operation_name =
+                            $tour->user->tour_operation_name != ''
+                                ? $tour->user->tour_operation_name
+                                : ($tour->user->name != ''
+                                    ? $tour->user->name
+                                    : '');
+                    @endphp
+                    @if ($profile_picture != '')
+                        <img src="{{ asset('storage') . '/' . ($tour->user->tour_profile_picture != '' ? $tour->user->tour_profile_picture : $tour->user->profile_picture) }}"
+                            alt="Tour operator picture"
+                            style="width: 40px; height: 40ox; border-radius: 20px;">
+                    @endif
+                        <span class="text-xl font-semibold text-black tour-owner ml-4">{{ $tour_operation_name }}</span>
+                </div>
+            </a>
             <a href='/tour/{{ $tour->id }}'>
                 <p class="py-2 text-lg womsm:text-xl wommd:text-2xl font-semibold text-black">{{ $tour->title }}</p>
             </a>
@@ -78,7 +90,7 @@
                 <div class="left">
                     @if ($tour->prices->count() > 0)
                         <span
-                            class="text-lg womsm:text-xl wommd:text-2xl text-black">{{ '£' . number_format($tour->prices[0]->price, 0, '.', ',') }}</span>
+                            class="text-lg womsm:text-xl wommd:text-2xl text-black">{{ $symbol . ' ' . number_format($tour->prices[0]->price, 2) }}</span>
                     @endif
                 </div>
                 <div class="links flex items-center">

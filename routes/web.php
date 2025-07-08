@@ -24,13 +24,12 @@ Route::get('/tour-operator/{nickname}', [ProfileController::class, 'showTourUser
 Route::get('/verify', [ProfileController::class, 'verifyEmail'])->name('verifyEmail');
 Route::post('/payment', [TourController::class, 'makePayment'])->name('makePayment');
 Route::get('/', [ProfileController::class, 'newHome'])->name('homepage');
+Route::redirect('/dashboard', '/')->name('dashboard');
 Route::get('/explore-tours', [ProfileController::class, 'exploreTours'])->name('explore-tours');
 Route::get('/tour/{tourId}', [TourController::class, 'show']);
 Route::post('/mark-as-favourite', [TourController::class, 'markFavourite']);
 Route::post('/delete-favourite', [TourController::class, 'deleteFavourite']);
 Route::get('/tour/book/{tourId}', [TourController::class, 'book']);
-
-Route::get('/dashboard', [ProfileController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboards');
 
 Route::get('/blogs', [BlogController::class, 'list'])->name('blogs.list');
 Route::get('/faqs', [BlogController::class, 'faqList'])->name('faqs.list');

@@ -3,6 +3,15 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
 </script>
+@php
+    $currency = $tour->user->tour_currency;
+    $symbol = match ($currency) {
+        'euro' => '€',
+        'usd' => '$',
+        'gbp' => '£',
+        default => '€',
+    };
+@endphp
 <div class="brand-name">
     <div class="ml-3 grid grid-cols-3">
         <b class="col-span-2 text-base womsm:text-xl wommd:text-2xl text-black font-semibold block mb-4">{{ $tour->title }}
@@ -14,32 +23,34 @@
             See Dates
         </a>
     </div>
-    
-    <div class="inline-flex justify-center items-center mx-3 mb-3">
-        @php
-            $profile_picture =
-                $tour->user->tour_profile_picture != ''
-                    ? $tour->user->tour_profile_picture
-                    : ($tour->user->profile_picture != ''
-                        ? $tour->user->profile_picture
-                        : '');
-            $tour_operation_name =
-                $tour->user->tour_operation_name != ''
-                    ? $tour->user->tour_operation_name
-                    : ($tour->user->name != ''
-                        ? $tour->user->name
-                        : '');
-        @endphp
-        @if ($profile_picture != '')
-            <img src="{{ asset('storage') . '/' . ($tour->user->tour_profile_picture != '' ? $tour->user->tour_profile_picture : $tour->user->profile_picture) }}"
-                alt="Tour operator picture"
-                style="width: 40px; height: 40ox; border-radius: 20px;">
-        @endif
-        <a href="#" class="underline">
-            <span
-                class="text-xs womsm:text-sm wommd:text-base font-semibold text-black tour-owner ml-4">{{ $tour_operation_name }}</span>
-        </a>
-    </div>
+    @php
+        $nickname = trim($tour->user->tour_nickname ?? '');
+        $link = $nickname !== '' ? "/tour-operator/" . $nickname : "#";
+    @endphp
+    <a href="{{ $link }}">
+        <div class="inline-flex justify-center items-center mx-3 mb-3">
+            @php
+                $profile_picture =
+                    $tour->user->tour_profile_picture != ''
+                        ? $tour->user->tour_profile_picture
+                        : ($tour->user->profile_picture != ''
+                            ? $tour->user->profile_picture
+                            : '');
+                $tour_operation_name =
+                    $tour->user->tour_operation_name != ''
+                        ? $tour->user->tour_operation_name
+                        : ($tour->user->name != ''
+                            ? $tour->user->name
+                            : '');
+            @endphp
+            @if ($profile_picture != '')
+                <img src="{{ asset('storage') . '/' . ($tour->user->tour_profile_picture != '' ? $tour->user->tour_profile_picture : $tour->user->profile_picture) }}"
+                    alt="Tour operator picture"
+                    style="width: 40px; height: 40ox; border-radius: 20px;">
+            @endif
+            <span class="text-xs womsm:text-sm wommd:text-base font-semibold text-black tour-owner ml-4">{{ $tour_operation_name }}</span>
+        </div>
+    </a>
     <div class="slider">
         @foreach ($tour->images as $image)
             <img src="{{ asset('storage') . '/' . $image->image_path }}" class="slide-images" alt=""
@@ -160,8 +171,8 @@
                                 class="inline-flex rounded-sm w-full justify-between womsm:justify-start items-center p-3 {{ $tac % 2 === 0 ? 'bg-customlightgreen' : '' }}">
                                 <div class="text-xs w-40 womsm:text-sm text-left wommd:text-base text-[#0F172A]">
                                     {{ \Carbon\Carbon::parse($price->date)->format('F d, Y') }}</div>
-                                <div class="text-xs womsm:text-sm wommd:text-base womsm:ml-8 w-12 wommd:ml-16 font-bold text-[#0F172A]">
-                                    {{ '£' . number_format($price->price, 0, '.', ',') }}</div>
+                                <div class="text-xs text-end womsm:text-sm wommd:text-base womsm:ml-8 w-32 wommd:ml-16 font-bold text-[#0F172A]">
+                                    {{ $symbol ." " . number_format($price->price, 2) }}</div>
                                 @php
                                     $hasAddons = $price->tour->addonGroups()->exists();
                                     $bookUrl = $hasAddons ? "/bookAddon/{$price->id}" : "/book/{$price->id}";

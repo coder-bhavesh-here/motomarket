@@ -151,7 +151,14 @@
                         <div class="w-full">
                             <span class="form-label font-medium text-[#000F22]">Country</span>
                             <div class="items-center">
-                                <x-input id="country" placeholder="Please provide country" />
+                                {{-- <x-input id="country" placeholder="Please provide country" /> --}}
+                                <select name="country" style="width: 100%" id="country">
+                                    @foreach (config('countries.list') as $countryName)
+                                        <option value="{{ $countryName }}">
+                                            {{ $countryName }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>

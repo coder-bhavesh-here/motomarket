@@ -62,7 +62,16 @@
                                 {{ str_replace(',', ', ', $tour->countries) }}
                             </span>
                             <span class="text-sm font-semibold text-green">
-                                {{ isset($tour->prices[0]) ? '€ ' . $tour->prices[0]->price : 'N/A' }}
+                                @php
+                                    $currency = $tour->user->tour_currency;
+                                    $symbol = match ($currency) {
+                                        'euro' => '€',
+                                        'usd' => '$',
+                                        'gbp' => '£',
+                                        default => '€',
+                                    };
+                                @endphp
+                                {{ isset($tour->prices[0]) ? $symbol . ' ' . number_format($tour->prices[0]->price, 2) : 'N/A' }}
                             </span>
                         </span>
                     </p>
