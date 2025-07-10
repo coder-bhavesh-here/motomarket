@@ -297,7 +297,7 @@ class ProfileController extends Controller
 
         // Map request fields to DB columns explicitly
         $user->tour_operation_name = $request->input('name');
-        $user->tour_last_name = $request->input('last_name');
+        // $user->tour_last_name = $request->input('last_name');
         $user->tour_nickname = $request->input('nickname');
         $user->tour_dob = $request->input('dob');
         $user->tour_currency = $request->input('tour_currency');

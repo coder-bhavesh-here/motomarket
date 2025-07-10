@@ -215,8 +215,8 @@
     @else
         @foreach ($tour->tourQuestions as $question)
             <div class="pt-4 text-black">
+                <div class="text-base womsm:text-lg wommd:text-xl">Q. {{ $question->question }}</div>
                 @if ($question->is_answered)
-                    <div class="text-base womsm:text-lg wommd:text-xl">Q. {{ $question->question }}</div>
                     @if (Auth::check() && Auth::user()->id == $question->answered_by)
                         <form action="/tour-questions/answer/{{ $question->id }}" method="post">
                             @csrf
@@ -224,7 +224,7 @@
                             <x-button type="submit" class="primary-button mt-2" label="Update" />
                         </form>
                     @else
-                        <div class="text-xs womsm:text-sm mt-1 ml-1 wommd:text-2xl">A. {{ $question->answer }}</div>
+                        <div class="text-xs womsm:text-sm wommd:text-base mt-1 ml-1">A. {{ $question->answer }}</div>
                         @if (Auth::check() && Auth::user()->id == $tour->user_id)
                             {{-- Answer the question if the user is the tour creator --}}
                             <form action="/tour-questions/answer/{{ $question->id }}" method="post">

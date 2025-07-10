@@ -83,8 +83,8 @@
                     <div class="text-base italic" style="max-width: 300px; text-align: left">If you are a tour operator, you can open a tour operator account with us. Then you can advertise tours on WorldonMoto.com</div>
                 </div>
                 <div class="grid gap-y-6 mt-12">
-                    <a href="/profile" class="btn-orange">Tour Profile</a>
-                    <a class="btn-orange">Payment Settings</a>
+                    <a href="/tour-profile" class="btn-orange">Tour Profile</a>
+                    <a href="/payment/edit" class="btn-orange">Payment Settings</a>
                     <a href="/tour-management" class="btn-orange">Tour Management</a>
                     <a class="btn-orange">Customers / Bookings</a>
                     <a class="btn-orange">Team</a>

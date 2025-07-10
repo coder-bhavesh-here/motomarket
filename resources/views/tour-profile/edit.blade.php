@@ -1,4 +1,13 @@
 <x-app-layout>
+    <style>
+        .iti__country-container button {
+            border: unset !important;
+        }
+        .iti {
+            width: 100% !important;
+        }
+    </style>
+
     {{-- <x-slot name="header">
         <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
             <x-nav-link :href="route('profile.edit')" :active="request()->routeIs('profile.edit')">
@@ -52,17 +61,17 @@
                         </div> --}}
 
                         <div>
-                            <label class="font-bold text-black" for="name" value="Name">First Name</label>
+                            <label class="font-bold text-black" for="name" value="Name">Tour Operation Name</label>
                             <x-text-input id="name" name="name" type="text" class="mt-1 block w-full" :value="old('name', $user->tour_operation_name)"
                                 required autofocus autocomplete="name" />
                             <x-input-error class="mt-2" :messages="$errors->get('name')" />
                         </div>
-                        <div>
+                        {{-- <div>
                             <label class="font-bold text-black" for="tour_last_name" value="Last Name">Last Name</label>
                             <x-text-input id="tour_last_name" name="tour_last_name" type="text" class="mt-1 block w-full" :value="old('tour_last_name', $user->tour_last_name)"
                                 required autofocus autocomplete="tour_last_name" />
                             <x-input-error class="mt-2" :messages="$errors->get('tour_last_name')" />
-                        </div>
+                        </div> --}}
                         <div>
                             <label class="font-bold text-black" for="nickname" value="Nickname">Nickname</label>
                             <x-text-input id="nickname" name="nickname" type="text" class="mt-1 block w-full" :value="old('nickname', $user->tour_nickname)"
@@ -76,7 +85,7 @@
                         </div>
                         <div>
                             <label class="font-bold text-black" for="contact_number" value="Contact">Contact</label>
-                            <x-text-input id="contact_number" name="contact_number" type="text" class="mt-1 block w-full" :value="old('contact_number', $user->tour_contact_number)"
+                            <x-text-input id="contact_number" name="contact_number" type="text" class="mt-1 block w-full" :value="old('tour_contact_number', $user->tour_contact_number)"
                                 required autofocus autocomplete="contact_number" />
                             <x-input-error class="mt-2" :messages="$errors->get('contact_number')" />
                         </div>
@@ -232,4 +241,38 @@
         }
     </script>
     
+    
+    <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/intlTelInput.min.js"></script>
+    <script>
+        const phoneInput = document.querySelector("#contact_number");
+        const iti = window.intlTelInput(phoneInput, {
+            separateDialCode: true,
+            strictMode: true,
+            loadUtils: () => import("https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js"),
+        });
+        const storedNumber = "{{ old('tour_contact_number', $user->tour_contact_number ?? '') }}";
+        if (storedNumber) {
+            iti.setNumber(storedNumber); // Will auto-select country & fill number
+        }
+
+        // On form submit, replace input value with full number
+        const form = phoneInput.closest('form');
+        form.addEventListener("submit", function (e) {
+            // prevent default first
+            e.preventDefault();
+
+            if (iti.isValidNumber()) {
+                // Combine dial code + number
+                const fullNumber = iti.getNumber(); // E.g. +919999999999
+
+                // Set final value to input before real submission
+                phoneInput.value = fullNumber;
+
+                // now submit the form manually
+                form.submit();
+            } else {
+                alert("Please enter a valid phone number.");
+            }
+        });
+    </script>    
 </x-app-layout>
