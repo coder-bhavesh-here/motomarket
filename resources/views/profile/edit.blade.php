@@ -1,6 +1,7 @@
 <x-app-layout>
     <style>
-        .btn-orange {
+        .btn-green {
+            background: #556B2F;
             min-height: 36px !important;
             color: white !important;
             border-radius: 5px !important;
@@ -156,8 +157,8 @@
                         </div>
 
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                            <button type="submit" class="btn-orange w-full">Save</button>
-                            <a href="/profiles" class="btn-orange w-full text-center">Close</a>
+                            <button type="submit" class="btn-green w-full">Save</button>
+                            <a href="/profiles" class="btn-green w-full text-center">Close</a>
                         </div>    
                     </form>
                     <script>
