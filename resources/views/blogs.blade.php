@@ -18,8 +18,8 @@
 
     <div class="grid grid-cols-1 p-16 womsm:grid-cols-2 wommd:grid-cols-4 gap-6">
         @foreach ($blogs as $blog)
-            <a href="/blogs/{{ $blog->id }}">
-                <div class="rounded-2xl overflow-hidden shadow-md bg-white">
+        <div class="rounded-2xl overflow-hidden shadow-md bg-white">
+                    <a href="/blogs/{{ $blog->id }}">
                     <div class="relative">
                         <img class="w-full h-56 object-cover rounded-t-3xl" src="{{ asset('storage/' . $blog->image) }}" alt="Blog Image">
                 
@@ -39,8 +39,8 @@
                             {!! Str::limit(strip_tags($blog->content), 150, '...') !!}
                         </p>
                     </div>
+                </a>
                 </div>        
-            </a>
         @endforeach
     </div>
 </main>
