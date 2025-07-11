@@ -12,7 +12,7 @@
     }
 @endphp
 <main class="mt-6">
-    <div class="brand-name ml-18">
+    <div class="brand-name ml-16">
         <b style="font-size: 24px; color:black; margin: 5% 0;">WoM Blog</b>
     </div>
 
