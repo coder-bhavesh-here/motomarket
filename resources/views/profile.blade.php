@@ -13,12 +13,21 @@
     <div class="grid grid-cols-1 wommd:grid-cols-2">
         <div class="text-center justify-self-center mt-52">
             <div class="text-[#0F172A] font-bold text-xs womsm:text-sm wommd:text-base mb-4">PERSONAL PROFILE</div>
-            <div class="justify-center items-center flex">
-                <img id="profile-picture-img" style="height: 300px; width: 300px;"
+            <div class="justify-center items-center flex relative">
+                <img id="profile-picture-image" style="height: 300px; width: 300px;"
+                    src="{{ $user->profile_picture ? asset('storage/' . $user->profile_picture) : asset('storage/uploads/profile.jpg') }}"
+                    alt="Profile Picture" class="rounded-full">
+                <label for="profile-picture-input" class="absolute bottom-3 right-3 cursor-pointer">
+                    <img style="width: 30px; height: 24px;" src="{{ asset('images/camera-green.png') }}">
+                </label>
+                <input id="profile-picture-input" name="profile_picture" type="file" class="hidden" accept="image/*">
+            </div>
+            {{-- <div class="justify-center items-center flex">
+                <img id="profile-picture-image" style="height: 300px; width: 300px;"
                     src="{{ $user->profile_picture ? asset('storage/' . $user->profile_picture) : asset('storage/uploads/profile.jpg') }}"
                     alt="Profile Picture" class="rounded-full">
                 <img style="width: 30px; height: 24px;" src="{{ asset('images/camera-green.png') }}" class="ml-2">
-            </div>
+            </div> --}}
             <div class="mt-4 text-lg womsm:text-xl wommd:text-2xl font-semibold text-black">{{ $user->name }}</div>
             <div class="flex justify-center mt-4">
                 <div class="text-base italic" style="max-width: 300px; text-align: left">This is your personal account. You will use the details here when you book a tour as a rider.</div>
@@ -52,7 +61,7 @@
             <div class="text-[#0F172A] font-bold text-xs womsm:text-sm wommd:text-base my-4">TOUR OPERATOR PROFILE</div>
             <div id="disabled">
                 <div class="justify-center items-center flex">
-                    <img id="profile-picture-img" style="height: 300px; width: 300px;"
+                    <img id="profile-picture-image" style="height: 300px; width: 300px;"
                         src="{{ asset('images/circle.png') }}"
                         alt="Profile Picture" class="rounded-full">
                     <img style="width: 30px; height: 24px;" src="{{ asset('images/camera-gray.png') }}" class="ml-2">
@@ -72,12 +81,21 @@
                 </div>
             </div>
             <div id="enabled">
-                <div class="justify-center items-center flex">
-                    <img id="profile-picture-img" style="height: 300px; width: 300px;"
+                <div class="justify-center items-center flex relative mt-10">
+                    <img id="tour-picture-img" style="height: 300px; width: 300px;"
+                        src="{{ $user->tour_profile_picture ? asset('storage/' . $user->tour_profile_picture) : asset('storage/uploads/profile.jpg') }}"
+                        alt="Tour Profile Picture" class="rounded-full">
+                    <label for="tour-picture-input" class="absolute bottom-3 right-3 cursor-pointer">
+                        <img style="width: 30px; height: 24px;" src="{{ asset('images/camera-green.png') }}">
+                    </label>
+                    <input id="tour-picture-input" name="tour_profile_picture" type="file" class="hidden" accept="image/*">
+                </div>
+                {{-- <div class="justify-center items-center flex">
+                    <img id="profile-picture-image" style="height: 300px; width: 300px;"
                         src="{{ $user->tour_profile_picture ? asset('storage/' . $user->tour_profile_picture) : asset('storage/uploads/profile.jpg') }}"
                         alt="Tour Profile Picture" class="rounded-full">
                     <img style="width: 30px; height: 24px;" src="{{ asset('images/camera-green.png') }}" class="ml-2">
-                </div>
+                </div> --}}
                 <div class="mt-4 text-lg womsm:text-xl wommd:text-2xl font-semibold text-black">Your Tour Profile</div>
                 <div class="flex justify-center mt-4">
                     <div class="text-base italic" style="max-width: 300px; text-align: left">If you are a tour operator, you can open a tour operator account with us. Then you can advertise tours on WorldonMoto.com</div>
@@ -90,6 +108,17 @@
                     <a class="btn-orange">Team</a>
                     <a class="btn-orange">Reports</a>
                     <a class="btn-orange">Verification</a>
+                </div>
+            </div>
+        </div>
+        <!-- Croppie Modal -->
+        <div class="w-full">
+            <div id="croppie-modal" class="fixed inset-0 z-50 bg-black bg-opacity-50 hidden justify-center items-center">
+                <div class="bg-white p-4 rounded shadow-lg text-center">
+                    <div id="croppie-container" class="mt-32 mb-4"></div>
+                    <img src="{{asset('images/loader.gif')}}" class="w-16 justify-self-center mb-4 hidden" id="loader">
+                    <button id="crop-image-btn" class="bg-indigo-600 text-white px-4 py-2 rounded">Crop & Save</button>
+                    <button onclick="closeCroppie()" class="ml-2 text-red-600">Cancel</button>
                 </div>
             </div>
         </div>
@@ -134,5 +163,130 @@
                 $("#disabled").show();
             }
         }
+    </script>
+    {{-- <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const setupImageUpload = (inputId, imgId, route) => {
+                const input = document.getElementById(inputId);
+                const img = document.getElementById(imgId);
+        
+                input.addEventListener('change', function () {
+                    const file = this.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            img.src = e.target.result;
+                        };
+                        reader.readAsDataURL(file);
+        
+                        const formData = new FormData();
+                        formData.append(input.name, file);
+        
+                        fetch(route, {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                            },
+                            body: formData
+                        })
+                        .then(data => {
+                            if (data.status !== 'success') {
+                                alert('Image upload failed');
+                            }
+                        })
+                        .then(response => response.json())
+                        .catch(err => {
+                            console.error(err);
+                            alert('Something went wrong');
+                        });
+                    }
+                });
+            };
+        
+            setupImageUpload('profile-picture-input', 'profile-picture-image', '{{ route("update.profile.picture") }}');
+            setupImageUpload('tour-picture-input', 'tour-picture-img', '{{ route("update.tour.picture") }}');
+        });
+    </script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css" />
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            let croppieInstance = null;
+            let activeTarget = null;
+            let uploadRoute = '';
+
+            const croppieModal = document.getElementById('croppie-modal');
+            const cropBtn = document.getElementById('crop-image-btn');
+            const croppieContainer = document.getElementById('croppie-container');
+
+            const showCroppie = (imgUrl, targetImgId, route) => {
+                activeTarget = document.getElementById(targetImgId);
+                uploadRoute = route;
+
+                croppieModal.classList.remove('hidden');
+
+                if (croppieInstance) croppieInstance.destroy();
+
+                croppieInstance = new Croppie(croppieContainer, {
+                    viewport: { width: 250, height: 250, type: 'circle' },
+                    boundary: { width: 300, height: 300 },
+                    showZoomer: true
+                });
+
+                croppieInstance.bind({ url: imgUrl });
+            };
+
+            window.closeCroppie = () => {
+                croppieModal.classList.add('hidden');
+                if (croppieInstance) croppieInstance.destroy();
+                croppieInstance = null;
+            };
+
+            cropBtn.addEventListener('click', function () {
+                $("#loader").show();
+                croppieInstance.result({ type: 'base64', format: 'png', size: 'viewport' })
+                    .then(function (base64) {
+                        // Preview cropped image
+
+                        // Upload to server
+                        const formData = new FormData();
+                        formData.append('cropped_image', base64);
+
+                        fetch(uploadRoute, {
+                            method: 'POST',
+                            headers: { 'X-CSRF-TOKEN': '{{ csrf_token() }}' },
+                            body: formData
+                        })
+                        .then(res => res.json())
+                        .then(data => {
+                            if (data.status !== 'success') alert('Upload failed');
+                            $("#loader").hide();
+                            window.location.reload();
+                        })
+                        .catch(err => {
+                            console.error(err);
+                            alert('Upload error');
+                        });
+                    });
+            });
+
+            const setupCroppieTrigger = (inputId, targetImgId, route) => {
+                const input = document.getElementById(inputId);
+                input.addEventListener('change', function () {
+                    const file = this.files[0];
+                    if (file) {
+                        const reader = new FileReader();
+                        reader.onload = function (e) {
+                            showCroppie(e.target.result, targetImgId, route);
+                        };
+                        reader.readAsDataURL(file);
+                    }
+                });
+            };
+
+            setupCroppieTrigger('profile-picture-input', 'profile-picture-image', '{{ route("update.profile.picture") }}');
+            setupCroppieTrigger('tour-picture-input', 'tour-picture-img', '{{ route("update.tour.picture") }}');
+        });
     </script>
 </x-app-layout>

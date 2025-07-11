@@ -80,6 +80,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/payment/update', [ProfileController::class, 'paymentUpdate'])->name('payment.update');
     Route::post('/tour-questions/ask/{tourId}', [TourController::class, 'askQuestion'])->name('tour-questions.ask');
     Route::post('/tour-questions/answer/{questionId}', [TourController::class, 'answerQuestion'])->name('tour-questions.answer');
+    Route::post('/update-profile-picture', [ProfileController::class, 'updateProfilePicture'])->name('update.profile.picture');
+    Route::post('/update-tour-picture', [ProfileController::class, 'updateTourPicture'])->name('update.tour.picture');
 });
 
 Route::get('/payment/success', [TourController::class, 'paymentSuccess'])->name('payment.success');

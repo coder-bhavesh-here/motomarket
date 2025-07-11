@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
 {
@@ -393,5 +394,43 @@ class ProfileController extends Controller
     {
         $user = user::whereRaw('LOWER(tour_nickname) = ?', [strtolower($nickname)])->first();
         return view('tour_operators.show', compact('user'));
+    }
+
+    public function updateProfilePicture(Request $request)
+    {
+        $request->validate([
+            'cropped_image' => 'required|string'
+        ]);
+
+        $user = auth()->user();
+        $image = $request->input('cropped_image');
+        $imageData = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $image));
+
+        $filename = 'uploads/profile_' . time() . '.png';
+        Storage::disk('public')->put($filename, $imageData);
+
+        $user->profile_picture = $filename;
+        $user->save();
+
+        return response()->json(['status' => 'success']);
+    }
+
+    public function updateTourPicture(Request $request)
+    {
+        $request->validate([
+            'cropped_image' => 'required|string'
+        ]);
+
+        $user = auth()->user();
+        $image = $request->input('cropped_image');
+        $imageData = base64_decode(preg_replace('#^data:image/\w+;base64,#i', '', $image));
+
+        $filename = 'uploads/tour_' . time() . '.png';
+        Storage::disk('public')->put($filename, $imageData);
+
+        $user->tour_profile_picture = $filename;
+        $user->save();
+
+        return response()->json(['status' => 'success']);
     }
 }
