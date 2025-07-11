@@ -13,11 +13,11 @@
     <div class="grid grid-cols-1 wommd:grid-cols-2">
         <div class="text-center justify-self-center mt-52">
             <div class="text-[#0F172A] font-bold text-xs womsm:text-sm wommd:text-base mb-4">PERSONAL PROFILE</div>
-            <div class="justify-center items-center flex relative">
+            <div class="justify-center items-center flex">
                 <img id="profile-picture-image" style="height: 300px; width: 300px;"
                     src="{{ $user->profile_picture ? asset('storage/' . $user->profile_picture) : asset('storage/uploads/profile.jpg') }}"
                     alt="Profile Picture" class="rounded-full">
-                <label for="profile-picture-input" class="absolute bottom-3 right-3 cursor-pointer">
+                <label for="profile-picture-input" class="bottom-3 right-3 cursor-pointer ml-4">
                     <img style="width: 30px; height: 24px;" src="{{ asset('images/camera-green.png') }}">
                 </label>
                 <input id="profile-picture-input" name="profile_picture" type="file" class="hidden" accept="image/*">
@@ -81,11 +81,11 @@
                 </div>
             </div>
             <div id="enabled">
-                <div class="justify-center items-center flex relative mt-10">
+                <div class="justify-center items-center flex">
                     <img id="tour-picture-img" style="height: 300px; width: 300px;"
                         src="{{ $user->tour_profile_picture ? asset('storage/' . $user->tour_profile_picture) : asset('storage/uploads/profile.jpg') }}"
                         alt="Tour Profile Picture" class="rounded-full">
-                    <label for="tour-picture-input" class="absolute bottom-3 right-3 cursor-pointer">
+                    <label for="tour-picture-input" class="bottom-3 right-3 cursor-pointer ml-4">
                         <img style="width: 30px; height: 24px;" src="{{ asset('images/camera-green.png') }}">
                     </label>
                     <input id="tour-picture-input" name="tour_profile_picture" type="file" class="hidden" accept="image/*">
