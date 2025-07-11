@@ -58,7 +58,7 @@
         </div>
     </div>
 </div>
-<div class="w-full grid grid-cols-1 xl:grid-cols-4">
+<div class="w-full grid grid-cols-1 xl:grid-cols-5">
     <div class="col-span-3">
         <div class="px-4 py-6">
             <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -164,7 +164,7 @@
             <button class="continue primary-button w-auto mb-4" data-id="{{ $selectedDate->id }}">Complete Booking Details</button>
         </div>
     </div>
-    <div class="m-10">
+    <div class="m-10 col-span-2">
         <div class="rounded-2xl bg-[#556B2F0F]">
             <img class="max-h-[300px] rounded-lg object-cover h-full w-full"
                 src="{{ isset($tour->images) && isset($tour->images[0]->image_path) ? asset('storage') . '/' . $tour->images[0]->image_path : 'https://photos.smugmug.com/Galleries/Motorcycles/i-jX3tNwR/0/K2H4fw8P5MqPD8SRLWSrRZm4479d3ZvH8HL773j2D/L/cj.photos-_CJ09043-L.jpg' }}"
