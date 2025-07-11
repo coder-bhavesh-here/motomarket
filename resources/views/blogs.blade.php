@@ -24,7 +24,7 @@
                         <img class="w-full h-56 object-cover rounded-t-3xl" src="{{ asset('storage/' . $blog->image) }}" alt="Blog Image">
                     </a>
             
-                    <div class="absolute top-2 left-2 bg-[#b5a976] text-white text-sm font-semibold px-2 py-1 rounded-md">
+                    <div class="absolute top-2 left-2 bg-[#596a37] text-white text-sm font-semibold px-2 py-1 rounded-md">
                         {{ \Carbon\Carbon::parse($blog->created_at)->format('Y') }}
                     </div>
                 </div>
