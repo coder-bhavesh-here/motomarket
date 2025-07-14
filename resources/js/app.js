@@ -44,7 +44,6 @@ $(".cancel-button").click(function (e) {
         },
         dataType: "json",
         success: function (response) {
-            alert(response.success);
             window.location.href = "/tour-management";
         },
     });
