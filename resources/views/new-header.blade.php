@@ -939,7 +939,7 @@
                         </div>
                     </a>
                     <div class="hidden wommd:block lg:justify-center lg:col-start-2">
-                        <div class="hidden wommd:block lg:justify-center lg:col-start-2" style="
+                        {{-- <div class="hidden wommd:block lg:justify-center lg:col-start-2" style="
                             background: red;
                             color: white;
                             font-size: xx-large;
@@ -947,7 +947,7 @@
                         ">
                         DEMO SITE <br> UNDER TESTING
 
-                                            </div>
+                                            </div> --}}
                     </div>
                     @if (Route::has('login'))
                         <nav class="-mx-3 hidden womsm:flex flex-1 items-center justify-end mr-8">
