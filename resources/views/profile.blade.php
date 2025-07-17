@@ -57,7 +57,7 @@
                     <input type="checkbox" name="" id="tour_profile" class="h-6 w-6 rounded-md enable-profile" {{ $user->tour_profile_enabled ? 'checked' : '' }}>
                 </div>
             </div>
-            <div class="text-[#0F172A] text-sm my-4">Agree to <a href="#" class="font-bold underline" style="color: #FB5605;">Tour Operator Terms of Service</a><input type="checkbox" name="terms" {{ $user->is_tour_policy_checked ? 'checked' : '' }} style="border-color: #FB5605;" id="terms" class="rounded ml-4 enable-profile"></div>
+            <div class="text-[#0F172A] text-sm my-4">Agree to <a href="{{ 'docs/operator-terms-service.pdf' }}" target="_blank" class="font-bold underline" style="color: #FB5605;">Tour Operator Terms of Service</a><input type="checkbox" name="terms" {{ $user->is_tour_policy_checked ? 'checked' : '' }} style="border-color: #FB5605;" id="terms" class="rounded ml-4 enable-profile"></div>
             <div class="text-[#0F172A] font-bold text-xs womsm:text-sm wommd:text-base my-4">TOUR OPERATOR PROFILE</div>
             <div id="disabled">
                 <div class="justify-center items-center flex">
