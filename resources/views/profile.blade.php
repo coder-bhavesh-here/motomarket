@@ -10,7 +10,7 @@
             font-size: 16px !important;
         }
     </style>
-    <div class="grid grid-cols-1 wommd:grid-cols-2">
+    <div class="grid grid-cols-1 md:grid-cols-2">
         <div class="text-center justify-self-center mt-52">
             <div class="text-[#0F172A] font-bold text-xs womsm:text-sm wommd:text-base mb-4">PERSONAL PROFILE</div>
             <div class="justify-center items-center flex">
@@ -47,7 +47,7 @@
             </div>
         </div>
 
-        <div class="text-center justify-self-center">
+        <div class="text-center justify-self-center mt-4 md:mt-0">
             <div class="bg-[#FB5605] rounded-xl text-white p-4 flex items-center">
                 <div>
                     <div class="text-left text-xl font-bold">Enable tour operator profile</div>
