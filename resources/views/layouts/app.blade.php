@@ -38,10 +38,10 @@
     <div class="bg-white text-black/50 dark:bg-black dark:text-white/50" style="max-width: 1920px; width: 100%; margin: 0 auto;">
         <div class="relative min-h-screen flex flex-col selection:bg-[#FF2D20] selection:text-white">
             <div class="relative w-full">
-                <header class="grid grid-cols-2 items-center gap-2 wommd:grid-cols-3 pt-5 px-4">
+                <header class="grid grid-cols-2 items-center gap-2 wommd:grid-cols-3 pt-2 px-4">
                     <a href="{{ route('homepage') }}">
                         <div class="flex items-center lg:justify-start lg:col-start-1">
-                            <img class="womsm:w-2/4 wommd:w-2/4 ml-8" src="{{ asset('images/logo-text.png') }}"
+                            <img class="womsm:w-2/4 wommd:w-2/4 ml-2" src="{{ asset('images/logo-text.png') }}"
                                 alt="Logo">
                         </div>
                     </a>
@@ -53,7 +53,8 @@
                             text-align: center;
                         ">
                         DEMO SITE <br> UNDER TESTING
-                        </div>
+
+                                            </div>
                     </div>
                     @if (Route::has('login'))
                         <nav class="-mx-3 hidden womsm:flex flex-1 items-center justify-end mr-8">
@@ -74,7 +75,7 @@
                                     <img src="{{ asset('images/motorcycle.svg') }}" alt="Bike">
                                 </span>
                                 <span class="icon-box ml-4">
-                                        <a href="/my-favourite-tours">
+                                    <a href="/my-favourite-tours">
                                         <svg style="margin-left: 7px; margin-top: 3px;" width="24" height="22"
                                             viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path
@@ -86,22 +87,22 @@
                                 </span>
                             @endauth
                             <span class="ml-4">
-                                <a href="{{ url('/profiles') }}">
                                 @auth
                                     @php
-                                        $user = auth()->user();
+                                        $user = Auth::user();
                                     @endphp
+                                    <a href="{{ url('/profiles') }}">
                                     @endauth
                                     @if (isset($user) && $user != null && $user->profile_picture)
                                         <img id="profile-picture-img" style="height: 47px; width: 47px;"
                                             src="{{ asset('storage/' . $user->profile_picture) }}"
                                             alt="Profile Picture" class="rounded-full">
                                     @else
-                                        <img src="{{ asset('images/user.png') }}" alt="">
+                                        <a href="/profiles"><img src="{{ asset('images/user.png') }}" alt=""></a>
                                     @endif
                                     @auth
-                                    @endauth
-                                </a>
+                                    </a>
+                                @endauth
                             </span>
                         </nav>
                         <img class="block womsm:hidden justify-self-end" onclick="openPopup()"
