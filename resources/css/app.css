@@ -657,7 +657,7 @@ input {
   .tox-statusbar {
     display: none;
   }
-  .tox-editor-header, .tox-toolbar__primary, .tox-tbtn {
+  .tox-editor-header, .tox-toolbar__primary, .tox-tbtn, .tox-statusbar {
     background-color: #E6E6E6 !important;
   }
   
