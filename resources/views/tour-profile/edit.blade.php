@@ -29,10 +29,11 @@
         </div>
     </x-slot> --}}
 
-    <div class="py-12">
+    <div>
         <div class="mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8">
-                <span class="text-orange text-xl font-semibold">Tour Profile</span>
+                <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > <u><a href="{{ route('profiles') }}">Settings</a></u> > Tour Profile</p>
+                <span class="block text-orange text-xl womsm:text-2xl wommd:text-3xl font-bold my-6">Tour Profile</span>
                 <div class="w-full">
                     <form method="POST" action="{{ route('tour-profile.updates') }}" class="mt-6 space-y-6 w-full wommd:w-3/5" enctype="multipart/form-data">
                         @csrf

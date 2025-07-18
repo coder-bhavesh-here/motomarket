@@ -29,7 +29,7 @@
     }
 </style>
 <main class="mt-2 px-6">
-    <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > Tour Management</p>
+    <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > <u><a href="{{ route('profiles') }}">Settings</a></u> > Tour Management</p>
     <span class="block text-orange text-xl womsm:text-2xl wommd:text-3xl font-bold my-6">Tour Management</span>
     <div class="w-full grid grid-cols-1 womsm:grid-cols-2 items-center justify-between">
         <form action="/tour-management" method="GET" class="w-full flex">
