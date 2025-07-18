@@ -651,3 +651,13 @@ input {
     background-color: #E6EDF5 !important;
     color: black;
 }
+.tox-edit-area__iframe {
+    background-color: #E6EDF5 !important;
+  }
+  .tox-statusbar {
+    display: none;
+  }
+  .tox-editor-header, .tox-toolbar__primary, .tox-tbtn {
+    background-color: #E6E6E6 !important;
+  }
+  
