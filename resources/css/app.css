@@ -647,7 +647,9 @@ p.blog-title {
     font-weight: 700;
     font-size: 14px;
   }
-input[type="text"] {
+input[type="text"],
+input[type="email"],
+input[type="date"] {
     background-color: #E6EDF5 !important;
     color: black;
 }
