@@ -647,7 +647,7 @@ p.blog-title {
     font-weight: 700;
     font-size: 14px;
   }
-input {
+input[type="text"] {
     background-color: #E6EDF5 !important;
     color: black;
 }
