@@ -15,7 +15,7 @@
             </button>
         </div>
         <div id="addonGroupsWrapper" class="space-y-10">
-            <div class="p-6 rounded bg-[#F1F5F9] border relative addon-group" data-group-index="0">
+            {{-- <div class="p-6 rounded bg-[#F1F5F9] border relative addon-group" data-group-index="0">
                 <div class="flex justify-between items-center mb-4">
                     <label class="font-bold text-lg">Add on Group Name</label>
                     <input type="text" name="groups[0][name]" class="w-[80%] border rounded p-2" required />
@@ -58,13 +58,13 @@
                 <div class="flex justify-center mt-4">
                     <button type="button" class="custom-orange-btn add-addon">+ New Add on</button>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </form>
 @push('scripts')
 <script>
-let groupIndex = 1;
+let groupIndex = 0;
 
 document.getElementById('addGroupBtn').addEventListener('click', function () {
     const wrapper = document.getElementById('addonGroupsWrapper');

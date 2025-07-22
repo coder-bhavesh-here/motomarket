@@ -18,8 +18,8 @@ class TourWizard extends WizardComponent
         TourOne::class,
         TourTwo::class,
         TourThree::class,
-        TourFour::class,
         TourFive::class,
+        TourFour::class,
         TourSix::class,
     ];
 

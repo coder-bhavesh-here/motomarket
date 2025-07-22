@@ -11,7 +11,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <div>
         <div class="my-10 sm:px-6 lg:px-8">
-            <div class="flex items-center">
+            <div class="flex items-top">
                 <div class="w-1/6 font-bold text-black">
                     Tour Title
                 </div>
@@ -22,7 +22,7 @@
             </div>
         </div>
         <div class="my-10 sm:px-6 lg:px-8">
-            <div class="flex items-center">
+            <div class="flex items-top">
                 <div class="w-1/6 font-bold text-black">
                     Tour Riding Style
                 </div>
@@ -49,7 +49,7 @@
             </div>
         </div>
         <div class="my-10 sm:px-6 lg:px-8">
-            <div class="flex items-center">
+            <div class="flex items-top">
                 <div class="w-1/6 font-bold text-black">
                     Riding style more info
                 </div>
@@ -64,7 +64,7 @@
             </div>
         </div>
         <div class="my-10 sm:px-6 lg:px-8">
-            <div class="flex items-center">
+            <div class="flex items-top">
                 <div class="w-1/6 font-bold text-black">
                     Rider Capability
                 </div>
@@ -117,7 +117,7 @@
             </div>
         </div>
         <div class="my-10 sm:px-6 lg:px-8">
-            <div class="flex items-center">
+            <div class="flex items-top">
                 <div class="w-1/6 font-bold text-black">
                     Rider capability more info
                 </div>
@@ -132,7 +132,7 @@
             </div>
         </div>
         <div class="my-10 sm:px-6 lg:px-8">
-            <div class="flex items-center">
+            <div class="flex items-top">
                 <div class="w-1/6 font-bold text-black">
                     Maximum riders
                 </div>
@@ -148,7 +148,7 @@
             </div>
         </div>
         <div class="my-10 sm:px-6 lg:px-8">
-            <div class="flex items-center">
+            <div class="flex items-top">
                 <div class="w-1/6 font-bold text-black">
                     Number of guides
                 </div>
@@ -164,7 +164,7 @@
             </div>
         </div>
         <div class="my-10 sm:px-6 lg:px-8">
-            <div class="flex items-center">
+            <div class="flex items-top">
                 <div class="w-1/6 font-bold text-black">
                     Bike rental or own
                 </div>
@@ -191,7 +191,7 @@
             </div>
         </div>
         <div class="my-10 sm:px-6 lg:px-8">
-            <div class="flex items-center">
+            <div class="flex items-top">
                 <div class="w-1/6 font-bold text-black">
                     Bike Specification
                 </div>
@@ -205,7 +205,7 @@
             </div>
         </div>
         <div class="my-10 sm:px-6 lg:px-8">
-            <div class="flex items-center">
+            <div class="flex items-top">
                 <div class="w-1/6 font-bold text-black">
                     Rent Gear?
                 </div>
@@ -222,7 +222,7 @@
             </div>
         </div>
         <div class="my-10 sm:px-6 lg:px-8">
-            <div class="flex items-center">
+            <div class="flex items-top">
                 <div class="w-1/6 font-bold text-black">
                     2-up Riding?
                 </div>
@@ -243,7 +243,7 @@
             </div>
         </div>
         <div class="my-10 sm:px-6 lg:px-8">
-            <div class="flex items-center">
+            <div class="flex items-top">
                 <div class="w-1/6 font-bold text-black">
                     Total Distance
                 </div>
@@ -262,7 +262,7 @@
         </div>
         
         <div class="my-10 sm:px-6 lg:px-8">
-            <div class="flex items-center">
+            <div class="flex items-top">
                 <div class="w-1/6 font-bold text-black">
                     Countries
                 </div>
@@ -289,7 +289,7 @@
         </div>
         
         <div class="my-10 sm:px-6 lg:px-8">
-            <div class="flex items-center">
+            <div class="flex items-top">
                 <div class="w-1/6 font-bold text-black">
                     Tour Support
                 </div>
@@ -322,7 +322,7 @@
         </div>
         
         <div class="my-10 sm:px-6 lg:px-8">
-            <div class="flex items-center">
+            <div class="flex items-top">
                 <div class="w-1/6 font-bold text-black">
                     Bike Insurance
                 </div>
@@ -362,7 +362,7 @@
             </div>
         </div>
         <div class="my-10 sm:px-6 lg:px-8">
-            <div class="flex items-center">
+            <div class="flex items-top">
                 <div class="w-1/6 font-bold text-black">
                     Other insurance notes
                 </div>
@@ -376,7 +376,7 @@
             </div>
         </div>
         {{-- <div class="my-10 sm:px-6 lg:px-8">
-            <div class="flex items-center">
+            <div class="flex items-top">
                 <div class="w-1/6 font-bold text-black">
                     Tour Duration
                 </div>
@@ -394,7 +394,7 @@
             </div>
         </div>
         <div class="my-10 sm:px-6 lg:px-8">
-            <div class="flex items-center">
+            <div class="flex items-top">
                 <div class="w-1/6 font-bold text-black">
                     Number of rest days
                 </div>
