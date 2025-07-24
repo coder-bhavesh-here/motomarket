@@ -6,7 +6,7 @@
             border-radius: 5px !important;
             border: unset !important;
             font-weight: 700 !important;
-            padding: 6px 20px !important;
+            padding: 14px 20px !important
             font-size: 16px !important;
         }
 
