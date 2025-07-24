@@ -117,8 +117,8 @@
                 <div class="bg-white p-4 rounded shadow-lg text-center">
                     <div id="croppie-container" class="mt-32 mb-4"></div>
                     <img src="{{asset('images/loader.gif')}}" class="w-16 justify-self-center mb-4 hidden" id="loader">
-                    <button id="crop-image-btn" class="bg-indigo-600 text-white px-4 py-2 rounded">Crop & Save</button>
-                    <button onclick="closeCroppie()" class="ml-2 text-red-600">Cancel</button>
+                    <button id="crop-image-btn" class="primary-button px-4 py-2 rounded">Crop & Save</button>
+                    <button onclick="closeCroppie()" class="ml-2 btn-orange">Cancel</button>
                 </div>
             </div>
         </div>
