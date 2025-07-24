@@ -122,7 +122,7 @@ document.querySelectorAll(".save-exit-button ").forEach(function (element) {
                     const nextStep = currentStep + 1;
                     url.searchParams.set("activeStep", nextStep);
                     url.searchParams.set("tour_id", response.tour_id);
-                    window.location.href = "/tours";
+                    window.location.href = "/profiles";
                 },
             });
         }
@@ -164,7 +164,7 @@ document.querySelectorAll(".save-exit-button ").forEach(function (element) {
                     const nextStep = currentStep + 1;
                     url.searchParams.set("activeStep", nextStep);
                     url.searchParams.set("tour_id", response.tour_id);
-                    window.location.href = "/tours";
+                    window.location.href = "/profiles";
                 },
             });
         }
@@ -200,7 +200,7 @@ document.querySelectorAll(".save-exit-button ").forEach(function (element) {
                     const nextStep = currentStep + 1;
                     url.searchParams.set("activeStep", nextStep);
                     url.searchParams.set("tour_id", response.tour_id);
-                    window.location.href = "/tours";
+                    window.location.href = "/profiles";
                 },
             });
         }
@@ -237,7 +237,7 @@ document.querySelectorAll(".save-exit-button ").forEach(function (element) {
                     const nextStep = currentStep + 1;
                     url.searchParams.set("activeStep", nextStep);
                     url.searchParams.set("tour_id", response.tour_id);
-                    window.location.href = "/tours";
+                    window.location.href = "/profiles";
                 },
             });
         }
@@ -276,7 +276,7 @@ document.querySelectorAll(".save-exit-button ").forEach(function (element) {
                     const nextStep = currentStep + 1;
                     url.searchParams.set("activeStep", nextStep);
                     url.searchParams.set("tour_id", response.tour_id);
-                    window.location.href = "/tours";
+                    window.location.href = "/profiles";
                 },
             });
         }

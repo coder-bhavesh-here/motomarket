@@ -89,11 +89,11 @@
                                 required autofocus autocomplete="nickname" />
                             <x-input-error class="mt-2" :messages="$errors->get('nickname')" />
                         </div>
-                        <div>
+                        {{-- <div>
                             <label class="font-bold text-black" for="dob" value="DOB">DOB</label>
                             <input type="date" name="dob" id="dob" class="w-full border-[#d1d5db] rounded-md" value="{{$user->tour_dob}}">
                             <x-input-error class="mt-2" :messages="$errors->get('dob')" />
-                        </div>
+                        </div> --}}
                         <div>
                             <label class="font-bold text-black" for="contact_number" value="Contact">Contact</label>
                             <x-text-input id="contact_number" name="contact_number" type="text" class="mt-1 block w-full" :value="old('tour_contact_number', $user->tour_contact_number)"
@@ -118,7 +118,7 @@
 
                         <div>
                             <input type="hidden" id="introduction_val" value="{{ $user->tour_introduction }}">
-                            <label class="font-bold text-black" for="introduction" value="Introduce Yourself">Introduce Yourself</label>
+                            <label class="font-bold text-black" for="introduction" value="About your Tour Profile">About your Tour Profile</label>
                             <x-head.tinymce-config />
                             <x-textarea class="editorBlock" id="introduction" name="introduction" />
                         </div>
@@ -126,7 +126,7 @@
                             $ridingImages = is_array($user->tour_riding_images) ? $user->tour_riding_images : json_decode($user->tour_riding_images ?? '[]', true);
                         @endphp
                         <div>
-                            <label class="font-bold text-black" for="description" value="Add upto 10 photos showcasing your riding">Add upto 10 photos showcasing your riding</label>
+                            <label class="font-bold text-black" for="description" value="Photos to highlight your tour profile">Photos to highlight your tour profile</label>
                             <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mt-4">
                                 @for ($i = 0; $i <= 9; $i++)
                                     <label for="riding_images_{{ $i }}"
