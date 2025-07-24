@@ -377,15 +377,16 @@ th {
     border-radius: 7px;
     font-size: 18px;
 }
-.btn-orange {
+.btn-orange {    
     min-height: 44px;
     width: auto;
-    border: unset !important;
-    background-color: #FB5605 !important;
-    color: white !important;
-    border-radius: 7px;
-    padding: 3px 18px;
-    font-size: 14px;
+    border: unset!important;
+    background-color: #fb5605!important;
+    color: #fff!important;
+    border-radius: 5px;
+    font-weight: 700;
+    padding: 14px 28px;
+    font-size: 16px;
 }
 #preview img {
     width: 150px;
