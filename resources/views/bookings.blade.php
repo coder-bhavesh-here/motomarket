@@ -1,20 +1,4 @@
 <x-app-layout>
-    <x-slot name="header">
-        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-            <x-nav-link :href="route('tours.profile')" :active="request()->routeIs('tours.profile')">
-                {{ __('Tour Profile') }}
-            </x-nav-link>
-            <x-nav-link :href="route('tours.settings')" :active="request()->routeIs('tours.settings')">
-                {{ __('Tour Creation Settings') }}
-            </x-nav-link>
-            <x-nav-link :href="route('tours')" :active="request()->routeIs('tours')">
-                {{ __('Tour Advertising') }}
-            </x-nav-link>
-            <x-nav-link :href="route('bookings')" :active="request()->routeIs('bookings')">
-                {{ __('Booking Orders') }}
-            </x-nav-link>
-        </div>
-    </x-slot>
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-6">
             <div class="p-4 sm:p-8 bg-white dark:bg-gray-800 shadow sm:rounded-lg">
