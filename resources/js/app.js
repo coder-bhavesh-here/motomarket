@@ -32,22 +32,27 @@ $(".submit-button").click(function (e) {
 $(".cancel-button").click(function (e) {
     const url = new URL(window.location.href);
     let tour_id = parseInt(url.searchParams.get("tour_id")) || undefined;
-    if (tour_id === undefined) {
-        alert("Invalid Tour");
+    let currentStep = parseInt(url.searchParams.get("activeStep")) || 0;
+    if(currentStep !== 0) {
+        if (tour_id === undefined) {
+            alert("Invalid Tour");
+            return false;
+        }
+        $.ajax({
+            type: "get",
+            url: "/tours/cancel/"+tour_id,
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+            },
+            dataType: "json",
+            success: function (response) {
+                window.location.href = "/tour-management";
+            },
+        });
         return false;
+    } else {
+        window.location.href = "/tour-management";
     }
-    $.ajax({
-        type: "get",
-        url: "/tours/cancel/"+tour_id,
-        headers: {
-            "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
-        },
-        dataType: "json",
-        success: function (response) {
-            window.location.href = "/tour-management";
-        },
-    });
-    return false;
 });
 
 document.querySelectorAll(".save-exit-button ").forEach(function (element) {
