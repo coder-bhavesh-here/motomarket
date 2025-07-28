@@ -138,39 +138,43 @@
     </div>
 </div>
 <script>
-    document.getElementById('multiUploadInput').addEventListener('change', function (e) {
-        const files = e.target.files;
-        if (!files.length) return;
+    document.addEventListener('DOMContentLoaded', function () {
+        console.log("DOM fully loaded");
+        const input = document.getElementById('bulkImageInput');
 
-        const allInputs = document.querySelectorAll('input[type="file"][name^="riding_images"]');
-        let fileIndex = 0;
+        input.addEventListener('change', function (e) {
+            const files = e.target.files;
+            if (!files.length) return;
 
-        allInputs.forEach((input, index) => {
-            if (fileIndex >= files.length) return;
+            const allInputs = document.querySelectorAll('input[type="file"][name^="riding_images"]');
+            let fileIndex = 0;
 
-            const previewBox = document.getElementById('preview_' + index);
+            allInputs.forEach((input, index) => {
+                if (fileIndex >= files.length) return;
 
-            // Check if already has an image — custom logic
-            const hasExistingImage = previewBox.querySelector('img') !== null;
+                const previewBox = document.getElementById('preview_' + index);
 
-            if (!hasExistingImage && !input.files.length) {
-                const dataTransfer = new DataTransfer();
-                dataTransfer.items.add(files[fileIndex]);
+                // Check if already has an image — custom logic
+                const hasExistingImage = previewBox.querySelector('img') !== null;
 
-                input.files = dataTransfer.files;
+                if (!hasExistingImage && !input.files.length) {
+                    const dataTransfer = new DataTransfer();
+                    dataTransfer.items.add(files[fileIndex]);
 
-                previewImage(input, 'preview_' + index); // your existing preview function
+                    input.files = dataTransfer.files;
 
-                fileIndex++;
+                    previewImage(input, 'preview_' + index); // your existing preview function
+
+                    fileIndex++;
+                }
+            });
+
+            // Optionally notify user if some images couldn't be added
+            if (fileIndex < files.length) {
+                alert(`Only ${fileIndex} of ${files.length} images were added. Rest skipped.`);
             }
         });
-
-        // Optionally notify user if some images couldn't be added
-        if (fileIndex < files.length) {
-            alert(`Only ${fileIndex} of ${files.length} images were added. Rest skipped.`);
-        }
     });
-
 
     function previewImageFromFile(file, index) {
         const preview = document.getElementById(`preview_${index}`);
