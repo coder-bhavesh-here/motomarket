@@ -52,7 +52,7 @@
         ondrop="handleDrop(event, {{ $i }})"
     >
         <input type="file"
-            name="riding_images[]"
+            name="riding_images[{{ $i }}]"
             id="riding_images_{{ $i }}"
             accept="image/*"
             class="hidden"
