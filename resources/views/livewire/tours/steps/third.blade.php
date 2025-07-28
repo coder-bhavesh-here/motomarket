@@ -13,7 +13,7 @@
 <div class="text-black ml-2 mt-8 text-sm">
     <label>5MB max per image</label>
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mt-4">
-        @for ($i = 0; $i <= 14; $i++)
+        {{-- @for ($i = 0; $i <= 14; $i++)
             <label for="riding_images_{{ $i }}"
                 class="relative flex items-center justify-center w-full aspect-square border-2 border-dashed border-gray-300 rounded-md cursor-pointer hover:border-indigo-400 transition group"
                 ondragover="event.preventDefault(); this.classList.add('border-indigo-600');"
@@ -39,7 +39,48 @@
                     </svg>
                 </div>
             </label>
-        @endfor
+        @endfor --}}
+        @for ($i = 0; $i <= 14; $i++)
+    @php
+        $image = isset($images[$i]) ? $images[$i] : null;
+    @endphp
+
+    <label for="riding_images_{{ $i }}"
+        class="relative flex items-center justify-center w-full aspect-square border-2 border-dashed border-gray-300 rounded-md cursor-pointer hover:border-indigo-400 transition group"
+        ondragover="event.preventDefault(); this.classList.add('border-indigo-600');"
+        ondragleave="this.classList.remove('border-indigo-600');"
+        ondrop="handleDrop(event, {{ $i }})"
+    >
+        <input type="file"
+            name="riding_images[]"
+            id="riding_images_{{ $i }}"
+            accept="image/*"
+            class="hidden"
+            onchange="previewImage(this, 'preview_{{ $i }}')">
+
+        <div id="preview_{{ $i }}" class="flex items-end {{ $i == 0 ? 'justify-between' : 'justify-end' }} w-full h-full bg-[#E6EDF5] overflow-hidden relative">
+            @if ($i == 0)
+                <span class="p-2 bg-white m-2 text-black rounded-2xl">Default</span>
+            @endif
+
+            @if ($image)
+                {{-- Show existing image --}}
+                <img src="{{ asset('storage/' . $image->image_path) }}"
+                     alt="Uploaded Image"
+                     class="absolute w-full h-full object-cover z-0" />
+            @else
+                {{-- Show placeholder icon --}}
+                <svg width="53" height="52" style="height: 30px; margin-bottom: 10px;" viewBox="0 0 53 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M46.3359 26V41.1667C46.3359 42.3159 45.8794 43.4181 45.0667 44.2308C44.2541 45.0435 43.1519 45.5 42.0026 45.5H11.6693C10.52 45.5 9.4178 45.0435 8.60514 44.2308C7.79248 43.4181 7.33594 42.3159 7.33594 41.1667V10.8333C7.33594 9.68406 7.79248 8.58186 8.60514 7.7692C9.4178 6.95655 10.52 6.5 11.6693 6.5H26.8359" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M35.502 10.832H48.502" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M42.002 4.33203V17.332" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M20.3353 23.8346C22.7285 23.8346 24.6686 21.8945 24.6686 19.5013C24.6686 17.1081 22.7285 15.168 20.3353 15.168C17.9421 15.168 16.002 17.1081 16.002 19.5013C16.002 21.8945 17.9421 23.8346 20.3353 23.8346Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M46.3359 32.5019L39.6496 25.8156C38.837 25.0032 37.735 24.5469 36.5859 24.5469C35.4369 24.5469 34.3349 25.0032 33.5223 25.8156L13.8359 45.5019" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>                            
+                </svg>
+            @endif
+        </div>
+    </label>
+@endfor
     </div>    
     <x-input-error class="mt-2" :messages="$errors->get('riding_images')" />
 </div>
