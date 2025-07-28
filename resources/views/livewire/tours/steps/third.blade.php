@@ -275,8 +275,11 @@
         });
     });
 function previewImage(input, previewId) {
+    console.log("previewId", previewId);
     const preview = document.getElementById(previewId);
+    console.log("preview", preview);
     if (input.files && input.files[0]) {
+        console.log("IN INPUT");
         const file = input.files[0];
         const index = parseInt(input.id.replace("riding_images_", "")); // extract index
         const reader = new FileReader();
