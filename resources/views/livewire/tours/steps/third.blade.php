@@ -1,19 +1,19 @@
-<div class="flex justify-between">
+{{-- <div class="flex justify-between"> --}}
     <div>
         <span class="p-2 text-black font-semibold">Tour Promotional images</span>
         <div class="text-sm text-black p-2">
             <span>Add photos that highlights this tour</span>
         </div>
     </div>
-    <span class="text-orange text-sm font-semibold">Drag & Drop or Select images</span>
-</div>
+    {{-- <span class="text-orange text-sm font-semibold">Drag & Drop or Select images</span> --}}
+{{-- </div> --}}
 {{-- @php
     $ridingImages = is_array($user->tour_riding_images) ? $user->tour_riding_images : json_decode($user->tour_riding_images ?? '[]', true);
 @endphp --}}
 <div class="text-black ml-2 mt-8 text-sm">
-    <a href="#" onclick="document.getElementById('bulkImageInput').click()" class="underline mb-4 inline-block">
-        <strong>Upload Multiple Images</strong> (5MB max)
-    </a>
+    <a href="#" style="text-decoration: none;" onclick="document.getElementById('bulkImageInput').click()" class="underline mb-4 inline-block">
+        <strong class="text-orange">Upload Multiple Images</strong>
+    </a> (5MB max)
     <input type="file" id="bulkImageInput" multiple accept="image/*" class="hidden" />    
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mt-4">
         {{-- @for ($i = 0; $i <= 14; $i++)
