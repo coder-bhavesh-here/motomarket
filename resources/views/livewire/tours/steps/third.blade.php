@@ -165,7 +165,8 @@
 
             filesToUpload.forEach((file, idx) => {
                 const targetIndex = emptyIndexes[idx];
-                previewImage([file], `preview_${targetIndex}`); // 🟢 Make sure this function exists
+                const input.files[0] = file;
+                previewImage(input, `preview_${targetIndex}`); // 🟢 Make sure this function exists
             });
 
             if (files.length > emptyIndexes.length) {
