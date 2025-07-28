@@ -138,43 +138,39 @@
     </div>
 </div>
 <script>
-    document.addEventListener('DOMContentLoaded', function () {
-        console.log("DOM fully loaded");
-        const input = document.getElementById('bulkImageInput');
+    document.getElementById('multiUploadInput').addEventListener('change', function (e) {
+        const files = e.target.files;
+        if (!files.length) return;
 
-        input.addEventListener('change', function (e) {
-            showLoader();
-            const files = Array.from(e.target.files);
-            const maxImages = 15;
-            const emptyIndexes = [];
+        const allInputs = document.querySelectorAll('input[type="file"][name^="riding_images"]');
+        let fileIndex = 0;
 
-            for (let i = 0; i < maxImages; i++) {
-                const img = document.querySelector(`.riding-image-${i}`);
-                if (!img || img.src.includes('placeholder') || img.src === '' || img.dataset.blank === "true") {
-                    emptyIndexes.push(i);
-                }
+        allInputs.forEach((input, index) => {
+            if (fileIndex >= files.length) return;
+
+            const previewBox = document.getElementById('preview_' + index);
+
+            // Check if already has an image — custom logic
+            const hasExistingImage = previewBox.querySelector('img') !== null;
+
+            if (!hasExistingImage && !input.files.length) {
+                const dataTransfer = new DataTransfer();
+                dataTransfer.items.add(files[fileIndex]);
+
+                input.files = dataTransfer.files;
+
+                previewImage(input, 'preview_' + index); // your existing preview function
+
+                fileIndex++;
             }
-
-            if (emptyIndexes.length === 0) {
-                alert("All 15 image slots are already filled.");
-                hideLoader();
-                return;
-            }
-
-            const filesToUpload = files.slice(0, emptyIndexes.length);
-
-            filesToUpload.forEach((file, idx) => {
-                const targetIndex = emptyIndexes[idx];
-                previewImageFromFile(file, targetIndex);
-            });
-
-            if (files.length > emptyIndexes.length) {
-                alert(`Only ${emptyIndexes.length} slots available. ${files.length - emptyIndexes.length} image(s) ignored.`);
-            }
-
-            e.target.value = ''; // Reset file input
         });
+
+        // Optionally notify user if some images couldn't be added
+        if (fileIndex < files.length) {
+            alert(`Only ${fileIndex} of ${files.length} images were added. Rest skipped.`);
+        }
     });
+
 
     function previewImageFromFile(file, index) {
         const preview = document.getElementById(`preview_${index}`);
