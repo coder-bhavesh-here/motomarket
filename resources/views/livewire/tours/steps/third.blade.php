@@ -11,9 +11,8 @@
     $ridingImages = is_array($user->tour_riding_images) ? $user->tour_riding_images : json_decode($user->tour_riding_images ?? '[]', true);
 @endphp --}}
 <div class="text-black ml-2 mt-8 text-sm">
-    <label>5MB max per image</label>
     <a href="#" onclick="document.getElementById('bulkImageInput').click()" class="underline mb-4 inline-block">
-        Upload Multiple Images
+        <strong>Upload Multiple Images</strong> (5MB max)
     </a>
     <input type="file" id="bulkImageInput" multiple accept="image/*" class="hidden" />    
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mt-4">
