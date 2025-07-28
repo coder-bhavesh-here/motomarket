@@ -165,8 +165,7 @@
 
             filesToUpload.forEach((file, idx) => {
                 const targetIndex = emptyIndexes[idx];
-                input.files = [file];
-                previewImage(input, `preview_${targetIndex}`); // 🟢 Make sure this function exists
+                previewImageFromFile(file, targetIndex);
             });
 
             if (files.length > emptyIndexes.length) {
@@ -176,6 +175,24 @@
             e.target.value = ''; // Reset file input
         });
     });
+
+    function previewImageFromFile(file, index) {
+        const preview = document.getElementById(`preview_${index}`);
+        if (!file || !preview) return;
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            preview.style.backgroundImage = `url('${e.target.result}')`;
+            preview.style.backgroundSize = 'cover';
+            preview.style.backgroundPosition = 'center';
+
+            const cross = document.querySelector(`.delete-cross-${index}`);
+            if (cross) cross.style.display = 'block';
+        };
+        reader.readAsDataURL(file);
+
+        uploadFile(file, index);
+    }
 
     document.getElementById("drop-area").addEventListener('click', function() {
         document.getElementById("fileElem").click();
