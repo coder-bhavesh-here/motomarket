@@ -46,7 +46,8 @@
         @endfor --}}
         @for ($i = 0; $i <= 14; $i++)
     @php
-        $image = isset($images[$i]) ? $images[$i] : null;
+        $image = collect($images)->firstWhere('index', $i);
+        // $image = isset($images[$i]) ? $images[$i] : null;
     @endphp
 
     <label for="riding_images_{{ $i }}"
