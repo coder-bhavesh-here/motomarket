@@ -25,6 +25,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\View\View;
 use Stripe\StripeClient;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 use Laravel\Pulse\Users;
 
 class TourController extends Controller
@@ -393,31 +394,55 @@ class TourController extends Controller
         return response()->json(['success' => 'Tour published successfully.'], 200);
     }
 
-    public function deleteImage(Request $request)
-    {
-        $tourImageId = $request->tourImageId;
-        $imageDetails = TourImage::find($tourImageId);
-        unlink(str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']) . '/public/storage/' . $imageDetails->image_path);
-        $imageDetails->delete();
-        return response()->json(['success' => 'Image deleted successfully.'], 200);
-    }
+    // public function deleteImage(Request $request)
+    // {
+    //     $tourImageId = $request->tourImageId;
+    //     $imageDetails = TourImage::find($tourImageId);
+    //     unlink(str_replace('\\', '/', $_SERVER['DOCUMENT_ROOT']) . '/public/storage/' . $imageDetails->image_path);
+    //     $imageDetails->delete();
+    //     return response()->json(['success' => 'Image deleted successfully.'], 200);
+    // }
 
     public function uploadImage(Request $request)
     {
         $request->validate([
             'file' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048',
+            'index' => 'required|integer|min:0|max:14',
+            'tour_id' => 'required|integer|exists:tours,id',
         ]);
+
         $tour_id = $request->tour_id;
+        $index = $request->index;
+
         if ($request->file()) {
+            // Delete old image if it exists at the same index
+            $existingImage = TourImage::where('tour_id', $tour_id)->where('index', $index)->first();
+
+            if ($existingImage) {
+                // Delete old file from storage
+                Storage::disk('public')->delete($existingImage->image_path);
+                $existingImage->delete();
+            }
+
+            // Store the new file
             $fileName = time() . '_' . $request->file->getClientOriginalName();
             $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
+
+            // Save new image with index
             $image = TourImage::create([
-                'image_path' => $filePath,
                 'tour_id' => $tour_id,
+                'image_path' => $filePath,
+                'index' => $index,
             ]);
-            $image->save();
-            return response()->json(['success' => 'File uploaded successfully', 'file' => $fileName, 'image_id' => $image->id]);
+
+            return response()->json([
+                'success' => 'File uploaded successfully',
+                'file' => $fileName,
+                'file_url' => asset('storage/' . $filePath), // add this
+                'image_id' => $image->id,
+            ]);
         }
+
         return response()->json(['error' => 'File upload failed'], 500);
     }
 
@@ -652,5 +677,16 @@ class TourController extends Controller
             'questioned_by' => auth()->user()->id
         ]);
         return redirect()->back();
+    }
+    public function deleteImage($id)
+    {
+        $image = TourImage::findOrFail($id);
+        // Delete from storage
+        if ($image->image_path && Storage::disk('public')->exists($image->image_path)) {
+            Storage::disk('public')->delete($image->image_path);
+        }
+        // Delete from database
+        $image->delete();
+        return response()->json(['message' => 'Image deleted successfully']);
     }
 }

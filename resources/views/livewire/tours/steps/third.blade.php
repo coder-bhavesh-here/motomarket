@@ -12,6 +12,10 @@
 @endphp --}}
 <div class="text-black ml-2 mt-8 text-sm">
     <label>5MB max per image</label>
+    <a href="#" onclick="document.getElementById('bulkImageInput').click()" class="underline mb-4 inline-block">
+        Upload Multiple Images
+    </a>
+    <input type="file" id="bulkImageInput" multiple accept="image/*" class="hidden" />    
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mt-4">
         {{-- @for ($i = 0; $i <= 14; $i++)
             <label for="riding_images_{{ $i }}"
@@ -64,10 +68,17 @@
             @endif
 
             @if ($image)
+                <button
+                    type="button"
+                    class="absolute top-1 right-1 z-20 bg-orange-500 text-white rounded-full w-6 h-6 flex items-center justify-center hover:bg-orange-600"
+                    onclick="deleteImage({{ $image->id }}, {{ $image->index }})"
+                    title="Delete Image">
+                    &times;
+                </button>
                 {{-- Show existing image --}}
                 <img src="{{ asset('storage/' . $image->image_path) }}"
                      alt="Uploaded Image"
-                     class="absolute w-full h-full object-cover z-0" />
+                     class="absolute w-full h-full object-cover z-0 riding-image-{{ $image->index }}" />
             @else
                 {{-- Show placeholder icon --}}
                 <svg width="53" height="52" style="height: 30px; margin-bottom: 10px;" viewBox="0 0 53 52" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -127,6 +138,44 @@
     </div>
 </div>
 <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        console.log("DOM fully loaded");
+        const input = document.getElementById('bulkImageInput');
+
+        input.addEventListener('change', function (e) {
+            showLoader();
+            const files = Array.from(e.target.files);
+            const maxImages = 15;
+            const emptyIndexes = [];
+
+            for (let i = 0; i < maxImages; i++) {
+                const img = document.querySelector(`.riding-image-${i}`);
+                if (!img || img.src.includes('placeholder') || img.src === '' || img.dataset.blank === "true") {
+                    emptyIndexes.push(i);
+                }
+            }
+
+            if (emptyIndexes.length === 0) {
+                alert("All 15 image slots are already filled.");
+                hideLoader();
+                return;
+            }
+
+            const filesToUpload = files.slice(0, emptyIndexes.length);
+
+            filesToUpload.forEach((file, idx) => {
+                const targetIndex = emptyIndexes[idx];
+                previewImage(file, targetIndex); // 🟢 Make sure this function exists
+            });
+
+            if (files.length > emptyIndexes.length) {
+                alert(`Only ${emptyIndexes.length} slots available. ${files.length - emptyIndexes.length} image(s) ignored.`);
+            }
+
+            e.target.value = ''; // Reset file input
+        });
+    });
+
     document.getElementById("drop-area").addEventListener('click', function() {
         document.getElementById("fileElem").click();
     });
@@ -158,36 +207,55 @@
         ([...files]).forEach(uploadFile);
     }
 
-    function uploadFile(file) {
+    function uploadFile(file, index) {
         let uploadUrl = '{{ route('tours.upload') }}';
         let formData = new FormData();
-        $("#loader").show();
+        showLoader();
         formData.append('file', file);
+        formData.append('index', index); // 🆕 Pass image index
         const url = new URL(window.location.href);
         let tour_id = parseInt(url.searchParams.get("tour_id")) || undefined;
-        console.log("tour_id", tour_id);
-
         formData.append('tour_id', tour_id);
 
         fetch(uploadUrl, {
-                method: 'POST',
-                headers: {
-                    'X-CSRF-TOKEN': '{{ csrf_token() }}'
-                },
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                $("#loader").hide();
-                console.log(data);
-                $("#preview").append("<img src='{{ asset('storage') }}/uploads/" + data.file + "'><span data-id='" +
-                    data.image_id + "'>X</span>");
-                // alert(data.success);
-            })
-            .catch(() => {
-                alert('File upload failed');
-            });
+            method: 'POST',
+            headers: {
+                'X-CSRF-TOKEN': '{{ csrf_token() }}'
+            },
+            body: formData
+        })
+        .then(response => response.json())
+        .then(data => {
+            hideLoader();
+            const index = parseInt(formData.get('index'));
+            // console.log("index", index);
+            const newFilePath = data.file;
+            // console.log("newFilePath", newFilePath);
+            
+            // Assuming you store images in /storage/uploads
+            const imgElement = document.getElementsByClassName(`riding-image-${index}`)[0];
+            console.log("imgElement", imgElement);
+
+            if (imgElement && data.file_url) {
+                // const previewBox = document.getElementById(`preview_${index}`);
+                $(imgElement).prepend(`
+                    <button type="button" onclick="removeImage(${data.image_id}, ${index})"
+                        class="absolute top-2 right-2 bg-orange-500 text-white rounded-full w-6 h-6 flex items-center justify-center z-20 hover:bg-orange-600"
+                        title="Remove Image">
+                        &times;
+                    </button>`);
+
+                imgElement.src = `${data.file_url}?t=${Date.now()}`
+                console.log(imgElement.src);
+            }
+            console.log(data);
+            // Optional: update UI or handle response
+        })
+        .catch(() => {
+            alert('File upload failed');
+        });
     }
+
     $("#preview span").click(function(e) {
         $(this).prev('img').hide();
         $(this).hide();
@@ -210,16 +278,18 @@ function previewImage(input, previewId) {
     const preview = document.getElementById(previewId);
     if (input.files && input.files[0]) {
         const file = input.files[0];
+        const index = parseInt(input.id.replace("riding_images_", "")); // extract index
         const reader = new FileReader();
         reader.onload = function (e) {
             preview.style.backgroundImage = `url('${e.target.result}')`;
             preview.style.backgroundSize = 'cover';
             preview.style.backgroundPosition = 'center';
         };
-        reader.readAsDataURL(input.files[0]);
-        uploadFile(file);
+        reader.readAsDataURL(file);
+        uploadFile(file, index); // 🆕 pass index here
     }
 }
+
 
 function handleDrop(event, index) {
     event.preventDefault();
@@ -232,5 +302,49 @@ function handleDrop(event, index) {
         previewImage(input, `preview_${index}`);
         event.currentTarget.classList.remove('border-indigo-600');
     }
+}
+function deleteImage(imageId, index) {
+    if (!confirm("Are you sure you want to delete this image?")) return;
+
+    // Optional: show full-page loader if needed
+    showLoader();
+
+    fetch(`/tours/images/${imageId}`, {
+        method: 'DELETE',
+        headers: {
+            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content
+        }
+    })
+    .then(response => {
+        if (response.ok) {
+            // Hide image from UI
+            const imageBox = document.querySelector(`.riding-image-${index}`);
+            if (imageBox) {
+                imageBox.remove();
+            }
+
+            // You may also reset the preview div
+            const preview = document.getElementById(`preview_${index}`);
+            if (preview) {
+                preview.innerHTML = `
+                    <svg width="53" height="52" style="height: 30px; margin-bottom: 10px;" viewBox="0 0 53 52" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M46.3359 26V41.1667C46.3359 42.3159 45.8794 43.4181 45.0667 44.2308C44.2541 45.0435 43.1519 45.5 42.0026 45.5H11.6693C10.52 45.5 9.4178 45.0435 8.60514 44.2308C7.79248 43.4181 7.33594 42.3159 7.33594 41.1667V10.8333C7.33594 9.68406 7.79248 8.58186 8.60514 7.7692C9.4178 6.95655 10.52 6.5 11.6693 6.5H26.8359" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M35.502 10.832H48.502" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M42.002 4.33203V17.332" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M20.3353 23.8346C22.7285 23.8346 24.6686 21.8945 24.6686 19.5013C24.6686 17.1081 22.7285 15.168 20.3353 15.168C17.9421 15.168 16.002 17.1081 16.002 19.5013C16.002 21.8945 17.9421 23.8346 20.3353 23.8346Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        <path d="M46.3359 32.5019L39.6496 25.8156C38.837 25.0032 37.735 24.5469 36.5859 24.5469C35.4369 24.5469 34.3349 25.0032 33.5223 25.8156L13.8359 45.5019" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>                            
+                    </svg>
+                `;
+            }
+        } else {
+            alert("Failed to delete image.");
+        }
+    })
+    .catch(() => {
+        alert("An error occurred while deleting the image.");
+    })
+    .finally(() => {
+        hideLoader();
+    });
 }
 </script>

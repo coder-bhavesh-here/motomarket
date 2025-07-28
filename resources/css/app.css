@@ -661,4 +661,18 @@ p.blog-title {
   .tox-editor-header, .tox-toolbar__primary, .tox-tbtn, .tox-statusbar {
     background-color: #E6E6E6 !important;
   }
-  
+  #loading {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    justify-content: center;
+    align-items: center;
+}
+
+#loading .loader-container img {
+    width: 80px; /* adjust as needed */
+    height: 80px;
+    /* animation: spin 1s linear infinite; */
+}

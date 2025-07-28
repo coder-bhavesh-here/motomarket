@@ -31,6 +31,18 @@
             </div>
         </ul>
     </div>
+    
+    <script>function showLoader() {
+        const loader = document.getElementById('loading');
+        loader.classList.remove('hidden');
+        loader.classList.add('flex');
+    }
+    
+    function hideLoader() {
+        const loader = document.getElementById('loading');
+        loader.classList.remove('flex');
+        loader.classList.add('hidden');
+    }</script>
 </footer>
 </div>
 </div>

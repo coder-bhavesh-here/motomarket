@@ -11,6 +11,7 @@ class TourImage extends Model
     use HasFactory;
     protected $fillable = [
         'tour_id',
+        'index',
         'image_path',
     ];
 
