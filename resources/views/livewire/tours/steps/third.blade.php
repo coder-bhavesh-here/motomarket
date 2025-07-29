@@ -1,7 +1,9 @@
 {{-- <div class="flex justify-between"> --}}
-    <div>
-        <span class="p-2 text-black font-semibold">Tour Promotional images</span>
-        <div class="text-sm text-black p-2">
+    <div class="ml-2 mb-4">
+        <div class="font-bold text-black">
+            Tour Promotional images
+        </div>
+        <div class="text-sm text-black italic">
             <span>Add photos that highlights this tour</span>
         </div>
     </div>
@@ -114,9 +116,16 @@
 </div> --}}
 
 <div class="mb-5 mt-5">
-    <span class="p-2 text-black text-sm font-semibold">Tour Promotional videos</span>
+    <div class="ml-2 mb-4">
+        <div class="font-bold text-black">
+            Tour Promotional videos
+        </div>
+        <div class="text-sm text-black italic">
+            <span>Provide YouTube links to any promotional videos you have</span>
+        </div>
+    </div>
+    <span class="p-2 text-black text-sm font-semibold"></span>
     <div class="text-sm text-black p-2">
-        <span>Provide YouTube links to any promotional videos you have</span>
         <div class="flex items-center mt-4">
             <div class="w-full">
                 <x-input placeholder="https://youtube.com/promotional-video-1" value="{{ isset($tour->video_one) ? $tour->video_one : '' }}"
