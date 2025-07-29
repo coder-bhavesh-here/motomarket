@@ -16,14 +16,13 @@
         </div>
         <div id="addonGroupsWrapper" class="space-y-10">
             @foreach($addonGroups as $gIndex => $group)
-                <input type="hidden" name="groups[{{ $gIndex }}][id]" value="{{ $group->id }}">
                 <div class="p-6 rounded bg-[#F1F5F9] border relative addon-group" data-group-index="{{ $gIndex }}">
                     <div class="flex justify-between items-center mb-4">
                         <label class="font-bold text-lg">Add on Group Name</label>
                         <input type="text" name="groups[{{ $gIndex }}][name]" class="w-[80%] border rounded p-2" value="{{ $group->name }}" required />
                         <img src="{{ asset('images/delete-enabled.svg') }}" class="remove-group" style="width: 20px;">
                     </div>
-            
+                    <input type="hidden" name="groups[{{ $gIndex }}][id]" value="{{ $group->id }}">
                     <div class="flex gap-4 mb-6 justify-center">
                         <label>
                             <input type="checkbox" name="groups[{{ $gIndex }}][is_required]" {{ $group->is_required ? 'checked' : '' }} />
