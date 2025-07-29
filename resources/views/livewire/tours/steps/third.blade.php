@@ -13,11 +13,9 @@
     $ridingImages = is_array($user->tour_riding_images) ? $user->tour_riding_images : json_decode($user->tour_riding_images ?? '[]', true);
 @endphp --}}
 <div class="text-black ml-2 mt-8 text-sm">
-    <span class="p-3 bg-[#f7f7f7] rounded-[10px] border-2 border-dashed border-[#bababa] cursor-pointer">
-        <a href="#" style="text-decoration: none;" onclick="document.getElementById('bulkImageInput').click()" class="underline mb-4 inline-block">
-            <strong class="text-orange">Upload Multiple Images</strong>
-        </a> (5MB max)
-    </span>
+    <a href="#" style="text-decoration: none;" onclick="document.getElementById('bulkImageInput').click()" class="underline mb-4 inline-block">
+        <span class="p-3 bg-[#f7f7f7] rounded-[10px] border-2 border-dashed border-[#bababa] cursor-pointer"><strong class="text-orange">Upload Multiple Images</strong> (5MB max)</span>
+    </a>
     <input type="file" id="bulkImageInput" multiple accept="image/*" class="hidden" />    
     <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 mt-4">
         {{-- @for ($i = 0; $i <= 14; $i++)
