@@ -323,6 +323,13 @@ class TourController extends Controller
         return redirect()->route('tour-management');
     }
 
+    public function permDelete($tourId)
+    {
+        Tour::withTrashed()->findOrFail($tourId)->forceDelete();
+        return redirect()->route('tour-management')->with('success', 'Tour permanently deleted.');
+    }
+
+
     public function restore($tourId)
     {
         Tour::withTrashed()->findOrFail($tourId)->restore();

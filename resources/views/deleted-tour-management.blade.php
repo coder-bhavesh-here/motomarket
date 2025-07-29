@@ -126,6 +126,12 @@
                                         class="edit-button text-xs wommd:text-sm">
                                         Restore
                                     </a>
+                                    <a 
+                                        href='/tours/permDelete/{{ $tour->id }}'
+                                        onclick="return confirm('Are you sure you want to delete this tour permanently? We can not undo this action.')"
+                                        class="delete-button text-xs wommd:text-sm">
+                                        Permanently Delete
+                                    </a>
                                 </div>
                             </div>
                         </div>

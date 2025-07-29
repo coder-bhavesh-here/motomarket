@@ -62,6 +62,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/tours/create', [TourController::class, 'create'])->name('tours.create');
     Route::get('/tours/delete/{tourId}', [TourController::class, 'delete'])->name('tours.delete');
     Route::get('/tours/restore/{tourId}', [TourController::class, 'restore'])->name('tours.restore');
+    Route::get('/tours/permDelete/{tourId}', [TourController::class, 'permDelete'])->name('tours.permDelete');
     Route::get('/tours/cancel/{tourId}', [TourController::class, 'cancel'])->name('tours.cancel');
     Route::post('/tours/upload_image', [TourController::class, 'uploadImage'])->name('tours.upload');
     Route::delete('/tours/images/{id}', [TourController::class, 'deleteImage']);
