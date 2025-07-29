@@ -442,7 +442,7 @@ document.querySelectorAll(".next-button").forEach(function (element) {
                 },
             });
         }
-        if (currentStep === 3) {
+        if (currentStep === 4) {
             let tour_id =
                 parseInt(url.searchParams.get("tour_id")) || undefined;
             if (tour_id === undefined) {
@@ -479,7 +479,7 @@ document.querySelectorAll(".next-button").forEach(function (element) {
                 },
             });
         }
-        if (currentStep === 4) {
+        if (currentStep === 3) {
             let tour_id =
                 parseInt(url.searchParams.get("tour_id")) || undefined;
             if (tour_id === undefined) {

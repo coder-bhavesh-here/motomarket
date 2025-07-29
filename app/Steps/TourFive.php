@@ -2,6 +2,7 @@
 
 namespace App\Steps;
 
+use App\Models\AddonGroup;
 use App\Models\TourAddOn;
 use App\Models\TourPrice;
 use Vildanbina\LivewireWizard\Components\Step;
@@ -11,7 +12,7 @@ class TourFive extends Step
     // Step view located at resources/views/steps/general.blade.php 
     protected string $view = 'livewire.tours.steps.fifth';
     public $prices;
-    public $addons;
+    public $addonGroups;
     /*
      * Initialize step fields
      */
@@ -19,7 +20,8 @@ class TourFive extends Step
     {
         // dd($this->model);
         if (isset($_GET['tour_id'])) {
-            $this->addons = TourAddOn::where('tour_id', $_GET['tour_id'])->get();
+            $this->addonGroups = AddonGroup::with('addons')->where('tour_id', $_GET['tour_id'])->get();
+            // $this->addons = TourAddOn::where('tour_id', $_GET['tour_id'])->get();
         }
         $this->mergeState([
             'title'                  => $this->model->title,

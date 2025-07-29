@@ -550,39 +550,83 @@ class TourController extends Controller
         echo json_encode(["message" => "Tour saved successfully", "tour_id" => $tour_id]);
     }
 
+    // public function saveFifthStep(Request $request)
+    // {
+    //     $tour_id = $request->tour_id;
+    //     if ($request->input('groups') != '' && $request->input('groups') != null) {
+    //         $groups = $request->input('groups');
+
+    //         foreach ($groups as $gIndex => $group) {
+    //             $addonGroup = AddonGroup::create([
+    //                 'tour_id' => $tour_id,
+    //                 'name' => $group['name'],
+    //                 'is_required' => isset($group['is_required']),
+    //                 'allow_multiple' => isset($group['is_multiple']),
+    //             ]);
+
+    //             foreach ($group['addons'] ?? [] as $aIndex => $addon) {
+    //                 $imageField = "groups.$gIndex.addons.$aIndex.image";
+    //                 $imagePath = $request->hasFile($imageField)
+    //                     ? $request->file($imageField)->store('addons', 'public')
+    //                     : null;
+
+    //                 Addon::create([
+    //                     'addon_group_id' => $addonGroup->id,
+    //                     'name' => $addon['name'],
+    //                     'price' => $addon['price'],
+    //                     'image_path' => $imagePath,
+    //                 ]);
+    //             }
+    //         }
+
+    //         return response()->json(['message' => 'Saved successfully', 'tour_id' => $tour_id]);
+    //     }
+    //     return response()->json(['message' => 'Saved successfully', 'tour_id' => $tour_id]);
+    // }
     public function saveFifthStep(Request $request)
     {
         $tour_id = $request->tour_id;
-        if ($request->input('groups') != '' && $request->input('groups') != null) {
-            $groups = $request->input('groups');
 
-            foreach ($groups as $gIndex => $group) {
-                $addonGroup = AddonGroup::create([
-                    'tour_id' => $tour_id,
-                    'name' => $group['name'],
-                    'is_required' => isset($group['is_required']),
-                    'allow_multiple' => isset($group['is_multiple']),
-                ]);
+        // Optional: Delete removed groups/addons later
+
+        if ($request->filled('groups')) {
+            foreach ($request->input('groups') as $gIndex => $group) {
+                // Check if group exists (for edit)
+                $addonGroup = isset($group['id'])
+                    ? AddonGroup::find($group['id'])
+                    : new AddonGroup(['tour_id' => $tour_id]);
+
+                $addonGroup->name = $group['name'];
+                $addonGroup->is_required = isset($group['is_required']);
+                $addonGroup->allow_multiple = isset($group['is_multiple']);
+                $addonGroup->tour_id = $tour_id;
+                $addonGroup->save();
 
                 foreach ($group['addons'] ?? [] as $aIndex => $addon) {
-                    $imageField = "groups.$gIndex.addons.$aIndex.image";
-                    $imagePath = $request->hasFile($imageField)
-                        ? $request->file($imageField)->store('addons', 'public')
-                        : null;
+                    $addonModel = isset($addon['id'])
+                        ? Addon::find($addon['id'])
+                        : new Addon();
 
-                    Addon::create([
-                        'addon_group_id' => $addonGroup->id,
-                        'name' => $addon['name'],
-                        'price' => $addon['price'],
-                        'image_path' => $imagePath,
-                    ]);
+                    $addonModel->addon_group_id = $addonGroup->id;
+                    $addonModel->name = $addon['name'];
+                    $addonModel->price = $addon['price'];
+
+                    // Handle image
+                    $imageField = "groups.$gIndex.addons.$aIndex.image";
+                    if ($request->hasFile($imageField)) {
+                        $addonModel->image_path = $request->file($imageField)->store('addons', 'public');
+                    }
+
+                    $addonModel->save();
                 }
             }
 
             return response()->json(['message' => 'Saved successfully', 'tour_id' => $tour_id]);
         }
+
         return response()->json(['message' => 'Saved successfully', 'tour_id' => $tour_id]);
     }
+
 
     function bookTour(Request $request)
     {
