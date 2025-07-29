@@ -322,6 +322,13 @@ class TourController extends Controller
         Tour::findOrFail($tourId)->delete();
         return redirect()->route('tour-management');
     }
+
+    public function restore($tourId)
+    {
+        Tour::withTrashed()->findOrFail($tourId)->restore();
+        return redirect()->route('tour-management')->with('success', 'Tour restored successfully.');
+    }
+
     public function cancel($tourId)
     {
         Tour::withTrashed()->find($tourId)->forceDelete();

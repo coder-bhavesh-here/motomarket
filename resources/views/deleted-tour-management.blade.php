@@ -119,8 +119,13 @@
                                     <a href='/tours/create?activeStep=0&tour_id={{ $tour->id }}' class="edit-button text-xs wommd:text-sm">Edit</a>
                                     <a href='/tour/{{ $tour->id }}' class="edit-button text-xs wommd:text-sm">Bookings</a>
                                     <a href='/tour/{{ $tour->id }}' class="edit-button text-xs wommd:text-sm">View</a>
-                                    <a href='/tour/{{ $tour->id }}' class="edit-button text-xs wommd:text-sm">Hide</a>
-                                    <a href='/tour/{{ $tour->id }}' class="edit-button text-xs wommd:text-sm">Restore</a>
+                                    <a href='#' class="edit-button text-xs wommd:text-sm">Hide</a>
+                                    <a 
+                                        href='/tours/restore/{{ $tour->id }}'
+                                        onclick="return confirm('Are you sure you want to restore this tour?')"
+                                        class="edit-button text-xs wommd:text-sm">
+                                        Restore
+                                    </a>
                                 </div>
                             </div>
                         </div>

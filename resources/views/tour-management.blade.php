@@ -119,8 +119,13 @@
                                     <a href='/tours/create?activeStep=0&tour_id={{ $tour->id }}' class="edit-button text-xs wommd:text-sm">Edit</a>
                                     <a href='/tour/{{ $tour->id }}' class="edit-button text-xs wommd:text-sm">Bookings</a>
                                     <a href='/tour/{{ $tour->id }}' class="edit-button text-xs wommd:text-sm">View</a>
-                                    <a href='/tour/{{ $tour->id }}' class="edit-button text-xs wommd:text-sm">Hide</a>
-                                    <a href='/tours/delete/{{ $tour->id }}' class="delete-button text-xs wommd:text-sm">Delete</a>
+                                    <a href='#' class="edit-button text-xs wommd:text-sm">Hide</a>
+                                    <a 
+                                        href='/tours/delete/{{ $tour->id }}'
+                                        onclick="return confirm('Are you sure you want to delete this tour?')"
+                                        class="delete-button text-xs wommd:text-sm">
+                                        Delete
+                                    </a>
                                 </div>
                             </div>
                         </div>
