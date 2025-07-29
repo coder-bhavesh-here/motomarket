@@ -70,7 +70,7 @@
 </form>
 @push('scripts')
 <script>
-let groupIndex = 0;
+let groupIndex = {{ count($addonGroups) }};
 
 document.getElementById('addGroupBtn').addEventListener('click', function () {
     const wrapper = document.getElementById('addonGroupsWrapper');

@@ -583,18 +583,26 @@ class TourController extends Controller
     //     }
     //     return response()->json(['message' => 'Saved successfully', 'tour_id' => $tour_id]);
     // }
+
     public function saveFifthStep(Request $request)
     {
         $tour_id = $request->tour_id;
 
-        // Optional: Delete removed groups/addons later
+        $existingGroupIds = AddonGroup::where('tour_id', $tour_id)->pluck('id')->toArray();
+        $existingAddonIds = Addon::whereIn('addon_group_id', $existingGroupIds)->pluck('id')->toArray();
+
+        $submittedGroupIds = [];
+        $submittedAddonIds = [];
 
         if ($request->filled('groups')) {
             foreach ($request->input('groups') as $gIndex => $group) {
-                // Check if group exists (for edit)
-                $addonGroup = isset($group['id'])
-                    ? AddonGroup::find($group['id'])
-                    : new AddonGroup(['tour_id' => $tour_id]);
+                // Handle Addon Group (Create or Update)
+                if (!empty($group['id'])) {
+                    $addonGroup = AddonGroup::find($group['id']);
+                    $submittedGroupIds[] = $group['id'];
+                } else {
+                    $addonGroup = new AddonGroup(['tour_id' => $tour_id]);
+                }
 
                 $addonGroup->name = $group['name'];
                 $addonGroup->is_required = isset($group['is_required']);
@@ -602,16 +610,20 @@ class TourController extends Controller
                 $addonGroup->tour_id = $tour_id;
                 $addonGroup->save();
 
+                // Now handle Addons
                 foreach ($group['addons'] ?? [] as $aIndex => $addon) {
-                    $addonModel = isset($addon['id'])
-                        ? Addon::find($addon['id'])
-                        : new Addon();
+                    if (!empty($addon['id'])) {
+                        $addonModel = Addon::find($addon['id']);
+                        $submittedAddonIds[] = $addon['id'];
+                    } else {
+                        $addonModel = new Addon();
+                    }
 
                     $addonModel->addon_group_id = $addonGroup->id;
                     $addonModel->name = $addon['name'];
                     $addonModel->price = $addon['price'];
 
-                    // Handle image
+                    // Image upload
                     $imageField = "groups.$gIndex.addons.$aIndex.image";
                     if ($request->hasFile($imageField)) {
                         $addonModel->image_path = $request->file($imageField)->store('addons', 'public');
@@ -620,13 +632,22 @@ class TourController extends Controller
                     $addonModel->save();
                 }
             }
+        }
 
-            return response()->json(['message' => 'Saved successfully', 'tour_id' => $tour_id]);
+        // DELETE Addons that were removed
+        $addonsToDelete = array_diff($existingAddonIds, $submittedAddonIds);
+        if (!empty($addonsToDelete)) {
+            Addon::whereIn('id', $addonsToDelete)->delete();
+        }
+
+        // DELETE Groups that were removed (this will also delete related addons if you set up cascade)
+        $groupsToDelete = array_diff($existingGroupIds, $submittedGroupIds);
+        if (!empty($groupsToDelete)) {
+            AddonGroup::whereIn('id', $groupsToDelete)->delete();
         }
 
         return response()->json(['message' => 'Saved successfully', 'tour_id' => $tour_id]);
     }
-
 
     function bookTour(Request $request)
     {
