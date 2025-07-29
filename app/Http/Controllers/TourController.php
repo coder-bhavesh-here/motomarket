@@ -561,7 +561,7 @@ class TourController extends Controller
     //                 'tour_id' => $tour_id,
     //                 'name' => $group['name'],
     //                 'is_required' => isset($group['is_required']),
-    //                 'allow_multiple' => isset($group['is_multiple']),
+    //                 'is_multiple' => isset($group['is_multiple']),
     //             ]);
 
     //             foreach ($group['addons'] ?? [] as $aIndex => $addon) {
@@ -606,7 +606,7 @@ class TourController extends Controller
 
                 $addonGroup->name = $group['name'];
                 $addonGroup->is_required = isset($group['is_required']);
-                $addonGroup->allow_multiple = isset($group['is_multiple']);
+                $addonGroup->is_multiple = isset($group['is_multiple']);
                 $addonGroup->tour_id = $tour_id;
                 $addonGroup->save();
 
