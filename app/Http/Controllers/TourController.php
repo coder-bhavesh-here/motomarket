@@ -595,7 +595,11 @@ class TourController extends Controller
         $submittedAddonIds = [];
 
         if ($request->filled('groups')) {
+            echo "<pre>";
+            print_r($request->input('groups'));
+            echo "</pre>";
             foreach ($request->input('groups') as $gIndex => $group) {
+                dd($group);
                 // Handle Addon Group (Create or Update)
                 if (!empty($group['id'])) {
                     $addonGroup = AddonGroup::find($group['id']);
