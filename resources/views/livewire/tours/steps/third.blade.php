@@ -66,7 +66,7 @@
 
         <div id="preview_{{ $i }}" class="flex items-end {{ $i == 0 ? 'justify-between' : 'justify-end' }} w-full h-full bg-[#E6EDF5] overflow-hidden relative">
             @if ($i == 0)
-                <span class="p-2 bg-white m-2 text-black rounded-2xl">Default</span>
+                <span class="p-2 bg-white m-2 text-black rounded-2xl z-20">Default</span>
             @endif
 
             @if ($image)
