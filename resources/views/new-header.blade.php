@@ -929,7 +929,7 @@
 
 <body class="antialiased dark:bg-black dark:text-white/50 bg-[#f9fafb]">
     <!-- Global Image Preview Modal -->
-    <div id="globalImageModal" class="fixed inset-0 z-[1001] flex items-center justify-center bg-black bg-opacity-70 hidden">
+    <div id="globalImageModal" class="fixed inset-0 z-[1001px] flex items-center justify-center bg-black bg-opacity-70 hidden">
         <div class="relative">
             <button onclick="closeGlobalImageModal()" class="absolute top-2 right-2 text-white text-3xl font-bold">
                 &times;
