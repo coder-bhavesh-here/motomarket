@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>World On Moto</title>
+    <title>World On Motos</title>
     <wireui:scripts />
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -928,6 +928,16 @@
 </head>
 
 <body class="antialiased dark:bg-black dark:text-white/50 bg-[#f9fafb]">
+    <!-- Global Image Preview Modal -->
+    <div id="globalImageModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-70 hidden">
+        <div class="relative">
+            <button onclick="closeGlobalImageModal()" class="absolute top-2 right-2 text-white text-3xl font-bold">
+                &times;
+            </button>
+            <img id="globalModalImage" src="" class="max-w-screen-lg max-h-screen rounded shadow-lg" />
+        </div>
+    </div>
+
     <div class="bg-white text-black/50 dark:bg-black dark:text-white/50" style="max-width: 1920px; width: 100%; margin: 0 auto;">
         <div class="relative min-h-screen flex flex-col selection:bg-[#FF2D20] selection:text-white">
             <div class="relative w-full">

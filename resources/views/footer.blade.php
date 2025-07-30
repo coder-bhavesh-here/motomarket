@@ -43,6 +43,26 @@
         loader.classList.remove('flex');
         loader.classList.add('hidden');
     }</script>
+    <script>
+        function closeGlobalImageModal() {
+            $('#globalImageModal').addClass('hidden');
+            $('#globalModalImage').attr('src', '');
+        }
+    
+        $(document).on('click', '.img-with-preview', function () {
+            const src = $(this).attr('src');
+            $('#globalModalImage').attr('src', src);
+            $('#globalImageModal').removeClass('hidden');
+        });
+    
+        // Click outside image to close
+        $('#globalImageModal').on('click', function (e) {
+            if (e.target.id === 'globalImageModal') {
+                closeGlobalImageModal();
+            }
+        });
+    </script>
+    
 </footer>
 </div>
 </div>
