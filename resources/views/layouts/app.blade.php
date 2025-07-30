@@ -35,7 +35,7 @@
 
 
 <body class="antialiased dark:bg-black dark:text-white/50 bg-white">
-    <div id="globalImageModal" class="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-70 hidden">
+    <div id="globalImageModal" class="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-85 hidden">
         <div class="relative">
             <button onclick="closeGlobalImageModal()" class="absolute top-2 right-2 text-white text-3xl font-bold" style="border: unset !important;">
                 &times;
