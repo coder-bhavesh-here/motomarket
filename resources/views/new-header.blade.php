@@ -931,13 +931,15 @@
     <!-- Global Image Preview Modal -->
     <div id="globalImageModal" class="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-70 hidden">
         <div class="relative">
-            <button onclick="closeGlobalImageModal()" class="absolute top-2 right-2 text-white text-3xl font-bold">
+            <button onclick="closeGlobalImageModal()" class="absolute top-2 right-2 text-white text-3xl font-bold" style="border: unset !important;">
                 &times;
             </button>
             <img id="globalModalImage" src="" class="max-w-screen-lg max-h-screen rounded shadow-lg" />
         </div>
     </div>
-
+    <div id="loading" class="fixed inset-0 bg-gray-800 bg-opacity-50 hidden justify-center items-center">
+        <img src="/images/loader.gif" alt="Loading..." class="w-16 h-16">
+    </div>
     <div class="bg-white text-black/50 dark:bg-black dark:text-white/50" style="max-width: 1920px; width: 100%; margin: 0 auto;">
         <div class="relative min-h-screen flex flex-col selection:bg-[#FF2D20] selection:text-white">
             <div class="relative w-full">
