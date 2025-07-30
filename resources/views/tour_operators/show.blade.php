@@ -4,7 +4,7 @@
             <div class="p-4 sm:p-8">
                 @if ($user !== null)
                     <div class="flex flex-col items-center">
-                        <img src="{{ asset('storage') . '/' . ($user->tour_profile_picture != '' ? $user->tour_profile_picture : $user->profile_picture) }}"
+                        <img class="img-with-preview" src="{{ asset('storage') . '/' . ($user->tour_profile_picture != '' ? $user->tour_profile_picture : $user->profile_picture) }}"
                                             alt="Tour operator picture"
                                             style="width: 320px; height: 320ox; border-radius: 20px;">
                         <span class="text-green text-2xl font-semibold mt-4">{{$user->tour_operation_name}}</span>
@@ -49,7 +49,7 @@
                                     <img 
                                         src="{{ asset('storage/' . $imagePath) }}" 
                                         alt="Tour Riding Image"
-                                        class="w-full h-full object-cover rounded"
+                                        class="w-full h-full object-cover rounded img-with-preview"
                                         loading="lazy"
                                     >
                                 </div>
