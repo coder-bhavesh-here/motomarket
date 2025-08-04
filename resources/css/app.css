@@ -648,7 +648,7 @@ p.blog-title {
     font-weight: 700;
     font-size: 14px;
   }
-  textarea, input:not([type="radio"]):not([type="checkbox"]) {
+  textarea, input:not([type="radio"]):not([type="checkbox"]), select {
     background-color: #E6EDF5 !important;
     color: black;
 }
