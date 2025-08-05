@@ -34,6 +34,8 @@ class User extends Authenticatable
         'swift_bic',
         'bank_account_number',
         'sort_code',
+        'company_showcase_link1',
+        'company_showcase_link2',
         'account_name',
     ];
 

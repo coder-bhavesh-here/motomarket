@@ -305,6 +305,8 @@ class ProfileController extends Controller
         $user->tour_contact_number = $request->input('contact_number');
         $user->tour_contact_email = $request->input('email');
         $user->tour_introduction = $request->input('introduction');
+        $user->company_showcase_link1 = $request->input('company_showcase_link1');
+        $user->company_showcase_link2 = $request->input('company_showcase_link2');
         $existingImages = $user->tour_riding_images ?? [];
         $newImages = [];
         for ($i = 0; $i < 10; $i++) {
