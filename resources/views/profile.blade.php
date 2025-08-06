@@ -244,7 +244,7 @@
             };
 
             cropBtn.addEventListener('click', function () {
-                $("#loader").show();
+                showLoader();
                 croppieInstance.result({ type: 'base64', format: 'png', size: 'original' })
                     .then(function (base64) {
                         // Preview cropped image
@@ -261,7 +261,7 @@
                         .then(res => res.json())
                         .then(data => {
                             if (data.status !== 'success') alert('Upload failed');
-                            $("#loader").hide();
+                            hideLoader();
                             window.location.reload();
                         })
                         .catch(err => {
