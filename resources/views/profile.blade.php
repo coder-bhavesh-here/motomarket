@@ -230,7 +230,7 @@
 
                 croppieInstance = new Croppie(croppieContainer, {
                     viewport: { width: 400, height: 400, type: 'circle' },
-                    boundary: { width: 500, height: 500 }
+                    boundary: { width: 500, height: 500 },
                     showZoomer: true
                 });
 
