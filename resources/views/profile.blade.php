@@ -272,9 +272,9 @@
             });
 
             const setupCroppieTrigger = (inputId, targetImgId, route) => {
-                showLoader();
                 const input = document.getElementById(inputId);
                 input.addEventListener('change', function () {
+                    showLoader();
                     const file = this.files[0];
                     if (file) {
                         const reader = new FileReader();
