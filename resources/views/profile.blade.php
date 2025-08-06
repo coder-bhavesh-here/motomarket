@@ -229,8 +229,8 @@
                 if (croppieInstance) croppieInstance.destroy();
 
                 croppieInstance = new Croppie(croppieContainer, {
-                    viewport: { width: 250, height: 250, type: 'circle' },
-                    boundary: { width: 300, height: 300 },
+                    viewport: { width: 400, height: 400, type: 'circle' },
+                    boundary: { width: 500, height: 500 }
                     showZoomer: true
                 });
 
@@ -245,7 +245,7 @@
 
             cropBtn.addEventListener('click', function () {
                 $("#loader").show();
-                croppieInstance.result({ type: 'base64', format: 'png', size: 'viewport' })
+                croppieInstance.result({ type: 'base64', format: 'png', size: 'original' })
                     .then(function (base64) {
                         // Preview cropped image
 
