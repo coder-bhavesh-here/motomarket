@@ -104,7 +104,7 @@
                     <a href="/tour-profile" class="btn-orange">Tour Profile</a>
                     <a href="/payment/edit" class="btn-orange">Payment Settings</a>
                     <a href="/tour-management" class="btn-orange">Tour Management</a>
-                    <a class="btn-orange">Customers / Bookings</a>
+                    <a href="/bookings" class="btn-orange">Customers / Bookings</a>
                     <a class="btn-orange">Team</a>
                     <a class="btn-orange">Reports</a>
                     <a class="btn-orange">Verification</a>

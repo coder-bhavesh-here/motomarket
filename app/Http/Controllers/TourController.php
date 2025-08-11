@@ -68,6 +68,8 @@ class TourController extends Controller
         $bookings = Booking::select([
             'tours.id',
             'tours.title',
+            'users.email',
+            'bookings.user_id',
             'bookings.name',
             'bookings.dob',
             'bookings.nationality',
@@ -76,7 +78,10 @@ class TourController extends Controller
             'bookings.amount',
             'tours.tour_distance',
             'bookings.created_at',
-        ])->whereIn('bookings.tour_id', $tourIds)->leftJoin('tours', 'bookings.tour_id', 'tours.id')->get();
+        ])->whereIn('bookings.tour_id', $tourIds)
+            ->leftJoin('tours', 'bookings.tour_id', 'tours.id')
+            ->leftJoin('users', 'bookings.user_id', 'users.id')
+            ->get();
         return view('bookings', [
             'bookings' => $bookings
         ]);
