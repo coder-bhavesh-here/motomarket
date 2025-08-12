@@ -90,7 +90,7 @@
             {{ $tour->bike_specification != '' ? '(Note: ' . $tour->bike_specification.')' : '' }}
         </li>
         <li class="text-xs womsm:text-sm wommd:text-base">
-            {{ $tour->two_up_riding ? 'The tour is for 2-up riding.' : 'The tour is not for 2-up riding. Only the rider on the bike.' }}
+            {!! $tour->two_up_riding ? 'The tour is for 2-up riding.' : 'The tour is <b>not for 2-up</b> riding. <b>Only the rider</b> on the bike.' !!}
         </li>
         <li class="text-xs womsm:text-sm wommd:text-base">We will covering: <b>{{ $tour->tour_distance }}Kms</b></li>
         @if ($tour->support == 'Fully Supported with support vehicle')
