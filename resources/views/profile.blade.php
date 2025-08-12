@@ -32,7 +32,8 @@
             <div class="flex justify-center mt-4">
                 <div class="text-base italic" style="max-width: 300px; text-align: left">This is your personal account. You will use the details here when you book a tour as a rider.</div>
             </div>
-            <div class="grid gap-y-6 mt-12">
+            <a class="mt-2 block text-green" href="{{"/user/".$user->nickname}}"><u>view personal profile</u></a>
+            <div class="grid gap-y-6 mt-6">
                 <a href="/profile" class="primary-button">My Details</a>
                 <a href="/your-tours" class="primary-button">My Tours</a>
                 <a class="primary-button">Favourites</a>
@@ -100,7 +101,8 @@
                 <div class="flex justify-center mt-4">
                     <div class="text-base italic" style="max-width: 300px; text-align: left">If you are a tour operator, you can open a tour operator account with us. Then you can advertise tours on WorldonMoto.com</div>
                 </div>
-                <div class="grid gap-y-6 mt-12">
+                <a class="mt-2 block text-orange" href="{{"/tour-operator/".$user->tour_nickname}}"><u>view tour profile</u></a>
+                <div class="grid gap-y-6 mt-6">
                     <a href="/tour-profile" class="btn-orange">Tour Profile</a>
                     <a href="/payment/edit" class="btn-orange">Payment Settings</a>
                     <a href="/tour-management" class="btn-orange">Tour Management</a>
