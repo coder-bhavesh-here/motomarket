@@ -62,7 +62,7 @@
     <span style="font-weight: 900" class="text-black text-sm womsm:text-lg wommd:text-xl">TOUR HIGHLIGHTS</span>
     <ul class="text-[#0F172A]">
         <li class="text-xs womsm:text-sm wommd:text-base">We will be touring in: <b>{{ $tour->countries }}</b></li>
-        <li class="text-xs womsm:text-sm wommd:text-base">This tour is open to <b>{{ $tour->rider_capability }}</b>
+        <li class="text-xs womsm:text-sm wommd:text-base">This tour is open to <b>{{ str_replace(',',', ', $tour->rider_capability) }}</b>
             riders. Please let
             us know if you
             have
