@@ -55,7 +55,7 @@
                     <div class="tour-info rounded-3xl">
                         <div class="tour-details grid grid-cols-1 womsm:grid-cols-3">
                             <div class="h-[90px] womsm:h-auto">
-                                <a href='/tour/{{ $tour->id }}'>
+                                <a href='/tour/{{ $tour->id }}' target="_blank">
                                     <img class="aspect-square rounded-t-lg womsm:rounded-tr-none womsm:rounded-l-lg object-cover h-full w-full"
                                         src="{{ isset($tour->images) && isset($tour->images[0]->image_path) ? asset('storage') . '/' . $tour->images[0]->image_path : 'https://photos.smugmug.com/Galleries/Motorcycles/i-jX3tNwR/0/K2H4fw8P5MqPD8SRLWSrRZm4479d3ZvH8HL773j2D/L/cj.photos-_CJ09043-L.jpg' }}"
                                         alt="Tour photo">
@@ -94,7 +94,7 @@
                                             <span class="text-xl font-semibold text-black tour-owner ml-4">{{ $tour_operation_name }}</span>
                                     </div>
                                 </a>
-                                <a href='/tour/{{ $tour->id }}'>
+                                <a href='/tour/{{ $tour->id }}' target="_blank">
                                     <p class="py-2 text-lg womsm:text-xl wommd:text-2xl font-semibold text-black">{{ $tour->title }}</p>
                                 </a>
                                 <p>
