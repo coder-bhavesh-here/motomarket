@@ -343,7 +343,7 @@ class TourController extends Controller
 
     public function cancel($tourId)
     {
-        Tour::withTrashed()->find($tourId)->forceDelete();
+        // Tour::withTrashed()->find($tourId)->forceDelete();
         return response()->json(['success' => 'Tour cancelled successfully.'], 200);
     }
     public function bookAddon($priceId): View
