@@ -72,9 +72,9 @@
                 {{ $tour->riding_style == 'Enduro' ? 'Enduro - Almost all of the trip is off road' : '' }}</b>
             {{ $tour->riding_style_info != '' ? "(Note: $tour->riding_style_info)" : '' }}
         </li>
-        <li class="text-xs womsm:text-sm wommd:text-base">Tour duration is: <b>{{ $tour->duration_days }} days with
+        {{-- <li class="text-xs womsm:text-sm wommd:text-base">Tour duration is: <b>{{ $tour->duration_days }} days with
                 {{ $tour->rest_days }} rest
-                day.</b></li>
+                day.</b></li> --}}
         <li class="text-xs womsm:text-sm wommd:text-base">Maximum number of riders is <b>{{ $tour->max_riders }}</b> and
             will include
             <b>{{ $tour->guides }}
