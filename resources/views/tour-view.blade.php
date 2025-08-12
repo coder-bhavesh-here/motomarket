@@ -173,8 +173,10 @@
                         @foreach ($prices as $key => $price)
                             <div
                                 class="inline-flex rounded-sm w-full justify-between womsm:justify-start items-center p-3 {{ $tac % 2 === 0 ? 'bg-customlightgreen' : '' }}">
-                                <div class="text-xs w-40 womsm:text-sm text-left wommd:text-base text-[#0F172A]">
+                                <div class="text-xs w-52 womsm:text-sm text-left wommd:text-base text-[#0F172A]">
                                     {{ \Carbon\Carbon::parse($price->date)->format('F d, Y') }}</div>
+                                <div class="text-xs text-end womsm:text-sm wommd:text-base womsm:ml-8 w-32 wommd:ml-16 font-bold text-[#0F172A]">
+                                    {{$price->duration_days." days"}}</div>
                                 <div class="text-xs text-end womsm:text-sm wommd:text-base womsm:ml-8 w-32 wommd:ml-16 font-bold text-[#0F172A]">
                                     {{ $symbol ." " . number_format($price->price, 2) }}</div>
                                 @php
