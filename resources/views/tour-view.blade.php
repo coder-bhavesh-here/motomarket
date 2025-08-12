@@ -84,7 +84,7 @@
                 guide{{ $tour->guides > 1 ? 's' : '' }}.</b>
         </li>
         <li class="text-xs womsm:text-sm wommd:text-base"><b>{{ $tour->bike_option }}</b>.
-            {{ $tour->bike_specification != '' ? 'Note: ' . $tour->bike_specification : '' }}
+            {{ $tour->bike_specification != '' ? '(Note: ' . $tour->bike_specification.')' : '' }}
         </li>
         <li class="text-xs womsm:text-sm wommd:text-base">
             {{ $tour->two_up_riding ? 'The tour is for 2-up riding.' : 'The tour is not for 2-up riding. Only the rider on the bike.' }}
