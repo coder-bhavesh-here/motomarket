@@ -31,12 +31,16 @@
                             }
                         @endphp
                         <div class="w-full grid grid-cols-1 wommd:grid-cols-2 gap-6 mt-6">
-                            <div class="responsive-iframe-container py-4">
-                                {!! renderVideo($user->company_showcase_link1) !!}
-                            </div>
-                            <div class="responsive-iframe-container py-4">
-                                {!! renderVideo($user->company_showcase_link2) !!}
-                            </div>
+                            @if ($user->company_showcase_link1 !='')
+                                <div class="responsive-iframe-container py-4">
+                                    {!! renderVideo($user->company_showcase_link1) !!}
+                                </div>
+                            @endif
+                            @if ($user->company_showcase_link2 !='')
+                                <div class="responsive-iframe-container py-4">
+                                    {!! renderVideo($user->company_showcase_link2) !!}
+                                </div>
+                            @endif
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6">
                             @foreach ($user->tour_riding_images as $imagePath)
