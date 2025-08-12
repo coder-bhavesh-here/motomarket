@@ -117,10 +117,7 @@
                             <div class="relative col-span-2 flex items-center justify-start font-semibold bottom-0 w-full mt-2">
                                 <div class="flex items-center gap-2">
                                     <a href='/tours/create?activeStep=0&tour_id={{ $tour->id }}' class="edit-button text-xs wommd:text-sm">Edit</a>
-                                    <a href='/bookings' class="edit-button text-xs wommd:text-sm">Bookings</a>
-                                    <a href='/tour/{{ $tour->id }}' target="_blank" class="edit-button text-xs wommd:text-sm">View</a>
-                                    <a class="gray-button text-xs wommd:text-sm">Hide</a>
-                                    <a href='/tour/{{ $tour->id }}' class="delete-button text-xs wommd:text-sm">Delete</a>
+                                    <a href='/tours/delete/{{ $tour->id }}' class="delete-button text-xs wommd:text-sm">Delete</a>
                                 </div>
                             </div>
                         </div>
