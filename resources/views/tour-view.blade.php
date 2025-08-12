@@ -75,10 +75,10 @@
         {{-- <li class="text-xs womsm:text-sm wommd:text-base">Tour duration is: <b>{{ $tour->duration_days }} days with
                 {{ $tour->rest_days }} rest
                 day.</b></li> --}}
-        <li class="text-xs womsm:text-sm wommd:text-base">Maximum number of riders is <b>{{ $tour->max_riders }}</b> and
+        <li class="text-xs womsm:text-sm wommd:text-base">Maximum number of riders {{ $tour->max_riders > 1 ? 'are' : 'is' }} <b>{{ $tour->max_riders }}</b> and
             will include
             <b>{{ $tour->guides }}
-                or more guides.</b>
+                guides.</b>
         </li>
         <li class="text-xs womsm:text-sm wommd:text-base"><b>{{ $tour->bike_option }}</b>.
             {{ $tour->bike_specification != '' ? 'Note: ' . $tour->bike_specification : '' }}
