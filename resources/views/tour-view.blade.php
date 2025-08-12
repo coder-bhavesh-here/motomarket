@@ -81,7 +81,7 @@
         <li class="text-xs womsm:text-sm wommd:text-base">Maximum number of riders {{ $tour->max_riders > 1 ? 'are' : 'is' }} <b>{{ $tour->max_riders }}</b> and
             will include
             <b>{{ $tour->guides }}
-                guides.</b>
+                guide{{ $tour->guides > 1 ? 's' : '' }}.</b>
         </li>
         <li class="text-xs womsm:text-sm wommd:text-base"><b>{{ $tour->bike_option }}</b>.
             {{ $tour->bike_specification != '' ? 'Note: ' . $tour->bike_specification : '' }}
