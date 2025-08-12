@@ -4,9 +4,9 @@
 <div class="mx-auto p-4">
     <h2 class="text-2xl font-bold mb-4 text-green px-6">Emergency Contacts</h2>
 
-    @if(session('success'))
+    {{-- @if(session('success'))
         <div class="bg-green-100 text-green p-2 mb-4 rounded">{{ session('success') }}</div>
-    @endif
+    @endif --}}
 
     <form action="{{ route('emergency-contacts.update') }}" method="POST" class="mx-auto p-6">
         @csrf

@@ -66,7 +66,7 @@ class TourController extends Controller
         $userId = auth()->user()->id;
         $tourIds = Tour::where('user_id', $userId)->where('status', 'published')->pluck('id');
         $bookings = Booking::select([
-            'tours.id',
+            'bookings.id',
             'tours.title',
             'users.email',
             'bookings.user_id',

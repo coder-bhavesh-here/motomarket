@@ -492,6 +492,14 @@ p.blog-title {
     border-radius: 5px;
     color: white !important;
 }
+.gray-button {
+    background-color: lightgray;
+    padding: 4px 20px !important;
+    border: unset !important;
+    border-radius: 5px;
+    color: black !important;
+    cursor: not-allowed;
+}
 .delete-button {
     background-color: #B91C1C;
     padding: 4px 20px !important;
