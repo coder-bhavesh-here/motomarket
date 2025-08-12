@@ -97,32 +97,16 @@
         </li>
         <li class="text-xs womsm:text-sm wommd:text-base">We will cover: <b>{{ $tour->tour_distance }}Kms</b></li>
         @if ($tour->support == 'Fully Supported with support vehicle')
-            <li class="text-xs womsm:text-sm wommd:text-base"><b>{{ $tour->support }}</b>: A support vehicle will be
-                availble for
-                complete support
-                during the trip
-            </li>
+            <li class="text-xs womsm:text-sm wommd:text-base"><b>{{ "This tour is " . $tour->support }}</b></li>
         @endif
         @if ($tour->support == 'Fully Supported without a support vehicle')
-            <li class="text-xs womsm:text-sm wommd:text-base"><b>{{ $tour->support }}</b>: No support vehicle but the
-                guide(s) and the
-                team will
-                support you with
-                technical and riding assistance</li>
+            <li class="text-xs womsm:text-sm wommd:text-base"><b>{{  "This tour is " . $tour->support }}</b></li>
         @endif
         @if ($tour->support == 'Group supports each other')
-            <li class="text-xs womsm:text-sm wommd:text-base"><b>{{ $tour->support }}</b>: The group needs to support
-                each other for
-                technical and
-                riding assistance
-            </li>
+            <li class="text-xs womsm:text-sm wommd:text-base"><b>This tour is a group activity with everyone supporting eachother.</b></li>
         @endif
         @if ($tour->support == 'No Support')
-            <li class="text-xs womsm:text-sm wommd:text-base"><b>{{ $tour->support }}</b>: You need to be
-                self-sufficient. There is no
-                support or
-                assistance planned
-                for the trip</li>
+            <li class="text-xs womsm:text-sm wommd:text-base"><b>You need to be able ride with minimum or no support on this tour.</b></li>
         @endif
     </ul>
 </div>
