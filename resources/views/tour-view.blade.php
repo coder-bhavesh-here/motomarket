@@ -108,6 +108,31 @@
         @if ($tour->support == 'No Support')
             <li class="text-xs womsm:text-sm wommd:text-base">You need to be able ride with <b>minimum or no support on this tour.</b></li>
         @endif
+        @if ($tour->bike_insurance == 'included_in_price')
+            <li class="text-xs womsm:text-sm wommd:text-base">
+                Bike Insurance is <b>included</b> in the price
+            </li>
+        @endif
+        @if ($tour->bike_insurance == 'addon_or_another_supplier')
+            <li class="text-xs womsm:text-sm wommd:text-base">
+                Bike Insurance is an <b>add on or can be purchased</b> from another supplier
+            </li>
+        @endif
+        @if ($tour->bike_insurance == 'must_purchase')
+            <li class="text-xs womsm:text-sm wommd:text-base">
+                You must have your <b>own bike insurance</b>
+            </li>
+        @endif
+        @if ($tour->bike_insurance == 'not_required')
+            <li class="text-xs womsm:text-sm wommd:text-base">
+                Bike insurance is <b>not required</b>
+            </li>
+        @endif
+        @if ($tour->insurance_notes != '')
+            <li class="text-xs womsm:text-sm wommd:text-base">
+                Other insurance info: {{$tour->insurance_notes}}
+            </li>
+        @endif
     </ul>
 </div>
 <div class="text-[#0F172A] mx-3 mt-4 text-xs womsm:text-sm wommd:text-base font-medium">
