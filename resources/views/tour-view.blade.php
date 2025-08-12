@@ -66,10 +66,10 @@
             riders.
             {{ $tour->rider_capability_info != '' ? "(Note: $tour->rider_capability_info)" : '' }}
         </li>
-        <li class="text-xs womsm:text-sm wommd:text-base">This tour is
-            <b>{{ $tour->riding_style == 'Road' ? 'Road - Adventure on the road; its a road trip' : '' }}
-                {{ $tour->riding_style == 'Adventure' ? 'Adventure - Adventure ride on and off road' : '' }}
-                {{ $tour->riding_style == 'Enduro' ? 'Enduro - Almost all of the trip is off road' : '' }}</b>
+        <li class="text-xs womsm:text-sm wommd:text-base">This is
+            <b>{{ $tour->riding_style == 'Road' ? 'a Road Trip - Adventure on the road; its a road trip' : '' }}
+                {{ $tour->riding_style == 'Adventure' ? 'an Adventure - Adventure ride on and off road' : '' }}
+                {{ $tour->riding_style == 'Enduro' ? 'an Enduro - Almost all of the trip is off road' : '' }}</b>
             {{ $tour->riding_style_info != '' ? "(Note: $tour->riding_style_info)" : '' }}
         </li>
         {{-- <li class="text-xs womsm:text-sm wommd:text-base">Tour duration is: <b>{{ $tour->duration_days }} days with
