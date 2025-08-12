@@ -92,6 +92,9 @@
         <li class="text-xs womsm:text-sm wommd:text-base">
             {!! $tour->two_up_riding ? 'The tour is <b>open for 2-up riding</b>.' : 'The tour is <b>not for 2-up</b> riding. <b>Only the rider</b> on the bike.' !!}
         </li>
+        <li class="text-xs womsm:text-sm wommd:text-base">
+            {!! $tour->rent_gear ? 'You <b>can rent</b> riding gear from us or <b>bring your own</b>.' : 'You must bring <b>your own riding gear</b> for this tour.' !!}
+        </li>
         <li class="text-xs womsm:text-sm wommd:text-base">We will covering: <b>{{ $tour->tour_distance }}Kms</b></li>
         @if ($tour->support == 'Fully Supported with support vehicle')
             <li class="text-xs womsm:text-sm wommd:text-base"><b>{{ $tour->support }}</b>: A support vehicle will be
