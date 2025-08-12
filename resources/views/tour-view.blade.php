@@ -84,9 +84,9 @@
                 guide{{ $tour->guides > 1 ? 's' : '' }}.</b>
         </li>
         <li class="text-xs womsm:text-sm wommd:text-base"><b>
-            {{ $tour->bike_option == 'Bike Included' ? 'The <b>bike is included</b> for this tour.' : '' }}
-            {{ $tour->bike_option == 'Bring own bike' ? 'You need to <b>bring your own bike</b> for this tour.' : '' }}
-            {{ $tour->bike_option == 'Bike Rental' ? 'The bike <b>can be rented</b> or you <b>can bring your own bike</b>.' : '' }}
+            {!! $tour->bike_option == 'Bike included' ? 'The <b>bike is included</b> for this tour.' : '' !!}
+            {!! $tour->bike_option == 'Bring own bike' ? 'You need to <b>bring your own bike</b> for this tour.' : '' !!}
+            {!! $tour->bike_option == 'Bike rental' ? 'The bike <b>can be rented</b> or you <b>can bring your own bike</b>.' : '' !!}
         </b>.
             {{ $tour->bike_specification != '' ? '(Note: ' . $tour->bike_specification.')' : '' }}
         </li>
