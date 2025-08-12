@@ -95,7 +95,7 @@
         <li class="text-xs womsm:text-sm wommd:text-base">
             {!! $tour->rent_gear ? 'You can <b>rent riding gear</b> from us or <b>bring your own</b>.' : 'You must bring <b>your own riding gear</b> for this tour.' !!}
         </li>
-        <li class="text-xs womsm:text-sm wommd:text-base">We will covering: <b>{{ $tour->tour_distance }}Kms</b></li>
+        <li class="text-xs womsm:text-sm wommd:text-base">We will cover: <b>{{ $tour->tour_distance }}Kms</b></li>
         @if ($tour->support == 'Fully Supported with support vehicle')
             <li class="text-xs womsm:text-sm wommd:text-base"><b>{{ $tour->support }}</b>: A support vehicle will be
                 availble for
