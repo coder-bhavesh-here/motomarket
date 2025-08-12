@@ -63,13 +63,14 @@
     <ul class="text-[#0F172A]">
         <li class="text-xs womsm:text-sm wommd:text-base">We will be touring in: <b>{{ $tour->countries }}</b></li>
         <li class="text-xs womsm:text-sm wommd:text-base">This tour is open to <b>{{ str_replace(',',', ', $tour->rider_capability) }}</b>
-            riders.{{$tour->rider_capability_info}}
+            riders.
+            {{ $tour->rider_capability_info != '' ? "(Note: $tour->rider_capability_info)" : '' }}
         </li>
         <li class="text-xs womsm:text-sm wommd:text-base">This tour is
             <b>{{ $tour->riding_style == 'Road' ? 'Road - Adventure on the road; its a road trip' : '' }}
                 {{ $tour->riding_style == 'Adventure' ? 'Adventure - Adventure ride on and off road' : '' }}
                 {{ $tour->riding_style == 'Enduro' ? 'Enduro - Almost all of the trip is off road' : '' }}</b>
-            {{ $tour->riding_style_info != '' ? "( Note: $tour->riding_style_info)" : '' }}
+            {{ $tour->riding_style_info != '' ? "(Note: $tour->riding_style_info)" : '' }}
         </li>
         <li class="text-xs womsm:text-sm wommd:text-base">Tour duration is: <b>{{ $tour->duration_days }} days with
                 {{ $tour->rest_days }} rest
