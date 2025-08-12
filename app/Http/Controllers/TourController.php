@@ -425,7 +425,7 @@ class TourController extends Controller
     public function uploadImage(Request $request)
     {
         $request->validate([
-            'file' => 'required|file|mimes:jpg,jpeg,png,pdf|max:2048',
+            'file' => 'required|file|mimes:jpg,jpeg,png,pdf|max:5120',
             'index' => 'required|integer|min:0|max:14',
             'tour_id' => 'required|integer|exists:tours,id',
         ]);
