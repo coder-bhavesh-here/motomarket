@@ -63,7 +63,7 @@
     <ul class="text-[#0F172A]">
         <li class="text-xs womsm:text-sm wommd:text-base">We will be touring in: <b>{{ $tour->countries }}</b></li>
         <li class="text-xs womsm:text-sm wommd:text-base">This tour is open to <b>{{ str_replace(',',', ', $tour->rider_capability) }}</b>
-            riders.
+            riders.{{$tour->rider_capability_info}}
         </li>
         <li class="text-xs womsm:text-sm wommd:text-base">This tour is
             <b>{{ $tour->riding_style == 'Road' ? 'Road - Adventure on the road; its a road trip' : '' }}
