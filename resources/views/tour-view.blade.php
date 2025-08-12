@@ -97,16 +97,16 @@
         </li>
         <li class="text-xs womsm:text-sm wommd:text-base">We will cover: <b>{{ $tour->tour_distance }}Kms</b></li>
         @if ($tour->support == 'Fully Supported with support vehicle')
-            <li class="text-xs womsm:text-sm wommd:text-base"><b>{{ "This tour is " . $tour->support }}</b></li>
+            <li class="text-xs womsm:text-sm wommd:text-base">This tour is <b>{{ $tour->support }}</b></li>
         @endif
         @if ($tour->support == 'Fully Supported without a support vehicle')
-            <li class="text-xs womsm:text-sm wommd:text-base"><b>{{  "This tour is " . $tour->support }}</b></li>
+            <li class="text-xs womsm:text-sm wommd:text-base">This tour is <b>{{$tour->support }}</b></li>
         @endif
         @if ($tour->support == 'Group supports each other')
-            <li class="text-xs womsm:text-sm wommd:text-base"><b>This tour is a group activity with everyone supporting eachother.</b></li>
+            <li class="text-xs womsm:text-sm wommd:text-base">This tour is a group activity with everyone <b>supporting eachother.</b></li>
         @endif
         @if ($tour->support == 'No Support')
-            <li class="text-xs womsm:text-sm wommd:text-base"><b>You need to be able ride with minimum or no support on this tour.</b></li>
+            <li class="text-xs womsm:text-sm wommd:text-base">You need to be able ride with <b>minimum or no support on this tour.</b></li>
         @endif
     </ul>
 </div>
