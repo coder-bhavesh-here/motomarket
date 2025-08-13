@@ -274,6 +274,16 @@
         </div>
     </div>
 </div>
+
+<script src="https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/intlTelInput.min.js"></script>
+<script>
+    const phoneInput = document.querySelector("#mobile_number");
+    const iti = window.intlTelInput(phoneInput, {
+        separateDialCode: true,
+        strictMode: true,
+        loadUtils: () => import("https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js"),
+    });
+</script>
 <script>
     function openFilterModal() {
         window.scrollTo({
@@ -323,7 +333,9 @@
         if (!validateForm()) {
             return false;
         }
-
+        if (!iti.isValidNumber()) {
+            alert("Please enter a valid phone number.");
+        }
         const id = $(this).data("id");
         const price = $(this).data("price");
         const addons = $("input[name='addons[]']:checked")
@@ -334,7 +346,7 @@
         const amount = $("#total_price").html();
         const name = $("#name").val();
         const nationality = $("#nationality").val();
-        const mobile_number = $("#mobile_number").val();
+        const mobile_number = iti.getNumber();
         const address = $("#address").val();
         const country = $("#country").val();
         const postcode = $("#postcode").val();
