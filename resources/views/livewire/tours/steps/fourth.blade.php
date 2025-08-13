@@ -98,7 +98,7 @@
         endDateInput.attr("min", startDate);
 
         // If the current end date is before the start date, reset it
-        if (endDateInput.val() && endDateInput.val() < startDate) {
+        if (endDateInput.val() || endDateInput.val() < startDate) {
             endDateInput.val(startDate);
         }
     });
