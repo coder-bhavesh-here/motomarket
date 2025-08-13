@@ -147,6 +147,9 @@ class TourController extends Controller
     public function show($tourId): View
     {
         $tour = Tour::withTrashed()->find($tourId);
+        if (!$tour) {
+            abort(404, 'Tour not found');
+        }
         $tourQuestions = TourQuestion::where('tour_id', $tourId)->get();
         $tour->tourQuestions = $tourQuestions;
         return view('tour-detail', [
