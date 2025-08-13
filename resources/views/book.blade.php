@@ -12,6 +12,12 @@
     ul li {
         margin-top: 1.25rem;
     }
+    .iti__country-container button {
+            border: unset !important;
+        }
+        .iti {
+            width: 100% !important;
+        }
 </style>
 <wireui:scripts />
 
@@ -178,7 +184,7 @@
                         <div class="w-full">
                             <span class="form-label font-medium text-[#000F22]">Mobile</span>
                             <div class="items-center">
-                                <x-text-input id="mobile_number" placeholder="Please provide mobile number" />
+                                <x-text-input class="block w-full" id="mobile_number" placeholder="Please provide mobile number" />
                             </div>
                         </div>
                     </div>
