@@ -18,6 +18,9 @@
                 <div class="rounded flex flex-col p-3">
                     <div>
                         {{-- <div class="bg-gray-300 h-32 rounded mb-4"></div> --}}
+                        @php
+                            $tour->images = $tour->images->sortBy('index');
+                        @endphp
                         <a class="" href='/tour/{{ $tour->id }}'><img
                                 class="rounded-md aspect-square object-cover h-full w-full"
                                 src="{{ isset($tour->images) && isset($tour->images[0]->image_path) ? asset('storage') . '/' . $tour->images[0]->image_path : 'https://photos.smugmug.com/Galleries/Motorcycles/i-jX3tNwR/0/K2H4fw8P5MqPD8SRLWSrRZm4479d3ZvH8HL773j2D/L/cj.photos-_CJ09043-L.jpg' }}"
