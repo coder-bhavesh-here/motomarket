@@ -320,6 +320,10 @@
                 errors.push(`${label} is required`);
             }
         });
+        if (!iti.isValidNumber()) {
+            errors.push('Please enter a valid phone number');
+            // alert("Please enter a valid phone number.");
+        }
 
         // Display errors if any
         const errorDiv = $("#validation-errors");
@@ -334,13 +338,9 @@
 
     $(".make-payment").click(function(e) {
         e.preventDefault();
-
         // First validate the form
         if (!validateForm()) {
             return false;
-        }
-        if (!iti.isValidNumber()) {
-            alert("Please enter a valid phone number.");
         }
         const id = $(this).data("id");
         const price = $(this).data("price");
