@@ -328,36 +328,48 @@
                 </div>
                 <div class="w-5/6">
                     <div class="mb-4">
-                        <x-radio id="included_in_price" lg label="Included in the price"
-                            value="{{ App\Models\Tour::INCLUDED_IN_PRICE }}" :checked="in_array(
-                                App\Models\Tour::INCLUDED_IN_PRICE,
-                                explode(',', isset($tour->bike_insurance) ? $tour->bike_insurance : ''),
-                            )"
-                            name="bike_insurance" />
+                        <x-radio 
+                            id="included_in_price" 
+                            lg 
+                            label="Included in the price"
+                            value="{{ App\Models\Tour::INCLUDED_IN_PRICE }}" 
+                            :checked="isset($tour->bike_insurance) && $tour->bike_insurance == App\Models\Tour::INCLUDED_IN_PRICE"
+                            name="bike_insurance" 
+                        />
                     </div>
+                    
                     <div class="mb-4">
-                        <x-radio id="addon_supplier" lg label="Add on or can be purchased from another supplier"
-                            value="{{ App\Models\Tour::ADDON_OR_ANOTHER_SUPPLIER }}" :checked="in_array(
-                                App\Models\Tour::ADDON_OR_ANOTHER_SUPPLIER,
-                                explode(',', isset($tour->bike_insurance) ? $tour->bike_insurance : ''),
-                            )"
-                            name="bike_insurance" />
+                        <x-radio 
+                            id="addon_supplier" 
+                            lg 
+                            label="Add on or can be purchased from another supplier"
+                            value="{{ App\Models\Tour::ADDON_OR_ANOTHER_SUPPLIER }}" 
+                            :checked="isset($tour->bike_insurance) && $tour->bike_insurance == App\Models\Tour::ADDON_OR_ANOTHER_SUPPLIER"
+                            name="bike_insurance" 
+                        />
                     </div>
+                    
                     <div class="mb-4">
-                        <x-radio id="must_purchase" lg label="The rider must purchase from a supplier"
-                            value="{{ App\Models\Tour::MUST_PURCHASE }}" :checked="in_array(
-                                App\Models\Tour::MUST_PURCHASE,
-                                explode(',', isset($tour->bike_insurance) ? $tour->bike_insurance : ''),
-                            )"
-                            name="bike_insurance" />
+                        <x-radio 
+                            id="must_purchase" 
+                            lg 
+                            label="The rider must purchase from a supplier"
+                            value="{{ App\Models\Tour::MUST_PURCHASE }}" 
+                            :checked="isset($tour->bike_insurance) && $tour->bike_insurance == App\Models\Tour::MUST_PURCHASE"
+                            name="bike_insurance" 
+                        />
                     </div>
+                    
                     <div class="mb-4">
-                        <x-radio id="not_required" lg label="Is not required"
-                            value="{{ App\Models\Tour::NOT_REQUIRED }}" :checked="in_array(
-                                App\Models\Tour::NOT_REQUIRED,
-                                explode(',', isset($tour->bike_insurance) ? $tour->bike_insurance : ''),
-                            )" name="bike_insurance" />
-                    </div>
+                        <x-radio 
+                            id="not_required" 
+                            lg 
+                            label="Is not required"
+                            value="{{ App\Models\Tour::NOT_REQUIRED }}" 
+                            :checked="isset($tour->bike_insurance) && $tour->bike_insurance == App\Models\Tour::NOT_REQUIRED"
+                            name="bike_insurance" 
+                        />
+                    </div>                    
                 </div>
             </div>
         </div>
