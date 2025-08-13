@@ -87,6 +87,22 @@
         rowIndex++;
     });
 
+    $(document).on("change", "input[name^='date'][name$='[date]']", function () {
+        // Get selected start date
+        let startDate = $(this).val();
+
+        // Find the corresponding end date picker in the same parent/container
+        let endDateInput = $(this).closest('div').find("input[name^='date'][name$='[end_date]']");
+
+        // Set the min attribute so end date can't be less than start date
+        endDateInput.attr("min", startDate);
+
+        // If the current end date is before the start date, reset it
+        if (endDateInput.val() && endDateInput.val() < startDate) {
+            endDateInput.val(startDate);
+        }
+    });
+
     // Remove row using event delegation
     $(document).on('click', '.remove-row', function () {
         var count = $('.remove-row').length;
