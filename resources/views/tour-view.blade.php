@@ -161,9 +161,26 @@
 
 <div class="my-6 mx-3" id="dates">
     @php
-        $grouped = $tour->prices->groupBy(function ($item) {
-            return \Carbon\Carbon::parse($item->date)->format('F Y'); // Group by "Month Year"
+        // $grouped = $tour->prices->groupBy(function ($item) {
+        //     return \Carbon\Carbon::parse($item->date)->format('F Y'); // Group by "Month Year"
+        // });
+        // $counter = 0;
+        use Carbon\Carbon;
+        // 1️⃣ Filter out past dates
+        $upcomingPrices = $tour->prices->filter(function ($item) {
+            return Carbon::parse($item->date)->isToday() || Carbon::parse($item->date)->isFuture();
         });
+
+        // 2️⃣ Sort by date ascending
+        $sortedPrices = $upcomingPrices->sortBy(function ($item) {
+            return Carbon::parse($item->date)->timestamp;
+        });
+
+        // 3️⃣ Group by month-year
+        $grouped = $sortedPrices->groupBy(function ($item) {
+            return Carbon::parse($item->date)->format('F Y');
+        });
+
         $counter = 0;
     @endphp
     @foreach ($grouped as $monthName => $prices)
