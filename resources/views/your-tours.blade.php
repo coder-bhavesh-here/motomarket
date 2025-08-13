@@ -24,8 +24,11 @@
                             {{-- <img class="aspect-square rounded-lg object-cover h-full w-full"
                                 src="https://worldonmoto.com/storage/uploads/1732685873_2.jpg"
                                 alt="Tour photo"> --}}
+                            @php
+                                $tour->images = $tour->images->sortBy('index')->first();
+                            @endphp
                             <img class="aspect-square rounded-lg object-cover h-full w-full"
-                                src="{{ isset($tour->images) && isset($tour->images[0]->image_path) ? asset('storage') . '/' . $tour->images[0]->image_path : 'https://photos.smugmug.com/Galleries/Motorcycles/i-jX3tNwR/0/K2H4fw8P5MqPD8SRLWSrRZm4479d3ZvH8HL773j2D/L/cj.photos-_CJ09043-L.jpg' }}"
+                                src="{{ isset($tour->images) && isset($tour->images->image_path) ? asset('storage') . '/' . $tour->images->image_path : 'https://photos.smugmug.com/Galleries/Motorcycles/i-jX3tNwR/0/K2H4fw8P5MqPD8SRLWSrRZm4479d3ZvH8HL773j2D/L/cj.photos-_CJ09043-L.jpg' }}"
                                 alt="Tour photo">
                             
                             @if($daysToGo > 0)
@@ -65,8 +68,11 @@
                             {{-- <img class="aspect-square rounded-lg object-cover h-full w-full"
                                 src="https://worldonmoto.com/storage/uploads/1732685873_2.jpg"
                                 alt="Tour photo"> --}}
+                            @php
+                                $tour->images = $tour->images->sortBy('index')->first();
+                            @endphp
                             <img class="aspect-square rounded-lg object-cover h-full w-full"
-                                src="{{ isset($tour->images) && isset($tour->images[0]->image_path) ? asset('storage') . '/' . $tour->images[0]->image_path : 'https://photos.smugmug.com/Galleries/Motorcycles/i-jX3tNwR/0/K2H4fw8P5MqPD8SRLWSrRZm4479d3ZvH8HL773j2D/L/cj.photos-_CJ09043-L.jpg' }}"
+                                src="{{ isset($tour->images) && isset($tour->images->image_path) ? asset('storage') . '/' . $tour->images->image_path : 'https://photos.smugmug.com/Galleries/Motorcycles/i-jX3tNwR/0/K2H4fw8P5MqPD8SRLWSrRZm4479d3ZvH8HL773j2D/L/cj.photos-_CJ09043-L.jpg' }}"
                                 alt="Tour photo">
                         </a>
                         <div class="flex justify-between mt-2">
@@ -93,8 +99,11 @@
                             {{-- <img class="aspect-square rounded-lg object-cover h-full w-full"
                                 src="https://worldonmoto.com/storage/uploads/1732685873_2.jpg"
                                 alt="Tour photo"> --}}
+                            @php
+                                $tour->images = $tour->images->sortBy('index')->first();
+                            @endphp
                             <img class="aspect-square rounded-lg object-cover h-full w-full"
-                                src="{{ isset($tour->images) && isset($tour->images[0]->image_path) ? asset('storage') . '/' . $tour->images[0]->image_path : 'https://photos.smugmug.com/Galleries/Motorcycles/i-jX3tNwR/0/K2H4fw8P5MqPD8SRLWSrRZm4479d3ZvH8HL773j2D/L/cj.photos-_CJ09043-L.jpg' }}"
+                                src="{{ isset($tour->images) && isset($tour->images->image_path) ? asset('storage') . '/' . $tour->images->image_path : 'https://photos.smugmug.com/Galleries/Motorcycles/i-jX3tNwR/0/K2H4fw8P5MqPD8SRLWSrRZm4479d3ZvH8HL773j2D/L/cj.photos-_CJ09043-L.jpg' }}"
                                 alt="Tour photo">
                             <div class="absolute top-2 right-2 rounded-md p-2 flex flex-col items-center">
                                 <span class="border-2 border-solid text-red-600 border-red-600 rounded-lg bg-white text-lg font-bold p-2">Cancelled</span>

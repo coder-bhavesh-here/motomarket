@@ -30,12 +30,15 @@
                 <div class="w-full justify-items-center masterDiv" id="masterDiv{{ $tour->id }}">
                     <div class="max-w-[320px] wommd:max-w-[500px] ">
                         <a href='/tour/{{ $tour->id }}'>
-                            <img class="aspect-square rounded-lg object-cover h-full w-full"
-                                src="https://worldonmoto.com/storage/uploads/1732685873_2.jpg"
-                                alt="Tour photo">
                             {{-- <img class="aspect-square rounded-lg object-cover h-full w-full"
-                                src="{{ isset($tour->images) && isset($tour->images[0]->image_path) ? asset('storage') . '/' . $tour->images[0]->image_path : 'https://photos.smugmug.com/Galleries/Motorcycles/i-jX3tNwR/0/K2H4fw8P5MqPD8SRLWSrRZm4479d3ZvH8HL773j2D/L/cj.photos-_CJ09043-L.jpg' }}"
+                                src="https://worldonmoto.com/storage/uploads/1732685873_2.jpg"
                                 alt="Tour photo"> --}}
+                            @php
+                                $tour->images = $tour->images->sortBy('index')->first();
+                            @endphp
+                            <img class="aspect-square rounded-lg object-cover h-full w-full"
+                                src="{{ isset($tour->images) && isset($tour->images->image_path) ? asset('storage') . '/' . $tour->images->image_path : 'https://photos.smugmug.com/Galleries/Motorcycles/i-jX3tNwR/0/K2H4fw8P5MqPD8SRLWSrRZm4479d3ZvH8HL773j2D/L/cj.photos-_CJ09043-L.jpg' }}"
+                                alt="Tour photo">
                         </a>
                         <div class="flex justify-between mt-2">
                             <span class="text-green font-bold max-h-5 max-w-[70%] block text-sm wommd:text-base overflow-hidden">{{ Str::limit(strip_tags($tour->title), 40) }}</span>
