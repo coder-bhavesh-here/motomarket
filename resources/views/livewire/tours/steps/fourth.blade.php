@@ -9,7 +9,7 @@
         };
         $initialCount = isset($prices) && $prices ? count($prices) : 0;
     @endphp
-    @forelse($prices ?? [] as $i => $price)
+    @forelse(($prices ?? collect())->sortBy('date') as $i => $price)
         <div class="mb-6 p-4">
             <div class="grid grid-cols-5 gap-4 font-semibold mb-2">
                 <div>Tour start date</div>
