@@ -280,7 +280,7 @@
         infinite: true,
         speed: 300,
         slidesToShow: 1,
-        centerMode: true,
+        centerMode: false,
         variableWidth: true,
     });
 </script>
