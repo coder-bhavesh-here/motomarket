@@ -178,7 +178,7 @@
                         <div class="w-full">
                             <span class="form-label font-medium text-[#000F22]">Mobile</span>
                             <div class="items-center">
-                                <x-input id="mobile_number" placeholder="Please provide mobile number" />
+                                <x-text-input id="mobile_number" placeholder="Please provide mobile number" />
                             </div>
                         </div>
                     </div>
