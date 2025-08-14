@@ -32,8 +32,14 @@
     <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > Tour Management</p>
     @if(session('success'))
         <script>
-            var notyf = new Notyf();
-            notyf.success('Your changes have been successfully saved!');
+            var notyf = new Notyf(
+                duration: 2500,
+                position: {
+                    x: 'right',
+                    y: 'top',
+                }
+            );
+            notyf.success('Delete successful!');
         </script>
     @endif
 
