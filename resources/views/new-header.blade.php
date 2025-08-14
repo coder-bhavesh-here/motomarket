@@ -11,6 +11,7 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
     <!-- Styles -->
     <style>
         /* ! tailwindcss v3.4.1 | MIT License | https://tailwindcss.com */
@@ -929,6 +930,7 @@
 </head>
 
 <body class="antialiased dark:bg-black dark:text-white/50 bg-[#f9fafb]">
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
     <!-- Global Image Preview Modal -->
     <div id="globalImageModal" class="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-85 hidden">
         <div class="relative">

@@ -32,13 +32,8 @@
     <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > Tour Management</p>
     @if(session('success'))
         <script>
-            window.Wireui.notification([
-                {
-                    title: 'Success',
-                    description: 'Tour deleted successfully!',
-                    icon: 'success'
-                }
-            ])
+            var notyf = new Notyf();
+            notyf.success('Your changes have been successfully saved!');
         </script>
     @endif
 
