@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>World On Motos</title>
-    @wireUiScripts
+    <wireui:scripts />
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
