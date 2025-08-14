@@ -205,7 +205,7 @@ class ProfileController extends Controller
     public function deletedTourManagement(Request $request): View|JsonResponse
     {
         $search = $request->get('search');
-        $query = Tour::with(['user', 'prices', 'images', 'favourites'])->where('permanently_deleted', false)->where('user_id', Auth::user()->id);
+        $query = Tour::withTrashed()->with(['user', 'prices', 'images', 'favourites'])->where('permanently_deleted', false)->where('user_id', Auth::user()->id);
 
         if ($search) {
             $query->where('title', 'like', '%' . $search . '%')
@@ -215,7 +215,7 @@ class ProfileController extends Controller
                 });
         }
 
-        $tours = $query->onlyTrashed()->get();
+        $tours = $query->get();
         $countries = config('countries.list');
         return view('deleted-tour-management', [
             'user' => Auth::user(),

@@ -328,7 +328,7 @@ class TourController extends Controller
     public function delete($tourId)
     {
         Tour::findOrFail($tourId)->delete();
-        return redirect()->route('tour-management');
+        return redirect()->back()->with('success', 'Tour deleted successfully.');
     }
 
     public function permDelete($tourId)
