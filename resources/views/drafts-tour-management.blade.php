@@ -33,12 +33,12 @@
     @if(session('success'))
         <script>
             window.Wireui.notification([
-    {
-        title: 'Success',
-        description: 'Tour deleted successfully!',
-        icon: 'success'
-    }
-])
+                {
+                    title: 'Success',
+                    description: 'Tour deleted successfully!',
+                    icon: 'success'
+                }
+            ])
         </script>
     @endif
 
