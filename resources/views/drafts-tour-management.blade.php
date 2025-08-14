@@ -31,7 +31,13 @@
 <main class="mt-2 px-6">
     <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > Tour Management</p>
     @if(session('success'))
-        <x-alert title="{{ session('success') }}" positive />
+        <script>
+            window.$wireui.notify({
+                title: 'Success',
+                description: '{{ session('success') }}',
+                icon: 'success'
+            })
+        </script>
     @endif
 
     <script>
