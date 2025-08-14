@@ -765,7 +765,7 @@ class TourController extends Controller
             'question' => $request->question,
             'questioned_by' => auth()->user()->id
         ]);
-        return redirect()->back();
+        return redirect()->back()->with('success', 'Thank you for the question, the tour operator will give you an answer shortly…');
     }
     public function deleteImage($id)
     {

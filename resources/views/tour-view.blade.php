@@ -13,6 +13,18 @@
     };
 @endphp
 <div class="brand-name">
+    @if(session('success'))
+        <script>
+            var notyf = new Notyf({
+                duration: 2500,
+                position: {
+                    x: 'right',
+                    y: 'top',
+                }
+            });
+            notyf.success('Thank you for the question, the tour operator will give you an answer shortly…');
+        </script>
+    @endif
     <div class="ml-3 grid grid-cols-3">
         <b class="col-span-2 text-base womsm:text-xl wommd:text-2xl text-black font-semibold block mb-4">{{ $tour->title }}
             - {{ $tour->countries }}</b>
