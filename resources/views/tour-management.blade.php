@@ -33,13 +33,13 @@
     <span class="block text-orange text-xl womsm:text-2xl wommd:text-3xl font-bold my-6">Tour Management</span>
     @if(session('success'))
         <script>
-            var notyf = new Notyf(
+            var notyf = new Notyf({
                 duration: 2500,
                 position: {
                     x: 'right',
                     y: 'top',
                 }
-            );
+            });
             notyf.success('Delete successful!');
         </script>
     @endif
