@@ -32,11 +32,13 @@
     <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > Tour Management</p>
     @if(session('success'))
         <script>
-            window.Wireui.notify({
-                title: 'Success',
-                description: '{{ session('success') }}',
-                icon: 'success'
-            })
+            window.Wireui.notification([
+    {
+        title: 'Success',
+        description: 'Tour deleted successfully!',
+        icon: 'success'
+    }
+])
         </script>
     @endif
 
