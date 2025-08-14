@@ -33,8 +33,8 @@ class TourController extends Controller
     public function index(): View
     {
         $userId = auth()->user()->id;
-        $tours = Tour::where('user_id', $userId)->get();
-        $tourIds = Tour::where('user_id', $userId)->pluck('id')->toArray();
+        $tours = Tour::where('user_id', $userId)->where('permanently_deleted', false)->get();
+        $tourIds = Tour::where('user_id', $userId)->where('permanently_deleted', false)->pluck('id')->toArray();
         $bookingsCount = Booking::select('tour_id', DB::raw('COUNT(*) as booking_count'))
             ->whereIn('tour_id', $tourIds)
             ->groupBy('tour_id')
@@ -64,7 +64,7 @@ class TourController extends Controller
     public function bookings()
     {
         $userId = auth()->user()->id;
-        $tourIds = Tour::where('user_id', $userId)->where('status', 'published')->pluck('id');
+        $tourIds = Tour::where('user_id', $userId)->where('status', 'published')->where('permanently_deleted', false)->pluck('id');
         $bookings = Booking::select([
             'bookings.id',
             'tours.title',
@@ -111,7 +111,7 @@ class TourController extends Controller
     {
         $search = $request->get('search');
         $favouriteTours = auth()->user()->favouriteTours->pluck('tour_id')->toArray();
-        $tours = Tour::whereIn('id', $favouriteTours);
+        $tours = Tour::whereIn('id', $favouriteTours)->where('permanently_deleted', false);
         if ($search) {
             $tours->where('title', 'like', '%' . $search . '%');
         }
@@ -165,7 +165,7 @@ class TourController extends Controller
         ]);
         if (count($request->all()) == 2) {
             $booking = Booking::find($request->id);
-            $tour = Tour::find($booking->tour_id);
+            $tour = Tour::where('permanently_deleted', false)->find($booking->tour_id);
             $image = TourImage::where('tour_id', $tour->id)->first();
             if ($image != null) {
                 $imagePath = asset('storage') . '/' . $image->image_path;
@@ -333,7 +333,9 @@ class TourController extends Controller
 
     public function permDelete($tourId)
     {
-        Tour::withTrashed()->findOrFail($tourId)->forceDelete();
+        $tour = Tour::withTrashed()->findOrFail($tourId);
+        $tour->permanently_deleted = true;
+        $tour->save();
         return redirect()->route('tour-management')->with('success', 'Tour permanently deleted.');
     }
 
@@ -352,7 +354,7 @@ class TourController extends Controller
     public function bookAddon($priceId): View
     {
         $price = TourPrice::find($priceId);
-        $tour = Tour::with(['prices', 'addonGroups'])->find($price->tour_id);
+        $tour = Tour::with(['prices', 'addonGroups'])->where('permanently_deleted', false)->find($price->tour_id);
         return view('bookAddon', [
             'tour' => $tour,
             'nationalities' => ['India', 'Europe', 'US  '],
@@ -369,7 +371,7 @@ class TourController extends Controller
             $addonIds = explode(',', $booking->addons);
             $addons = Addon::with('group')->whereIn('id', $addonIds)->get();
         }
-        $tour = Tour::with(['prices'])->find($price->tour_id);
+        $tour = Tour::with(['prices'])->where('permanently_deleted', false)->find($price->tour_id);
         return view('book', [
             'tour' => $tour,
             'nationalities' => ['India', 'Europe', 'US  '],
@@ -395,7 +397,7 @@ class TourController extends Controller
             $addonIds = explode(',', $booking->addons);
             $addons = Addon::with('group')->whereIn('id', $addonIds)->get();
         }
-        $tour = Tour::with(['prices'])->find($price->tour_id);
+        $tour = Tour::with(['prices'])->where('permanently_deleted', false)->find($price->tour_id);
         return view('booked-detail', [
             'tour' => $tour,
             'booking' => $booking,

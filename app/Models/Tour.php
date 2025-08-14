@@ -33,6 +33,7 @@ class Tour extends Model
         'countries',
         'bike_insurance',
         'insurance_notes',
+        'permanently_deleted'
     ];
     protected $appends = ['is_favourite'];
     public function getIsFavouriteAttribute()
