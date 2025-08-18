@@ -382,6 +382,25 @@ class ProfileController extends Controller
     public function updateTourProfileStatus(Request $request)
     {
         $user = auth()->user();
+        $disableProfile = $request->input('tour_profile') == false; // user wants to disable
+
+        if ($disableProfile) {
+            // Check if user has tours
+            $upcomingTours = Tour::where('user_id', $user->id)
+                ->where('status', 'published') // only published tours
+                ->where('permanently_deleted', false) // not permanently deleted
+                ->whereNull('deleted_at') // not soft deleted
+                ->whereHas('prices', function ($query) {
+                    $query->whereDate('date', '>=', now()); // any future date
+                })
+                ->exists();
+
+            if ($upcomingTours) {
+                return response()->json([
+                    'message' => 'You cannot disable your tour profile while you have upcoming tours.'
+                ]);
+            }
+        }
         $user->tour_profile_enabled = $request->input('tour_profile');
         $user->is_tour_policy_checked = $request->input('terms');
         $user->save();
