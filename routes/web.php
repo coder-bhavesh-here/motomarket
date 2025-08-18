@@ -7,34 +7,36 @@ use App\Http\Controllers\TourController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/about', function () {
-    return view('about');
-});
-Route::get('/invite-operators', function () {
-    return view('invite-operators');
-});
-Route::get('/investor', function () {
-    return view('investor');
-});
-Route::get('/partner', function () {
-    return view('partner');
-});
-Route::get('/user/{nickname}', [ProfileController::class, 'showUser']);
-Route::get('/tour-operator/{nickname}', [ProfileController::class, 'showTourUser']);
-Route::get('/verify', [ProfileController::class, 'verifyEmail'])->name('verifyEmail');
-Route::post('/payment', [TourController::class, 'makePayment'])->name('makePayment');
-Route::get('/', [ProfileController::class, 'newHome'])->name('homepage');
-Route::redirect('/dashboard', '/')->name('dashboard');
-Route::get('/explore-tours', [ProfileController::class, 'exploreTours'])->name('explore-tours');
-Route::get('/tour/{tourId}', [TourController::class, 'show']);
-Route::post('/mark-as-favourite', [TourController::class, 'markFavourite']);
-Route::post('/delete-favourite', [TourController::class, 'deleteFavourite']);
-Route::get('/tour/book/{tourId}', [TourController::class, 'book']);
+Route::middleware('throttle:5,1')->group(function () {
+    Route::get('/about', function () {
+        return view('about');
+    });
+    Route::get('/invite-operators', function () {
+        return view('invite-operators');
+    });
+    Route::get('/investor', function () {
+        return view('investor');
+    });
+    Route::get('/partner', function () {
+        return view('partner');
+    });
+    Route::get('/user/{nickname}', [ProfileController::class, 'showUser']);
+    Route::get('/tour-operator/{nickname}', [ProfileController::class, 'showTourUser']);
+    Route::get('/verify', [ProfileController::class, 'verifyEmail'])->name('verifyEmail');
+    Route::post('/payment', [TourController::class, 'makePayment'])->name('makePayment');
+    Route::get('/', [ProfileController::class, 'newHome'])->name('homepage');
+    Route::redirect('/dashboard', '/')->name('dashboard');
+    Route::get('/explore-tours', [ProfileController::class, 'exploreTours'])->name('explore-tours');
+    Route::get('/tour/{tourId}', [TourController::class, 'show']);
+    Route::post('/mark-as-favourite', [TourController::class, 'markFavourite']);
+    Route::post('/delete-favourite', [TourController::class, 'deleteFavourite']);
+    Route::get('/tour/book/{tourId}', [TourController::class, 'book']);
 
-Route::get('/blogs', [BlogController::class, 'list'])->name('blogs.list');
-Route::get('/faqs', [BlogController::class, 'faqList'])->name('faqs.list');
-Route::get('/blogs/{blog}', [BlogController::class, 'show'])->name('blogs.show');
-Route::middleware('auth')->group(function () {
+    Route::get('/blogs', [BlogController::class, 'list'])->name('blogs.list');
+    Route::get('/faqs', [BlogController::class, 'faqList'])->name('faqs.list');
+    Route::get('/blogs/{blog}', [BlogController::class, 'show'])->name('blogs.show');
+});
+Route::middleware(['auth', 'throttle:5,1'])->group(function () {
     // Route::post('/profile', function () {
     //     dd('route matched');
     // });
