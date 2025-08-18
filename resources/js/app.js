@@ -55,466 +55,826 @@ $(".cancel-button").click(function (e) {
     }
 });
 
-document.querySelectorAll(".save-exit-button ").forEach(function (element) {
-    element.addEventListener("click", function () {
-        const url = new URL(window.location.href);
-        let currentStep = parseInt(url.searchParams.get("activeStep")) || 0;
-        if (currentStep === 0) {
-            let tour_id =
-                parseInt(url.searchParams.get("tour_id")) || undefined;
-            let firstStepData = {};
-            firstStepData.title = $("input[name=title]").val();
-            firstStepData.riding_style = $(
-                "input[name=riding_style]:checked"
-            ).val();
-            firstStepData.support = $("input[name=support]:checked").val();
-            firstStepData.riding_style_info = $(
-                "input[name=riding_style_info]"
-            ).val();
-            firstStepData.rider_capability = $(
-                "input[name='rider_capability[]']:checked"
-            )
-                .map(function () {
-                    return $(this).val();
-                })
-                .get()
-                .join(",");
-            firstStepData.rider_capability_info = $(
-                "input[name=rider_capability_info]"
-            ).val();
-            // firstStepData.duration_days = $("input[name=duration_days]").val();
-            // firstStepData.rest_days = $("input[name=rest_days]").val();
-            firstStepData.max_riders = $("input[name=max_riders]").val();
-            firstStepData.guides = $("input[name=guides]").val();
-            firstStepData.bike_option = $(
-                "input[name=bike_option]:checked"
-            ).val();
-            firstStepData.rent_gear = $("input[name=rent_gear]:checked").val();
-            firstStepData.two_up_riding = $(
-                "input[name=two_up_riding]:checked"
-            ).val();
-            firstStepData.bike_specification = $(
-                "input[name=bike_specification]"
-            ).val();
-            firstStepData.tour_distance = $("input[name=tour_distance]").val();
-            firstStepData.countries = $("#countries").val().join(",");
-            firstStepData.bike_insurance = $("input[name='bike_insurance']:checked").val();
-            firstStepData.insurance_notes = $(
-                "textarea[name=insurance_notes]"
-            ).val();
-            if (tour_id) {
-                firstStepData.tour_id = tour_id;
-            }
-            console.log("firstStepData", firstStepData);
-            $.ajax({
-                type: "post",
-                url: "/tours/save-tour/firstStep",
-                data: { firstStepData },
-                headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                        "content"
-                    ),
-                },
-                dataType: "json",
-                success: function (response) {
-                    const nextStep = currentStep + 1;
-                    url.searchParams.set("activeStep", nextStep);
-                    url.searchParams.set("tour_id", response.tour_id);
-                    window.location.href = "/tour-management";
-                },
-            });
-        }
-        console.log(currentStep);
+// document.querySelectorAll(".save-exit-button ").forEach(function (element) {
+//     element.addEventListener("click", function () {
+//         const url = new URL(window.location.href);
+//         let currentStep = parseInt(url.searchParams.get("activeStep")) || 0;
+//         var notyf = new Notyf({
+//             duration: 2500,
+//             position: {
+//                 x: 'right',
+//                 y: 'top',
+//             },
+//             types: [
+//                 {
+//                     type: 'error',
+//                     background: 'red',
+//                     icon: false
+//                 }
+//             ]
+//         });
+//         if (currentStep === 0) {
+//             let tour_id =
+//                 parseInt(url.searchParams.get("tour_id")) || undefined;
+//             let firstStepData = {};
+//             firstStepData.title = $("input[name=title]").val();
+//             firstStepData.riding_style = $(
+//                 "input[name=riding_style]:checked"
+//             ).val();
+//             firstStepData.support = $("input[name=support]:checked").val();
+//             firstStepData.riding_style_info = $(
+//                 "input[name=riding_style_info]"
+//             ).val();
+//             firstStepData.rider_capability = $(
+//                 "input[name='rider_capability[]']:checked"
+//             )
+//                 .map(function () {
+//                     return $(this).val();
+//                 })
+//                 .get()
+//                 .join(",");
+//             firstStepData.rider_capability_info = $(
+//                 "input[name=rider_capability_info]"
+//             ).val();
+//             // firstStepData.duration_days = $("input[name=duration_days]").val();
+//             // firstStepData.rest_days = $("input[name=rest_days]").val();
+//             firstStepData.max_riders = $("input[name=max_riders]").val();
+//             firstStepData.guides = $("input[name=guides]").val();
+//             firstStepData.bike_option = $(
+//                 "input[name=bike_option]:checked"
+//             ).val();
+//             firstStepData.rent_gear = $("input[name=rent_gear]:checked").val();
+//             firstStepData.two_up_riding = $(
+//                 "input[name=two_up_riding]:checked"
+//             ).val();
+//             firstStepData.bike_specification = $(
+//                 "input[name=bike_specification]"
+//             ).val();
+//             firstStepData.tour_distance = $("input[name=tour_distance]").val();
+//             firstStepData.countries = $("#countries").val().join(",");
+//             firstStepData.bike_insurance = $("input[name='bike_insurance']:checked").val();
+//             firstStepData.insurance_notes = $(
+//                 "textarea[name=insurance_notes]"
+//             ).val();
+//             if (tour_id) {
+//                 firstStepData.tour_id = tour_id;
+//             }
+//             let requiredFields = {
+//                 title: "Tour Title",
+//                 riding_style: "Tour Riding Style",
+//                 support: "Tour Support",
+//                 rider_capability: "Rider Capability",
+//                 max_riders: "Rider Capability",
+//                 guides: "Number of guides",
+//                 bike_option: "Bike Option",
+//                 rent_gear: "Rent Gear",
+//                 two_up_riding: "Two Up Riding",
+//                 tour_distance: "Tour Distance",
+//                 countries: "Countries",
+//                 bike_insurance: "Bike Insurance"
+//             };
+            
+//             for (const key in requiredFields) {
+//                 if (!firstStepData[key] || firstStepData[key].trim() === "") {
+//                     notyf.open({
+//                         type: "error",
+//                         message: requiredFields[key] + " is required!"
+//                     });
+//                     return; // ❌ Stop submission
+//                 }
+//             }
+//             console.log("firstStepData", firstStepData);
+//             $.ajax({
+//                 type: "post",
+//                 url: "/tours/save-tour/firstStep",
+//                 data: { firstStepData },
+//                 headers: {
+//                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+//                         "content"
+//                     ),
+//                 },
+//                 dataType: "json",
+//                 success: function (response) {
+//                     const nextStep = currentStep + 1;
+//                     url.searchParams.set("activeStep", nextStep);
+//                     url.searchParams.set("tour_id", response.tour_id);
+//                     window.location.href = "/tour-management";
+//                 },
+//             });
+//         }
+//         console.log(currentStep);
 
-        if (currentStep === 1) {
-            let tour_id =
-                parseInt(url.searchParams.get("tour_id")) || undefined;
-            if (tour_id === undefined) {
-                alert("Invalid Tour");
-                return false;
-            }
-            let secondStepData = {};
-            secondStepData.description = tinymce
-                .get("description")
-                .getContent();
-            secondStepData.included = tinymce.get("included").getContent();
-            secondStepData.tour_meeting_location_notes = tinymce
-                .get("tour_meeting_location_notes")
-                .getContent();
-            secondStepData.not_included = tinymce
-                .get("not_included")
-                .getContent();
-            secondStepData.tour_start_location = $(
-                "#tour_start_location"
-            ).val();
-            secondStepData.tour_id = tour_id;
-            $.ajax({
-                type: "post",
-                url: "/tours/save-tour/secondStep",
-                data: { secondStepData },
-                headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                        "content"
-                    ),
-                },
-                dataType: "json",
-                success: function (response) {
-                    const nextStep = currentStep + 1;
-                    url.searchParams.set("activeStep", nextStep);
-                    url.searchParams.set("tour_id", response.tour_id);
-                    window.location.href = "/tour-management";
-                },
-            });
-        }
-        if (currentStep === 2) {
-            let tour_id =
-                parseInt(url.searchParams.get("tour_id")) || undefined;
-            if (tour_id === undefined) {
-                alert("Invalid Tour");
-                return false;
-            }
-            let thirdStepData = {};
-            thirdStepData.video_link_one = $(
-                "input[name=video_link_one]"
-            ).val();
-            thirdStepData.video_link_two = $(
-                "input[name=video_link_two]"
-            ).val();
-            thirdStepData.video_link_three = $(
-                "input[name=video_link_three]"
-            ).val();
-            thirdStepData.tour_id = tour_id;
-            $.ajax({
-                type: "post",
-                url: "/tours/save-tour/thirdStep",
-                data: { thirdStepData },
-                headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                        "content"
-                    ),
-                },
-                dataType: "json",
-                success: function (response) {
-                    const nextStep = currentStep + 1;
-                    url.searchParams.set("activeStep", nextStep);
-                    url.searchParams.set("tour_id", response.tour_id);
-                    window.location.href = "/tour-management";
-                },
-            });
-        }
-        if (currentStep === 3) {
-            let tour_id =
-                parseInt(url.searchParams.get("tour_id")) || undefined;
-            if (tour_id === undefined) {
-                alert("Invalid Tour");
-                return false;
-            }
-            const inputs = document.querySelectorAll('input[name^="date"]');
-            const dateValues = [];
-            inputs.forEach((input) => {
-                const name = input.name; // Get the input's name attribute
-                const match = name.match(/date\[(\d+)]\[(\w+)]/); // Match the index and key (date or qty)
-                if (match) {
-                    const index = match[1];
-                    const key = match[2];
-                    dateValues[index] = dateValues[index] || {};
-                    dateValues[index][key] = input.value;
-                }
-            });
-            $.ajax({
-                type: "post",
-                url: "/tours/save-tour/fourthStep",
-                data: { tour_id, dateValues },
-                headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                        "content"
-                    ),
-                },
-                dataType: "json",
-                success: function (response) {
-                    const nextStep = currentStep + 1;
-                    url.searchParams.set("activeStep", nextStep);
-                    url.searchParams.set("tour_id", response.tour_id);
-                    window.location.href = "/tour-management";
-                },
-            });
-        }
-        if (currentStep === 4) {
-            let tour_id =
-                parseInt(url.searchParams.get("tour_id")) || undefined;
-            if (tour_id === undefined) {
-                alert("Invalid Tour");
-                return false;
-            }
-            const addonInputs = document.querySelectorAll(
-                'input[name^="addon"]'
-            );
-            const addonValues = [];
-            addonInputs.forEach((input) => {
-                const name = input.name; // Get the input's name attribute
-                const match = name.match(/addon\[(\d+)]\[(\w+)]/); // Match the index and key (date or qty)
-                if (match) {
-                    const index = match[1];
-                    const key = match[2];
-                    addonValues[index] = addonValues[index] || {};
-                    addonValues[index][key] = input.value;
-                }
-            });
-            $.ajax({
-                type: "post",
-                url: "/tours/save-tour/fourthStep",
-                data: { tour_id, addonValues },
-                headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                        "content"
-                    ),
-                },
-                dataType: "json",
-                success: function (response) {
-                    const nextStep = currentStep + 1;
-                    url.searchParams.set("activeStep", nextStep);
-                    url.searchParams.set("tour_id", response.tour_id);
-                    window.location.href = "/tour-management";
-                },
-            });
-        }
-        return false;
-    });
-});
+//         if (currentStep === 1) {
+//             let tour_id =
+//                 parseInt(url.searchParams.get("tour_id")) || undefined;
+//             if (tour_id === undefined) {
+//                 alert("Invalid Tour");
+//                 return false;
+//             }
+//             let secondStepData = {};
+//             secondStepData.description = tinymce
+//                 .get("description")
+//                 .getContent();
+//             secondStepData.included = tinymce.get("included").getContent();
+//             secondStepData.tour_meeting_location_notes = tinymce
+//                 .get("tour_meeting_location_notes")
+//                 .getContent();
+//             secondStepData.not_included = tinymce
+//                 .get("not_included")
+//                 .getContent();
+//             secondStepData.tour_start_location = $(
+//                 "#tour_start_location"
+//             ).val();
+//             secondStepData.tour_id = tour_id;
+//             $.ajax({
+//                 type: "post",
+//                 url: "/tours/save-tour/secondStep",
+//                 data: { secondStepData },
+//                 headers: {
+//                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+//                         "content"
+//                     ),
+//                 },
+//                 dataType: "json",
+//                 success: function (response) {
+//                     const nextStep = currentStep + 1;
+//                     url.searchParams.set("activeStep", nextStep);
+//                     url.searchParams.set("tour_id", response.tour_id);
+//                     window.location.href = "/tour-management";
+//                 },
+//             });
+//         }
+//         if (currentStep === 2) {
+//             let tour_id =
+//                 parseInt(url.searchParams.get("tour_id")) || undefined;
+//             if (tour_id === undefined) {
+//                 alert("Invalid Tour");
+//                 return false;
+//             }
+//             let thirdStepData = {};
+//             thirdStepData.video_link_one = $(
+//                 "input[name=video_link_one]"
+//             ).val();
+//             thirdStepData.video_link_two = $(
+//                 "input[name=video_link_two]"
+//             ).val();
+//             thirdStepData.video_link_three = $(
+//                 "input[name=video_link_three]"
+//             ).val();
+//             thirdStepData.tour_id = tour_id;
+//             $.ajax({
+//                 type: "post",
+//                 url: "/tours/save-tour/thirdStep",
+//                 data: { thirdStepData },
+//                 headers: {
+//                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+//                         "content"
+//                     ),
+//                 },
+//                 dataType: "json",
+//                 success: function (response) {
+//                     const nextStep = currentStep + 1;
+//                     url.searchParams.set("activeStep", nextStep);
+//                     url.searchParams.set("tour_id", response.tour_id);
+//                     window.location.href = "/tour-management";
+//                 },
+//             });
+//         }
+//         if (currentStep === 3) {
+//             let tour_id =
+//                 parseInt(url.searchParams.get("tour_id")) || undefined;
+//             if (tour_id === undefined) {
+//                 alert("Invalid Tour");
+//                 return false;
+//             }
+//             const inputs = document.querySelectorAll('input[name^="date"]');
+//             const dateValues = [];
+//             inputs.forEach((input) => {
+//                 const name = input.name; // Get the input's name attribute
+//                 const match = name.match(/date\[(\d+)]\[(\w+)]/); // Match the index and key (date or qty)
+//                 if (match) {
+//                     const index = match[1];
+//                     const key = match[2];
+//                     dateValues[index] = dateValues[index] || {};
+//                     dateValues[index][key] = input.value;
+//                 }
+//             });
+//             $.ajax({
+//                 type: "post",
+//                 url: "/tours/save-tour/fourthStep",
+//                 data: { tour_id, dateValues },
+//                 headers: {
+//                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+//                         "content"
+//                     ),
+//                 },
+//                 dataType: "json",
+//                 success: function (response) {
+//                     const nextStep = currentStep + 1;
+//                     url.searchParams.set("activeStep", nextStep);
+//                     url.searchParams.set("tour_id", response.tour_id);
+//                     window.location.href = "/tour-management";
+//                 },
+//             });
+//         }
+//         if (currentStep === 4) {
+//             let tour_id =
+//                 parseInt(url.searchParams.get("tour_id")) || undefined;
+//             if (tour_id === undefined) {
+//                 alert("Invalid Tour");
+//                 return false;
+//             }
+//             const addonInputs = document.querySelectorAll(
+//                 'input[name^="addon"]'
+//             );
+//             const addonValues = [];
+//             addonInputs.forEach((input) => {
+//                 const name = input.name; // Get the input's name attribute
+//                 const match = name.match(/addon\[(\d+)]\[(\w+)]/); // Match the index and key (date or qty)
+//                 if (match) {
+//                     const index = match[1];
+//                     const key = match[2];
+//                     addonValues[index] = addonValues[index] || {};
+//                     addonValues[index][key] = input.value;
+//                 }
+//             });
+//             $.ajax({
+//                 type: "post",
+//                 url: "/tours/save-tour/fourthStep",
+//                 data: { tour_id, addonValues },
+//                 headers: {
+//                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+//                         "content"
+//                     ),
+//                 },
+//                 dataType: "json",
+//                 success: function (response) {
+//                     const nextStep = currentStep + 1;
+//                     url.searchParams.set("activeStep", nextStep);
+//                     url.searchParams.set("tour_id", response.tour_id);
+//                     window.location.href = "/tour-management";
+//                 },
+//             });
+//         }
+//         return false;
+//     });
+// });
+// document.querySelectorAll(".next-button").forEach(function (element) {
+//     element.addEventListener("click", function () {
+//         const url = new URL(window.location.href);
+//         let currentStep = parseInt(url.searchParams.get("activeStep")) || 0;
+//         var notyf = new Notyf({
+//             duration: 2500,
+//             position: {
+//                 x: 'right',
+//                 y: 'top',
+//             },
+//             types: [
+//                 {
+//                     type: 'error',
+//                     background: 'red',
+//                     icon: false
+//                 }
+//             ]
+//         });
+//         if (currentStep === 0) {
+//             let tour_id =
+//                 parseInt(url.searchParams.get("tour_id")) || undefined;
+//             let firstStepData = {};
+//             firstStepData.title = $("input[name=title]").val();
+//             firstStepData.riding_style = $(
+//                 "input[name=riding_style]:checked"
+//             ).val();
+//             firstStepData.support = $("input[name=support]:checked").val();
+//             firstStepData.riding_style_info = $(
+//                 "input[name=riding_style_info]"
+//             ).val();
+//             firstStepData.rider_capability = $(
+//                 "input[name='rider_capability[]']:checked"
+//             )
+//                 .map(function () {
+//                     return $(this).val();
+//                 })
+//                 .get()
+//                 .join(",");
+//             firstStepData.rider_capability_info = $(
+//                 "input[name=rider_capability_info]"
+//             ).val();
+//             firstStepData.duration_days = $("input[name=duration_days]").val();
+//             firstStepData.rest_days = $("input[name=rest_days]").val();
+//             firstStepData.max_riders = $("input[name=max_riders]").val();
+//             firstStepData.guides = $("input[name=guides]").val();
+//             firstStepData.bike_option = $(
+//                 "input[name=bike_option]:checked"
+//             ).val();
+//             firstStepData.rent_gear = $("input[name=rent_gear]:checked").val();
+//             firstStepData.two_up_riding = $(
+//                 "input[name=two_up_riding]:checked"
+//             ).val();
+//             firstStepData.bike_specification = $(
+//                 "input[name=bike_specification]"
+//             ).val();
+//             firstStepData.tour_distance = $("input[name=tour_distance]").val();
+//             firstStepData.countries = $("#countries").val().join(",");
+//             firstStepData.bike_insurance = $("input[name='bike_insurance']:checked").val();
+//             firstStepData.insurance_notes = $(
+//                 "textarea[name=insurance_notes]"
+//             ).val();
+//             if (tour_id) {
+//                 firstStepData.tour_id = tour_id;
+//             }
+//             let requiredFields = {
+//                 title: "Tour Title",
+//                 riding_style: "Tour Riding Style",
+//                 support: "Tour Support",
+//                 rider_capability: "Rider Capability",
+//                 max_riders: "Rider Capability",
+//                 guides: "Number of guides",
+//                 bike_option: "Bike Option",
+//                 rent_gear: "Rent Gear",
+//                 two_up_riding: "Two Up Riding",
+//                 tour_distance: "Tour Distance",
+//                 countries: "Countries",
+//                 bike_insurance: "Bike Insurance"
+//             };
+            
+//             for (const key in requiredFields) {
+//                 if (!firstStepData[key] || firstStepData[key].trim() === "") {
+//                     notyf.open({
+//                         type: "error",
+//                         message: requiredFields[key] + " is required!"
+//                     });
+//                     return; // ❌ Stop submission
+//                 }
+//             }
+//             console.log("firstStepData", firstStepData);
+//             $.ajax({
+//                 type: "post",
+//                 url: "/tours/save-tour/firstStep",
+//                 data: { firstStepData },
+//                 headers: {
+//                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+//                         "content"
+//                     ),
+//                 },
+//                 dataType: "json",
+//                 success: function (response) {
+//                     const nextStep = currentStep + 1;
+//                     url.searchParams.set("activeStep", nextStep);
+//                     url.searchParams.set("tour_id", response.tour_id);
+//                     window.location.href = url.toString();
+//                 },
+//             });
+//         }
+//         console.log(currentStep);
+
+//         if (currentStep === 1) {
+//             let tour_id =
+//                 parseInt(url.searchParams.get("tour_id")) || undefined;
+//             if (tour_id === undefined) {
+//                 alert("Invalid Tour");
+//                 return false;
+//             }
+//             let secondStepData = {};
+//             secondStepData.description = tinymce
+//                 .get("description")
+//                 .getContent();
+//             secondStepData.included = tinymce.get("included").getContent();
+//             secondStepData.tour_meeting_location_notes = tinymce
+//                 .get("tour_meeting_location_notes")
+//                 .getContent();
+//             secondStepData.not_included = tinymce
+//                 .get("not_included")
+//                 .getContent();
+//             secondStepData.tour_start_location = $(
+//                 "#tour_start_location"
+//             ).val();
+//             secondStepData.tour_id = tour_id;
+//             $.ajax({
+//                 type: "post",
+//                 url: "/tours/save-tour/secondStep",
+//                 data: { secondStepData },
+//                 headers: {
+//                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+//                         "content"
+//                     ),
+//                 },
+//                 dataType: "json",
+//                 success: function (response) {
+//                     const nextStep = currentStep + 1;
+//                     url.searchParams.set("activeStep", nextStep);
+//                     url.searchParams.set("tour_id", response.tour_id);
+//                     window.location.href = url.toString();
+//                 },
+//             });
+//         }
+//         if (currentStep === 2) {
+//             let tour_id =
+//                 parseInt(url.searchParams.get("tour_id")) || undefined;
+//             if (tour_id === undefined) {
+//                 alert("Invalid Tour");
+//                 return false;
+//             }
+//             let thirdStepData = {};
+//             thirdStepData.video_link_one = $(
+//                 "input[name=video_link_one]"
+//             ).val();
+//             thirdStepData.video_link_two = $(
+//                 "input[name=video_link_two]"
+//             ).val();
+//             thirdStepData.video_link_three = $(
+//                 "input[name=video_link_three]"
+//             ).val();
+//             thirdStepData.tour_id = tour_id;
+//             $.ajax({
+//                 type: "post",
+//                 url: "/tours/save-tour/thirdStep",
+//                 data: { thirdStepData },
+//                 headers: {
+//                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+//                         "content"
+//                     ),
+//                 },
+//                 dataType: "json",
+//                 success: function (response) {
+//                     const nextStep = currentStep + 1;
+//                     url.searchParams.set("activeStep", nextStep);
+//                     url.searchParams.set("tour_id", response.tour_id);
+//                     window.location.href = url.toString();
+//                 },
+//             });
+//         }
+//         if (currentStep === 4) {
+//             let tour_id =
+//                 parseInt(url.searchParams.get("tour_id")) || undefined;
+//             if (tour_id === undefined) {
+//                 alert("Invalid Tour");
+//                 return false;
+//             }
+//             const inputs = document.querySelectorAll('input[name^="date"]');
+//             const dateValues = [];
+//             inputs.forEach((input) => {
+//                 const name = input.name; // Get the input's name attribute
+//                 const match = name.match(/date\[(\d+)]\[(\w+)]/); // Match the index and key (date or qty)
+//                 if (match) {
+//                     const index = match[1];
+//                     const key = match[2];
+//                     dateValues[index] = dateValues[index] || {};
+//                     dateValues[index][key] = input.value;
+//                 }
+//             });
+//             $.ajax({
+//                 type: "post",
+//                 url: "/tours/save-tour/fourthStep",
+//                 data: { tour_id, dateValues },
+//                 headers: {
+//                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+//                         "content"
+//                     ),
+//                 },
+//                 dataType: "json",
+//                 success: function (response) {
+//                     const nextStep = currentStep + 1;
+//                     url.searchParams.set("activeStep", nextStep);
+//                     url.searchParams.set("tour_id", response.tour_id);
+//                     window.location.href = url.toString();
+//                 },
+//             });
+//         }
+//         if (currentStep === 3) {
+//             let tour_id =
+//                 parseInt(url.searchParams.get("tour_id")) || undefined;
+//             if (tour_id === undefined) {
+//                 alert("Invalid Tour");
+//                 return false;
+//             }
+//             let form = document.getElementById('addonForm');
+//             console.log(form);
+            
+//             let formData = new FormData(form);
+//             formData.append('tour_id', tour_id);
+//             $.ajax({
+//                 url: '/tours/save-tour/fifthStep',
+//                 method: 'POST',
+//                 data: formData,
+//                 contentType: false,
+//                 processData: false,
+//                 headers: {
+//                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+//                         "content"
+//                     ),
+//                 },
+//                 success: function (response) {
+//                     const nextStep = currentStep + 1;
+//                     url.searchParams.set("activeStep", nextStep);
+//                     url.searchParams.set("tour_id", response.tour_id);
+//                     window.location.href = url.toString();
+//                 },
+//                 error: function (xhr) {
+//                     console.error(xhr.responseText);
+//                     alert('Something went wrong.');
+//                 }
+//             });
+//         }
+//         return false;
+//     });
+// });
+
+// document.querySelectorAll(".previous-button").forEach(function (element) {
+//     element.addEventListener("click", function () {
+//         const url = new URL(window.location.href);
+//         let currentStep = parseInt(url.searchParams.get("activeStep")) || 1;
+//         let tour_id = parseInt(url.searchParams.get("tour_id"));
+//         const previousStep = currentStep - 1;
+//         url.searchParams.set("activeStep", previousStep);
+//         url.searchParams.set("tour_id", tour_id);
+//         window.location.href = url.toString();
+//     });
+// });
+
+
 document.querySelectorAll(".next-button").forEach(function (element) {
     element.addEventListener("click", function () {
         const url = new URL(window.location.href);
         let currentStep = parseInt(url.searchParams.get("activeStep")) || 0;
-        if (currentStep === 0) {
-            let tour_id =
-                parseInt(url.searchParams.get("tour_id")) || undefined;
-            let firstStepData = {};
-            firstStepData.title = $("input[name=title]").val();
-            firstStepData.riding_style = $(
-                "input[name=riding_style]:checked"
-            ).val();
-            firstStepData.support = $("input[name=support]:checked").val();
-            firstStepData.riding_style_info = $(
-                "input[name=riding_style_info]"
-            ).val();
-            firstStepData.rider_capability = $(
-                "input[name='rider_capability[]']:checked"
-            )
-                .map(function () {
-                    return $(this).val();
-                })
-                .get()
-                .join(",");
-            firstStepData.rider_capability_info = $(
-                "input[name=rider_capability_info]"
-            ).val();
-            firstStepData.duration_days = $("input[name=duration_days]").val();
-            firstStepData.rest_days = $("input[name=rest_days]").val();
-            firstStepData.max_riders = $("input[name=max_riders]").val();
-            firstStepData.guides = $("input[name=guides]").val();
-            firstStepData.bike_option = $(
-                "input[name=bike_option]:checked"
-            ).val();
-            firstStepData.rent_gear = $("input[name=rent_gear]:checked").val();
-            firstStepData.two_up_riding = $(
-                "input[name=two_up_riding]:checked"
-            ).val();
-            firstStepData.bike_specification = $(
-                "input[name=bike_specification]"
-            ).val();
-            firstStepData.tour_distance = $("input[name=tour_distance]").val();
-            firstStepData.countries = $("#countries").val().join(",");
-            firstStepData.bike_insurance = $("input[name='bike_insurance']:checked").val();
-            firstStepData.insurance_notes = $(
-                "textarea[name=insurance_notes]"
-            ).val();
-            if (tour_id) {
-                firstStepData.tour_id = tour_id;
-            }
-            console.log("firstStepData", firstStepData);
-            $.ajax({
-                type: "post",
-                url: "/tours/save-tour/firstStep",
-                data: { firstStepData },
-                headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                        "content"
-                    ),
-                },
-                dataType: "json",
-                success: function (response) {
-                    const nextStep = currentStep + 1;
-                    url.searchParams.set("activeStep", nextStep);
-                    url.searchParams.set("tour_id", response.tour_id);
-                    window.location.href = url.toString();
-                },
-            });
-        }
-        console.log(currentStep);
-
-        if (currentStep === 1) {
-            let tour_id =
-                parseInt(url.searchParams.get("tour_id")) || undefined;
-            if (tour_id === undefined) {
-                alert("Invalid Tour");
-                return false;
-            }
-            let secondStepData = {};
-            secondStepData.description = tinymce
-                .get("description")
-                .getContent();
-            secondStepData.included = tinymce.get("included").getContent();
-            secondStepData.tour_meeting_location_notes = tinymce
-                .get("tour_meeting_location_notes")
-                .getContent();
-            secondStepData.not_included = tinymce
-                .get("not_included")
-                .getContent();
-            secondStepData.tour_start_location = $(
-                "#tour_start_location"
-            ).val();
-            secondStepData.tour_id = tour_id;
-            $.ajax({
-                type: "post",
-                url: "/tours/save-tour/secondStep",
-                data: { secondStepData },
-                headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                        "content"
-                    ),
-                },
-                dataType: "json",
-                success: function (response) {
-                    const nextStep = currentStep + 1;
-                    url.searchParams.set("activeStep", nextStep);
-                    url.searchParams.set("tour_id", response.tour_id);
-                    window.location.href = url.toString();
-                },
-            });
-        }
-        if (currentStep === 2) {
-            let tour_id =
-                parseInt(url.searchParams.get("tour_id")) || undefined;
-            if (tour_id === undefined) {
-                alert("Invalid Tour");
-                return false;
-            }
-            let thirdStepData = {};
-            thirdStepData.video_link_one = $(
-                "input[name=video_link_one]"
-            ).val();
-            thirdStepData.video_link_two = $(
-                "input[name=video_link_two]"
-            ).val();
-            thirdStepData.video_link_three = $(
-                "input[name=video_link_three]"
-            ).val();
-            thirdStepData.tour_id = tour_id;
-            $.ajax({
-                type: "post",
-                url: "/tours/save-tour/thirdStep",
-                data: { thirdStepData },
-                headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                        "content"
-                    ),
-                },
-                dataType: "json",
-                success: function (response) {
-                    const nextStep = currentStep + 1;
-                    url.searchParams.set("activeStep", nextStep);
-                    url.searchParams.set("tour_id", response.tour_id);
-                    window.location.href = url.toString();
-                },
-            });
-        }
-        if (currentStep === 4) {
-            let tour_id =
-                parseInt(url.searchParams.get("tour_id")) || undefined;
-            if (tour_id === undefined) {
-                alert("Invalid Tour");
-                return false;
-            }
-            const inputs = document.querySelectorAll('input[name^="date"]');
-            const dateValues = [];
-            inputs.forEach((input) => {
-                const name = input.name; // Get the input's name attribute
-                const match = name.match(/date\[(\d+)]\[(\w+)]/); // Match the index and key (date or qty)
-                if (match) {
-                    const index = match[1];
-                    const key = match[2];
-                    dateValues[index] = dateValues[index] || {};
-                    dateValues[index][key] = input.value;
-                }
-            });
-            $.ajax({
-                type: "post",
-                url: "/tours/save-tour/fourthStep",
-                data: { tour_id, dateValues },
-                headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                        "content"
-                    ),
-                },
-                dataType: "json",
-                success: function (response) {
-                    const nextStep = currentStep + 1;
-                    url.searchParams.set("activeStep", nextStep);
-                    url.searchParams.set("tour_id", response.tour_id);
-                    window.location.href = url.toString();
-                },
-            });
-        }
-        if (currentStep === 3) {
-            let tour_id =
-                parseInt(url.searchParams.get("tour_id")) || undefined;
-            if (tour_id === undefined) {
-                alert("Invalid Tour");
-                return false;
-            }
-            let form = document.getElementById('addonForm');
-            console.log(form);
-            
-            let formData = new FormData(form);
-            formData.append('tour_id', tour_id);
-            $.ajax({
-                url: '/tours/save-tour/fifthStep',
-                method: 'POST',
-                data: formData,
-                contentType: false,
-                processData: false,
-                headers: {
-                    "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
-                        "content"
-                    ),
-                },
-                success: function (response) {
-                    const nextStep = currentStep + 1;
-                    url.searchParams.set("activeStep", nextStep);
-                    url.searchParams.set("tour_id", response.tour_id);
-                    window.location.href = url.toString();
-                },
-                error: function (xhr) {
-                    console.error(xhr.responseText);
-                    alert('Something went wrong.');
-                }
-            });
-        }
-        return false;
+        saveStep(currentStep, "next");
     });
 });
 
 document.querySelectorAll(".previous-button").forEach(function (element) {
     element.addEventListener("click", function () {
         const url = new URL(window.location.href);
-        let currentStep = parseInt(url.searchParams.get("activeStep")) || 1;
-        let tour_id = parseInt(url.searchParams.get("tour_id"));
-        const previousStep = currentStep - 1;
-        url.searchParams.set("activeStep", previousStep);
-        url.searchParams.set("tour_id", tour_id);
-        window.location.href = url.toString();
+        let currentStep = parseInt(url.searchParams.get("activeStep")) || 0;
+        if (currentStep > 0) {
+            saveStep(currentStep, "back");
+        }
     });
 });
+
+document.querySelectorAll(".save-exit-button").forEach(function (element) {
+    element.addEventListener("click", function () {
+        const url = new URL(window.location.href);
+        let currentStep = parseInt(url.searchParams.get("activeStep")) || 0;
+        saveStep(currentStep, "exit");
+    });
+});
+
+function saveStep(currentStep, direction = "next") {
+    const url = new URL(window.location.href);
+    var notyf = new Notyf({
+        duration: 1500,
+        position: {
+            x: 'right',
+            y: 'top',
+        },
+        types: [
+            {
+                type: 'error',
+                background: 'red',
+                icon: false
+            }
+        ]
+    });
+    function handleRedirect(response) {
+        if (direction === "exit") {
+            window.location.href = "/tour-management";
+        } else {
+            let nextStep =
+                direction === "next" ? currentStep + 1 : currentStep - 1;
+            url.searchParams.set("activeStep", nextStep);
+            url.searchParams.set("tour_id", response.tour_id);
+            window.location.href = url.toString();
+        }
+    }
+    if (currentStep === 0) {
+        let tour_id =
+            parseInt(url.searchParams.get("tour_id")) || undefined;
+        let firstStepData = {};
+        firstStepData.title = $("input[name=title]").val();
+        firstStepData.riding_style = $(
+            "input[name=riding_style]:checked"
+        ).val();
+        firstStepData.support = $("input[name=support]:checked").val();
+        firstStepData.riding_style_info = $(
+            "input[name=riding_style_info]"
+        ).val();
+        firstStepData.rider_capability = $(
+            "input[name='rider_capability[]']:checked"
+        )
+            .map(function () {
+                return $(this).val();
+            })
+            .get()
+            .join(",");
+        firstStepData.rider_capability_info = $(
+            "input[name=rider_capability_info]"
+        ).val();
+        firstStepData.duration_days = $("input[name=duration_days]").val();
+        firstStepData.rest_days = $("input[name=rest_days]").val();
+        firstStepData.max_riders = $("input[name=max_riders]").val();
+        firstStepData.guides = $("input[name=guides]").val();
+        firstStepData.bike_option = $(
+            "input[name=bike_option]:checked"
+        ).val();
+        firstStepData.rent_gear = $("input[name=rent_gear]:checked").val();
+        firstStepData.two_up_riding = $(
+            "input[name=two_up_riding]:checked"
+        ).val();
+        firstStepData.bike_specification = $(
+            "input[name=bike_specification]"
+        ).val();
+        firstStepData.tour_distance = $("input[name=tour_distance]").val();
+        firstStepData.countries = $("#countries").val().join(",");
+        firstStepData.bike_insurance = $("input[name='bike_insurance']:checked").val();
+        firstStepData.insurance_notes = $(
+            "textarea[name=insurance_notes]"
+        ).val();
+        if (tour_id) {
+            firstStepData.tour_id = tour_id;
+        }
+        let requiredFields = {
+            title: "Tour Title",
+            riding_style: "Tour Riding Style",
+            support: "Tour Support",
+            rider_capability: "Rider Capability",
+            max_riders: "Rider Capability",
+            guides: "Number of guides",
+            bike_option: "Bike Option",
+            rent_gear: "Rent Gear",
+            two_up_riding: "Two Up Riding",
+            tour_distance: "Tour Distance",
+            countries: "Countries",
+            bike_insurance: "Bike Insurance"
+        };
+        
+        for (const key in requiredFields) {
+            if (!firstStepData[key] || firstStepData[key].trim() === "") {
+                notyf.open({
+                    type: "error",
+                    message: requiredFields[key] + " is required!"
+                });
+                return; // ❌ Stop submission
+            }
+        }
+        console.log("firstStepData", firstStepData);
+        showLoader();
+        $.ajax({
+            type: "post",
+            url: "/tours/save-tour/firstStep",
+            data: { firstStepData },
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                    "content"
+                ),
+            },
+            dataType: "json",
+            success: function (response) {
+                handleRedirect(response);
+            },
+        });
+    }
+    if (currentStep === 1) {
+        let tour_id =
+            parseInt(url.searchParams.get("tour_id")) || undefined;
+        if (tour_id === undefined) {
+            alert("Invalid Tour");
+            return false;
+        }
+        let secondStepData = {};
+        secondStepData.description = tinymce
+            .get("description")
+            .getContent();
+        secondStepData.included = tinymce.get("included").getContent();
+        secondStepData.tour_meeting_location_notes = tinymce
+            .get("tour_meeting_location_notes")
+            .getContent();
+        secondStepData.not_included = tinymce
+            .get("not_included")
+            .getContent();
+        secondStepData.tour_start_location = $(
+            "#tour_start_location"
+        ).val();
+        secondStepData.tour_id = tour_id;
+        showLoader();
+        $.ajax({
+            type: "post",
+            url: "/tours/save-tour/secondStep",
+            data: { secondStepData },
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                    "content"
+                ),
+            },
+            dataType: "json",
+            success: function (response) {
+                handleRedirect(response);
+            },
+        });
+    }
+    if (currentStep === 2) {
+        let tour_id =
+            parseInt(url.searchParams.get("tour_id")) || undefined;
+        if (tour_id === undefined) {
+            alert("Invalid Tour");
+            return false;
+        }
+        let thirdStepData = {};
+        thirdStepData.video_link_one = $(
+            "input[name=video_link_one]"
+        ).val();
+        thirdStepData.video_link_two = $(
+            "input[name=video_link_two]"
+        ).val();
+        thirdStepData.video_link_three = $(
+            "input[name=video_link_three]"
+        ).val();
+        thirdStepData.tour_id = tour_id;
+        showLoader();
+        $.ajax({
+            type: "post",
+            url: "/tours/save-tour/thirdStep",
+            data: { thirdStepData },
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                    "content"
+                ),
+            },
+            dataType: "json",
+            success: function (response) {
+                handleRedirect(response);
+            },
+        });
+    }
+    if (currentStep === 4) {
+        let tour_id =
+            parseInt(url.searchParams.get("tour_id")) || undefined;
+        if (tour_id === undefined) {
+            alert("Invalid Tour");
+            return false;
+        }
+        const inputs = document.querySelectorAll('input[name^="date"]');
+        const dateValues = [];
+        inputs.forEach((input) => {
+            const name = input.name; // Get the input's name attribute
+            const match = name.match(/date\[(\d+)]\[(\w+)]/); // Match the index and key (date or qty)
+            if (match) {
+                const index = match[1];
+                const key = match[2];
+                dateValues[index] = dateValues[index] || {};
+                dateValues[index][key] = input.value;
+            }
+        });
+        showLoader();
+        $.ajax({
+            type: "post",
+            url: "/tours/save-tour/fourthStep",
+            data: { tour_id, dateValues },
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                    "content"
+                ),
+            },
+            dataType: "json",
+            success: function (response) {
+                handleRedirect(response);
+            },
+        });
+    }
+    if (currentStep === 3) {
+        let tour_id =
+            parseInt(url.searchParams.get("tour_id")) || undefined;
+        if (tour_id === undefined) {
+            alert("Invalid Tour");
+            return false;
+        }
+        let form = document.getElementById('addonForm');
+        console.log(form);
+        
+        let formData = new FormData(form);
+        formData.append('tour_id', tour_id);
+        showLoader();
+        $.ajax({
+            url: '/tours/save-tour/fifthStep',
+            method: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr(
+                    "content"
+                ),
+            },
+            success: function (response) {
+                handleRedirect(response);
+            },
+            error: function (xhr) {
+                console.error(xhr.responseText);
+                alert('Something went wrong.');
+            }
+        });
+    }
+    return false;
+}
 $(".select2").select2({
     theme: "classic",
 });

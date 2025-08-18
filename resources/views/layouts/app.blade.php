@@ -18,6 +18,7 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/slick.css') }}" />
@@ -35,6 +36,7 @@
 
 
 <body class="antialiased dark:bg-black dark:text-white/50 bg-white">
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
     <div id="globalImageModal" class="fixed inset-0 z-[9999] flex items-center justify-center bg-black bg-opacity-85 hidden">
         <div class="relative">
             <button onclick="closeGlobalImageModal()" class="absolute top-2 right-2 text-white text-3xl font-bold" style="border: unset !important;">
