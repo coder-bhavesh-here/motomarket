@@ -16,7 +16,7 @@
     @if(session('success'))
         <script>
             var notyf = new Notyf({
-                duration: 5000,
+                duration: 7000,
                 position: {
                     x: 'center',
                     y: 'top',
