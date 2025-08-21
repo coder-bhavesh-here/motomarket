@@ -35,7 +35,7 @@
             <input type="text" value="{{ $search }}" name="search" class="mt-3 w-full rounded-md text-black">
             <button class="wommd:ml-5 wommd:w-1/2 mt-2 button-text text-base font-bold">Search</button>
         </form>
-        <div class="grid grid-cols-2 wommd:grid-cols-4">
+        <div class="grid grid-cols-1 wommd:grid-cols-2">
             {{-- <div
                 class="p-2 wommd:justify-self-end wommd:col-span-3 max-w-44 bg-[#F1F5F9] mt-2 flex items-center cursor-pointer rounded border border-[#556B2F]">
                 <img src="{{ asset('images/save.png') }}" alt="">
