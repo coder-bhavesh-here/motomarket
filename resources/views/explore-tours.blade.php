@@ -493,6 +493,7 @@
                 } else {
                     hasMoreData = false;
                     $(".load-more").attr('disabled', true);
+                    $(".load-more").addClass('gray-button');
                 }
                 isLoading = false;
                 hideLoader();
