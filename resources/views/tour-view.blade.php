@@ -18,9 +18,16 @@
             var notyf = new Notyf({
                 duration: 5000,
                 position: {
-                    x: 'right',
+                    x: 'center',
                     y: 'top',
-                }
+                },
+                types: [
+                    {
+                        type: 'success',
+                        background: '#556b2f',
+                        icon: false
+                    }
+                ]
             });
             notyf.success('Thank you for the question, the tour operator will give you an answer shortly…');
         </script>
