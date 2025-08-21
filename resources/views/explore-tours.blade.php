@@ -492,7 +492,7 @@
                     page++;
                 } else {
                     hasMoreData = false;
-                    $(".load-more").hide();
+                    $(".load-more").attr('disabled', true);
                 }
                 isLoading = false;
                 hideLoader();
