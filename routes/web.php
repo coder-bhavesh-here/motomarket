@@ -7,7 +7,7 @@ use App\Http\Controllers\TourController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('throttle:10,1')->group(function () {
+Route::middleware('throttle:60,1')->group(function () {
     Route::get('/about', function () {
         return view('about');
     });
@@ -36,7 +36,7 @@ Route::middleware('throttle:10,1')->group(function () {
     Route::get('/faqs', [BlogController::class, 'faqList'])->name('faqs.list');
     Route::get('/blogs/{blog}', [BlogController::class, 'show'])->name('blogs.show');
 });
-Route::middleware(['auth', 'throttle:10,1'])->group(function () {
+Route::middleware(['auth', 'throttle:60,1'])->group(function () {
     // Route::post('/profile', function () {
     //     dd('route matched');
     // });
