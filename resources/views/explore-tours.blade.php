@@ -38,8 +38,8 @@
         <div class="grid grid-cols-2 wommd:grid-cols-4">
             <div
                 class="p-2 wommd:justify-self-end wommd:col-span-3 max-w-44 bg-[#F1F5F9] mt-2 flex items-center cursor-pointer rounded border border-[#556B2F]">
-                <img src="{{ asset('images/save.png') }}" alt="">
-                <span class="text-green underline font-bold text-sm ml-3">save this search</span>
+                {{-- <img src="{{ asset('images/save.png') }}" alt="">
+                <span class="text-green underline font-bold text-sm ml-3">save this search</span> --}}
             </div>
             <div class="mt-2 flex items-center cursor-pointer justify-self-end" onclick="openFilterModal()">
                 <img src="{{ asset('images/filter.png') }}" alt="">
