@@ -181,7 +181,7 @@
         </div>
     </div>
     <div class="text-center">
-        <button onclick="loadMoreTours();" class="button-text">Load More
+        <button onclick="loadMoreTours();" class="button-text load-more">Load More
         </button>
     </div>
     <div id="loading" class="text-center hidden mb-10">
@@ -451,7 +451,7 @@
         if (isLoading || !hasMoreData) return;
 
         isLoading = true;
-        $('#loading').removeClass('hidden');
+        showLoader();
 
         const urlParams = new URLSearchParams(window.location.search);
 
@@ -492,13 +492,14 @@
                     page++;
                 } else {
                     hasMoreData = false;
+                    $(".load-more").hide();
                 }
                 isLoading = false;
-                $('#loading').addClass('hidden');
+                hideLoader();
             },
             error: function(error) {
                 isLoading = false;
-                $('#loading').addClass('hidden');
+                hideLoader();
             }
         });
     }
