@@ -238,7 +238,7 @@
                 <div class="mt-6 border-t border-black pt-4 text-[#000F22]">
                     <div class="inline-flex justify-between w-full">
                         <span>Add ons price</span>
-                        <span>{{$symbol}} <span id="addonPrice">{{ $addonPrices }}</span></span>
+                        <span>{{$symbol}} <span id="addonPrice">{{ number_format($addonPrices, 2) }}</span></span>
                     </div>
                     <div class="mt-2 inline-flex justify-between w-full">
                         <span>Tour price</span>
@@ -267,10 +267,10 @@
                         @endphp
                         <button class="make-payment primary-button w-full mb-4" data-id="{{ $selectedDate->id }}"
                             data-price="{{ $totalPrice }}" id="payWithStripe">Pay 25% - <span
-                                id="twentyFivePay">{{$symbol}} {{ $totalPrice }}</span></button>
+                                id="twentyFivePay">{{$symbol}} {{ number_format($totalPrice, 2) }}</span></button>
                     @endif
                     <button class="make-payment primary-button w-full" data-id="{{ $selectedDate->id }}"
-                        data-price="{{ $pay }}" id="payWithStripe">Pay 100% - {{ $symbol }} <span id="hundredPay">{{ $pay }}</span></button>
+                        data-price="{{ $pay }}" id="payWithStripe">Pay 100% - {{ $symbol }} <span id="hundredPay">{{ number_format($pay, 2) }}</span></button>
                 </div>
             </div>
         </div>
