@@ -1,5 +1,8 @@
 @include('new-header')
 <style>
+    .gray-button {
+        padding: 12px 20px !important;
+    }
     td {
         border: unset;
     }
