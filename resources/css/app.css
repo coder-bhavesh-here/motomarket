@@ -494,7 +494,7 @@ p.blog-title {
 }
 .gray-button {
     background-color: lightgray;
-    padding: 12px 20px !important;
+    padding: 4px 20px !important;
     border: unset !important;
     border-radius: 5px;
     color: black !important;
