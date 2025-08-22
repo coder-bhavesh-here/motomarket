@@ -55,7 +55,7 @@
                                     }
                                 @endphp
                                 <td style="text-align: center !important;" class="px-4 py-3">
-                                    @if ($booking->amount < $selectedDate->price + $addonPrices)
+                                    @if (isset($booking->amount) && $booking->amount < $selectedDate->price + $addonPrices)
                                         25%
                                     @else
                                         100%
