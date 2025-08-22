@@ -302,7 +302,7 @@
             $(".addon-checkbox:checked").each(function() {
                 tempPrice = $(this).data("price");
                 tempName = $(this).data("name");
-                $("#addonsShow").append("<div class='w-full mt-4 inline-flex justify-between'><span class='w-full max-w-16 womsm:max-w-none womsm:w-auto'>"+ tempName +"</span><span>" + currencySymbol + " " + tempPrice +"</span></div>");
+                $("#addonsShow").append("<div class='w-full mt-4 inline-flex justify-between'><span>"+ tempName +"</span><span style='min-width: 100px;text-align: right;'>" + currencySymbol + " " + tempPrice +"</span></div>");
                 totalPrice += parseFloat(tempPrice.replace(',', ''));
             });
             const addonPrice = totalPrice - basePrice;
