@@ -124,7 +124,7 @@
 
                         <div class="grid grid-cols-3 gap-6">
                             @foreach ($group->addons as $addon)
-                            <label class="relative block h-64 cursor-pointer group">
+                            <label class="relative block cursor-pointer group">
                                 <!-- Hidden input with peer class -->
                                 <input 
                                     type="checkbox"
