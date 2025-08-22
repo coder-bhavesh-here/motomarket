@@ -1,3 +1,8 @@
+<style>
+    footer ul li {
+        margin-top: 0px !important;
+    }
+</style>
 <footer class="text-left text-lg mt-5 font-semibold">
     <div class="grid grid-cols-1 womsm:grid-cols-2 wommd:grid-cols-4 w-full p-3 wommd:p-7">
         <ul>
