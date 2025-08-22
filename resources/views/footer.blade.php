@@ -20,14 +20,14 @@
             <li><a href="/investor">Investor outreach</a></li>
         </ul>
         <ul class="womsm:col-span-2 wommd:text-right">
-            <p>WorldonMoto.com is owned and operated by MotoMob Limited.</p>
-            <p>MotoMob Limited is registered in the United Kingdom.</p>
+            <div>WorldonMoto.com is owned and operated by MotoMob Limited.</div>
+            <div>MotoMob Limited is registered in the United Kingdom.</div>
             <div class="text-base mt-10 hidden font-normal wommd:block">
-                <p>MotoMob Limited</p>
-                <p>1st Floor</p>
-                <p>85 Great Portland Street</p>
-                <p>London</p>
-                <p>W1W 7LT</p>
+                <div>MotoMob Limited</div>
+                <div>1st Floor</div>
+                <div>85 Great Portland Street</div>
+                <div>London</div>
+                <div>W1W 7LT</div>
             </div>
         </ul>
     </div>
