@@ -162,6 +162,8 @@
                             type: "error",
                             message: "You cannot disable your tour profile while you have upcoming tours!"
                         });
+                        $("#enabled").show();
+                        $("#disabled").hide();
                         $("#tour_profile").prop("checked", 1);
                     }
                     console.log("Tour profile status updated");
