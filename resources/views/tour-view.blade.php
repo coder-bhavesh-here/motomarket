@@ -340,7 +340,7 @@
                     // append new question
                     $("#questionsList").append(`
                         <div class="pt-4 text-black">
-                            <div class="text-base womsm:text-lg wommd:text-xl">Q. ${response.question}</div>
+                            <div class="text-base womsm:text-lg wommd:text-xl">Q. ${response.data.question}</div>
                         </div>
                     `);
                     hideLoader();
