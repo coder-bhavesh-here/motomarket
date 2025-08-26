@@ -267,7 +267,7 @@ class TourController extends Controller
                 $booking->update($data);
                 $tour = Tour::withTrashed()->find($booking->tour_id);
                 $user = User::find($tour->user_id);
-                Mail::to($user->email)->send(new BookingConfirmedAgency($booking));
+                Mail::to($user->tour_contact_email)->send(new BookingConfirmedAgency($booking));
                 Mail::to(Auth::user()->email)->send(new BookingConfirmed($booking));
                 return view('success', [
                     'tour' => $tour,
@@ -310,7 +310,7 @@ class TourController extends Controller
             $tour = Tour::withTrashed()->find($booking->tour_id);
             $user = User::find($tour->user_id);
 
-            Mail::to($user->email)->send(new BookingConfirmedAgency($booking));
+            Mail::to($user->tour_contact_email)->send(new BookingConfirmedAgency($booking));
             Mail::to(Auth::user()->email)->send(new BookingConfirmed($booking));
             return view('success', [
                 'tour' => $tour,
@@ -795,7 +795,8 @@ class TourController extends Controller
             'questioned_by' => auth()->user()->id,
         ]);
         $user = User::findOrFail($tour->user_id);
-        Mail::to('bhavesh@motomob.tech')->send(new QuestionPosted($tourId));
+        Mail::to($user->tour_contact_email)->send(new QuestionPosted($tourId));
+        // Mail::to('bhavesh@motomob.tech')->send(new QuestionPosted($tourId));
 
         return response()->json([
             'success' => true,
