@@ -796,7 +796,7 @@ class TourController extends Controller
         ]);
         $user = User::findOrFail($tour->user_id);
         Mail::to($user->tour_contact_email)->send(new QuestionPosted($tourId));
-        // Mail::to('bhavesh@motomob.tech')->send(new QuestionPosted($tourId));
+        Mail::to('bhavesh@motomob.tech')->send(new QuestionPosted($tourId));
 
         return response()->json([
             'success' => true,
