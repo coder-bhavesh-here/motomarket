@@ -786,7 +786,7 @@ class TourController extends Controller
     public function askQuestion(Request $request, $tourId)
     {
         $request->validate([
-            'question' => 'required|string|min:5',
+            'question' => 'required|string',
         ]);
         $tour = Tour::findOrFail($tourId);
         $question = TourQuestion::create([
