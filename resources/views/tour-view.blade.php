@@ -15,21 +15,21 @@
 <div class="brand-name">
     @if(session('success'))
         <script>
-            var notyf = new Notyf({
-                duration: 7000,
-                position: {
-                    x: 'center',
-                    y: 'top',
-                },
-                types: [
-                    {
-                        type: 'success',
-                        background: '#556b2f',
-                        icon: false
-                    }
-                ]
-            });
-            notyf.success('Thank you for the question, the tour operator will give you an answer shortly…');
+            // var notyf = new Notyf({
+            //     duration: 7000,
+            //     position: {
+            //         x: 'center',
+            //         y: 'top',
+            //     },
+            //     types: [
+            //         {
+            //             type: 'success',
+            //             background: '#556b2f',
+            //             icon: false
+            //         }
+            //     ]
+            // });
+            // notyf.success('Thank you for the question, the tour operator will give you an answer shortly…');
         </script>
     @endif
     <div class="ml-3 grid grid-cols-3">
@@ -252,7 +252,7 @@
     <span style="font-weight: 900" class="text-black text-sm womsm:text-lg wommd:text-xl">
         ASK THE TOUR OPERATOR A QUESTION
     </span>
-    <form action="/tour-questions/ask/{{ $tour->id }}" method="post">
+    <form action="/tour-questions/ask/{{ $tour->id }}" id="questionForm" method="post">
         @csrf
         <span class="block mt-4 text-black text-sm wommd:text-base">Ask your questions and the tour operator will answer
             them for you</span>
@@ -301,5 +301,54 @@
         slidesToShow: 1,
         centerMode: false,
         variableWidth: true,
+    });
+    $(document).ready(function () {
+        $("#questionForm").on("submit", function (e) {
+            e.preventDefault(); // prevent page reload
+            showLoader();
+
+            let form = $(this);
+            let actionUrl = form.attr("action");
+            let formData = form.serialize(); // includes _token + question
+
+            $.ajax({
+                type: "POST",
+                url: actionUrl,
+                data: formData,
+                success: function (response) {
+                    // clear textarea
+                    form.find("textarea[name='question']").val("");
+
+                    // remove "No questions yet." if present
+                    $("#noQuestions").remove();
+                    var notyf = new Notyf({
+                        duration: 7000,
+                        position: {
+                            x: 'center',
+                            y: 'top',
+                        },
+                        types: [
+                            {
+                                type: 'success',
+                                background: '#556b2f',
+                                icon: false
+                            }
+                        ]
+                    });
+                    notyf.success('Thank you for the question, the tour operator will give you an answer shortly…');
+
+                    // append new question
+                    $("#questionsList").append(`
+                        <div class="pt-4 text-black">
+                            <div class="text-base womsm:text-lg wommd:text-xl">Q. ${response.question}</div>
+                        </div>
+                    `);
+                    hideLoader();
+                },
+                error: function (xhr) {
+                    alert("Something went wrong! Please try again.");
+                }
+            });
+        });
     });
 </script>

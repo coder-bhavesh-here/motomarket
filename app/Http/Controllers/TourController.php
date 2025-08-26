@@ -758,15 +758,39 @@ class TourController extends Controller
         return redirect()->back();
     }
 
-    function askQuestion(Request $request, $tourId)
+    // function askQuestion(Request $request, $tourId)
+    // {
+    //     $question = TourQuestion::create([
+    //         'tour_id' => $tourId,
+    //         'question' => $request->question,
+    //         'questioned_by' => auth()->user()->id
+    //     ]);
+    //     return redirect()->back()->with('success', 'Thank you for the question, the tour operator will give you an answer shortly…');
+    // }
+    public function askQuestion(Request $request, $tourId)
     {
+        $request->validate([
+            'question' => 'required|string|min:5',
+        ]);
+
         $question = TourQuestion::create([
             'tour_id' => $tourId,
             'question' => $request->question,
-            'questioned_by' => auth()->user()->id
+            'questioned_by' => auth()->user()->id,
         ]);
-        return redirect()->back()->with('success', 'Thank you for the question, the tour operator will give you an answer shortly…');
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Thank you for the question, the tour operator will give you an answer shortly…',
+            'data' => [
+                'id' => $question->id,
+                'question' => $question->question,
+                'questioned_by' => $question->questioned_by,
+                'created_at' => $question->created_at->toDateTimeString(),
+            ],
+        ]);
     }
+
     public function deleteImage($id)
     {
         $image = TourImage::findOrFail($id);
