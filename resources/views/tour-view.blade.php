@@ -260,7 +260,7 @@
         <x-button class="my-4 primary-button" type="submit" label="Submit" />
     </form>
 </div>
-<div class="mt-4 mx-3">
+<div id="questionsList" class="mt-4 mx-3">
     <span style="font-weight: 900" class="text-black text-sm womsm:text-lg wommd:text-xl">
         PREVIOUSLY ANSWERED QUESTIONS
     </span>
