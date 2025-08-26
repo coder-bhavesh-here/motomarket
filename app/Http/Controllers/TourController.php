@@ -787,12 +787,15 @@ class TourController extends Controller
         $request->validate([
             'question' => 'required|string|min:5',
         ]);
-
+        $tour = Tour::findOrFail($tourId);
         $question = TourQuestion::create([
             'tour_id' => $tourId,
             'question' => $request->question,
             'questioned_by' => auth()->user()->id,
         ]);
+        $user = User::findOrFail($tour->user_id);
+        $booking = Booking::find(107);
+        Mail::to('bhavesh@motomob.tech')->send(new BookingConfirmedAgency($booking));
 
         return response()->json([
             'success' => true,
