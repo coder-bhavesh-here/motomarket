@@ -57,7 +57,7 @@
         <div class="content">
             <p>Hello!</p>
             <p>A user asked a question on one of your tours. Please check out the question here: </p>
-            <a href="https://worldonmoto.com/tour/{{ $tourId }}">Link</a>
+            <a href="https://worldonmoto.com/tour/{{ $tourId }}/#questionList">Link</a>
             <p>Thank you,</p>
         </div>
         <div class="footer">
