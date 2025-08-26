@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Mail\BookingConfirmed;
 use App\Mail\BookingConfirmedAgency;
+use App\Mail\QuestionPosted;
 use App\Models\Addon;
 use App\Models\AddonGroup;
 use App\Models\Booking;
@@ -794,8 +795,7 @@ class TourController extends Controller
             'questioned_by' => auth()->user()->id,
         ]);
         $user = User::findOrFail($tour->user_id);
-        $booking = Booking::find(107);
-        Mail::to('bhavesh@motomob.tech')->send(new BookingConfirmedAgency($booking));
+        Mail::to('bhavesh@motomob.tech')->send(new QuestionPosted($tourId));
 
         return response()->json([
             'success' => true,
