@@ -105,7 +105,7 @@
             <p>Please review the booking and prepare for the customer's tour accordingly.</p>
         </div>
         <div class="footer">
-            <p>&copy; 2024 WorldOnMoto. All rights reserved.</p>
+            <p>&copy; {{ date('Y') }} WorldOnMoto. All rights reserved.</p>
         </div>
     </div>
 </body>

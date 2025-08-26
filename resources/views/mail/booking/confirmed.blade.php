@@ -99,7 +99,7 @@
             <p>We look forward to serving you!</p>
         </div>
         <div class="footer">
-            <p>&copy; 2024 WorldOnMoto. All rights reserved.</p>
+            <p>&copy; {{ date('Y') }} WorldOnMoto. All rights reserved.</p>
         </div>
     </div>
 </body>
