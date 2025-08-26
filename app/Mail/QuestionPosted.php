@@ -32,7 +32,7 @@ class QuestionPosted extends Mailable
             replyTo: [
                 new Address('hello@worldonmoto.com', 'World On Moto'),
             ],
-            subject: 'New question asked for' . $tour->title,
+            subject: 'New question asked for : ' . $tour->title,
         );
     }
 
