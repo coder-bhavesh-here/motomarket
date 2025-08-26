@@ -750,12 +750,27 @@ class TourController extends Controller
 
     function answerQuestion(Request $request, $questionId)
     {
-        $question = TourQuestion::find($questionId);
+        // $question = TourQuestion::find($questionId);
+        // $question->answer = $request->answer;
+        // $question->answered_by = auth()->user()->id;
+        // $question->is_answered = true;
+        // $question->save();
+        // return redirect()->back();
+        $question = TourQuestion::findOrFail($questionId);
         $question->answer = $request->answer;
         $question->answered_by = auth()->user()->id;
         $question->is_answered = true;
         $question->save();
-        return redirect()->back();
+
+        return response()->json([
+            'status'  => 'success',
+            'message' => 'Answer saved successfully!',
+            'data'    => [
+                'id'          => $question->id,
+                'answer'      => $question->answer,
+                'answered_by' => $question->answered_by,
+            ]
+        ]);
     }
 
     // function askQuestion(Request $request, $tourId)

@@ -272,23 +272,62 @@
                 <div class="text-base womsm:text-lg wommd:text-xl">Q. {{ $question->question }}</div>
                 @if ($question->is_answered)
                     @if (Auth::check() && Auth::user()->id == $question->answered_by)
+                        <form class="answer-form" data-id="{{ $question->id }}">
+                            @csrf
+                            <x-textarea 
+                                label="A." 
+                                name="answer" 
+                                placeholder="Write your answer here…" 
+                            >{{ $question->answer }}</x-textarea>
+
+                            <div class="flex gap-2 mt-2">
+                                <x-button type="button" class="save-answer primary-button" label="Save" />
+                                <x-button type="button" class="cancel-answer primary-button" label="Cancel" />
+                            </div>
+                        </form>
+                    @else
+                        <div class="text-xs womsm:text-sm wommd:text-base mt-1 ml-1">A. {{ $question->answer }}</div>
+                    @endif
+                @else
+                    @if (Auth::check() && Auth::user()->id == $tour->user_id)
+                        <form class="answer-form" data-id="{{ $question->id }}">
+                            @csrf
+                            <x-textarea 
+                                label="Answer" 
+                                name="answer" 
+                                placeholder="Write your answer here…"
+                            ></x-textarea>
+                            <div class="flex gap-2 mt-2">
+                                <x-button type="button" class="save-answer primary-button" label="Save" />
+                                <x-button type="button" class="cancel-answer primary-button" label="Cancel" />
+                            </div>
+                        </form>
+                    @endif
+                @endif
+{{-- 
+                @if ($question->is_answered)
+                    @if (Auth::check() && Auth::user()->id == $question->answered_by)
                         <form action="/tour-questions/answer/{{ $question->id }}" method="post">
                             @csrf
-                            <x-input type="text" label="A." name="answer" value="{{ $question->answer }}" />
+                                <x-textarea 
+                                    label="A." 
+                                    name="answer" 
+                                    placeholder="Write your answer here…" 
+                                    >{{ $question->answer }}</x-textarea>
                             <x-button type="submit" class="primary-button mt-2" label="Update" />
                         </form>
                     @else
                         <div class="text-xs womsm:text-sm wommd:text-base mt-1 ml-1">A. {{ $question->answer }}</div>
-                        @if (Auth::check() && Auth::user()->id == $tour->user_id)
-                            {{-- Answer the question if the user is the tour creator --}}
-                            <form action="/tour-questions/answer/{{ $question->id }}" method="post">
-                                @csrf
-                                <x-input type="text" label="Answer" name="answer" />
-                                <x-button type="submit" outline positive label="Answer" />
-                            </form>
-                        @endif
                     @endif
-                @endif
+                @else
+                    @if (Auth::check() && Auth::user()->id == $tour->user_id)
+                        <form action="/tour-questions/answer/{{ $question->id }}" method="post">
+                            @csrf
+                            <x-input type="text" label="Answer" name="answer" />
+                            <x-button type="submit" outline positive label="Answer" />
+                        </form>
+                    @endif
+                @endif --}}
             </div>
         @endforeach
     @endif
@@ -303,6 +342,57 @@
         variableWidth: true,
     });
     $(document).ready(function () {
+        var notyf = new Notyf({
+            duration: 7000,
+            position: { x: 'center', y: 'top' },
+            types: [
+                { type: 'success', background: '#556b2f', icon: false },
+                { type: 'error', background: 'red', icon: false }
+            ]
+        });
+
+        // Save Answer
+        $(document).on('click', '.save-answer', function () {
+            let form = $(this).closest('form');
+            let questionId = form.data('id');
+            let textarea = form.find('textarea[name="answer"]');
+            let answer = textarea.val();
+            let originalAnswer = textarea.data('original') || textarea.val(); // store old answer
+
+            showLoader();
+
+            $.ajax({
+                url: `/tour-questions/answer/${questionId}`,
+                type: 'POST',
+                data: {
+                    _token: form.find('input[name="_token"]').val(),
+                    answer: answer
+                },
+                success: function (res) {
+                    hideLoader();
+                    textarea.data('original', answer); // update original text
+                    notyf.success('Answer saved successfully!');
+                },
+                error: function () {
+                    hideLoader();
+                    notyf.error('Something went wrong, please try again.');
+                }
+            });
+        });
+
+        // Cancel Answer (revert changes)
+        $(document).on('click', '.cancel-answer', function () {
+            let form = $(this).closest('form');
+            let textarea = form.find('textarea[name="answer"]');
+            let originalAnswer = textarea.data('original') || textarea.text();
+            textarea.val(originalAnswer); // revert back
+        });
+
+        // Initialize "original" values on page load
+        $('textarea[name="answer"]').each(function () {
+            $(this).data('original', $(this).val());
+        });
+            
         $("#questionForm").on("submit", function (e) {
             e.preventDefault(); // prevent page reload
             showLoader();
