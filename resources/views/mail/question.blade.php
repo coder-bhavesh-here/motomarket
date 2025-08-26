@@ -57,7 +57,7 @@
         <div class="content">
             <p>Hello!</p>
             <p>A user asked a question on one of your tours. Please check out the question here: </p>
-            <a href="/tour/{{ $tourId }}/#questionsList">Link</a>
+            <a href="{{ route('tour.show', ['tourId' => $tourId]) }}#questionsList">Link</a>
             <p>Thank you,</p>
         </div>
         <div class="footer">
