@@ -26,7 +26,7 @@ class QuestionPosted extends Mailable
      */
     public function envelope(): Envelope
     {
-        $tour = Tour::first($this->tourId);
+        $tour = Tour::find($this->tourId);
         return new Envelope(
             from: new Address('info@worldonmoto.com', 'World On Moto'),
             replyTo: [
