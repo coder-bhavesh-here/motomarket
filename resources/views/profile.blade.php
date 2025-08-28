@@ -9,6 +9,9 @@
             padding: 14px 20px !important;
             font-size: 16px !important;
         }
+        .gray-button {
+            padding: 14px 20px !important;
+        }
     </style>
     <div class="grid grid-cols-1 md:grid-cols-2">
         <div class="text-center justify-self-center mt-52">
@@ -38,7 +41,7 @@
                 <a href="/your-tours" class="primary-button">My Tours</a>
                 <a href="/my-favourite-tours" class="primary-button">Favourites</a>
                 <a href="/emergency-contacts" class="primary-button">ICE</a>
-                <a class="primary-button">Verification</a>
+                <a class="gray-button">Verification (Coming soon!)</a>
                 <a href="#" class="primary-button" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     Log Out
                 </a>
@@ -76,9 +79,9 @@
                     <a href="#" disabled class="disabled-button">Payment Settings</a>
                     <a href="#" disabled class="disabled-button">Tour Management</a>
                     <a href="#" disabled class="disabled-button">Customers / Bookings</a>
-                    <a href="#" disabled class="disabled-button">Team</a>
-                    <a href="#" disabled class="disabled-button">Reports</a>
-                    <a href="#" disabled class="disabled-button">Verification</a>
+                    <a href="#" disabled class="disabled-button">Team (Coming soon!)</a>
+                    <a href="#" disabled class="disabled-button">Reports (Coming soon!)</a>
+                    <a href="#" disabled class="disabled-button">Verification (Coming soon!)</a>
                 </div>
             </div>
             <div id="enabled">
@@ -107,9 +110,9 @@
                     <a href="/payment/edit" class="btn-orange">Payment Settings</a>
                     <a href="/tour-management" class="btn-orange">Tour Management</a>
                     <a href="/bookings" class="btn-orange">Customers / Bookings</a>
-                    <a class="btn-orange">Team</a>
-                    <a class="btn-orange">Reports</a>
-                    <a class="btn-orange">Verification</a>
+                    <a class="gray-button">Team (Coming soon!)</a>
+                    <a class="gray-button">Reports (Coming soon!)</a>
+                    <a class="gray-button">Verification (Coming soon!)</a>
                 </div>
             </div>
         </div>
