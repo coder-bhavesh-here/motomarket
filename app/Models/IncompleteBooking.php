@@ -10,7 +10,6 @@ class IncompleteBooking extends Model
     use HasFactory;
     protected $fillable = [
         'tour_id',
-        'price_id',
         'user_id',
     ];
 }

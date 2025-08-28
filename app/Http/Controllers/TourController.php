@@ -281,6 +281,9 @@ class TourController extends Controller
                 $user = User::find($tour->user_id);
                 Mail::to($user->tour_contact_email)->send(new BookingConfirmedAgency($booking));
                 Mail::to(Auth::user()->email)->send(new BookingConfirmed($booking));
+                IncompleteBooking::where('user_id', auth()->id())
+                    ->where('tour_id', $tour->id)
+                    ->delete();
                 return view('success', [
                     'tour' => $tour,
                     'date' => $tourPrice->date,
@@ -326,7 +329,6 @@ class TourController extends Controller
             Mail::to(Auth::user()->email)->send(new BookingConfirmed($booking));
             IncompleteBooking::where('user_id', auth()->id())
                 ->where('tour_id', $tour->id)
-                ->where('price_id', $session->metadata->tour_price_id)
                 ->delete();
             return view('success', [
                 'tour' => $tour,
@@ -375,7 +377,6 @@ class TourController extends Controller
         IncompleteBooking::updateOrCreate(
             [
                 'tour_id' => $tour->id,
-                'price_id' => $priceId,
                 'user_id' => auth()->user()->id,
             ]
         );
@@ -399,7 +400,6 @@ class TourController extends Controller
         IncompleteBooking::updateOrCreate(
             [
                 'tour_id' => $tour->id,
-                'price_id' => $priceId,
                 'user_id' => auth()->user()->id,
             ]
         );
