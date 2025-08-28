@@ -41,7 +41,6 @@
         $(document).on("click", ".remove", function(e) {
             e.preventDefault();
             const tourId = $(this).attr("data-id");
-            $("#masterDiv"+tourId).remove();
             $.ajax({
                 type: "POST",
                 url: "/delete-incomplete",
