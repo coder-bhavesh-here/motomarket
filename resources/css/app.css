@@ -684,6 +684,6 @@ p.blog-title {
     height: 80px;
     /* animation: spin 1s linear infinite; */
 }
-.img-with-preview {
+.img-with-preview, .step-heading {
     cursor: pointer !important;
 }
