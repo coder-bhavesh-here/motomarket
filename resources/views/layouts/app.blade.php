@@ -150,7 +150,7 @@
                                         </span>
                                         <span class="justify-self-start ml-2">Open Tours</span>
                                     </div>
-                                    <div class="inline-flex justify-self-center items-center">
+                                    <a class="inline-flex justify-self-center items-center" href="/my-favourite-tours">
                                         <span class="icon-box ml-4 justify-self-end mr-2">
                                             <svg style="margin-left: 7px; margin-top: 3px;" width="24" height="22"
                                                 viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -160,27 +160,25 @@
                                                     stroke-linejoin="round" />
                                             </svg>
                                         </span>
-                                        <span class="justify-self-start ml-2">Saved Tours</span>
-                                    </div>
-                                    <div class="inline-flex justify-self-center items-center">
-                                        @auth
-                                            <a href="{{ url('/profiles') }}">
-                                                <span
-                                                    class="{{ $user && $user != null && $user->profile_picture ? '' : 'icon-box' }} ml-4 justify-self-end mr-2">
-                                                @endauth
-                                                @if ($user && $user != null && $user->profile_picture)
-                                                    <img id="profile-picture-img" style="height: 47px; width: 47px;"
-                                                        src="{{ asset('storage/' . $user->profile_picture) }}"
-                                                        alt="Profile Picture" class="rounded-full">
-                                                @else
-                                                    <img src="{{ asset('images/user.png') }}" alt="">
-                                                @endif
-                                                @auth
-                                                </span>
-                                                <span class="justify-self-start ml-2">My Profile</span>
-                                            </a>
-                                        @endauth
-                                    </div>
+                                        <span class="justify-self-start ml-2">Favourite Tours</span>
+                                    </a>
+                                    @auth
+                                        <a href="{{ url('/profiles') }}" class="inline-flex justify-self-center items-center">
+                                            <span
+                                                class="{{ $user && $user != null && $user->profile_picture ? '' : 'icon-box' }} ml-4 justify-self-end mr-2">
+                                            @endauth
+                                            @if ($user && $user != null && $user->profile_picture)
+                                                <img id="profile-picture-img" style="height: 47px; width: 47px;"
+                                                    src="{{ asset('storage/' . $user->profile_picture) }}"
+                                                    alt="Profile Picture" class="rounded-full">
+                                            @else
+                                                <img src="{{ asset('images/user.png') }}" alt="">
+                                            @endif
+                                            @auth
+                                            </span>
+                                            <span class="justify-self-start ml-2">My Profile</span>
+                                        </a>
+                                    @endauth
                                 </div>
                             @else
                                 <div class="bg-white p-4 text-sm font-bold mt-10 mb-4">
