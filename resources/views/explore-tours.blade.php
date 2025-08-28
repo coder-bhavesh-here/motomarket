@@ -143,7 +143,7 @@
                                         <span>{{ $tour->bike_option }}</span></span>
                                 </div>
                                 <div class="relative flex items-center justify-between font-semibold bottom-0 w-full">
-                                    <div class="left">
+                                    <div class="left" style="min-width: 110px;">
                                         @if ($tour->prices->count() > 0)
                                         @php
                                             $currency = $tour->user->tour_currency;
