@@ -231,7 +231,7 @@
                                     $hasAddons = $price->tour->addonGroups()->exists();
                                     $bookUrl = $hasAddons ? "/bookAddon/{$price->id}" : "/book/{$price->id}";
                                 @endphp
-                                <div class="text-xs womsm:text-sm text-right wommd:text-base womsm:ml-8 wommd:ml-16 font-bold text-[#0F172A]">
+                                <div class="text-xs womsm:text-sm text-right wommd:text-base ml-2 womsm:ml-8 wommd:ml-16 font-bold text-[#0F172A]">
                                     <a class="text-[#556B2F]" href="{{ $bookUrl }}">BOOK</a>
                                 </div>
                             </div>
