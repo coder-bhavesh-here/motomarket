@@ -178,7 +178,7 @@
     </div>
 </div>
 
-<div class="my-6 mx-3" id="dates">
+<div class="my-6" id="dates">
     @php
         // $grouped = $tour->prices->groupBy(function ($item) {
         //     return \Carbon\Carbon::parse($item->date)->format('F Y'); // Group by "Month Year"
