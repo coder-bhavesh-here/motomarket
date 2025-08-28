@@ -9,6 +9,7 @@ use App\Models\Addon;
 use App\Models\AddonGroup;
 use App\Models\Booking;
 use App\Models\FavouriteTour;
+use App\Models\IncompleteBooking;
 use App\Models\Tour;
 use App\Models\TourAddOn;
 use App\Models\TourImage;
@@ -120,6 +121,17 @@ class TourController extends Controller
         return view('favourites', [
             'tours' => $tours,
             'search' => $search
+        ]);
+    }
+    public function myIncompleteTours(Request $request): View
+    {
+        $userId = auth()->user()->id;
+        $incompleteBookings = IncompleteBooking::where('user_id', $userId)->pluck('tour_id')->toArray();
+        $tours = Tour::whereIn('id', $incompleteBookings)
+            ->where('permanently_deleted', false)
+            ->get();
+        return view('incompleted', [
+            'tours' => $tours
         ]);
     }
 
@@ -312,6 +324,10 @@ class TourController extends Controller
 
             Mail::to($user->tour_contact_email)->send(new BookingConfirmedAgency($booking));
             Mail::to(Auth::user()->email)->send(new BookingConfirmed($booking));
+            IncompleteBooking::where('user_id', auth()->id())
+                ->where('tour_id', $tour->id)
+                ->where('price_id', $session->metadata->tour_price_id)
+                ->delete();
             return view('success', [
                 'tour' => $tour,
                 'date' => $tourPrice->date,
@@ -356,6 +372,13 @@ class TourController extends Controller
     {
         $price = TourPrice::find($priceId);
         $tour = Tour::with(['prices', 'addonGroups'])->where('permanently_deleted', false)->find($price->tour_id);
+        IncompleteBooking::updateOrCreate(
+            [
+                'tour_id' => $tour->id,
+                'price_id' => $priceId,
+                'user_id' => auth()->user()->id,
+            ]
+        );
         return view('bookAddon', [
             'tour' => $tour,
             'nationalities' => ['India', 'Europe', 'US  '],
@@ -373,6 +396,13 @@ class TourController extends Controller
             $addons = Addon::with('group')->whereIn('id', $addonIds)->get();
         }
         $tour = Tour::with(['prices'])->where('permanently_deleted', false)->find($price->tour_id);
+        IncompleteBooking::updateOrCreate(
+            [
+                'tour_id' => $tour->id,
+                'price_id' => $priceId,
+                'user_id' => auth()->user()->id,
+            ]
+        );
         return view('book', [
             'tour' => $tour,
             'nationalities' => ['India', 'Europe', 'US  '],
