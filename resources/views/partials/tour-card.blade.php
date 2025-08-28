@@ -43,7 +43,7 @@
                     @if ($profile_picture != '')
                         <img src="{{ asset('storage') . '/' . ($tour->user->tour_profile_picture != '' ? $tour->user->tour_profile_picture : $tour->user->profile_picture) }}"
                             alt="Tour operator picture"
-                            style="width: 40px; height: 40ox; border-radius: 20px;">
+                            style="width: 40px; height: 40px; border-radius: 20px;">
                     @endif
                         <span class="text-xl font-semibold text-black tour-owner ml-4">{{ $tour_operation_name }}</span>
                 </div>
