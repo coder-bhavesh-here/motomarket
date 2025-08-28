@@ -6,7 +6,12 @@ import "./bootstrap";
 
 // Alpine.start();
 let table = new DataTable("#datatable");
-
+$(".step-heading").click(function () { 
+    const step = $(this).data('id');
+    const urlParams = new URLSearchParams(window.location.search);
+    const currentStep =  urlParams.get('activeStep');
+    saveStep(currentStep, step);
+});
 $(".submit-button").click(function (e) {
     const url = new URL(window.location.href);
     let tour_id = parseInt(url.searchParams.get("tour_id")) || undefined;
@@ -620,6 +625,7 @@ document.querySelectorAll(".save-exit-button").forEach(function (element) {
 });
 
 function saveStep(currentStep, direction = "next") {
+    currentStep = parseInt(currentStep) || 0;
     const url = new URL(window.location.href);
     var notyf = new Notyf({
         duration: 1500,
@@ -636,15 +642,20 @@ function saveStep(currentStep, direction = "next") {
         ]
     });
     function handleRedirect(response) {
-        if (direction === "exit") {
-            window.location.href = "/tour-management";
+        let nextStep;
+        if (typeof direction === "number") {
+            nextStep = direction;
         } else {
-            let nextStep =
+            if (direction === "exit") {
+                window.location.href = "/tour-management";
+            } else {
+            nextStep =
                 direction === "next" ? currentStep + 1 : currentStep - 1;
-            url.searchParams.set("activeStep", nextStep);
-            url.searchParams.set("tour_id", response.tour_id);
-            window.location.href = url.toString();
+            }
         }
+        url.searchParams.set("activeStep", nextStep);
+        url.searchParams.set("tour_id", response.tour_id);
+        window.location.href = url.toString();
     }
     if (currentStep === 0) {
         let tour_id =
