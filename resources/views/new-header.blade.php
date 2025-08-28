@@ -979,8 +979,16 @@
                                 </a>
                             @endauth
                             @auth
-                                <span class="icon-box ml-4">
+                                @php
+                                    $incompleteCount = \App\Models\IncompleteBooking::where('user_id', auth()->id())->count();
+                                @endphp
+                                <span class="relative inline-block icon-box ml-4">
                                     <img src="{{ asset('images/motorcycle.svg') }}" alt="Bike">
+                                    @if($incompleteCount > 0)
+                                        <span class="absolute -top-2 -right-2 bg-orange text-white text-xs font-bold px-2 py-0.5 rounded-full shadow">
+                                            {{ $incompleteCount }}
+                                        </span>
+                                    @endif
                                 </span>
                                 <span class="icon-box ml-4">
                                     <a href="/my-favourite-tours">
