@@ -44,7 +44,7 @@
             $("#masterDiv"+tourId).remove();
             $.ajax({
                 type: "POST",
-                url: "/delete-favourite",
+                url: "/delete-incomplete",
                 data: {
                     tour_id: tourId
                 },
@@ -53,8 +53,8 @@
                     "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
                 },
                 success: function(response) {
-                    if (response.message === "Tour removed from favourite.!") {
-                        console.log("Tour removed from favourite", tourId);
+                    if (response.message === "Tour removed.!") {
+                        console.log("Tour removed.", tourId);
                     }
                 },
                 error: function(error) {

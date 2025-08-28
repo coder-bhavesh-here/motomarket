@@ -30,6 +30,7 @@ Route::middleware('throttle:60,1')->group(function () {
     Route::get('/tour/{tourId}', [TourController::class, 'show'])->name('tour.show');
     Route::post('/mark-as-favourite', [TourController::class, 'markFavourite']);
     Route::post('/delete-favourite', [TourController::class, 'deleteFavourite']);
+    Route::post('/delete-incomplete', [TourController::class, 'deleteIncomplete']);
     Route::get('/tour/book/{tourId}', [TourController::class, 'book']);
 
     Route::get('/blogs', [BlogController::class, 'list'])->name('blogs.list');

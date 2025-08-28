@@ -727,6 +727,14 @@ class TourController extends Controller
         FavouriteTour::where('tour_id', $tour_id)->where('user_id', $user_id)->delete();
         echo json_encode(["message" => "Tour removed from favourite.!"]);
     }
+    function deleteIncomplete(Request $request)
+    {
+        $tour_id = $request->tour_id;
+        IncompleteBooking::where('user_id', auth()->id())
+            ->where('tour_id', $tour_id)
+            ->delete();
+        echo json_encode(["message" => "Tour removed.!"]);
+    }
 
     function profile(Request $request)
     {
