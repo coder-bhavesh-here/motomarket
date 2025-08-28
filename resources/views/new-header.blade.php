@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>World On Motos</title>
+    <title>World On Moto</title>
     <wireui:scripts />
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
