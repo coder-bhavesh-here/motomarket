@@ -19,6 +19,11 @@
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+    <style>
+        .slide-left {
+            transform: translateX(0) !important;
+        }
+    </style>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" type="text/css" href="{{ asset('css/slick.css') }}" />
@@ -131,7 +136,7 @@
                         <button onclick="closePopup()" style="border: unset !important"
                             class="absolute bottom-20 left-1/2 z-50">
                             <svg width="32" height="31" viewBox="0 0 32 31" fill="none"
-                                xmlns="http://www.w3.org/2000/svgurl('/profiles')">
+                                xmlns="http://www.w3.org/2000/svg">
                                 <path d="M2.56836 1.4082L30.6327 29.4725" stroke="black" stroke-width="2"
                                     stroke-linecap="round" />
                                 <path d="M29.6973 1.4082L1.63293 29.4725" stroke="black" stroke-width="2"
@@ -162,30 +167,32 @@
                                         </span>
                                         <span class="justify-self-start ml-2">Favourite Tours</span>
                                     </a>
-                                    @auth
-                                        <a href="{{ url('/profiles') }}" class="inline-flex justify-self-center items-center">
+                                    <a href="{{ url('/profiles') }}" class="inline-flex justify-self-center items-center">
+                                        @auth
                                             <span
                                                 class="{{ $user && $user != null && $user->profile_picture ? '' : 'icon-box' }} ml-4 justify-self-end mr-2">
-                                            @endauth
-                                            @if ($user && $user != null && $user->profile_picture)
-                                                <img id="profile-picture-img" style="height: 47px; width: 47px;"
-                                                    src="{{ asset('storage/' . $user->profile_picture) }}"
-                                                    alt="Profile Picture" class="rounded-full">
-                                            @else
+                                        @endauth
+                                        @if ($user && $user != null && $user->profile_picture)
+                                            <img id="profile-picture-img" style="height: 47px; width: 47px;"
+                                                src="{{ asset('storage/' . $user->profile_picture) }}"
+                                                alt="Profile Picture" class="rounded-full">
+                                        @else
                                                 <img src="{{ asset('images/user.png') }}" alt="">
-                                            @endif
-                                            @auth
-                                            </span>
+                                        @endif
+                                        @auth
+                                        </span>
                                             <span class="justify-self-start ml-2">My Profile</span>
-                                        </a>
-                                    @endauth
+                                        @endauth
+                                    </a>
                                 </div>
                             @else
                                 <div class="bg-white p-4 text-sm font-bold mt-10 mb-4">
-                                    <a href="{{ route('login') }}">Sign in</a>
+                                    <a style="color: black; text-decoration: none;" href="{{ route('login') }}">Sign
+                                        in</a>
                                 </div>
                                 <div class="bg-white p-4 text-sm font-bold">
-                                    <a href="{{ route('register') }}">Sign up</a>
+                                    <a style="color: black; text-decoration: none;" href="{{ route('register') }}">Sign
+                                        up</a>
                                 </div>
                             @endauth
                         </div>
@@ -204,6 +211,7 @@
                         document.body.style.overflow = '';
                     }
                 </script>
+
                 {{ $slot }}
                 @stack('scripts')
                 @include('../footer')
