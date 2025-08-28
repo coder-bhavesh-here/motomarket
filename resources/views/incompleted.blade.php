@@ -54,7 +54,7 @@
                 },
                 success: function(response) {
                     if (response.message === "Tour removed.!") {
-                        console.log("Tour removed.", tourId);
+                        window.location.reload();
                     }
                 },
                 error: function(error) {
