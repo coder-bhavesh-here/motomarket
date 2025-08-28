@@ -92,7 +92,7 @@
                                 @php
                                     $incompleteCount = \App\Models\IncompleteBooking::where('user_id', auth()->id())->distinct('tour_id')->count();
                                 @endphp
-                                <a class="relative inline-block icon-box ml-4" href="/my-incompleted-tours">
+                                <a class="relative inline-block icon-box ml-4" href="/my-incomplete-tours">
                                     <img src="{{ asset('images/motorcycle.svg') }}" alt="Bike">
                                     @if($incompleteCount > 0)
                                         <span class="absolute -top-2 -right-2 bg-orange text-white text-xs font-bold px-2 py-0.5 rounded-full shadow">
