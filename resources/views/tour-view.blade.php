@@ -214,7 +214,7 @@
                 </h2>
                 <div id="collapse{{ $counter }}" class="accordion-collapse show" style="background-color: #f2f2f2"
                     aria-labelledby="heading{{ $counter }}" data-bs-parent="#accordionExample">
-                    <div class="accordion-body justify-items-center" style="padding: 0.75rem">
+                    <div class="accordion-body justify-items-center" style="padding: 0.25rem">
                         @php
                             $tac = 0;
                         @endphp
