@@ -200,8 +200,8 @@ hr {
 }
 .tour-details img {
     width: 100%;
-    max-height: fit-content;
-    min-height: -webkit-fill-available;
+    /* max-height: fit-content; */
+    /* min-height: -webkit-fill-available; */
 }
 .tour-details .tour-description {
     padding: 10px 25px;
