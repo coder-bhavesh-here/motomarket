@@ -36,7 +36,7 @@
             <div class="grid gap-y-6 mt-6">
                 <a href="/profile" class="primary-button">My Details</a>
                 <a href="/your-tours" class="primary-button">My Tours</a>
-                <a class="primary-button">Favourites</a>
+                <a href="/my-favourite-tours" class="primary-button">Favourites</a>
                 <a href="/emergency-contacts" class="primary-button">ICE</a>
                 <a class="primary-button">Verification</a>
                 <a href="#" class="primary-button" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
