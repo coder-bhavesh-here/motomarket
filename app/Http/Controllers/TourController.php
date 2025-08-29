@@ -373,6 +373,9 @@ class TourController extends Controller
     public function bookAddon($priceId): View
     {
         $price = TourPrice::find($priceId);
+        if (!$price) {
+            abort(404, 'Tour Price not found');
+        }
         $tour = Tour::with(['prices', 'addonGroups'])->where('permanently_deleted', false)->find($price->tour_id);
         IncompleteBooking::updateOrCreate(
             [
