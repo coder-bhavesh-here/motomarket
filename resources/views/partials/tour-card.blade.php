@@ -63,7 +63,7 @@
                 </span>
                 <span class="badge">
                     <img src="{{ asset('images') . '/indicator.svg' }}" alt="">
-                    <span>{{ $tour->riding_style }}</span>
+                    <span>{{ $tour->riding_style === 'Road' ? "Road Trip (Adventure on the road, its a road trip)" : $tour->riding_style === 'Adventuer' ? "Adventure (Adventure ride on and off road)" : "Enduro (Almost all of the trip is off road)" }}</span>
                 </span>
                 <span class="badge">
                     <img src="{{ asset('images') . '/hourglass.svg' }}" alt="">
