@@ -138,7 +138,8 @@
 
                 <!-- Add this right after your existing header section -->
                 <div id="fullScreenPopup"
-                    class="fixed womsm:hidden inset-0 transform translate-x-full transition-transform duration-300 ease-in-out bg-[#EEEEEE] z-50">
+                style="z-index: 1001 !important;"
+                    class="fixed womsm:hidden inset-0 transform translate-x-full transition-transform duration-300 ease-in-out bg-[#EEEEEE]">
                     <div class="relative w-full h-full py-14 px-4">
                         <!-- Close button -->
                         <button onclick="closePopup()" style="border: unset !important"
