@@ -36,8 +36,8 @@
         <b class="col-span-2 text-base womsm:text-xl wommd:text-2xl text-black font-semibold block mb-4">{{ $tour->title }}
             - {{ $tour->countries }}</b>
         <a href="#dates"
-            class="bg-[#556b2f] rounded text-white border-0 w-20 womsm:w-28 wommd:w-40 justify-self-end h-6 womsm:h-8 wommd:h-10 text-xs womsm:text-base wommd:text-lg"
-            style="display: flex; justify-content: center; align-items: center; text-decoration: none;"
+            class="font-bold underline w-20 womsm:w-28 wommd:w-40 justify-self-end h-6 womsm:h-8 wommd:h-10 text-xs womsm:text-base wommd:text-lg"
+            style="display: flex; justify-content: center; align-items: center;"
             >
             See Dates
         </a>
@@ -220,7 +220,7 @@
                         @endphp
                         @foreach ($prices as $key => $price)
                             <div
-                                class="grid grid-cols-4 rounded-sm w-full justify-between womsm:justify-start items-center p-1 womsm:p-3 {{ $tac % 2 === 0 ? 'bg-customlightgreen' : '' }}">
+                                class="grid grid-cols-4 rounded-sm w-full justify-between womsm:justify-start items-center p-3 womsm:p-4 {{ $tac % 2 === 0 ? 'bg-customlightgreen' : '' }}">
                                 <div class="text-xs womsm:text-sm text-left wommd:text-base text-[#0F172A]">
                                     {{ \Carbon\Carbon::parse($price->date)->format('F d, Y') }}</div>
                                 <div class="text-xs text-end womsm:text-sm wommd:text-base womsm:ml-8 wommd:ml-16 font-bold text-[#0F172A]">
@@ -232,7 +232,7 @@
                                     $bookUrl = $hasAddons ? "/bookAddon/{$price->id}" : "/book/{$price->id}";
                                 @endphp
                                 <div class="text-xs womsm:text-sm text-right wommd:text-base ml-2 womsm:ml-8 wommd:ml-16 font-bold text-[#0F172A]">
-                                    <a class="text-[#556B2F]" href="{{ $bookUrl }}">BOOK</a>
+                                    <a class="bg-[#556b2f] rounded text-white border-0 p-2" href="{{ $bookUrl }}">BOOK</a>
                                 </div>
                             </div>
                             @php
