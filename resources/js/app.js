@@ -646,7 +646,7 @@ function saveStep(currentStep, direction = "next") {
         if (typeof direction === "number") {
             nextStep = direction;
         } else {
-            alert(direction);
+            // alert(direction);
             if (direction === "exit") {
                 window.location.href = "/tour-management";
             } else {
