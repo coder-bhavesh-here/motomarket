@@ -100,13 +100,13 @@
                     <a href='/tour/{{ $tour->id }}' class="button-text">Tour Details</a>
                     @if ($tour->is_favourite)
                         <a class="unfavourite">
-                            <img style="height: 50px; width: 50px;"
+                            height: 50px !important; max-width: 50px !important; width: 50px !important;
                                 src="{{ asset('images') . '/heart-filled.svg' }}"
                                 data-id="{{ $tour->id }}">
                         </a>
                     @else
                         <a class="favourite">
-                            <img style="height: 50px; width: 50px;"
+                            height: 50px !important; max-width: 50px !important; width: 50px !important;
                                 src="{{ asset('images') . '/heart-plain.svg' }}"
                                 data-id="{{ $tour->id }}">
                         </a>
