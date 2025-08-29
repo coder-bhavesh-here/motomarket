@@ -261,12 +261,10 @@
     </form>
 </div>
 <div id="questionsList" class="mt-4 mx-3">
-    <span style="font-weight: 900" class="text-black text-sm womsm:text-lg wommd:text-xl">
-        PREVIOUSLY ANSWERED QUESTIONS
-    </span>
-    @if ($tour->tourQuestions == null)
-        <div class="text-center text-2xl">No questions yet.</div>
-    @else
+    @if ($tour->tourQuestions != null)
+        <span style="font-weight: 900" class="text-black text-sm womsm:text-lg wommd:text-xl">
+            PREVIOUSLY ANSWERED QUESTIONS
+        </span>
         @foreach ($tour->tourQuestions as $question)
             <div class="pt-4 text-black">
                 <div class="text-base womsm:text-lg wommd:text-xl">Q. {{ $question->question }}</div>
