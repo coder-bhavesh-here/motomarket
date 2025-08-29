@@ -645,6 +645,9 @@ function saveStep(currentStep, direction = "next") {
         let nextStep;
         if (typeof direction === "number") {
             nextStep = direction;
+            url.searchParams.set("activeStep", nextStep);
+                url.searchParams.set("tour_id", response.tour_id);
+                window.location.href = url.toString();
         } else {
             // alert(direction);
             if (direction === "exit") {
