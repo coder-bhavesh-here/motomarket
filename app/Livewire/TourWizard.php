@@ -14,6 +14,12 @@ use Vildanbina\LivewireWizard\WizardComponent;
 
 class TourWizard extends WizardComponent
 {
+    public $activeStep = 1; // 👈 type hint hata diya
+
+    public function setActiveStep($step)
+    {
+        $this->activeStep = (int) $step; // force integer
+    }
     protected $casts = [
         'activeStep' => 'integer',
     ];
