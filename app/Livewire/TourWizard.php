@@ -14,7 +14,7 @@ use Vildanbina\LivewireWizard\WizardComponent;
 
 class TourWizard extends WizardComponent
 {
-    public $activeStep = 1; // 👈 type hint hata diya
+    public $activeStep = 0; // 👈 type hint hata diya
 
     public function setActiveStep($step)
     {
