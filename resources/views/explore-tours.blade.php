@@ -112,7 +112,7 @@
                                 <div class="badges mt-5 flex flex-wrap items-center">
                                     <span class="badge">
                                         <img src="{{ asset('images') . '/tower.svg' }}" alt="">
-                                        <span>{{ $tour->rider_capability }}</span>
+                                        <span>{{ str_replace(',', ', ', $tour->rider_capability) }}</span>
                                     </span>
                                     <span class="badge">
                                         <img src="{{ asset('images') . '/indicator.svg' }}" alt="">
@@ -130,17 +130,17 @@
                                     @endif
                                     <span class="badge">
                                         <img src="{{ asset('images') . '/earth.svg' }}" alt="">
-                                        <span>{{ $tour->countries }}</span></span>
+                                        <span>{{ str_replace(',', ', ', $tour->countries) }}</span></span>
                                     <span class="badge">
                                         <img src="{{ asset('images') . '/people.svg' }}" alt="">
                                         <span>{{ $tour->max_riders }}
-                                            Riders & {{ $tour->guides }} Guides</span></span>
+                                            Rider{{$tour->max_riders > 1 ? "s" : ""}} & {{ $tour->guides }} Guide{{$tour->guides > 1 ? "s" : ""}}</span></span>
                                     <span class="badge">
                                         <img src="{{ asset('images') . '/bike.svg' }}" alt="">
-                                        <span>{{ \Illuminate\Support\Str::limit($tour->riding_style_info, $limit = 15, $end = '...') }}</span></span>
+                                        <span>{{ $tour->bike_option === 'Bike rental' ? "Bike rental or own bike" :  ($tour->bike_option === 'Bike included' ? "Bike is included" : "Bring your own bike")}}</span></span>
                                     <span class="badge">
                                         <img src="{{ asset('images') . '/helmet.svg' }}" alt="">
-                                        <span>{{ $tour->bike_option }}</span></span>
+                                        <span>{{ $tour->two_up_riding ? "Two up riding available" : "Two up riding not available" }}</span></span>
                                 </div>
                                 <div class="relative flex items-center justify-between font-semibold bottom-0 w-full">
                                     <div class="left" style="min-width: 110px;">
