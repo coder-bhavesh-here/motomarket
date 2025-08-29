@@ -246,8 +246,8 @@
             vertical-align: middle
         }
 
-        img,
-        video {
+        img:not(.favourite img),
+        video:not(.favourite video) {
             max-width: 100%;
             height: auto
         }
