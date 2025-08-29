@@ -14,6 +14,10 @@ use Vildanbina\LivewireWizard\WizardComponent;
 
 class TourWizard extends WizardComponent
 {
+    protected $casts = [
+        'activeStep' => 'integer',
+    ];
+
     public array $steps = [
         TourOne::class,
         TourTwo::class,
