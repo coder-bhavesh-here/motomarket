@@ -651,11 +651,11 @@ function saveStep(currentStep, direction = "next") {
             } else {
             nextStep =
                 direction === "next" ? currentStep + 1 : currentStep - 1;
+                url.searchParams.set("activeStep", nextStep);
+                url.searchParams.set("tour_id", response.tour_id);
+                window.location.href = url.toString();
             }
         }
-        url.searchParams.set("activeStep", nextStep);
-        url.searchParams.set("tour_id", response.tour_id);
-        window.location.href = url.toString();
     }
     if (currentStep === 0) {
         let tour_id =
