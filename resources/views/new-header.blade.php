@@ -985,7 +985,7 @@
                                 <a class="relative inline-block icon-box ml-4" href="/my-incomplete-tours">
                                     <img src="{{ asset('images/motorcycle.svg') }}" alt="Bike">
                                     @if($incompleteCount > 0)
-                                        <span class="absolute -top-2 -right-2 bg-orange text-white text-xs font-bold px-2 py-0.5 rounded-full shadow">
+                                        <span class="absolute -top-2 -right-2 bg-red-600 text-white text-xs font-bold px-2 py-0.5 rounded-full shadow">
                                             {{ $incompleteCount }}
                                         </span>
                                     @endif
