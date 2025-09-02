@@ -28,7 +28,7 @@
                         <h3 class="text-base font-semibold mt-2 text-green truncated-text">
                             {{ $tour->title }}</h3>
                     </div>
-                    <p class="text-sm text-gray-600 flex items-center align-center mt-8">
+                    <p class="text-sm text-gray-600 flex items-center align-center">
                         <span>
                             <svg class="mr-1" width="25" height="32" viewBox="0 0 25 25" fill="none"
                                 xmlns="http://www.w3.org/2000/svg">
