@@ -416,6 +416,7 @@ class TourController extends Controller
                     'payment_id'    => $response['id'], // PayPal Order ID
                     'status'        => 'confirmed',
                 ];
+                dd($data);
                 if ($booking) {
                     $booking->update([
                         'amount'     => $amount,
