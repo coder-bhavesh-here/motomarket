@@ -414,6 +414,7 @@ class TourController extends Controller
                 } else {
                     $tourId = $booking->tour_id;
                 }
+                dd($tourPrice);
                 $data = [
                     'tour_id'       => $tourId ?? null,   // Agar tour_id bhejna hai to pehle se custom_id me dalna hoga
                     'booking_id'    => $bookingId ?? null,
