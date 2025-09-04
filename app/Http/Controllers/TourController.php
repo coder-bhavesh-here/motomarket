@@ -407,9 +407,13 @@ class TourController extends Controller
                     $description    = $parts[5] ?? null;
                 }
 
-                echo ($bookingId);
-                dd($userId);
                 $booking = Booking::where('tour_date_id', $bookingId)->where('user_id', $userId)->orderBy('id', 'desc')->first();
+                if (!$booking) {
+                    $tourPrice = TourPrice::find($bookingId);
+                    $tourId = $tourPrice->tour_id;
+                } else {
+                    $tourId = $booking->tour_id;
+                }
                 $data = [
                     'tour_id'       => $booking->tour_id ?? null,   // Agar tour_id bhejna hai to pehle se custom_id me dalna hoga
                     'booking_id'    => $bookingId ?? null,
