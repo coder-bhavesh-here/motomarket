@@ -415,7 +415,7 @@ class TourController extends Controller
                     $tourId = $booking->tour_id;
                 }
                 $data = [
-                    'tour_id'       => $booking->tour_id ?? null,   // Agar tour_id bhejna hai to pehle se custom_id me dalna hoga
+                    'tour_id'       => $tourId ?? null,   // Agar tour_id bhejna hai to pehle se custom_id me dalna hoga
                     'booking_id'    => $bookingId ?? null,
                     'user_id'       => $userId ?? null,
                     'amount'        => $amount,
