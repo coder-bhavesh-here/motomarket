@@ -418,6 +418,7 @@ class TourController extends Controller
                     'tour_id'       => $tourId ?? null,   // Agar tour_id bhejna hai to pehle se custom_id me dalna hoga
                     'booking_id'    => $bookingId ?? null,
                     'date'          => $tourPrice->date ?? null,
+                    'tour_date_id'  => $bookingId ?? null,
                     'user_id'       => $userId ?? null,
                     'amount'        => $amount,
                     'payment_id'    => $response['id'], // PayPal Order ID
