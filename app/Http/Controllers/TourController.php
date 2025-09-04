@@ -427,8 +427,10 @@ class TourController extends Controller
                     $booking = Booking::create($data);
                 }
                 $tour = Tour::withTrashed()->find($booking->tour_id);
-                Mail::to(Auth::user()->tour_contact_email)->send(new BookingConfirmedAgency($booking));
-                Mail::to(Auth::user()->email)->send(new BookingConfirmed($booking));
+                // Mail::to(Auth::user()->tour_contact_email)->send(new BookingConfirmedAgency($booking));
+                // Mail::to(Auth::user()->email)->send(new BookingConfirmed($booking));
+                Mail::to('bhavesh@motomob.tech')->send(new BookingConfirmedAgency($booking));
+                Mail::to('bhavesh@motomob.tech')->send(new BookingConfirmed($booking));
                 IncompleteBooking::where('user_id', auth()->id())
                     ->where('tour_id', $tour->id)
                     ->delete();
