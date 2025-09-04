@@ -239,6 +239,7 @@ class TourController extends Controller
                 ]);
                 $paypalToken = $provider->getAccessToken();
 
+                $booking = Booking::find($request->id);
                 $response = $provider->createOrder([
                     "intent" => "CAPTURE",
                     "application_context" => [
@@ -251,7 +252,7 @@ class TourController extends Controller
                                 "currency_code" => "USD",
                                 "value" => $request->price,
                             ],
-                            "custom_id" => "booking_{$request->id}_user_" . Auth::id() . "_description_Payment for Tour: " . $request->tour_title,
+                            "custom_id" => "booking_{$booking->tour_date_id}_user_" . Auth::id() . "_description_Payment for Tour: " . $request->tour_title,
                             // "custom_id" => json_encode([
                             //     "amount"     => $request->price,
                             //     "booking_id" => $request->id,
