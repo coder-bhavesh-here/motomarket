@@ -68,7 +68,7 @@
                 </tr>
                 <tr>
                     <td><strong>Amount Paid:</strong></td>
-                    <td>₹{{ $booking->amount }}</td>
+                    <td>€{{ $booking->amount }}</td>
                 </tr>
                 <tr>
                     <td><strong>Add-ons:</strong></td>
