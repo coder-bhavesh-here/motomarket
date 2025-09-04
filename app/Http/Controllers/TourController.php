@@ -240,6 +240,7 @@ class TourController extends Controller
                 $paypalToken = $provider->getAccessToken();
 
                 $booking = Booking::find($request->id);
+                dd($request->all());
                 $response = $provider->createOrder([
                     "intent" => "CAPTURE",
                     "application_context" => [
@@ -336,6 +337,7 @@ class TourController extends Controller
             ]);
             $paypalToken = $provider->getAccessToken();
 
+            dd($request->all());
             $response = $provider->createOrder([
                 "intent" => "CAPTURE",
                 "application_context" => [
@@ -427,7 +429,7 @@ class TourController extends Controller
                 ];
                 if ($booking) {
                     $booking->update([
-                        'amount'     => $amount,
+                        'amount'     => $amount + $booking->amount,
                         'payment_id' => $data['payment_id'],
                         'status'     => 'confirmed',
                     ]);
