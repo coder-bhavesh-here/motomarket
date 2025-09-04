@@ -240,7 +240,6 @@ class TourController extends Controller
                 $paypalToken = $provider->getAccessToken();
 
                 $booking = Booking::find($request->id);
-                dd($request->all());
                 $response = $provider->createOrder([
                     "intent" => "CAPTURE",
                     "application_context" => [
@@ -337,7 +336,12 @@ class TourController extends Controller
             ]);
             $paypalToken = $provider->getAccessToken();
 
-            dd($request->all());
+            session(['name' => $request->name]);
+            session(['nationality' => $request->nationality]);
+            session(['mobile_number' => $request->mobile_number]);
+            session(['address' => $request->address]);
+            session(['country' => $request->country]);
+            session(['postcode' => $request->postcode]);
             $response = $provider->createOrder([
                 "intent" => "CAPTURE",
                 "application_context" => [
@@ -434,6 +438,12 @@ class TourController extends Controller
                         'status'     => 'confirmed',
                     ]);
                 } else {
+                    $data['name'] = session('name');
+                    $data['nationality'] = session('nationality');
+                    $data['mobile_number'] = session('mobile_number');
+                    $data['address'] = session('address');
+                    $data['country'] = session('country');
+                    $data['postcode'] = session('postcode');
                     $booking = Booking::create($data);
                 }
                 $tour = Tour::withTrashed()->find($booking->tour_id);
