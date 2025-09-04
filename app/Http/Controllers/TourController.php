@@ -408,8 +408,8 @@ class TourController extends Controller
                 }
 
                 $booking = Booking::where('tour_date_id', $bookingId)->where('user_id', $userId)->orderBy('id', 'desc')->first();
+                $tourPrice = TourPrice::find($bookingId);
                 if (!$booking) {
-                    $tourPrice = TourPrice::find($bookingId);
                     $tourId = $tourPrice->tour_id;
                 } else {
                     $tourId = $booking->tour_id;
@@ -417,6 +417,7 @@ class TourController extends Controller
                 $data = [
                     'tour_id'       => $tourId ?? null,   // Agar tour_id bhejna hai to pehle se custom_id me dalna hoga
                     'booking_id'    => $bookingId ?? null,
+                    'date'          => $tourPrice->date ?? null,
                     'user_id'       => $userId ?? null,
                     'amount'        => $amount,
                     'payment_id'    => $response['id'], // PayPal Order ID
