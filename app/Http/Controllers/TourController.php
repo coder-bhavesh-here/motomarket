@@ -438,7 +438,6 @@ class TourController extends Controller
                         'status'     => 'confirmed',
                     ]);
                 } else {
-                    dd(session('name'));
                     $data['name'] = session('name');
                     $data['nationality'] = session('nationality');
                     $data['mobile_number'] = session('mobile_number');
