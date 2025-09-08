@@ -163,12 +163,12 @@
                         </div>
                         <div class="mt-2">
                             <x-text-input id="company_showcase_link1" name="company_showcase_link1" type="text" class="mt-1 block w-full" :value="old('company_showcase_link1', $user->company_showcase_link1)"
-                                required autofocus placeholder="Link-1"/>
+                                autofocus placeholder="Link-1"/>
                             <x-input-error class="mt-2" :messages="$errors->get('company_showcase_link1')" />
                         </div>
                         <div>
                             <x-text-input id="company_showcase_link2" name="company_showcase_link2" type="text" class="mt-1 block w-full" :value="old('company_showcase_link2', $user->company_showcase_link2)"
-                                required autofocus placeholder="Link-2"/>
+                                autofocus placeholder="Link-2"/>
                             <x-input-error class="mt-2" :messages="$errors->get('company_showcase_link2')" />
                         </div>
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">

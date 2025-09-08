@@ -9,7 +9,7 @@
                                             style="width: 320px; height: 320ox; border-radius: 20px;">
                         <span class="text-green text-2xl font-semibold mt-4">{{$user->name}}</span>
                         <span class="text-green text-lg font-medium mt-4">{{ '@'.$user->nickname}}</span>
-                        <span class="text-black text-lg font-normal mt-4">{{ $user->contact_number}} | {{ $user->email }}</span>
+                        {{-- <span class="text-black text-lg font-normal mt-4">{{ $user->contact_number}} | {{ $user->email }}</span> --}}
                         <span class="mt-6 text-black">
                             {!!$user->introduction!!}
                         </span>
