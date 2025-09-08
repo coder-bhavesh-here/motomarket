@@ -260,8 +260,8 @@
         <x-button class="my-4 primary-button" type="submit" label="Submit" />
     </form>
 </div>
+@if (isset($tour) && isset($tour->tourQuestions) && $tour->tourQuestions->count()>0)
 <div id="questionsList" class="mt-4 mx-3">
-    @if (isset($tour) && isset($tour->tourQuestions) && $tour->tourQuestions->count()>0)
         <span style="font-weight: 900" class="text-black text-sm womsm:text-lg wommd:text-xl">
             PREVIOUSLY ANSWERED QUESTIONS
         </span>
@@ -328,8 +328,8 @@
                 @endif --}}
             </div>
         @endforeach
+    </div>
     @endif
-</div>
 <script>
     $(".slider").slick({
         dots: true,
