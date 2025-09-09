@@ -354,25 +354,49 @@
     //     centerMode: false,
     //     variableWidth: true,
     // });
-    new window.Fancybox.Carousel(
-        document.getElementById("slider"),
-        {
-            Dots: true,
-            slidesPerPage: 3,
-            infinite: true,
-        },
-        {
-            Arrows: window.Fancybox.CarouselArrows,
-            Thumbs: window.Fancybox.CarouselThumbs,
-            Lazyload: window.Fancybox.CarouselLazyload,
-        }
-    );
+    // new window.Fancybox.Carousel(
+    //     document.getElementById("slider"),
+    //     {
+    //         Dots: true,
+    //         slidesPerPage: 3,
+    //         infinite: true,
+    //     },
+    //     {
+    //         Arrows: window.Fancybox.CarouselArrows,
+    //         Thumbs: window.Fancybox.CarouselThumbs,
+    //         Lazyload: window.Fancybox.CarouselLazyload,
+    //     }
+    // );
 
-    window.Fancybox.bind("[data-fancybox='gallery']", {
-        Thumbs: {
-            autoStart: true,
-        },
-    });
+    // window.Fancybox.bind("[data-fancybox='gallery']", {
+    //     Thumbs: {
+    //         autoStart: true,
+    //     },
+    // });
+    console.log("Fancybox:", window.Fancybox);   // should NOT have .Carousel
+    console.log("Carousel:", window.Carousel);   // ✅ should exist
+
+    if (window.Carousel) {
+        new window.Carousel(
+            document.getElementById("myCarousel"),
+            {
+                slidesPerPage: 3,
+                infinite: true,
+                Dots: true,
+            },
+            {
+                Arrows: window.CarouselArrows,
+                Thumbs: window.CarouselThumbs,
+            }
+        );
+    }
+
+    if (window.Fancybox) {
+        window.Fancybox.bind('[data-fancybox="gallery"]', {
+            Thumbs: { autoStart: true },
+        });
+    }
+
 
     function toggleAnswerButtons(textarea) 
     {
