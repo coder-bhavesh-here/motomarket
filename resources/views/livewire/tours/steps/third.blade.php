@@ -328,15 +328,29 @@ function previewImage(input, previewId) {
         const file = input.files[0];
         const index = parseInt(input.id.replace("riding_images_", "")); // extract index
         const reader = new FileReader();
-        if(!uploadFile(file, index)) {
-            return false;
-        }
-        reader.onload = function (e) {
-            preview.style.backgroundImage = `url('${e.target.result}')`;
-            preview.style.backgroundSize = 'cover';
-            preview.style.backgroundPosition = 'center';
-        };
-        reader.readAsDataURL(file);
+        // if(!uploadFile(file, index)) {
+        //     return false;
+        // }
+        // reader.onload = function (e) {
+        //     preview.style.backgroundImage = `url('${e.target.result}')`;
+        //     preview.style.backgroundSize = 'cover';
+        //     preview.style.backgroundPosition = 'center';
+        // };
+        // reader.readAsDataURL(file);
+        uploadFile(file, index).then(success => {
+            if (!success) {
+                console.log("Upload failed, skipping preview");
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                preview.style.backgroundImage = `url('${e.target.result}')`;
+                preview.style.backgroundSize = 'cover';
+                preview.style.backgroundPosition = 'center';
+            };
+            reader.readAsDataURL(file);
+        });
+
     }
 }
 
