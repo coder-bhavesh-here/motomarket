@@ -339,6 +339,21 @@
         centerMode: false,
         variableWidth: true,
     });
+    function toggleAnswerButtons(textarea) 
+    {
+        let form = textarea.closest('form');
+        let saveBtn = form.find('.save-answer');
+        let cancelBtn = form.find('.cancel-answer');
+        let originalAnswer = textarea.data('original') || "";
+
+        if (textarea.val() === originalAnswer) {
+            saveBtn.addClass('disabled-button').prop('disabled', true);
+            cancelBtn.addClass('disabled-button').prop('disabled', true);
+        } else {
+            saveBtn.removeClass('disabled-button').prop('disabled', false);
+            cancelBtn.removeClass('disabled-button').prop('disabled', false);
+        }
+    }
     $(document).ready(function () {
         var notyf = new Notyf({
             duration: 7000,
@@ -369,6 +384,7 @@
                 success: function (res) {
                     hideLoader();
                     textarea.data('original', answer); // update original text
+                    toggleAnswerButtons(textarea);
                     notyf.success('Answer saved successfully!');
                 },
                 error: function () {
@@ -384,10 +400,12 @@
             let textarea = form.find('textarea[name="answer"]');
             let originalAnswer = textarea.data('original') || textarea.text();
             textarea.val(originalAnswer); // revert back
+            toggleAnswerButtons(textarea);
         });
 
         // Initialize "original" values on page load
         $('textarea[name="answer"]').each(function () {
+            toggleAnswerButtons($(this));
             $(this).data('original', $(this).val());
         });
             
