@@ -49,7 +49,7 @@
                 </div>
             </a>
             <a href='/tour/{{ $tour->id }}' target="_blank">
-                <p class="py-2 text-lg womsm:text-xl wommd:text-2xl font-semibold text-black">{{ $tour->title }}</p>
+                <p class="py-2 text-base womsm:text-lg wommd:text-xl font-semibold text-black">{{ $tour->title }}</p>
             </a>
             <p>
                 <a href='/tour/{{ $tour->id }}' class="text-xs womsm:text-sm wommd:text-base text-black font-normal">
