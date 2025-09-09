@@ -687,3 +687,22 @@ p.blog-title {
 .img-with-preview, .step-heading {
     cursor: pointer !important;
 }
+.tour-details {
+    display: flex;
+    align-items: stretch;
+  }
+  
+  .tour-details > div:first-child {
+    flex: 1; /* 1 part width */
+  }
+  
+  .tour-description {
+    flex: 2; /* 2 parts width */
+  }
+  
+  .tour-details > div:first-child img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
