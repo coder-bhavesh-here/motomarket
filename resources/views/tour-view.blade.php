@@ -344,7 +344,7 @@
     //     variableWidth: true,
     // });
     new Carousel(
-        document.getElementById("myCarousel"),
+        document.getElementByClassName("slider"),
         {
             Dots: true,
             slidesPerPage: 3, // 👈 3 images ek sath
