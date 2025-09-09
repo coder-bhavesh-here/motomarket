@@ -252,6 +252,10 @@
         })
         .then(response => response.json())
         .then(data => {
+            console.log("IN THEN");
+            console.log("response", response);
+            console.log("data", data);
+            
             if (!response.ok || data.success === false) {
                 throw new Error(data.message || 'File upload failed');
             }
