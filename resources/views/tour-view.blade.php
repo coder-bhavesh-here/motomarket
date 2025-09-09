@@ -405,8 +405,11 @@
 
         // Initialize "original" values on page load
         $('textarea[name="answer"]').each(function () {
-            toggleAnswerButtons($(this));
             $(this).data('original', $(this).val());
+            toggleAnswerButtons($(this));
+        });
+        $(document).on('input', 'textarea[name="answer"]', function () {
+            toggleAnswerButtons($(this));
         });
             
         $("#questionForm").on("submit", function (e) {
