@@ -33,7 +33,7 @@
         </script>
     @endif
     <div class="ml-3 grid grid-cols-3">
-        <b class="col-span-2 text-base womsm:text-xl wommd:text-2xl text-black font-semibold block mb-4">{{ $tour->title }}
+        <b class="col-span-2 text-base womsm:text-xl wommd:text-2xl text-black font-semibold block mb-2">{{ $tour->title }}
             - {{ $tour->countries }}</b>
         <a href="#dates"
             class="font-bold underline w-20 text-[#556B2F] womsm:w-28 wommd:w-40 justify-self-end h-6 womsm:h-8 wommd:h-10 text-xs womsm:text-base wommd:text-lg"
