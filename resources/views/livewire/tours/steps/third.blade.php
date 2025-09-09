@@ -281,6 +281,20 @@
             // Optional: update UI or handle response
         })
         .catch(error => {
+            var notyf = new Notyf({
+                duration: 1500,
+                position: {
+                    x: 'right',
+                    y: 'top',
+                },
+                types: [
+                    {
+                        type: 'error',
+                        background: 'red',
+                        icon: false
+                    }
+                ]
+            });
             hideLoader();
             notyf.error(error.message);
         });
