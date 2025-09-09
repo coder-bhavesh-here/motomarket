@@ -52,7 +52,7 @@
                 <p class="py-2 text-lg womsm:text-xl wommd:text-2xl font-semibold text-black">{{ $tour->title }}</p>
             </a>
             <p>
-                <a href='/tour/{{ $tour->id }}' class="text-sm womsm:text-base wommd:text-lg text-black font-normal">
+                <a href='/tour/{{ $tour->id }}' class="text-xs womsm:text-sm wommd:text-base text-black font-normal">
                     {{ Str::limit(strip_tags($tour->tour_description), 350) }}
                 </a>
             </p>
