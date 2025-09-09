@@ -70,12 +70,14 @@
             <span class="text-xs womsm:text-sm wommd:text-base font-semibold text-black tour-owner ml-4">{{ $tour_operation_name }}</span>
         </div>
     </a>
-    <div class="slider">
+    <div class="slider f-carousel">
         @foreach (($tour->images = $tour->images->sortBy('index')) as $image)
-            <a data-fancybox="gallery" href="{{ asset('storage') . '/' . $image->image_path }}">
+            <div class="f-carousel__slide" 
+            data-fancybox="gallery" 
+            data-src="{{ asset('storage/' . $image->image_path) }}">
                 <img src="{{ asset('storage') . '/' . $image->image_path }}" class="slide-images img-with-preview" alt=""
                 srcset="">
-            </a>
+            </div>
         @endforeach
     </div>
 </div>
@@ -333,14 +335,37 @@
     @endif
 </div>
 <script>
-    $(".slider").slick({
-        dots: true,
-        infinite: true,
-        speed: 300,
-        slidesToShow: 1,
-        centerMode: false,
-        variableWidth: true,
+    // $(".slider").slick({
+    //     dots: true,
+    //     infinite: true,
+    //     speed: 300,
+    //     slidesToShow: 1,
+    //     centerMode: false,
+    //     variableWidth: true,
+    // });
+    new Carousel(
+        document.getElementById("myCarousel"),
+        {
+            Dots: true,
+            slidesPerPage: 3, // 👈 3 images ek sath
+            infinite: true,
+            center: false,
+            Navigation: true,
+        },
+        {
+            Lazyload,
+            Arrows,
+            Thumbs
+        }
+    );
+
+    // Init Fancybox
+    Fancybox.bind("[data-fancybox='gallery']", {
+        Thumbs: {
+            autoStart: true,
+        },
     });
+
     function toggleAnswerButtons(textarea) 
     {
         let form = textarea.closest('form');
