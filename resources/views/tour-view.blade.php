@@ -77,7 +77,7 @@
             <span class="text-xs womsm:text-sm wommd:text-base font-semibold text-black tour-owner ml-4">{{ $tour_operation_name }}</span>
         </div>
     </a>
-    <div class="slider f-carousel">
+    <div id="slider" class="f-carousel">
         @foreach (($tour->images = $tour->images->sortBy('index')) as $image)
             <div class="f-carousel__slide" 
             data-fancybox="gallery" 
@@ -351,7 +351,7 @@
     //     variableWidth: true,
     // });
     new Carousel(
-        document.getElementByClassName("slider"),
+        document.getElementById("slider"),
         {
             Dots: true,
             slidesPerPage: 3, // 👈 3 images ek sath
