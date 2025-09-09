@@ -1,8 +1,12 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-    integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
 </script>
+<link href="https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/css/lightgallery.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/css/lg-zoom.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/css/lg-share.css" rel="stylesheet">
+
 @php
     $currency = $tour->user->tour_currency;
     $symbol = match ($currency) {
@@ -331,11 +335,27 @@
     @endif
 </div>
 <script>
-    $(".slider").slick({
+    var slickEl = $(".slider");
+    var $slickDemo = $(".slider");
+
+    $slickDemo.on('init', function (event, slick, direction) {
+        console.log('Slick slider initialized');
+        const container = document.querySelector('.slick-track');
+        lightGallery(container, {
+            thumbnail: false,
+            pager: false,
+            plugins: [],
+            hash: false,
+            preload: 4,
+        });
+    });
+    // slickEl.slick({
+    $slickDemo.slick({
         dots: true,
         infinite: true,
         speed: 300,
         slidesToShow: 1,
+        focusOnSelect: true,
         centerMode: false,
         variableWidth: true,
     });
