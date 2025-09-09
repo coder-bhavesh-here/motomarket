@@ -350,24 +350,21 @@
     //     centerMode: false,
     //     variableWidth: true,
     // });
-    new Carousel(
+    new window.Fancybox.Carousel(
         document.getElementById("slider"),
         {
             Dots: true,
-            slidesPerPage: 3, // 👈 3 images ek sath
+            slidesPerPage: 3,
             infinite: true,
-            center: false,
-            Navigation: true,
         },
         {
-            Lazyload,
-            Arrows,
-            Thumbs
+            Arrows: window.Fancybox.CarouselArrows,
+            Thumbs: window.Fancybox.CarouselThumbs,
+            Lazyload: window.Fancybox.CarouselLazyload,
         }
     );
 
-    // Init Fancybox
-    Fancybox.bind("[data-fancybox='gallery']", {
+    window.Fancybox.bind("[data-fancybox='gallery']", {
         Thumbs: {
             autoStart: true,
         },
