@@ -11,7 +11,7 @@ integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxV
     .lg-next:before {
         color: #999 !important;
     }
-    .lg-prev:before {
+    .lg-prev:after {
         color: #999 !important;
     }
     .lg-toolbar .lg-icon {
