@@ -328,13 +328,13 @@ function previewImage(input, previewId) {
         const file = input.files[0];
         const index = parseInt(input.id.replace("riding_images_", "")); // extract index
         const reader = new FileReader();
+        uploadFile(file, index); // 🆕 pass index here
         reader.onload = function (e) {
             preview.style.backgroundImage = `url('${e.target.result}')`;
             preview.style.backgroundSize = 'cover';
             preview.style.backgroundPosition = 'center';
         };
         reader.readAsDataURL(file);
-        uploadFile(file, index); // 🆕 pass index here
     }
 }
 
