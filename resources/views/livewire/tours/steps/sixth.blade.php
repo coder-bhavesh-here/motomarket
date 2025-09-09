@@ -1,3 +1,3 @@
 <div>
-    @include('tour-view')
+    @include('step-tour-view')
 </div>
