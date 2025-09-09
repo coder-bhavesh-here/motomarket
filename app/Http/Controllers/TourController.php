@@ -64,27 +64,47 @@ class TourController extends Controller
         ]);
     }
 
-    public function bookings()
+    public function bookings($tourId = null)
     {
         $userId = auth()->user()->id;
         $tourIds = Tour::where('user_id', $userId)->where('status', 'published')->where('permanently_deleted', false)->pluck('id');
-        $bookings = Booking::select([
-            'bookings.id',
-            'tours.title',
-            'users.email',
-            'bookings.user_id',
-            'bookings.name',
-            'bookings.dob',
-            'bookings.nationality',
-            'bookings.mobile_number',
-            'bookings.date',
-            'bookings.amount',
-            'tours.tour_distance',
-            'bookings.created_at',
-        ])->whereIn('bookings.tour_id', $tourIds)
-            ->leftJoin('tours', 'bookings.tour_id', 'tours.id')
-            ->leftJoin('users', 'bookings.user_id', 'users.id')
-            ->get();
+        if ($tourId) {
+            $bookings = Booking::select([
+                'bookings.id',
+                'tours.title',
+                'users.email',
+                'bookings.user_id',
+                'bookings.name',
+                'bookings.dob',
+                'bookings.nationality',
+                'bookings.mobile_number',
+                'bookings.date',
+                'bookings.amount',
+                'tours.tour_distance',
+                'bookings.created_at',
+            ])->where('bookings.tour_id', $tourId)
+                ->leftJoin('tours', 'bookings.tour_id', 'tours.id')
+                ->leftJoin('users', 'bookings.user_id', 'users.id')
+                ->get();
+        } else {
+            $bookings = Booking::select([
+                'bookings.id',
+                'tours.title',
+                'users.email',
+                'bookings.user_id',
+                'bookings.name',
+                'bookings.dob',
+                'bookings.nationality',
+                'bookings.mobile_number',
+                'bookings.date',
+                'bookings.amount',
+                'tours.tour_distance',
+                'bookings.created_at',
+            ])->whereIn('bookings.tour_id', $tourIds)
+                ->leftJoin('tours', 'bookings.tour_id', 'tours.id')
+                ->leftJoin('users', 'bookings.user_id', 'users.id')
+                ->get();
+        }
         return view('bookings', [
             'bookings' => $bookings
         ]);

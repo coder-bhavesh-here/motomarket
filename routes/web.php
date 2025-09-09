@@ -63,6 +63,7 @@ Route::middleware(['auth', 'throttle:60,1'])->group(function () {
     Route::get('/my-incomplete-tours', [TourController::class, 'myIncompleteTours'])->name('my-incomplete-tours');
     Route::get('/your-tours', [TourController::class, 'yourTours'])->name('your-tours');
     Route::get('/bookings', [TourController::class, 'bookings'])->name('bookings');
+    Route::get('/bookings/{tourId}', [TourController::class, 'bookings'])->name('tour.bookings');
     Route::get('/tours/create', [TourController::class, 'create'])->name('tours.create');
     Route::get('/tours/delete/{tourId}', [TourController::class, 'delete'])->name('tours.delete');
     Route::get('/tours/restore/{tourId}', [TourController::class, 'restore'])->name('tours.restore');
