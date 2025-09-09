@@ -742,7 +742,7 @@ class TourController extends Controller
                 'success' => false,
                 'message' => 'Unexpected error: ' . $e->getMessage(),
             ], 500);
-        }        }
+        }
     }
 
     public function saveFirstStep(Request $request)
