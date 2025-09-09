@@ -252,10 +252,25 @@
         })
         .then(response => response.json())
         .then(data => {
-            console.log("IN THEN");
-            console.log("data", data);
-            console.log("response", response);
-            
+            if (!data.success) {
+                var notyf = new Notyf({
+                    duration: 2500,
+                    position: {
+                        x: 'center',
+                        y: 'top',
+                    },
+                    types: [
+                        {
+                            type: 'error',
+                            background: 'red',
+                            icon: false
+                        }
+                    ]
+                });
+                hideLoader();
+                notyf.error(data.message);
+                return false;
+            }
             if (!response.ok || data.success === false) {
                 throw new Error(data.message || 'File upload failed');
             }
@@ -283,25 +298,6 @@
             }
             console.log(data);
             // Optional: update UI or handle response
-        })
-        .catch(error => {
-            var notyf = new Notyf({
-            duration: 1500,
-            position: {
-                x: 'right',
-                y: 'top',
-            },
-            types: [
-                {
-                    type: 'error',
-                    background: 'red',
-                    icon: false
-                }
-            ]
-        });
-            hideLoader();
-            console.log(error);
-            notyf.error(error.message);
         });
     }
 
