@@ -14,6 +14,7 @@
     {{-- Agar last segment numeric hai to Tour ID maan lo --}}
     @if(is_numeric($lastSegment))
         @php
+            $today = now()->toDateString();
             $tour = \App\Models\Tour::with(['prices' => function ($query) use ($today) {
                 $query->where('date', '>=', $today)   // future or today ke dates
                     ->orderBy('date', 'asc')       // earliest date first
