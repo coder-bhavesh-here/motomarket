@@ -250,31 +250,8 @@
             },
             body: formData
         })
+        .then(response => response.json())
         .then(data => {
-            if (data.success === false) {
-                var notyf = new Notyf({
-                    duration: 2500,
-                    position: {
-                        x: 'center',
-                        y: 'top',
-                    },
-                    types: [
-                        {
-                            type: 'error',
-                            background: 'red',
-                            icon: false
-                        }
-                    ]
-                });
-                hideLoader();
-                if (data.message != '' && data.success===false) {
-                    notyf.error(data.message);
-                }
-                return false;
-            }
-            if (data.success === false) {
-                throw new Error(data.message || 'File upload failed');
-            }
             hideLoader();
             const index = parseInt(formData.get('index'));
             // console.log("index", index);
@@ -299,6 +276,9 @@
             }
             console.log(data);
             // Optional: update UI or handle response
+        })
+        .catch(() => {
+            alert('File upload failed');
         });
     }
 
