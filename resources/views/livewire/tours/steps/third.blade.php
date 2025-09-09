@@ -279,6 +279,7 @@
         })
         .catch(() => {
             alert('File upload failed');
+            hideLoader();
         });
     }
 
