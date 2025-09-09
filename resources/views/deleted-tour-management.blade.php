@@ -76,37 +76,37 @@
                         <div class="tour-description womsm:col-span-3 grid grid-cols-2 wommd:grid-cols-3 relative">
                             <div class="wommd:col-span-2">
                                 <div class="badges mt-5 flex flex-wrap items-center">
-                                    <span class="edit-badge">
+                                    <span class="badge">
                                         <img src="{{ asset('images') . '/tower.svg' }}" alt="">
-                                        <span>{{ $tour->rider_capability }}</span>
+                                        <span>{{ str_replace(',', ', ', $tour->rider_capability) }}</span>
                                     </span>
-                                    <span class="edit-badge">
+                                    <span class="badge">
                                         <img src="{{ asset('images') . '/indicator.svg' }}" alt="">
-                                        <span>{{ $tour->riding_style }}</span>
+                                        <span>{{ $tour->riding_style === 'Road' ? "Road Trip (Adventure on the road, its a road trip)" : ($tour->riding_style === 'Adventuer' ? "Adventure (Adventure ride on and off road)" : "Enduro (Almost all of the trip is off road)") }}</span>
                                     </span>
-                                    <span class="edit-badge">
+                                    <span class="badge">
                                         <img src="{{ asset('images') . '/hourglass.svg' }}" alt="">
                                         <span>{{ $tour->duration_days }} days</span>
                                     </span>
                                     @if ($tour->prices->count() > 0)
-                                        <span class="edit-badge">
+                                        <span class="badge">
                                             <img src="{{ asset('images') . '/cal.svg' }}" alt="">
                                             <span>{{ $tour->prices[0]->date . ($tour->prices->count() > 1 ? ' (+' . ($tour->prices->count() - 1) . ' more)' : '') }}</span>
                                         </span>
                                     @endif
-                                    <span class="edit-badge">
+                                    <span class="badge">
                                         <img src="{{ asset('images') . '/earth.svg' }}" alt="">
-                                        <span>{{ $tour->countries }}</span></span>
-                                    <span class="edit-badge">
+                                        <span>{{ str_replace(',', ', ', $tour->countries) }}</span></span>
+                                    <span class="badge">
                                         <img src="{{ asset('images') . '/people.svg' }}" alt="">
                                         <span>{{ $tour->max_riders }}
-                                            Riders & {{ $tour->guides }} Guides</span></span>
-                                    <span class="edit-badge">
+                                            Rider{{$tour->max_riders > 1 ? "s" : ""}} & {{ $tour->guides }} Guide{{$tour->guides > 1 ? "s" : ""}}</span></span>
+                                    <span class="badge">
                                         <img src="{{ asset('images') . '/bike.svg' }}" alt="">
-                                        <span>{{ \Illuminate\Support\Str::limit($tour->riding_style_info, $limit = 15, $end = '...') }}</span></span>
-                                    <span class="edit-badge">
+                                        <span>{{ $tour->bike_option === 'Bike rental' ? "Bike rental or own bike" :  ($tour->bike_option === 'Bike included' ? "Bike is included" : "Bring your own bike")}}</span></span>
+                                    <span class="badge">
                                         <img src="{{ asset('images') . '/helmet.svg' }}" alt="">
-                                        <span>{{ $tour->bike_option }}</span></span>
+                                        <span>{{ $tour->two_up_riding ? "Two up riding available" : "Two up riding not available" }}</span></span>
                                 </div>
                             </div>
                             <ul class="tour-stats text-black" style="font-size: 14px !important; list-style: none;">
