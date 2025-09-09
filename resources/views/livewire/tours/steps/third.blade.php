@@ -250,7 +250,6 @@
             },
             body: formData
         })
-        .then(response => response.json())
         .then(data => {
             if (!data.success) {
                 var notyf = new Notyf({
@@ -271,7 +270,7 @@
                 notyf.error(data.message);
                 return false;
             }
-            if (!response.ok || data.success === false) {
+            if (data.success === false) {
                 throw new Error(data.message || 'File upload failed');
             }
             hideLoader();
