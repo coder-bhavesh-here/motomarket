@@ -209,7 +209,7 @@ hr {
     background-color: #f1f5f9;
 }
 span.badge {
-    padding: 7px 14px;
+    padding: 5px 10px;
     border-radius: 5px;
     font-size: 14px;
     margin: 0 10px 10px 0;
@@ -555,7 +555,7 @@ p.blog-title {
     text-overflow: ellipsis;
 }
 .badge img {
-    width: 33px;
+    width: 22px;
 }
 .edit-badge img {
     width: 25px;
