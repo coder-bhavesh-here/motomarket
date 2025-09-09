@@ -14,7 +14,7 @@
     <div class="grid grid-cols-1 womsm:grid-cols-2 wommd:grid-cols-4 p-[2%]">
         <!-- Tour Card -->
         @foreach ($tours as $tour_sr => $tour)
-            @if ($tour_sr < 8)
+            @if ($tour_sr < 12)
                 <div class="rounded flex flex-col p-3">
                     <div>
                         {{-- <div class="bg-gray-300 h-32 rounded mb-4"></div> --}}
