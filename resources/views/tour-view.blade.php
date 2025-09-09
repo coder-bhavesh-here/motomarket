@@ -1,9 +1,10 @@
-<div>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+@push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
 </script>
+@endpush
 @php
     $currency = $tour->user->tour_currency;
     $symbol = match ($currency) {
@@ -15,6 +16,7 @@
 @endphp
 <div class="brand-name">
     @if(session('success'))
+        @push('scripts')
         <script>
             // var notyf = new Notyf({
             //     duration: 7000,
@@ -32,6 +34,7 @@
             // });
             // notyf.success('Thank you for the question, the tour operator will give you an answer shortly…');
         </script>
+        @endpush
     @endif
     <div class="ml-3 grid grid-cols-3">
         <b class="col-span-2 text-base womsm:text-xl wommd:text-2xl text-black font-semibold block mb-4">{{ $tour->title }}
@@ -331,6 +334,7 @@
         @endforeach
     </div>
 @endif
+    @push('scripts')
 <script>
     $(".slider").slick({
         dots: true,
@@ -441,4 +445,4 @@
         });
     });
 </script>
-</div>
+@endpush
