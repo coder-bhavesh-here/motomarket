@@ -7,6 +7,21 @@
             border-radius: 11px !important;
         }
     </style>
+    @php
+        $lastSegment = request()->segment(count(request()->segments()));
+    @endphp
+
+    {{-- Agar last segment numeric hai to Tour ID maan lo --}}
+    @if(is_numeric($lastSegment))
+        @php
+            $tour = \App\Models\Tour::with(['prices' => function ($query) use ($today) {
+                $query->where('date', '>=', $today)   // future or today ke dates
+                    ->orderBy('date', 'asc')       // earliest date first
+                    ->limit(1);                    // sirf ek record
+            }])
+            ->find($lastSegment);
+        @endphp
+    @endif
     <div class="mx-auto sm:px-6 lg:px-8 space-y-6">
         <div class="p-4 sm:p-8">
             <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > <u><a href="{{ route('profiles') }}">Settings</a></u> > Tour Bookings/Customers</p>
@@ -14,7 +29,7 @@
             <form action="/bookings" method="GET">
                 <div class="grid grid-cols-1 womsm:grid-cols-1 wommd:grid-cols-4">
                     <input type="text" name="title"
-                        class="mt-5 w-[80%] rounded-md text-black" placeholder="Eg: Hard Enduro Tours">
+                        class="mt-5 w-[80%] rounded-md text-black" placeholder="{{($tour) ? $tour->title : 'Eg: Hard Enduro Tours'}}">
                     <input type="date" name="date"
                         class="mt-5 w-[80%] rounded-md text-black" placeholder="Tour Date">
                 </div>
