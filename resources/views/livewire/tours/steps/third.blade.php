@@ -252,6 +252,9 @@
         })
         .then(response => response.json())
         .then(data => {
+            if (!response.ok || data.success === false) {
+                throw new Error(data.message || 'File upload failed');
+            }
             hideLoader();
             const index = parseInt(formData.get('index'));
             // console.log("index", index);
@@ -277,8 +280,9 @@
             console.log(data);
             // Optional: update UI or handle response
         })
-        .catch(() => {
-            alert('File upload failed');
+        .catch(error => {
+            hideLoader();
+            notyf.error(error.message);
         });
     }
 

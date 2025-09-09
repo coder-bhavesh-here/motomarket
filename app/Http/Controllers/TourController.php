@@ -689,45 +689,60 @@ class TourController extends Controller
 
     public function uploadImage(Request $request)
     {
-        $request->validate([
-            'file' => 'required|file|mimes:jpg,jpeg,png,pdf|max:5120',
-            'index' => 'required|integer|min:0|max:14',
-            'tour_id' => 'required|integer|exists:tours,id',
-        ]);
+        try {
+            $request->validate([
+                'file' => 'required|file|mimes:jpg,jpeg,png,pdf|max:5120',
+                'index' => 'required|integer|min:0|max:14',
+                'tour_id' => 'required|integer|exists:tours,id',
+            ]);
 
-        $tour_id = $request->tour_id;
-        $index = $request->index;
+            $tour_id = $request->tour_id;
+            $index = $request->index;
 
-        if ($request->file()) {
-            // Delete old image if it exists at the same index
-            $existingImage = TourImage::where('tour_id', $tour_id)->where('index', $index)->first();
+            if ($request->file()) {
+                // Delete old image if it exists at the same index
+                $existingImage = TourImage::where('tour_id', $tour_id)->where('index', $index)->first();
 
-            if ($existingImage) {
-                // Delete old file from storage
-                Storage::disk('public')->delete($existingImage->image_path);
-                $existingImage->delete();
+                if ($existingImage) {
+                    // Delete old file from storage
+                    Storage::disk('public')->delete($existingImage->image_path);
+                    $existingImage->delete();
+                }
+
+                // Store the new file
+                $fileName = time() . '_' . $request->file->getClientOriginalName();
+                $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
+
+                // Save new image with index
+                $image = TourImage::create([
+                    'tour_id' => $tour_id,
+                    'image_path' => $filePath,
+                    'index' => $index,
+                ]);
+
+                return response()->json([
+                    'success' => 'File uploaded successfully',
+                    'file' => $fileName,
+                    'file_url' => asset('storage/' . $filePath), // add this
+                    'image_id' => $image->id,
+                ]);
             }
 
-            // Store the new file
-            $fileName = time() . '_' . $request->file->getClientOriginalName();
-            $filePath = $request->file('file')->storeAs('uploads', $fileName, 'public');
-
-            // Save new image with index
-            $image = TourImage::create([
-                'tour_id' => $tour_id,
-                'image_path' => $filePath,
-                'index' => $index,
-            ]);
-
             return response()->json([
-                'success' => 'File uploaded successfully',
-                'file' => $fileName,
-                'file_url' => asset('storage/' . $filePath), // add this
-                'image_id' => $image->id,
-            ]);
-        }
-
-        return response()->json(['error' => 'File upload failed'], 500);
+                'success' => false,
+                'message' => 'No file received in request'
+            ], 400);
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            return response()->json([
+                'success' => false,
+                'message' => $e->validator->errors()->first(), // 👈 specific message
+            ], 422);
+        } catch (\Exception $e) {
+            return response()->json([
+                'success' => false,
+                'message' => 'Unexpected error: ' . $e->getMessage(),
+            ], 500);
+        }        }
     }
 
     public function saveFirstStep(Request $request)
