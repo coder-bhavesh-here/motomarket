@@ -355,6 +355,7 @@ integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxV
         lightGallery(container, {
             thumbnail: false,
             pager: false,
+            download: false,
             plugins: [],
             hash: false,
             preload: 4,
