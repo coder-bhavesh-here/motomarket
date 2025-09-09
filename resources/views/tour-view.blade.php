@@ -3,17 +3,6 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
 </script>
-@push('styles')
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"/>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/carousel/carousel.css"/>
-@endpush
-@push('scripts')
-<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/carousel/carousel.umd.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/carousel/carousel.thumbs.umd.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/carousel/carousel.lazyload.umd.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/carousel/carousel.arrows.umd.js"></script>
-@endpush
 @php
     $currency = $tour->user->tour_currency;
     $symbol = match ($currency) {
@@ -81,14 +70,10 @@
             <span class="text-xs womsm:text-sm wommd:text-base font-semibold text-black tour-owner ml-4">{{ $tour_operation_name }}</span>
         </div>
     </a>
-    <div id="slider" class="f-carousel">
+    <div class="slider">
         @foreach (($tour->images = $tour->images->sortBy('index')) as $image)
-            <div class="f-carousel__slide" 
-            data-fancybox="gallery" 
-            data-src="{{ asset('storage/' . $image->image_path) }}">
-                <img src="{{ asset('storage') . '/' . $image->image_path }}" class="slide-images img-with-preview" alt=""
+            <img src="{{ asset('storage') . '/' . $image->image_path }}" class="slide-images img-with-preview" alt=""
                 srcset="">
-            </div>
         @endforeach
     </div>
 </div>
@@ -346,58 +331,14 @@
     @endif
 </div>
 <script>
-    // $(".slider").slick({
-    //     dots: true,
-    //     infinite: true,
-    //     speed: 300,
-    //     slidesToShow: 1,
-    //     centerMode: false,
-    //     variableWidth: true,
-    // });
-    // new window.Fancybox.Carousel(
-    //     document.getElementById("slider"),
-    //     {
-    //         Dots: true,
-    //         slidesPerPage: 3,
-    //         infinite: true,
-    //     },
-    //     {
-    //         Arrows: window.Fancybox.CarouselArrows,
-    //         Thumbs: window.Fancybox.CarouselThumbs,
-    //         Lazyload: window.Fancybox.CarouselLazyload,
-    //     }
-    // );
-
-    // window.Fancybox.bind("[data-fancybox='gallery']", {
-    //     Thumbs: {
-    //         autoStart: true,
-    //     },
-    // });
-    console.log("Fancybox:", window.Fancybox);   // should NOT have .Carousel
-    console.log("Carousel:", window.Carousel);   // ✅ should exist
-
-    if (window.Carousel) {
-        new window.Carousel(
-            document.getElementById("myCarousel"),
-            {
-                slidesPerPage: 3,
-                infinite: true,
-                Dots: true,
-            },
-            {
-                Arrows: window.CarouselArrows,
-                Thumbs: window.CarouselThumbs,
-            }
-        );
-    }
-
-    if (window.Fancybox) {
-        window.Fancybox.bind('[data-fancybox="gallery"]', {
-            Thumbs: { autoStart: true },
-        });
-    }
-
-
+    $(".slider").slick({
+        dots: true,
+        infinite: true,
+        speed: 300,
+        slidesToShow: 1,
+        centerMode: false,
+        variableWidth: true,
+    });
     function toggleAnswerButtons(textarea) 
     {
         let form = textarea.closest('form');
