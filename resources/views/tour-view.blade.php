@@ -6,7 +6,7 @@ integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxV
 <link href="https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/css/lightgallery.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/css/lg-zoom.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/css/lg-share.css" rel="stylesheet">
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.8.3/lightgallery.min.js"></script>
 @php
     $currency = $tour->user->tour_currency;
     $symbol = match ($currency) {
