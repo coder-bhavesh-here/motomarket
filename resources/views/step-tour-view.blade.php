@@ -236,7 +236,7 @@
                                     $bookUrl = $hasAddons ? "/bookAddon/{$price->id}" : "/book/{$price->id}";
                                 @endphp
                                 <div class="text-xs womsm:text-sm text-right wommd:text-base ml-2 womsm:ml-8 wommd:ml-16 font-bold text-[#0F172A]">
-                                    <a class="bg-[#556b2f] rounded text-white border-0 p-2" href="{{ $bookUrl }}">BOOK</a>
+                                    <a class="bg-[#556b2f] rounded disabled-button text-white border-0 p-2">BOOK</a>
                                 </div>
                             </div>
                             @php
@@ -250,91 +250,7 @@
         </div>
     @endforeach
 </div>
-
-{{--  Tour Questions --}}
-<div class="mt-4 mx-3">
-    <span style="font-weight: 900" class="text-black text-sm womsm:text-lg wommd:text-xl">
-        ASK THE TOUR OPERATOR A QUESTION
-    </span>
-    <form action="/tour-questions/ask/{{ $tour->id }}" id="questionForm" method="post">
-        @csrf
-        <span class="block mt-4 text-black text-sm wommd:text-base">Ask your questions and the tour operator will answer
-            them for you</span>
-        <textarea class="mt-4 w-full rounded-sm" type="text" name="question"></textarea>
-        <x-button class="my-4 primary-button" type="submit" label="Submit" />
-    </form>
-</div>
-@if ($tour->tourQuestions && $tour->tourQuestions->count() > 0)
-    <div id="questionsList" class="mt-4 mx-3">
-        <span style="font-weight: 900" class="text-black text-sm womsm:text-lg wommd:text-xl">
-            PREVIOUSLY ANSWERED QUESTIONS
-        </span>
-        @foreach ($tour->tourQuestions as $question)
-            <div class="pt-4 text-black">
-                <div class="text-base womsm:text-lg wommd:text-xl">Q. {{ $question->question }}</div>
-                @if ($question->is_answered)
-                    @if (Auth::check() && Auth::user()->id == $question->answered_by)
-                        <form class="answer-form" data-id="{{ $question->id }}">
-                            @csrf
-                            <x-textarea 
-                                label="A." 
-                                name="answer" 
-                                placeholder="Write your answer here…" 
-                            >{{ $question->answer }}</x-textarea>
-
-                            <div class="flex gap-2 mt-2">
-                                <x-button type="button" class="save-answer primary-button" label="Save" />
-                                <x-button type="button" class="cancel-answer primary-button" label="Cancel" />
-                            </div>
-                        </form>
-                    @else
-                        <div class="text-xs womsm:text-sm wommd:text-base mt-1 ml-1">A. {{ $question->answer }}</div>
-                    @endif
-                @else
-                    @if (Auth::check() && Auth::user()->id == $tour->user_id)
-                        <form class="answer-form" data-id="{{ $question->id }}">
-                            @csrf
-                            <x-textarea 
-                                label="Answer" 
-                                name="answer" 
-                                placeholder="Write your answer here…"
-                            ></x-textarea>
-                            <div class="flex gap-2 mt-2">
-                                <x-button type="button" class="save-answer primary-button" label="Save" />
-                                <x-button type="button" class="cancel-answer primary-button" label="Cancel" />
-                            </div>
-                        </form>
-                    @endif
-                @endif
-{{-- 
-                @if ($question->is_answered)
-                    @if (Auth::check() && Auth::user()->id == $question->answered_by)
-                        <form action="/tour-questions/answer/{{ $question->id }}" method="post">
-                            @csrf
-                                <x-textarea 
-                                    label="A." 
-                                    name="answer" 
-                                    placeholder="Write your answer here…" 
-                                    >{{ $question->answer }}</x-textarea>
-                            <x-button type="submit" class="primary-button mt-2" label="Update" />
-                        </form>
-                    @else
-                        <div class="text-xs womsm:text-sm wommd:text-base mt-1 ml-1">A. {{ $question->answer }}</div>
-                    @endif
-                @else
-                    @if (Auth::check() && Auth::user()->id == $tour->user_id)
-                        <form action="/tour-questions/answer/{{ $question->id }}" method="post">
-                            @csrf
-                            <x-input type="text" label="Answer" name="answer" />
-                            <x-button type="submit" outline positive label="Answer" />
-                        </form>
-                    @endif
-                @endif --}}
-            </div>
-        @endforeach
-    </div>
-@endif
-    @push('scripts')
+@push('scripts')
 <script>
     $(".slider").slick({
         dots: true,
