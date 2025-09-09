@@ -30,7 +30,8 @@
             <form action="/bookings" method="GET">
                 <div class="grid grid-cols-1 womsm:grid-cols-1 wommd:grid-cols-4">
                     <input type="text" name="title"
-                        class="mt-5 w-[80%] rounded-md text-black" placeholder="{{isset($tour) && $tour ? $tour->title : 'Eg: Hard Enduro Tours'}}">
+                        class="mt-5 w-[80%] rounded-md text-black" placeholder="Eg: Hard Enduro Tours" value="{{isset($tour) && $tour ? $tour->title : ''}}">
+                    @dd($tour)
                     <input type="date" name="date"
                         class="mt-5 w-[80%] rounded-md text-black" placeholder="Tour Date">
                 </div>
