@@ -7,6 +7,17 @@ integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxV
 <link href="https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/css/lg-zoom.css" rel="stylesheet">
 <link href="https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/css/lg-share.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.8.3/lightgallery.min.js"></script>
+<style>
+    .lg-next:before {
+        color: #999 !important;
+    }
+    .lg-prev:before {
+        color: #999 !important;
+    }
+    .lg-toolbar .lg-icon {
+        color: #999 !important;
+    }
+</style>
 @php
     $currency = $tour->user->tour_currency;
     $symbol = match ($currency) {
@@ -76,7 +87,7 @@ integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxV
     </a>
     <div class="slider">
         @foreach (($tour->images = $tour->images->sortBy('index')) as $image)
-            <img src="{{ asset('storage') . '/' . $image->image_path }}" class="slide-images img-with-preview" alt=""
+            <img src="{{ asset('storage') . '/' . $image->image_path }}" class="slide-images" alt=""
                 srcset="">
         @endforeach
     </div>
