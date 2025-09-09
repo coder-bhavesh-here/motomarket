@@ -72,8 +72,10 @@
     </a>
     <div class="slider">
         @foreach (($tour->images = $tour->images->sortBy('index')) as $image)
-            <img src="{{ asset('storage') . '/' . $image->image_path }}" class="slide-images img-with-preview" alt=""
+            <a data-fancybox="gallery" href="{{ asset('storage') . '/' . $image->image_path }}">
+                <img src="{{ asset('storage') . '/' . $image->image_path }}" class="slide-images img-with-preview" alt=""
                 srcset="">
+            </a>
         @endforeach
     </div>
 </div>
