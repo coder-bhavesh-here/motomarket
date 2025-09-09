@@ -57,7 +57,7 @@
             @foreach ($tours as $tour)
                 @if ($tour->status === 'published')
                     <div class="tour-info rounded-3xl">
-                        <div class="tour-details grid grid-cols-1 womsm:grid-cols-3">
+                        <div class="tour-details grid womsm:flex grid-cols-1 womsm:grid-cols-3">
                             <div class="h-[90px] womsm:h-auto">
                                 <a href='/tour/{{ $tour->id }}' target="_blank">
                                     @php

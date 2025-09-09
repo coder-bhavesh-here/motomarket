@@ -688,7 +688,7 @@ p.blog-title {
     cursor: pointer !important;
 }
 .tour-details {
-    display: flex;
+    /* display: flex; */
     align-items: stretch;
   }
   
