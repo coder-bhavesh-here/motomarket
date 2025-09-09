@@ -34,7 +34,7 @@
     @endif
     <div class="ml-3 grid grid-cols-3">
         <b class="col-span-2 text-base womsm:text-xl wommd:text-2xl text-black font-semibold block mb-2">{{ $tour->title }}
-            - {{ $tour->countries }}</b>
+            - {{ str_replace(',',', ',$tour->countries) }}</b>
         <a href="#dates"
             class="font-bold underline w-20 text-[#556B2F] womsm:w-28 wommd:w-40 justify-self-end h-6 womsm:h-8 wommd:h-10 text-xs womsm:text-base wommd:text-lg"
             style="display: flex; justify-content: center; align-items: center;"
@@ -80,7 +80,7 @@
 <div class="tour-details mx-3 mt-5">
     <span style="font-weight: 900" class="text-black text-sm womsm:text-lg wommd:text-xl">TOUR HIGHLIGHTS</span>
     <ul class="text-[#0F172A]">
-        <li class="text-xs womsm:text-sm wommd:text-base">We will be touring in: <b>{{ $tour->countries }}</b></li>
+        <li class="text-xs womsm:text-sm wommd:text-base">We will be touring in: <b>{{ str_replace(',',', ',$tour->countries) }}</b></li>
         <li class="text-xs womsm:text-sm wommd:text-base">This tour is open to <b>{{ str_replace(',',', ', $tour->rider_capability) }}</b>
             riders.
             {{ $tour->rider_capability_info != '' ? "(Note: $tour->rider_capability_info)" : '' }}
