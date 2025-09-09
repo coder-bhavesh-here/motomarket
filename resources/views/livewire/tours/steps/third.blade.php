@@ -251,7 +251,7 @@
             body: formData
         })
         .then(data => {
-            if (!data.success) {
+            if (data.success === false) {
                 var notyf = new Notyf({
                     duration: 2500,
                     position: {
@@ -267,7 +267,9 @@
                     ]
                 });
                 hideLoader();
-                notyf.error(data.message);
+                if (data.message != '' && data.success===false) {
+                    notyf.error(data.message);
+                }
                 return false;
             }
             if (data.success === false) {
