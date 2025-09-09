@@ -271,7 +271,7 @@
                 notyf.error(data.message);
                 return false;
             }
-            if (!response.ok || data.success === false) {
+            if (data.success === false) {
                 throw new Error(data.message || 'File upload failed');
             }
             hideLoader();
