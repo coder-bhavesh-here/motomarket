@@ -275,6 +275,7 @@
                 console.log(imgElement.src);
             }
             console.log(data);
+            return data;
             // Optional: update UI or handle response
         })
         .catch(() => {
