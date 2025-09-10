@@ -352,7 +352,7 @@
                     { type: 'error', background: 'red', icon: false }
                 ]
             });
-            notyf.error(error.message || "File upload failed");
+            notyf.error("Invalid file! Only JPEG/PNG files under 5 MB are allowed.");
             return null;
         });
     }
