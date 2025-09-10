@@ -346,8 +346,8 @@
         .catch(error => {
             hideLoader();
             var notyf = new Notyf({
-                duration: 3000,
-                position: { x: 'center', y: 'top' },
+                duration: 5000,
+                position: { x: 'right', y: 'top' },
                 types: [
                     { type: 'error', background: 'red', icon: false }
                 ]
