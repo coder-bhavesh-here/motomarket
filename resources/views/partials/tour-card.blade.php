@@ -67,7 +67,7 @@
                 </span>
                 <span class="badge">
                     <img src="{{ asset('images') . '/hourglass.svg' }}" alt="">
-                    <span>{{ $tour->duration_days }} days</span>
+                    <span>{{ isset($tour->prices[0]) && isset($tour->prices[0]->duration_days) ? $tour->prices[0]->duration_days : 0 }} days</span>
                 </span>
                 @if ($tour->prices->count() > 0)
                     <span class="badge">
