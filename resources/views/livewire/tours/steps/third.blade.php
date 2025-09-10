@@ -250,7 +250,6 @@
             },
             body: formData
         })
-        .then(response => response.json())
         .then(data => {
             hideLoader();
             const index = parseInt(formData.get('index'));
