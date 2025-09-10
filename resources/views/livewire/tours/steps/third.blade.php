@@ -243,7 +243,7 @@
         let tour_id = parseInt(url.searchParams.get("tour_id")) || undefined;
         formData.append('tour_id', tour_id);
 
-        fetch(uploadUrl, {
+        return fetch(uploadUrl, {
             method: 'POST',
             headers: {
                 'X-CSRF-TOKEN': '{{ csrf_token() }}'
