@@ -278,8 +278,23 @@
             // Optional: update UI or handle response
         })
         .catch(() => {
-            alert('File upload failed');
+            var notyf = new Notyf({
+                duration: 1500,
+                position: {
+                    x: 'right',
+                    y: 'top',
+                },
+                types: [
+                    {
+                        type: 'error',
+                        background: 'red',
+                        icon: false
+                    }
+                ]
+            });
+            notyf.error("File upload failed");
             hideLoader();
+            return null;
         });
     }
 
@@ -301,24 +316,49 @@
             }
         });
     });
+// function previewImage(input, previewId) {
+//     console.log("previewId", previewId);
+//     const preview = document.getElementById(previewId);
+//     console.log("preview", preview);
+//     if (input.files && input.files[0]) {
+//         console.log("IN INPUT");
+//         const file = input.files[0];
+//         const index = parseInt(input.id.replace("riding_images_", "")); // extract index
+//         const reader = new FileReader();
+//         reader.onload = function (e) {
+//             preview.style.backgroundImage = `url('${e.target.result}')`;
+//             preview.style.backgroundSize = 'cover';
+//             preview.style.backgroundPosition = 'center';
+//         };
+//         reader.readAsDataURL(file);
+//         uploadFile(file, index); // 🆕 pass index here
+//     }
+// }
 function previewImage(input, previewId) {
-    console.log("previewId", previewId);
     const preview = document.getElementById(previewId);
-    console.log("preview", preview);
     if (input.files && input.files[0]) {
-        console.log("IN INPUT");
         const file = input.files[0];
-        const index = parseInt(input.id.replace("riding_images_", "")); // extract index
-        const reader = new FileReader();
-        reader.onload = function (e) {
-            preview.style.backgroundImage = `url('${e.target.result}')`;
-            preview.style.backgroundSize = 'cover';
-            preview.style.backgroundPosition = 'center';
-        };
-        reader.readAsDataURL(file);
-        uploadFile(file, index); // 🆕 pass index here
+        const index = parseInt(input.id.replace("riding_images_", ""));
+
+        // 👇 pehle upload karo
+        uploadFile(file, index).then(data => {
+            if (!data) {
+                alert("Upload failed, preview skipped");
+                return;
+            }
+
+            // ✅ Sirf success ke baad preview lagao
+            const reader = new FileReader();
+            reader.onload = function (e) {
+                preview.style.backgroundImage = `url('${e.target.result}')`;
+                preview.style.backgroundSize = 'cover';
+                preview.style.backgroundPosition = 'center';
+            };
+            reader.readAsDataURL(file);
+        });
     }
 }
+
 
 
 function handleDrop(event, index) {
