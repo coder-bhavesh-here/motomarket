@@ -52,7 +52,7 @@
                                     <input type="text" name="groups[{{ $gIndex }}][addons][{{ $aIndex }}][name]" class="w-full border rounded p-2" value="{{ $addon->name }}" required />
                                     <div class="flex items-center">
                                         <span class="inline-block p-2 mr-2 bg-gray-200 rounded">{{ $symbol }}</span>
-                                        <input type="number" step="0.01" name="groups[{{ $gIndex }}][addons][{{ $aIndex }}][price]" class="form-control w-full border rounded p-2" value="{{ $addon->price }}" required />
+                                        <input type="text" step="0.01" name="groups[{{ $gIndex }}][addons][{{ $aIndex }}][price]" class="form-control w-full border rounded p-2" value="{{ $addon->price }}" required />
                                     </div>
                                 </div>
                             </div>
@@ -129,7 +129,7 @@ document.addEventListener('click', function (e) {
                     <input type="text" name="groups[${groupIdx}][addons][${addonIndex}][name]" class="w-full border rounded p-2" placeholder="e.g. Riding with a passenger..." required />
                     <div class="flex items-center">
                         <span class="inline-block p-2 mr-2 bg-gray-200 rounded">{{$symbol}}</span>
-                        <input type="number" step="0.01" name="groups[${groupIdx}][addons][${addonIndex}][price]" class="form-control w-full border rounded p-2" placeholder="123" required />
+                        <input type="text" step="0.01" name="groups[${groupIdx}][addons][${addonIndex}][price]" class="form-control w-full border rounded p-2" required />
                     </div>
                 </div>
             </div>
