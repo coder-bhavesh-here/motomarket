@@ -233,12 +233,76 @@
         ([...files]).forEach(uploadFile);
     }
 
+    // function uploadFile(file, index) {
+    //     let uploadUrl = '{{ route('tours.upload') }}';
+    //     let formData = new FormData();
+    //     showLoader();
+    //     formData.append('file', file);
+    //     formData.append('index', index); // 🆕 Pass image index
+    //     const url = new URL(window.location.href);
+    //     let tour_id = parseInt(url.searchParams.get("tour_id")) || undefined;
+    //     formData.append('tour_id', tour_id);
+
+    //     return fetch(uploadUrl, {
+    //         method: 'POST',
+    //         headers: {
+    //             'X-CSRF-TOKEN': '{{ csrf_token() }}'
+    //         },
+    //         body: formData
+    //     })
+    //     .then(data => {
+    //         hideLoader();
+    //         const index = parseInt(formData.get('index'));
+    //         // console.log("index", index);
+    //         const newFilePath = data.file;
+    //         // console.log("newFilePath", newFilePath);
+            
+    //         // Assuming you store images in /storage/uploads
+    //         const imgElement = document.getElementsByClassName(`riding-image-${index}`)[0];
+    //         console.log("imgElement", imgElement);
+
+    //         if (imgElement && data.file_url) {
+    //             // const previewBox = document.getElementById(`preview_${index}`);
+    //             $(imgElement).prepend(`
+    //                 <button type="button" onclick="removeImage(${data.image_id}, ${index})"
+    //                     class="absolute top-2 right-2 bg-orange-500 text-white rounded-full w-6 h-6 flex items-center justify-center z-20 hover:bg-orange-600"
+    //                     title="Remove Image">
+    //                     &times;
+    //                 </button>`);
+
+    //             imgElement.src = `${data.file_url}?t=${Date.now()}`
+    //             console.log(imgElement.src);
+    //         }
+    //         console.log(data);
+    //         return data;
+    //         // Optional: update UI or handle response
+    //     })
+    //     .catch(() => {
+    //         var notyf = new Notyf({
+    //             duration: 1500,
+    //             position: {
+    //                 x: 'right',
+    //                 y: 'top',
+    //             },
+    //             types: [
+    //                 {
+    //                     type: 'error',
+    //                     background: 'red',
+    //                     icon: false
+    //                 }
+    //             ]
+    //         });
+    //         notyf.error("File upload failed");
+    //         hideLoader();
+    //         return null;
+    //     });
+    // }
     function uploadFile(file, index) {
         let uploadUrl = '{{ route('tours.upload') }}';
         let formData = new FormData();
         showLoader();
         formData.append('file', file);
-        formData.append('index', index); // 🆕 Pass image index
+        formData.append('index', index);
         const url = new URL(window.location.href);
         let tour_id = parseInt(url.searchParams.get("tour_id")) || undefined;
         formData.append('tour_id', tour_id);
@@ -250,19 +314,23 @@
             },
             body: formData
         })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Server error while uploading");
+            }
+            return response.json(); // 👈 ye missing tha
+        })
         .then(data => {
             hideLoader();
-            const index = parseInt(formData.get('index'));
-            // console.log("index", index);
-            const newFilePath = data.file;
-            // console.log("newFilePath", newFilePath);
-            
-            // Assuming you store images in /storage/uploads
-            const imgElement = document.getElementsByClassName(`riding-image-${index}`)[0];
-            console.log("imgElement", imgElement);
 
-            if (imgElement && data.file_url) {
-                // const previewBox = document.getElementById(`preview_${index}`);
+            if (!data || !data.file_url) {
+                throw new Error(data.message || "Invalid server response");
+            }
+
+            const index = parseInt(formData.get('index'));
+            const imgElement = document.getElementsByClassName(`riding-image-${index}`)[0];
+
+            if (imgElement) {
                 $(imgElement).prepend(`
                     <button type="button" onclick="removeImage(${data.image_id}, ${index})"
                         class="absolute top-2 right-2 bg-orange-500 text-white rounded-full w-6 h-6 flex items-center justify-center z-20 hover:bg-orange-600"
@@ -271,29 +339,20 @@
                     </button>`);
 
                 imgElement.src = `${data.file_url}?t=${Date.now()}`
-                console.log(imgElement.src);
             }
-            console.log(data);
+
             return data;
-            // Optional: update UI or handle response
         })
-        .catch(() => {
+        .catch(error => {
+            hideLoader();
             var notyf = new Notyf({
-                duration: 1500,
-                position: {
-                    x: 'right',
-                    y: 'top',
-                },
+                duration: 2000,
+                position: { x: 'right', y: 'top' },
                 types: [
-                    {
-                        type: 'error',
-                        background: 'red',
-                        icon: false
-                    }
+                    { type: 'error', background: 'red', icon: false }
                 ]
             });
-            notyf.error("File upload failed");
-            hideLoader();
+            notyf.error(error.message || "File upload failed");
             return null;
         });
     }
@@ -343,7 +402,7 @@ function previewImage(input, previewId) {
         // 👇 pehle upload karo
         uploadFile(file, index).then(data => {
             if (!data) {
-                alert("Upload failed, preview skipped");
+                // ❌ error hua to preview skip karo
                 return;
             }
 
@@ -358,6 +417,7 @@ function previewImage(input, previewId) {
         });
     }
 }
+
 
 
 
