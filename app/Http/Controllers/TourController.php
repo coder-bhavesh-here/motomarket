@@ -124,6 +124,9 @@ class TourController extends Controller
 
         $tourIds = $tourIdsQuery->pluck('id');
 
+        if ($tourId) {
+            $tour = Tour::find($tourId);
+        }
         // Base query
         $bookingsQuery = Booking::select([
             'bookings.id',
@@ -146,7 +149,9 @@ class TourController extends Controller
         // Filter by tour ID (if present)
 
         // Filter by tour title (if provided)
+        $title = $tour->title;
         if ($request->has('title') && !empty($request->title)) {
+            $title = $request->title;
             $bookingsQuery->where('tours.title', 'like', '%' . $request->title . '%');
         } else {
             if ($tourId) {
@@ -169,7 +174,7 @@ class TourController extends Controller
                 $date = $bookings->first()->date;
             } else {
                 if ($tourId) {
-                    $tour = Tour::find($tourId);
+
                     $date = $tour->prices()->first()->date;
                 }
             }
