@@ -144,15 +144,16 @@ class TourController extends Controller
             ->leftJoin('tour_prices', 'bookings.tour_date_id', '=', 'tour_prices.id');
 
         // Filter by tour ID (if present)
-        if ($tourId) {
-            $bookingsQuery->where('bookings.tour_id', $tourId);
-        } else {
-            $bookingsQuery->whereIn('bookings.tour_id', $tourIds);
-        }
 
         // Filter by tour title (if provided)
         if ($request->has('title') && !empty($request->title)) {
             $bookingsQuery->where('tours.title', 'like', '%' . $request->title . '%');
+        } else {
+            if ($tourId) {
+                $bookingsQuery->where('bookings.tour_id', $tourId);
+            } else {
+                $bookingsQuery->whereIn('bookings.tour_id', $tourIds);
+            }
         }
 
         // Filter by date (if provided)
