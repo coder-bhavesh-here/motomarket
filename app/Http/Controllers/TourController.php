@@ -150,7 +150,7 @@ class TourController extends Controller
 
         // Filter by tour title (if provided)
         $title = $request->has('title') ? $request->title : "";
-        if (!$request->has('title') && isset($tour) && $tour->isNotEmpty()) {
+        if (!$request->has('title') && isset($tour) && $tour) {
             $title = $tour->title;
         }
         if ($request->has('title') && !empty($request->title)) {
