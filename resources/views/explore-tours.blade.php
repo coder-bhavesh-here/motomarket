@@ -72,15 +72,22 @@
         @foreach($filters as $key => $value)
             @if(is_array($value))
                 @foreach($value as $val)
-                    <span class="bg-slate-800 text-white text-sm px-3 py-1 rounded-full flex items-center gap-2">
-                        {{ !in_array($key, ["countries"]) ? $filterLabels[$val] : $val }}
-                        <button type="button" onclick="removeFilter('{{ $key }}', '{{ $val }}')" class="ml-1">
-                            &times;
-                        </button>
-                    </span>
+                    @if ($val != '')
+                        <span class="bg-slate-800 text-white text-sm px-3 py-1 rounded flex items-center gap-2">
+                            {{ $key == "countries" ? $val : "" }}
+                            {{ $key == "min_days" ? $val." days at least" : "" }}
+                            {{ $key == "max_price" ? $val." ".$filters['currency']." MAX" : "" }}
+                            {{ $key == "start" ? \Carbon\Carbon::parse($val)->format('d M Y') . ' or after' : "" }}
+                            {{ $key == "tour_type" ? $val . ' tours' : "" }}
+                            {{ $key == "tour_level" ? $val . ' tours' : "" }}
+                            <button type="button" style="color: white !important;" onclick="removeFilter('{{ $key }}', '{{ $val }}')" class="ml-1">
+                                &times;
+                            </button>
+                        </span>
+                    @endif
                 @endforeach
             @else
-                <span class="bg-slate-800 text-white text-sm px-3 py-1 rounded-full flex items-center gap-2">
+                <span class="bg-slate-800 text-white text-sm px-3 py-1 rounded flex items-center gap-2">
                     {{ $value }}
                     <button type="button" onclick="removeFilter('{{ $key }}')" class="ml-1">
                         &times;
