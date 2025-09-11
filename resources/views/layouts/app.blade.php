@@ -109,7 +109,10 @@
                                         </span>
                                     @endif
                                 </a>
-                                <span class="icon-box ml-4">
+                                <span class="relative inline-block icon-box ml-4">
+                                    @php
+                                        $favouriteCount = auth()->user()->favouriteTours->count();
+                                    @endphp
                                     <a href="/my-favourite-tours">
                                         <svg style="margin-left: 7px; margin-top: 3px;" width="24" height="22"
                                             viewBox="0 0 24 22" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -118,6 +121,11 @@
                                                 stroke="#D1E7AB" stroke-width="2" stroke-linecap="round"
                                                 stroke-linejoin="round" />
                                         </svg>
+                                        @if($favouriteCount > 0)
+                                            <span style="background: red;" class="absolute -top-2 -right-2 text-white text-xs font-bold px-2 py-0.5 rounded-full shadow">
+                                                {{ $favouriteCount }}
+                                            </span>
+                                        @endif
                                     </a>
                                 </span>
                             @endauth
