@@ -48,7 +48,8 @@ class ProfileController extends Controller
                 ->orWhereHas('user', function ($query) use ($search) {
                     $query->where('tour_operation_name', 'like', '%' . $search . '%')
                         ->orWhere('name', 'like', '%' . $search . '%');
-                });
+                })
+                ->orWhereRaw("FIND_IN_SET(?, countries)", [$search]);
         }
 
         $filters = $request->all();
