@@ -39,7 +39,7 @@
                             Tour Title
                         </div>
                         <input type="text" name="title"
-                            class="mt-2 w-[80%] rounded-md text-black" placeholder="Eg: Hard Enduro Tours" value="{{isset($tour) && $tour ? $tour->title : ''}}">
+                            class="mt-2 w-[80%] rounded-md text-black" placeholder="Eg: Hard Enduro Tours" value="{{$title}}">
                     </div>
                     <div class="grid">
                         <div class="font-bold text-black">
