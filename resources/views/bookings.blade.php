@@ -27,7 +27,12 @@
         <div class="p-4 sm:p-8">
             <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > <u><a href="{{ route('profiles') }}">Settings</a></u> > Tour Bookings/Customers</p>
             <span class="block text-orange text-xl womsm:text-2xl wommd:text-3xl font-bold my-6">Tour Bookings/Customers</span>
-            <form action="/bookings" method="GET">
+            @php
+                $segments = request()->segments();
+                $lastSegment = end($segments);
+            @endphp
+
+            <form action="{{ is_numeric($lastSegment) ? url('bookings/' . $lastSegment) : url('bookings') }}" method="GET">
                 <div class="grid grid-cols-1 womsm:grid-cols-1 wommd:grid-cols-4">
                     <input type="text" name="title"
                         class="mt-5 w-[80%] rounded-md text-black" placeholder="Eg: Hard Enduro Tours" value="{{isset($tour) && $tour ? $tour->title : ''}}">

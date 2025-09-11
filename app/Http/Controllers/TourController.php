@@ -64,51 +64,109 @@ class TourController extends Controller
         ]);
     }
 
-    public function bookings($tourId = null)
+    // public function bookings(Request $request, $tourId = null)
+    // {
+    //     $userId = auth()->user()->id;
+    //     $tourIdsQuery = Tour::where('user_id', $userId)->where('status', 'published')->where('permanently_deleted', false);
+    //     if (isset($request) && ) {
+    //         # code...
+    //     }
+    //     $tourIds = $tourIdsQuery->pluck('id');
+    //     if ($tourId) {
+    //         $bookings = Booking::select([
+    //             'bookings.id',
+    //             'tours.title',
+    //             'users.email',
+    //             'bookings.user_id',
+    //             'bookings.name',
+    //             'bookings.dob',
+    //             'bookings.nationality',
+    //             'bookings.mobile_number',
+    //             'bookings.date',
+    //             'bookings.amount',
+    //             'tours.tour_distance',
+    //             'bookings.created_at',
+    //         ])->where('bookings.tour_id', $tourId)
+    //             ->leftJoin('tours', 'bookings.tour_id', 'tours.id')
+    //             ->leftJoin('users', 'bookings.user_id', 'users.id')
+    //             ->get();
+    //     } else {
+    //         $bookings = Booking::select([
+    //             'bookings.id',
+    //             'tours.title',
+    //             'users.email',
+    //             'bookings.user_id',
+    //             'bookings.name',
+    //             'bookings.dob',
+    //             'bookings.nationality',
+    //             'bookings.mobile_number',
+    //             'bookings.date',
+    //             'bookings.amount',
+    //             'tours.tour_distance',
+    //             'bookings.created_at',
+    //         ])->whereIn('bookings.tour_id', $tourIds)
+    //             ->leftJoin('tours', 'bookings.tour_id', 'tours.id')
+    //             ->leftJoin('users', 'bookings.user_id', 'users.id')
+    //             ->get();
+    //     }
+    //     return view('bookings', [
+    //         'bookings' => $bookings
+    //     ]);
+    // }
+    public function bookings(Request $request, $tourId = null)
     {
         $userId = auth()->user()->id;
-        $tourIds = Tour::where('user_id', $userId)->where('status', 'published')->where('permanently_deleted', false)->pluck('id');
+
+        // Get user's published, non-deleted tours
+        $tourIdsQuery = Tour::where('user_id', $userId)
+            ->where('status', 'published')
+            ->where('permanently_deleted', false);
+
+        $tourIds = $tourIdsQuery->pluck('id');
+
+        // Base query
+        $bookingsQuery = Booking::select([
+            'bookings.id',
+            'tours.title',
+            'users.email',
+            'bookings.user_id',
+            'bookings.name',
+            'bookings.dob',
+            'bookings.nationality',
+            'bookings.mobile_number',
+            'bookings.date',
+            'bookings.amount',
+            'tours.tour_distance',
+            'bookings.created_at',
+        ])
+            ->leftJoin('tours', 'bookings.tour_id', '=', 'tours.id')
+            ->leftJoin('users', 'bookings.user_id', '=', 'users.id')
+            ->leftJoin('tour_prices', 'bookings.price_id', '=', 'tour_prices.id');
+
+        // Filter by tour ID (if present)
         if ($tourId) {
-            $bookings = Booking::select([
-                'bookings.id',
-                'tours.title',
-                'users.email',
-                'bookings.user_id',
-                'bookings.name',
-                'bookings.dob',
-                'bookings.nationality',
-                'bookings.mobile_number',
-                'bookings.date',
-                'bookings.amount',
-                'tours.tour_distance',
-                'bookings.created_at',
-            ])->where('bookings.tour_id', $tourId)
-                ->leftJoin('tours', 'bookings.tour_id', 'tours.id')
-                ->leftJoin('users', 'bookings.user_id', 'users.id')
-                ->get();
+            $bookingsQuery->where('bookings.tour_id', $tourId);
         } else {
-            $bookings = Booking::select([
-                'bookings.id',
-                'tours.title',
-                'users.email',
-                'bookings.user_id',
-                'bookings.name',
-                'bookings.dob',
-                'bookings.nationality',
-                'bookings.mobile_number',
-                'bookings.date',
-                'bookings.amount',
-                'tours.tour_distance',
-                'bookings.created_at',
-            ])->whereIn('bookings.tour_id', $tourIds)
-                ->leftJoin('tours', 'bookings.tour_id', 'tours.id')
-                ->leftJoin('users', 'bookings.user_id', 'users.id')
-                ->get();
+            $bookingsQuery->whereIn('bookings.tour_id', $tourIds);
         }
+
+        // Filter by tour title (if provided)
+        if ($request->has('title') && !empty($request->title)) {
+            $bookingsQuery->where('tours.title', 'like', '%' . $request->title . '%');
+        }
+
+        // Filter by date (if provided)
+        if ($request->has('date') && !empty($request->date)) {
+            $bookingsQuery->whereDate('tour_prices.date', '=', $request->date);
+        }
+
+        $bookings = $bookingsQuery->get();
+
         return view('bookings', [
             'bookings' => $bookings
         ]);
     }
+
 
     public function myTours(): View
     {
