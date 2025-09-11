@@ -156,7 +156,7 @@ class TourController extends Controller
         }
 
         // Filter by date (if provided)
-        // $date = "";
+        $date = "";
         // if ($request->has('date') && !empty($request->date)) {
         //     $date = $request->date;
         //     $bookingsQuery->whereDate('tour_prices.date', '=', $request->date);
