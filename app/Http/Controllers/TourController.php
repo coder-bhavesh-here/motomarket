@@ -182,7 +182,8 @@ class TourController extends Controller
 
         return view('bookings', [
             'bookings' => $bookings,
-            'date' => $date
+            'date' => $date,
+            'title' => $title
         ]);
     }
 
