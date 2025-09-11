@@ -34,10 +34,20 @@
 
             <form action="{{ is_numeric($lastSegment) ? url('bookings/' . $lastSegment) : url('bookings') }}" method="GET">
                 <div class="grid grid-cols-1 womsm:grid-cols-1 wommd:grid-cols-4">
-                    <input type="text" name="title"
-                        class="mt-5 w-[80%] rounded-md text-black" placeholder="Eg: Hard Enduro Tours" value="{{isset($tour) && $tour ? $tour->title : ''}}">
-                    <input type="date" name="date"
-                        class="mt-5 w-[80%] rounded-md text-black" placeholder="Tour Date" value="{{(isset($tour) && $tour->prices->isNotEmpty()) ? $tour->prices->first()->date : ''}}">
+                    <div class="flex">
+                        <div class="font-bold text-black">
+                            Tour Title
+                        </div>
+                        <input type="text" name="title"
+                            class="mt-5 w-[80%] rounded-md text-black" placeholder="Eg: Hard Enduro Tours" value="{{isset($tour) && $tour ? $tour->title : ''}}">
+                    </div>
+                    <div class="flex">
+                        <div class="font-bold text-black">
+                            Tour Date
+                        </div>
+                        <input type="date" name="date"
+                            class="mt-5 w-[80%] rounded-md text-black" placeholder="Tour Date" value="{{(isset($tour) && $tour->prices->isNotEmpty()) ? $tour->prices->first()->date : ''}}">
+                    </div>
                 </div>
                 <button type="submit" class="btn-orange mt-5">Show Bookings</button>
             </form>
