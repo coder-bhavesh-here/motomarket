@@ -47,7 +47,7 @@
                         </div>
                         <input type="date" name="date"
                             @php
-                                if (isset($bookings)) {
+                                if (isset($bookings) && $bookings->isNotEmpty()) {
                                     $datee = $bookings->first()->date;
                                 } else {
                                     if ((isset($tour) && $tour->prices->isNotEmpty())) {
