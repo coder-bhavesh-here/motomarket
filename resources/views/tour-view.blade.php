@@ -47,12 +47,12 @@ integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxV
             // notyf.success('Thank you for the question, the tour operator will give you an answer shortly…');
         </script>
     @endif
-    <div class="ml-3 grid grid-cols-3">
-        <div class="flex col-span-2">
+    <div class="ml-3 grid grid-cols-4">
+        <div class="flex col-span-3">
             <a class="favourite">
                 <img style="height: 40px !important;max-width: 40px !important;width: 40px !important;" src="https://worldonmoto.com/images/heart-plain.svg" data-id="{{$tour->id}}">
             </a>
-            <b class="text-base womsm:text-xl wommd:text-2xl text-black font-semibold block mb-2">{{ $tour->title }} - {{ str_replace(',',', ',$tour->countries) }}</b>
+            <b class="ml-4 text-base womsm:text-xl wommd:text-2xl text-black font-semibold block mb-2">{{ $tour->title }} - {{ str_replace(',',', ',$tour->countries) }}</b>
         </div>
         <a href="#dates"
             class="font-bold underline w-20 text-[#556B2F] womsm:w-28 wommd:w-40 justify-self-end h-6 womsm:h-8 wommd:h-10 text-xs womsm:text-base wommd:text-lg"
