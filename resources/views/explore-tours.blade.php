@@ -89,7 +89,7 @@
             @else
                 @if ($key !== 'currency' && $key!='search' && $value !='')
                     <span class="bg-slate-800 text-white text-sm px-3 py-1 rounded flex items-center gap-2">
-                        {{ $key == "min_days" ? $value." days at least" : "" }}
+                        {{ $key == "min_days" ? $value." day".$value > 1 ? "s" : "" ." at least" : "" }}
                         @php
                             if(isset($filters['currency']) && $filters['currency'] !=''){
                                 $filterCurrency = $filters['currency'];
