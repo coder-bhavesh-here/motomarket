@@ -149,8 +149,10 @@ class TourController extends Controller
         // Filter by tour ID (if present)
 
         // Filter by tour title (if provided)
-        $title = $tour->title;
         $title = $request->has('title') ? $request->title : "";
+        if (!$request->has('title') && isset($tour) && $tour->isNotEmpty()) {
+            $title = $tour->title;
+        }
         if ($request->has('title') && !empty($request->title)) {
             $bookingsQuery->where('tours.title', 'like', '%' . $request->title . '%');
         } else {
