@@ -47,7 +47,7 @@ integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxV
             // notyf.success('Thank you for the question, the tour operator will give you an answer shortly…');
         </script>
     @endif
-    <div class="ml-3 grid grid-cols-4">
+    <div class="ml-3 grid grid-cols-4 mb-3">
         <div class="flex col-span-3">
             <meta name="csrf-token" content="{{ csrf_token() }}">
             <a class="favourite">
