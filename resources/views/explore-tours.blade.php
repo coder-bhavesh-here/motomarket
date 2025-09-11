@@ -70,9 +70,9 @@
     @if(!empty($filters))
     <div class="flex flex-wrap gap-2 my-4">
         @foreach($filters as $key => $value)
-            @if(is_array($value) && $key!='search')
+            @if(is_array($value))
                 @foreach($value as $val)
-                    @if ($val != '')
+                    @if ($val != '' && $key!='search')
                         <span class="bg-slate-800 text-white text-sm px-3 py-1 rounded flex items-center gap-2">
                             {{ $key == "countries" ? $val : "" }}
                             {{ $key == "tour_type" ? ucfirst($val) . ' tours' : "" }}
@@ -87,7 +87,7 @@
                     @endif
                 @endforeach
             @else
-                @if ($key !== 'currency')
+                @if ($key !== 'currency' && $key!='search')
                     <span class="bg-slate-800 text-white text-sm px-3 py-1 rounded flex items-center gap-2">
                         {{ $key == "min_days" ? $value." days at least" : "" }}
                         {{ $key == "max_price" ? $value." ".$filters['currency']." MAX" : "" }}
