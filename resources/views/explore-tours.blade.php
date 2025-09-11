@@ -75,8 +75,8 @@
                     @if ($val != '')
                         <span class="bg-slate-800 text-white text-sm px-3 py-1 rounded flex items-center gap-2">
                             {{ $key == "countries" ? $val : "" }}
-                            {{ $key == "tour_type" ? $val . ' tours' : "" }}
-                            {{ $key == "tour_level" ? $val . ' tours' : "" }}
+                            {{ $key == "tour_type" ? ucfirst($val) . ' tours' : "" }}
+                            {{ $key == "tour_level" ? ucfirst($val) . ' tours' : "" }}
                             {{ $key == "bike_options" ? $filterLabels[$val] : "" }}
                             {{ $key == "riding_gear" ? $filterLabels[$val] : "" }}
                             {{ $key == "two_riding" ? $filterLabels[$val] : "" }}
