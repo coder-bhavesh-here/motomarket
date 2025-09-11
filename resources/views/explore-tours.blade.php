@@ -80,6 +80,9 @@
                             {{ $key == "start" ? \Carbon\Carbon::parse($val)->format('d M Y') . ' or after' : "" }}
                             {{ $key == "tour_type" ? $val . ' tours' : "" }}
                             {{ $key == "tour_level" ? $val . ' tours' : "" }}
+                            {{ $key == "bike_options" ? $val : "" }}
+                            {{ $key == "riding_gear" ? $val : "" }}
+                            {{ $key == "two_riding" ? $val : "" }}
                             <button type="button" style="color: white !important;" onclick="removeFilter('{{ $key }}', '{{ $val }}')" class="ml-1">
                                 &times;
                             </button>
