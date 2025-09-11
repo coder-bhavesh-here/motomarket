@@ -46,18 +46,7 @@
                             Tour Date
                         </div>
                         <input type="date" name="date"
-                            @php
-                                if (isset($bookings) && $bookings->isNotEmpty()) {
-                                    $datee = $bookings->first()->date;
-                                } else {
-                                    if ((isset($tour) && $tour->prices->isNotEmpty())) {
-                                        $datee = $tour->prices->first()->date;
-                                    } else {
-                                        $datee = "";
-                                    }
-                                }
-                            @endphp
-                            class="mt-2 w-[80%] rounded-md text-black" placeholder="Tour Date" value="{{(isset($tour) && $tour->prices->isNotEmpty()) ? $tour->prices->first()->date : ''}}">
+                            class="mt-2 w-[80%] rounded-md text-black" placeholder="Tour Date" value="{{$date}}">
                     </div>
                 </div>
                 <button type="submit" class="btn-orange mt-5">Show Bookings</button>

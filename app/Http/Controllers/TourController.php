@@ -161,9 +161,18 @@ class TourController extends Controller
         }
 
         $bookings = $bookingsQuery->get();
+        if ($bookings->isNotEmpty()) {
+            $date = $bookings->first()->date;
+        } else {
+            if ($tourId) {
+                $tour = Tour::find($tourId);
+                $date = $tour->prices()->first()->date;
+            }
+        }
 
         return view('bookings', [
-            'bookings' => $bookings
+            'bookings' => $bookings,
+            'date' => $date
         ]);
     }
 
