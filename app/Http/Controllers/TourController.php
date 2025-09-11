@@ -163,10 +163,13 @@ class TourController extends Controller
         }
 
         $bookings = $bookingsQuery->get();
+        echo $date;
         if ($date != '') {
             if ($bookings->isNotEmpty()) {
+                echo "in if";
                 $date = $bookings->first()->date;
             } else {
+                echo "in else";
                 if ($tourId) {
                     $tour = Tour::find($tourId);
                     $date = $tour->prices()->first()->date;
