@@ -731,6 +731,9 @@
             // Remove the whole param
             url.searchParams.delete(key);
         }
+        if (key == 'max_price') {
+            url.searchParams.delete('currency');
+        }
 
         window.location.href = url.toString();
     }
