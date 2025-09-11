@@ -134,6 +134,7 @@ class ProfileController extends Controller
             'user' => Auth::user(),
             'tours' => $tours,
             'search' => $search,
+            'filters' => $filters,
             'countries' => $countries
         ]);
     }

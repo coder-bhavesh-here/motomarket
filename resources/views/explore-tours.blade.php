@@ -1,4 +1,20 @@
 @include('new-header')
+@php
+    $filterLabels = [
+        "road" => "Road",
+        "adventure" => "Adventure",
+        "enduro" => "Enduro",
+        "Beginner" => "Beginner",
+        "Intermediate" => "Intermediate",
+        "Expert" => "Expert",
+        "own_bike" => "Bring own bike",
+        "rental_included" => "Bike rental or included",
+        "0" => "Bring own riding gear",
+        "1" => "Riding gear rental or included",
+        "yes" => "Two-up riding on a bike allowed",
+        "no" => "Single rider per bike"
+    ];
+@endphp 
 <style>
     .gray-button {
         padding: 12px 20px !important;
@@ -51,6 +67,29 @@
             </div>
         </div>
     </div>
+    @if(!empty($filters))
+    <div class="flex flex-wrap gap-2 my-4">
+        @foreach($filters as $key => $value)
+            @if(is_array($value))
+                @foreach($value as $val)
+                    <span class="bg-slate-800 text-white text-sm px-3 py-1 rounded-full flex items-center gap-2">
+                        {{ $filterLabels[$val] }}
+                        <button type="button" onclick="removeFilter('{{ $key }}', '{{ $val }}')" class="ml-1">
+                            &times;
+                        </button>
+                    </span>
+                @endforeach
+            @else
+                <span class="bg-slate-800 text-white text-sm px-3 py-1 rounded-full flex items-center gap-2">
+                    {{ $value }}
+                    <button type="button" onclick="removeFilter('{{ $key }}')" class="ml-1">
+                        &times;
+                    </button>
+                </span>
+            @endif
+        @endforeach
+    </div>
+    @endif
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="flex justify-center">
         <div id="tours-container" style="max-width: 1620px;">
@@ -261,13 +300,13 @@
                                     class="w-full rounded-md mb-3 womsm:mb-1 border-gray-300 shadow-sm">
                                 <div class="flex">
                                     <span class="womsm:ml-5 flex items-center">
-                                        <input type="radio" name="currency"><span class="ml-1">EUR</span>
+                                        <input type="radio" value="EUR" name="currency"><span class="ml-1">EUR</span>
                                     </span>
                                     <span class="ml-4 flex items-center">
-                                        <input type="radio" name="currency"><span class="ml-1">USD</span>
+                                        <input type="radio" value="USD" name="currency"><span class="ml-1">USD</span>
                                     </span>
                                     <span class="ml-4 flex items-center">
-                                        <input type="radio" name="currency"><span class="ml-1">GBP</span>
+                                        <input type="radio" value="GBP" name="currency"><span class="ml-1">GBP</span>
                                     </span>
                                 </div>
                             </div>
