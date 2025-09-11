@@ -48,8 +48,12 @@ integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxV
         </script>
     @endif
     <div class="ml-3 grid grid-cols-3">
-        <b class="col-span-2 text-base womsm:text-xl wommd:text-2xl text-black font-semibold block mb-2">{{ $tour->title }}
-            - {{ str_replace(',',', ',$tour->countries) }}</b>
+        <div class="flex col-span-2">
+            <a class="favourite">
+                <img style="height: 40px !important;max-width: 40px !important;width: 40px !important;" src="https://worldonmoto.com/images/heart-plain.svg" data-id="{{$tour->id}}">
+            </a>
+            <b class="text-base womsm:text-xl wommd:text-2xl text-black font-semibold block mb-2">{{ $tour->title }} - {{ str_replace(',',', ',$tour->countries) }}</b>
+        </div>
         <a href="#dates"
             class="font-bold underline w-20 text-[#556B2F] womsm:w-28 wommd:w-40 justify-self-end h-6 womsm:h-8 wommd:h-10 text-xs womsm:text-base wommd:text-lg"
             style="display: flex; justify-content: center; align-items: center;"
@@ -490,6 +494,59 @@ integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxV
                     alert("Something went wrong! Please try again.");
                 }
             });
+        });
+    });
+    $(document).on("click", ".favourite", function(e) {
+        e.preventDefault();
+        const icon = $(this).find("img");
+        const tourId = icon.attr("data-id");
+
+        $.ajax({
+            type: "POST",
+            url: "/mark-as-favourite",
+            data: {
+                tour_id: tourId
+            },
+            dataType: "JSON",
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+            },
+            success: function(response) {
+                if (response.message === "Tour marked as favourite.!") {
+                    icon.attr("src", "{{ asset('images') . '/heart-filled.svg' }}");
+                    $(e.currentTarget).removeClass("favourite").addClass("unfavourite");
+                }
+            },
+            error: function(error) {
+                window.location.href = "/login";
+            }
+        });
+    });
+
+    $(document).on("click", ".unfavourite", function(e) {
+        e.preventDefault();
+        const icon = $(this).find("img");
+        const tourId = icon.attr("data-id");
+
+        $.ajax({
+            type: "POST",
+            url: "/delete-favourite",
+            data: {
+                tour_id: tourId
+            },
+            dataType: "JSON",
+            headers: {
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content")
+            },
+            success: function(response) {
+                if (response.message === "Tour removed from favourite.!") {
+                    icon.attr("src", "{{ asset('images') . '/heart-plain.svg' }}");
+                    $(e.currentTarget).removeClass("unfavourite").addClass("favourite");
+                }
+            },
+            error: function(error) {
+                window.location.href = "/login";
+            }
         });
     });
 </script>
