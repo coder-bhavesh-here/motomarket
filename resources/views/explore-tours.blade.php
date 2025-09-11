@@ -70,7 +70,7 @@
     @if(!empty($filters))
     <div class="flex flex-wrap gap-2 my-4">
         @foreach($filters as $key => $value)
-            @if(is_array($value))
+            @if(is_array($value) && $key!='search')
                 @foreach($value as $val)
                     @if ($val != '')
                         <span class="bg-slate-800 text-white text-sm px-3 py-1 rounded flex items-center gap-2">
