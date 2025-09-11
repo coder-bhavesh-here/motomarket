@@ -74,7 +74,6 @@
                 @foreach($value as $val)
                     @if ($val != '')
                         <span class="bg-slate-800 text-white text-sm px-3 py-1 rounded flex items-center gap-2">
-                            {{ $filters["min_days"] }}
                             {{ $key == "countries" ? $val : "" }}
                             {{ $key == "min_days" ? $val." days at least" : "" }}
                             {{ $key == "max_price" ? $val." ".$filters['currency']." MAX" : "" }}
