@@ -34,14 +34,14 @@
 
             <form action="{{ is_numeric($lastSegment) ? url('bookings/' . $lastSegment) : url('bookings') }}" method="GET">
                 <div class="grid grid-cols-1 womsm:grid-cols-1 wommd:grid-cols-4">
-                    <div class="flex">
+                    <div class="grid">
                         <div class="font-bold text-black">
                             Tour Title
                         </div>
                         <input type="text" name="title"
                             class="mt-5 w-[80%] rounded-md text-black" placeholder="Eg: Hard Enduro Tours" value="{{isset($tour) && $tour ? $tour->title : ''}}">
                     </div>
-                    <div class="flex">
+                    <div class="grid">
                         <div class="font-bold text-black">
                             Tour Date
                         </div>
