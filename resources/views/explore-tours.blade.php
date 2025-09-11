@@ -90,7 +90,14 @@
                 @if ($key !== 'currency' && $key!='search')
                     <span class="bg-slate-800 text-white text-sm px-3 py-1 rounded flex items-center gap-2">
                         {{ $key == "min_days" ? $value." days at least" : "" }}
-                        {{ $key == "max_price" ? $value." ".$filterLabels['currency']." MAX" : "" }}
+                        @php
+                            if(isset($filters['currency']) && $filters['currency'] !=''){
+                                $filterCurrency = $filters['currency'];
+                            } else {
+                                $filterCurrency = '';
+                            }
+                        @endphp
+                        {{ $key == "max_price" ? $value." ".$filterCurrency." MAX" : "" }}
                         {{ $key == "start" ? \Carbon\Carbon::parse($value)->format('d M Y') . ' or after' : "" }}
                         <button type="button" style="color: white !important;" onclick="removeFilter('{{ $key }}')" class="ml-1">
                             &times;
