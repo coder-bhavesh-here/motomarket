@@ -141,7 +141,7 @@ class TourController extends Controller
         ])
             ->leftJoin('tours', 'bookings.tour_id', '=', 'tours.id')
             ->leftJoin('users', 'bookings.user_id', '=', 'users.id')
-            ->leftJoin('tour_prices', 'bookings.price_id', '=', 'tour_prices.id');
+            ->leftJoin('tour_prices', 'bookings.tour_date_id', '=', 'tour_prices.id');
 
         // Filter by tour ID (if present)
         if ($tourId) {
