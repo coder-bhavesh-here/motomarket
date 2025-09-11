@@ -87,7 +87,7 @@
                     @endif
                 @endforeach
             @else
-                @if ($key !== 'currency' && $key!='search')
+                @if ($key !== 'currency' && $key!='search' && $value !='')
                     <span class="bg-slate-800 text-white text-sm px-3 py-1 rounded flex items-center gap-2">
                         {{ $key == "min_days" ? $value." days at least" : "" }}
                         @php
