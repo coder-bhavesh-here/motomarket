@@ -73,6 +73,9 @@ class ProfileController extends Controller
             $query->whereHas('prices', function ($q) use ($filters) {
                 $q->where('price', '<=', $filters['max_price']);
             });
+            if (empty($filters['currency'])) {
+                $filters['currency'] = 'EUR';
+            }
         }
         if (!empty($filters['start'])) {
             $query->whereHas('prices', function ($q) use ($filters) {
