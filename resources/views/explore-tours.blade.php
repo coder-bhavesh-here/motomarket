@@ -718,6 +718,23 @@
             closeFilterModal();
         }
     }
+    function removeFilter(key, value = null) {
+        const url = new URL(window.location.href);
+
+        if (value) {
+            // Remove only the selected value from array params
+            let params = url.searchParams.getAll(key + '[]');
+            params = params.filter(v => v !== value);
+            url.searchParams.delete(key + '[]');
+            params.forEach(v => url.searchParams.append(key + '[]', v));
+        } else {
+            // Remove the whole param
+            url.searchParams.delete(key);
+        }
+
+        window.location.href = url.toString();
+    }
+
 </script>
 @include('footer')
 
