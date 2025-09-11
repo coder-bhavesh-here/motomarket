@@ -48,7 +48,7 @@
                         <input type="date" name="date"
                             @php
                                 if (isset($bookings)) {
-                                    $datee = $bookings->first()->date();
+                                    $datee = $bookings->first()->date;
                                 } else {
                                     if ((isset($tour) && $tour->prices->isNotEmpty())) {
                                         $datee = $tour->prices->first()->date;
