@@ -75,9 +75,6 @@
                     @if ($val != '')
                         <span class="bg-slate-800 text-white text-sm px-3 py-1 rounded flex items-center gap-2">
                             {{ $key == "countries" ? $val : "" }}
-                            {{ $key == "min_days" ? $val." days at least" : "" }}
-                            {{ $key == "max_price" ? $val." ".$filters['currency']." MAX" : "" }}
-                            {{ $key == "start" ? \Carbon\Carbon::parse($val)->format('d M Y') . ' or after' : "" }}
                             {{ $key == "tour_type" ? $val . ' tours' : "" }}
                             {{ $key == "tour_level" ? $val . ' tours' : "" }}
                             {{ $key == "bike_options" ? $filterLabels[$val] : "" }}
@@ -91,7 +88,9 @@
                 @endforeach
             @else
                 <span class="bg-slate-800 text-white text-sm px-3 py-1 rounded flex items-center gap-2">
-                    {{ $value }}
+                    {{ $key == "min_days" ? $value." days at least" : "" }}
+                    {{ $key == "max_price" ? $value." ".$filters['currency']." MAX" : "" }}
+                    {{ $key == "start" ? \Carbon\Carbon::parse($value)->format('d M Y') . ' or after' : "" }}
                     <button type="button" onclick="removeFilter('{{ $key }}')" class="ml-1">
                         &times;
                     </button>
