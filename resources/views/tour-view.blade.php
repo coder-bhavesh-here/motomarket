@@ -50,9 +50,19 @@ integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxV
     <div class="ml-3 grid grid-cols-4 mb-3">
         <div class="flex col-span-3">
             <meta name="csrf-token" content="{{ csrf_token() }}">
-            <a class="favourite">
-                <img style="height: 40px !important;max-width: 40px !important;width: 40px !important;" src="https://worldonmoto.com/images/heart-plain.svg" data-id="{{$tour->id}}">
-            </a>
+            @if ($tour->is_favourite)
+                <a class="unfavourite">
+                    <img style="height: 40px !important; max-width: 40px !important; width: 40px !important;"
+                        src="{{ asset('images') . '/heart-filled.svg' }}"
+                        data-id="{{ $tour->id }}">
+                </a>
+            @else
+                <a class="favourite">
+                    <img style="height: 40px !important; max-width: 40px !important; width: 40px !important;"
+                        src="{{ asset('images') . '/heart-plain.svg' }}"
+                        data-id="{{ $tour->id }}">
+                </a>
+            @endif
             <b class="ml-4 text-base womsm:text-xl wommd:text-2xl text-black font-semibold block mb-2">{{ $tour->title }} - {{ str_replace(',',', ',$tour->countries) }}</b>
         </div>
         <a href="#dates"
