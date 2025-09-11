@@ -156,7 +156,7 @@
                                 </a>
                                 <p>
                                     <a href='/tour/{{ $tour->id }}' class="text-xs womsm:text-sm wommd:text-base text-black font-normal">
-                                        {{ Str::limit(strip_tags($tour->tour_description), 350) }}
+                                        {!! Str::limit(strip_tags($tour->tour_description), 350) !!}
                                     </a>
                                 </p>
                                 <div class="badges mt-5 flex flex-wrap items-center">
