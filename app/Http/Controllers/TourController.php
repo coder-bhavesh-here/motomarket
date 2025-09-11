@@ -150,9 +150,7 @@ class TourController extends Controller
 
         // Filter by tour title (if provided)
         $title = $tour->title;
-        if ($request->has('title')) {
-            $title = $request->title;
-        }
+        $title = $request->has('title') ? $request->title : "";
         if ($request->has('title') && !empty($request->title)) {
             $bookingsQuery->where('tours.title', 'like', '%' . $request->title . '%');
         } else {
@@ -164,20 +162,21 @@ class TourController extends Controller
         }
 
         // Filter by date (if provided)
-        $date = "";
+        $date = $request->has('date') ? $request->date : "";
         if ($request->has('date') && !empty($request->date)) {
-            $date = $request->date;
             $bookingsQuery->whereDate('bookings.date', '=', $request->date);
         }
 
         $bookings = $bookingsQuery->get();
-        if ($date == '') {
-            if ($bookings->isNotEmpty()) {
-                $date = $bookings->first()->date;
-            } else {
-                if ($tourId) {
-
-                    $date = $tour->prices()->first()->date;
+        if (!$request->has('date')) {
+            $date = $request->has('date') ? $request->date : "";
+            if ($date == '') {
+                if ($bookings->isNotEmpty()) {
+                    $date = $bookings->first()->date;
+                } else {
+                    if ($tourId) {
+                        $date = $tour->prices()->first()->date;
+                    }
                 }
             }
         }
