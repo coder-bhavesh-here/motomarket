@@ -253,7 +253,7 @@
 
 <!-- Filter Modal -->
 <div id="filterModal" class="absolute inset-0 backdrop-blur-sm z-50 hidden" style="background: #ffffff70;">
-    <div class="bg-white rounded-lg py-4 px-2 wommd:p-8 womsm:max-w-[80%] wommd:max-w-[75%] womsm:mx-auto womsm:mt-20 relative" style="box-shadow: 0 0 10px 0px gray;">
+    <div style="max-height: calc(100vh - 120px) !important; overflow-y: scroll;" class="bg-white rounded-lg py-4 px-2 wommd:p-8 womsm:max-w-[80%] wommd:max-w-[75%] womsm:mx-auto womsm:mt-20 relative" style="box-shadow: 0 0 10px 0px gray;">
         <svg onclick="closeFilterModal()"
             class="cursor-pointer absolute m-4 top-4 right-4 text-gray-500 hover:text-gray-700 w-6 h-6" width="32"
             height="31" viewBox="0 0 32 31" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -628,10 +628,12 @@
 
     function openFilterModal() {
         document.getElementById('filterModal').classList.remove('hidden');
+        document.body.style.overflowY = "hidden";
     }
 
     function closeFilterModal() {
         document.getElementById('filterModal').classList.add('hidden');
+        document.body.style.overflowY = "scroll";
     }
 
     function clearFilters() {
