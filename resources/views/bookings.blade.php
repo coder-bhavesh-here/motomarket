@@ -39,14 +39,14 @@
                             Tour Title
                         </div>
                         <input type="text" name="title"
-                            class="mt-5 w-[80%] rounded-md text-black" placeholder="Eg: Hard Enduro Tours" value="{{isset($tour) && $tour ? $tour->title : ''}}">
+                            class="mt-2 w-[80%] rounded-md text-black" placeholder="Eg: Hard Enduro Tours" value="{{isset($tour) && $tour ? $tour->title : ''}}">
                     </div>
                     <div class="grid">
                         <div class="font-bold text-black">
                             Tour Date
                         </div>
                         <input type="date" name="date"
-                            class="mt-5 w-[80%] rounded-md text-black" placeholder="Tour Date" value="{{(isset($tour) && $tour->prices->isNotEmpty()) ? $tour->prices->first()->date : ''}}">
+                            class="mt-2 w-[80%] rounded-md text-black" placeholder="Tour Date" value="{{(isset($tour) && $tour->prices->isNotEmpty()) ? $tour->prices->first()->date : ''}}">
                     </div>
                 </div>
                 <button type="submit" class="btn-orange mt-5">Show Bookings</button>
