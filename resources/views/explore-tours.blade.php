@@ -73,7 +73,7 @@
             @if(is_array($value))
                 @foreach($value as $val)
                     <span class="bg-slate-800 text-white text-sm px-3 py-1 rounded-full flex items-center gap-2">
-                        {{ $filterLabels[$val] }}
+                        {{ !in_array($key, ["countries"]) $filterLabels[$val] }}
                         <button type="button" onclick="removeFilter('{{ $key }}', '{{ $val }}')" class="ml-1">
                             &times;
                         </button>
