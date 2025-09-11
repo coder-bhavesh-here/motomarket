@@ -318,13 +318,13 @@
                                     class="w-full rounded-md mb-3 womsm:mb-1 border-gray-300 shadow-sm">
                                 <div class="flex">
                                     <span class="womsm:ml-5 flex items-center">
-                                        <input type="radio" {{ isset($filters['currency']) && $filters['currency'] == "EUR" ? "selected": "";  }} value="EUR" name="currency"><span class="ml-1">EUR</span>
+                                        <input type="radio" {{ isset($filters['currency']) && $filters['currency'] == "EUR" ? "checked": "";  }} value="EUR" name="currency"><span class="ml-1">EUR</span>
                                     </span>
                                     <span class="ml-4 flex items-center">
-                                        <input type="radio" {{ isset($filters['currency']) && $filters['currency'] == "USD" ? "selected": "";  }} value="USD" name="currency"><span class="ml-1">USD</span>
+                                        <input type="radio" {{ isset($filters['currency']) && $filters['currency'] == "USD" ? "checked": "";  }} value="USD" name="currency"><span class="ml-1">USD</span>
                                     </span>
                                     <span class="ml-4 flex items-center">
-                                        <input type="radio" {{ isset($filters['currency']) && $filters['currency'] == "GBP" ? "selected": "";  }} value="GBP" name="currency"><span class="ml-1">GBP</span>
+                                        <input type="radio" {{ isset($filters['currency']) && $filters['currency'] == "GBP" ? "checked": "";  }} value="GBP" name="currency"><span class="ml-1">GBP</span>
                                     </span>
                                 </div>
                             </div>
