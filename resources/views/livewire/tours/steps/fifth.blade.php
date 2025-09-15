@@ -44,7 +44,13 @@
                                         <input type="file" accept="image/*" class="absolute inset-0 opacity-0 z-10 cursor-pointer file-input" name="groups[{{ $gIndex }}][addons][{{ $aIndex }}][image]" />
                                         <img src="{{ asset("storage/".$addon->image_path) }}" class="preview-image absolute inset-0 object-cover w-full h-full {{ $addon->image_path ? '' : 'hidden' }}" />
                                         <div class="icon-placeholder text-gray-400 z-0 pointer-events-none {{ $addon->image_path ? 'hidden' : '' }}">
-                                            <!-- Same SVG icon here -->
+                                            <svg width="26" height="25" viewBox="0 0 26 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                <path d="M22.75 12.5V19.7917C22.75 20.3442 22.5217 20.8741 22.1154 21.2648C21.7091 21.6555 21.158 21.875 20.5833 21.875H5.41667C4.84203 21.875 4.29093 21.6555 3.8846 21.2648C3.47827 20.8741 3.25 20.3442 3.25 19.7917V5.20833C3.25 4.6558 3.47827 4.12589 3.8846 3.73519C4.29093 3.34449 4.84203 3.125 5.41667 3.125H13" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M17.334 5.20703H23.834" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M20.584 2.08203V8.33203" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M9.75065 11.4596C10.9473 11.4596 11.9173 10.5269 11.9173 9.3763C11.9173 8.22571 10.9473 7.29297 9.75065 7.29297C8.55403 7.29297 7.58398 8.22571 7.58398 9.3763C7.58398 10.5269 8.55403 11.4596 9.75065 11.4596Z" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                                <path d="M22.75 15.6253L19.4068 12.4108C19.0005 12.0202 18.4495 11.8008 17.875 11.8008C17.3005 11.8008 16.7495 12.0202 16.3432 12.4108L6.5 21.8753" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                                            </svg>
                                         </div>
                                     </div>
                                 </div>
@@ -139,7 +145,9 @@ document.addEventListener('click', function (e) {
 
     // Remove group
     if (e.target.classList.contains('remove-group')) {
-        e.target.closest('.addon-group').remove();
+        if (confirm("Are you sure you want to remove this group?")) {
+            e.target.closest('.addon-group').remove();
+        }
     }
 
     // Remove individual add-on
