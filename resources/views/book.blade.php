@@ -242,7 +242,7 @@
                     </div>
                     <div class="mt-2 inline-flex justify-between w-full">
                         <span>Tour price</span>
-                        <span>{{$symbol}} {{$selectedDate->price}}</span>
+                        <span>{{$symbol}} {{number_format($selectedDate->price, 2)}}</span>
                     </div>
                 </div>
                 <div class="mt-6 border-t inline-flex items-center justify-between border-black pt-4 w-full">
