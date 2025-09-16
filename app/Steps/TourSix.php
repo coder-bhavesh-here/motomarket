@@ -18,6 +18,40 @@ class TourSix extends Step
         // dd($this->model);
         if (isset($_GET['tour_id'])) {
             $this->tour = Tour::with(['prices', 'images'])->withTrashed()->find($_GET['tour_id']);
+            $embedUrl = "";
+            $url = $tour->tour_start_location;
+            if (!empty($url) && filter_var($url, FILTER_VALIDATE_URL) && str_contains($url, 'maps')) {
+                if (str_contains($url, 'maps.app.goo.gl')) {
+                    $ch = curl_init();
+                    curl_setopt($ch, CURLOPT_URL, $url);
+                    curl_setopt($ch, CURLOPT_HEADER, true);
+                    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, false);
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    $response = curl_exec($ch);
+                    curl_close($ch);
+
+                    if (preg_match('/Location:\s*(.*)\s/i', $response, $matches)) {
+                        $url = trim($matches[1]); // Replace short URL with expanded URL
+                    }
+                }
+
+                // 4️⃣ Extract query params (lat/lng or place)
+                $lat = $lng = null;
+                if (preg_match('/@([-0-9.]+),([-0-9.]+)/', $url, $matches)) {
+                    $lat = $matches[1];
+                    $lng = $matches[2];
+                }
+
+                // 5️⃣ Build embed URL
+                if ($lat && $lng) {
+                    // No API key needed
+                    $embedUrl = "https://www.google.com/maps?q={$lat},{$lng}&output=embed&z=17";
+                    // $embedUrl = "https://www.google.com/maps?q={$lat},{$lng}&output=embed&z=17&t=k";
+                } else {
+                    // Fallback for place links
+                    $embedUrl = str_replace("https://www.google.com/maps", "https://www.google.com/maps/embed", $url);
+                }
+            }
             if (!$this->tour) {
                 abort(404, 'Tour not found');
             }
