@@ -10,7 +10,9 @@ $(".step-heading").click(function () {
     const step = $(this).data('id');
     console.log("step", step);
     const urlParams = new URLSearchParams(window.location.search);
+    console.log("urlParams", urlParams);
     const currentStep =  urlParams.get('activeStep');
+    console.log("currentStep", currentStep);
     saveStep(currentStep, step);
 });
 $(".submit-button").click(function (e) {
@@ -628,6 +630,7 @@ document.querySelectorAll(".save-exit-button").forEach(function (element) {
 function saveStep(currentStep, direction = "next") {
     currentStep = parseInt(currentStep) || 0;
     const url = new URL(window.location.href);
+    console.log("url", url);
     var notyf = new Notyf({
         duration: 1500,
         position: {
@@ -888,6 +891,10 @@ function saveStep(currentStep, direction = "next") {
                 alert('Something went wrong.');
             }
         });
+    }
+    if (currentStep === 5) {
+        let tour_id = parseInt(url.searchParams.get("tour_id")) || undefined;
+        handleRedirect({tour_id: tour_id});
     }
     return false;
 }
