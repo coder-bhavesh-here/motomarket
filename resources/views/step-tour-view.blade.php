@@ -12,6 +12,17 @@
 <link href="https://cdn.jsdelivr.net/npm/lightgallery@2.0.0-beta.3/css/lg-share.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lightgallery/2.8.3/lightgallery.min.js"></script>
 @endpush
+<style>
+    .lg-next:before {
+        color: #999 !important;
+    }
+    .lg-prev:after {
+        color: #999 !important;
+    }
+    .lg-toolbar .lg-icon {
+        color: #999 !important;
+    }
+</style>
 @php
     $currency = $tour->user->tour_currency;
     $symbol = match ($currency) {
