@@ -10,6 +10,7 @@ class TourSix extends Step
     // Step view located at resources/views/steps/general.blade.php 
     protected string $view = 'livewire.tours.steps.sixth';
     public $tour;
+    public $embedUrl;
     /*
      * Initialize step fields
      */
@@ -18,7 +19,7 @@ class TourSix extends Step
         // dd($this->model);
         if (isset($_GET['tour_id'])) {
             $this->tour = Tour::with(['prices', 'images'])->withTrashed()->find($_GET['tour_id']);
-            $embedUrl = "";
+            $this->embedUrl = "";
             $url = $this->tour->tour_start_location;
             if (!empty($url) && filter_var($url, FILTER_VALIDATE_URL) && str_contains($url, 'maps')) {
                 if (str_contains($url, 'maps.app.goo.gl')) {
@@ -45,11 +46,11 @@ class TourSix extends Step
                 // 5️⃣ Build embed URL
                 if ($lat && $lng) {
                     // No API key needed
-                    $embedUrl = "https://www.google.com/maps?q={$lat},{$lng}&output=embed&z=17";
+                    $this->embedUrl = "https://www.google.com/maps?q={$lat},{$lng}&output=embed&z=17";
                     // $embedUrl = "https://www.google.com/maps?q={$lat},{$lng}&output=embed&z=17&t=k";
                 } else {
                     // Fallback for place links
-                    $embedUrl = str_replace("https://www.google.com/maps", "https://www.google.com/maps/embed", $url);
+                    $this->embedUrl = str_replace("https://www.google.com/maps", "https://www.google.com/maps/embed", $url);
                 }
             }
             if (!$this->tour) {
