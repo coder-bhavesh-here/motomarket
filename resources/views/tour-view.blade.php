@@ -191,7 +191,7 @@ integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxV
 <div class="mx-3">
     <iframe 
         src="{{$embedUrl}}" 
-        width="600" 
+        width="100%" 
         height="450" 
         style="border:0;" 
         allowfullscreen 
