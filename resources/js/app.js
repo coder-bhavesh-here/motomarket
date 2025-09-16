@@ -31,8 +31,21 @@ $(".submit-button").click(function (e) {
         },
         dataType: "json",
         success: function (response) {
-            alert(response.success);
-            window.location.href = "/tour-management";
+            var notyf = new Notyf({
+                duration: 2500,
+                position: {
+                    x: 'center',
+                    y: 'top',
+                },
+                types: [
+                    { type: 'success', background: '#556b2f', icon: false },
+                    { type: 'error', background: 'red', icon: false }
+                ]
+            });
+            notyf.success(response.success);
+            setTimeout(function() {
+                window.location.href = "/tour-management";
+            }, 2500);
         },
     });
     return false;
