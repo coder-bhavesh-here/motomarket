@@ -287,6 +287,10 @@
     $(document).ready(function () {
         setTimeout(function () {
             var $slickDemo = $(".slider");
+            console.log("$slickDemo.length", $slickDemo.length);
+            console.log("$slickDemo.hasClass('slick-initialized')", $slickDemo.hasClass('slick-initialized'));
+            console.log("$slickDemo", $slickDemo);
+            
             if ($slickDemo.length > 0 && !$slickDemo.hasClass('slick-initialized')) {
                 $slickDemo.on('init', function (event, slick, direction) {
                     console.log('Slick slider initialized');
