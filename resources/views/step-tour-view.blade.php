@@ -83,7 +83,7 @@
     </a>
     <div class="slider">
         @foreach (($tour->images = $tour->images->sortBy('index')) as $image)
-            <img src="{{ asset('storage') . '/' . $image->image_path }}" class="slide-images img-with-preview" alt=""
+            <img src="{{ asset('storage') . '/' . $image->image_path }}" class="slide-images" alt=""
                 srcset="">
         @endforeach
     </div>
