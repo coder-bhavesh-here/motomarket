@@ -19,7 +19,7 @@ class TourSix extends Step
         if (isset($_GET['tour_id'])) {
             $this->tour = Tour::with(['prices', 'images'])->withTrashed()->find($_GET['tour_id']);
             $embedUrl = "";
-            $url = $tour->tour_start_location;
+            $url = $this->tour->tour_start_location;
             if (!empty($url) && filter_var($url, FILTER_VALIDATE_URL) && str_contains($url, 'maps')) {
                 if (str_contains($url, 'maps.app.goo.gl')) {
                     $ch = curl_init();
