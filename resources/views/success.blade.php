@@ -31,19 +31,11 @@
         <div class="mt-5">
             @php
                 use Carbon\Carbon;
-
                 $now = Carbon::now()->startOfDay();
-                echo $now;
                 $startDate = Carbon::parse($date)->startOfDay();
-                echo $startDate;
-                $paymentDate = $startDate->subDays(30); // subtract 30 days
-
-                $daysToGo = $now->diffInDays($startDate, false); // false allows negative values if the date has passed
-                echo $daysToGo;
-
-                // Ensure it's at least 0
+                $paymentDate = (clone $startDate)->subDays(30);
+                $daysToGo = $now->diffInDays($startDate, false);
                 $daysToGo = max(0, round($daysToGo));
-
                 $digits = str_split($daysToGo);
             @endphp
 
