@@ -187,6 +187,19 @@ integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxV
 <div class="text-[#0F172A] mx-3 mt-4 text-xs womsm:text-sm wommd:text-base font-medium">
     {!! $tour->tour_description !!}
 </div>
+@if ($embedUrl!='')
+<div class="mx-3">
+    <iframe 
+        src="{{$embedUrl}}" 
+        width="600" 
+        height="450" 
+        style="border:0;" 
+        allowfullscreen 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+</div>
+@endif
 <div class="features mx-3 grid grid-cols-1 womsm:grid-cols-2 justify-center w-full">
     <div class="included mt-4">
         <div class="header inline-flex justify-center items-center">
