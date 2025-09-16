@@ -8,6 +8,7 @@ import "./bootstrap";
 let table = new DataTable("#datatable");
 $(".step-heading").click(function () { 
     const step = $(this).data('id');
+    console.log("step", step);
     const urlParams = new URLSearchParams(window.location.search);
     const currentStep =  urlParams.get('activeStep');
     saveStep(currentStep, step);
