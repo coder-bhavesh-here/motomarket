@@ -340,6 +340,7 @@
     }
 
     $(".make-payment").click(function(e) {
+        showLoader();
         e.preventDefault();
         // First validate the form
         if (!validateForm()) {
@@ -380,6 +381,7 @@
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             success: function(response) {
+                hideLoader();
                 window.location.href = response.redirect_url;
             }
         });
