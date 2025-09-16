@@ -893,11 +893,11 @@ function saveStep(currentStep, direction = "next") {
 $(".select2").select2({
     theme: "classic",
 });
-$(".slider").slick({
-    dots: true,
-    infinite: true,
-    speed: 300,
-    slidesToShow: 1,
-    centerMode: true,
-    variableWidth: true,
-});
+// $(".slider").slick({
+//     dots: true,
+//     infinite: true,
+//     speed: 300,
+//     slidesToShow: 1,
+//     centerMode: true,
+//     variableWidth: true,
+// });
