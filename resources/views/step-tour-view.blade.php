@@ -270,42 +270,11 @@
 </div>
 @push('scripts')
 <script>
-    // var slickEl = $(".slider");
-    // var $slickDemo = $(".slider");
-
-    // $slickDemo.on('init', function (event, slick, direction) {
-    //     console.log('Slick slider initialized');
-    //     const container = document.querySelector('.slick-track');
-    //     lightGallery(container, {
-    //         thumbnail: false,
-    //         pager: false,
-    //         download: false,
-    //         plugins: [],
-    //         hash: false,
-    //         preload: 4,
-    //     });
-    // });
-    // // slickEl.slick({
-    // $slickDemo.slick({
-    //     dots: true,
-    //     infinite: true,
-    //     speed: 300,
-    //     slidesToShow: 1,
-    //     focusOnSelect: true,
-    //     centerMode: false,
-    //     variableWidth: true,
-    // });
     $(document).ready(function () {
         setTimeout(function () {
             var $slickDemo = $(".slider");
-            console.log("$slickDemo.length", $slickDemo.length);
-            console.log("$slickDemo.hasClass('slick-initialized')", $slickDemo.hasClass('slick-initialized'));
-            console.log("$slickDemo", $slickDemo);
-            
             if ($slickDemo.length > 0 && !$slickDemo.hasClass('slick-initialized')) {
                 $slickDemo.on('init', function (event, slick, direction) {
-                    console.log('Slick slider initialized');
-                    
                     const container = document.querySelector('.slick-track');
                     if (container) {
                         lightGallery(container, {
