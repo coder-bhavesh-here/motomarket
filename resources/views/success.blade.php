@@ -33,10 +33,13 @@
                 use Carbon\Carbon;
 
                 $now = Carbon::now()->startOfDay();
+                echo $now;
                 $startDate = Carbon::parse($date)->startOfDay();
+                echo $startDate;
                 $paymentDate = $startDate->subDays(30); // subtract 30 days
 
                 $daysToGo = $now->diffInDays($startDate, false); // false allows negative values if the date has passed
+                echo $daysToGo;
 
                 // Ensure it's at least 0
                 $daysToGo = max(0, round($daysToGo));
@@ -64,7 +67,7 @@
         </div>
     </div>
     <div class="mt-4 flex justify-center">
-        <div class="w-11/12 h-[700px]">
+        <div class="w-11/12 success h-[700px]">
             <img class="aspect-square object-cover h-full w-full" src="{{ asset('images/bike2.jpg') }}" alt="Bike Image 2">
         </div>
     </div>

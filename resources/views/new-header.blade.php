@@ -247,6 +247,7 @@
         }
 
         img:not(.favourite img),
+        img:not(.success img),
         video:not(.favourite video) {
             max-width: 100%;
             height: auto
