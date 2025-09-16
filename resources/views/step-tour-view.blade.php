@@ -252,11 +252,28 @@
 </div>
 @push('scripts')
 <script>
-    $(".slider").slick({
+    var slickEl = $(".slider");
+    var $slickDemo = $(".slider");
+
+    $slickDemo.on('init', function (event, slick, direction) {
+        console.log('Slick slider initialized');
+        const container = document.querySelector('.slick-track');
+        lightGallery(container, {
+            thumbnail: false,
+            pager: false,
+            download: false,
+            plugins: [],
+            hash: false,
+            preload: 4,
+        });
+    });
+    // slickEl.slick({
+    $slickDemo.slick({
         dots: true,
         infinite: true,
         speed: 300,
         slidesToShow: 1,
+        focusOnSelect: true,
         centerMode: false,
         variableWidth: true,
     });
