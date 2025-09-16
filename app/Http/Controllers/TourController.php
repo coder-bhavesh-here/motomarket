@@ -294,7 +294,8 @@ class TourController extends Controller
             // 5️⃣ Build embed URL
             if ($lat && $lng) {
                 // No API key needed
-                $embedUrl = "https://www.google.com/maps?q={$lat},{$lng}&output=embed&z=17&t=k";
+                $embedUrl = "https://www.google.com/maps?q={$lat},{$lng}&output=embed&z=17";
+                // $embedUrl = "https://www.google.com/maps?q={$lat},{$lng}&output=embed&z=17&t=k";
             } else {
                 // Fallback for place links
                 $embedUrl = str_replace("https://www.google.com/maps", "https://www.google.com/maps/embed", $url);
