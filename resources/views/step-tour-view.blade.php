@@ -285,37 +285,38 @@
     //     variableWidth: true,
     // });
     $(document).ready(function () {
-        var $slickDemo = $(".slider");
-        if ($slickDemo.length > 0 && !$slickDemo.hasClass('slick-initialized')) {
-            $slickDemo.on('init', function (event, slick, direction) {
-                console.log('Slick slider initialized');
-                
-                const container = document.querySelector('.slick-track');
-                if (container) {
-                    lightGallery(container, {
-                        thumbnail: false,
-                        pager: false,
-                        download: false,
-                        plugins: [],
-                        hash: false,
-                        preload: 4,
-                    });
-                }
-            });
+        setTimeout(function () {
+            var $slickDemo = $(".slider");
+            if ($slickDemo.length > 0 && !$slickDemo.hasClass('slick-initialized')) {
+                $slickDemo.on('init', function (event, slick, direction) {
+                    console.log('Slick slider initialized');
+                    
+                    const container = document.querySelector('.slick-track');
+                    if (container) {
+                        lightGallery(container, {
+                            thumbnail: false,
+                            pager: false,
+                            download: false,
+                            plugins: [],
+                            hash: false,
+                            preload: 4,
+                        });
+                    }
+                });
 
-            $slickDemo.slick({
-                dots: true,
-                infinite: true,
-                speed: 300,
-                slidesToShow: 1,
-                focusOnSelect: true,
-                centerMode: false,
-                variableWidth: true,
-            });
-        } else {
-            console.warn("No .slider element found or already initialized");
-        }
-
+                $slickDemo.slick({
+                    dots: true,
+                    infinite: true,
+                    speed: 300,
+                    slidesToShow: 1,
+                    focusOnSelect: true,
+                    centerMode: false,
+                    variableWidth: true,
+                });
+            } else {
+                console.warn("No .slider element found or already initialized");
+            }
+        }, 1000);
         var notyf = new Notyf({
             duration: 7000,
             position: { x: 'center', y: 'top' },
