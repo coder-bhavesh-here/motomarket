@@ -182,7 +182,7 @@
 @if ($embedUrl!='')
 <div class="mx-3 mt-5">
     <span style="font-weight: 900" class="flex mb-2 text-black text-sm womsm:text-lg wommd:text-xl">TOUR MEETING LOCATION</span>
-    @if (str_contains($url, 'google.com'))
+    @if (str_contains($embedUrl, 'google.com'))
         <iframe 
             src="{{$embedUrl}}" 
             width="100%" 
