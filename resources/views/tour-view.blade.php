@@ -17,9 +17,6 @@ integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxV
     .lg-toolbar .lg-icon {
         color: #999 !important;
     }
-    a:hover{
-        color: white !important;
-    }
 </style>
 @php
     $currency = $tour->user->tour_currency;
@@ -204,7 +201,7 @@ integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxV
             referrerpolicy="no-referrer-when-downgrade">
         </iframe>
     @else
-        <a class="text-black font-bold" href="{{ Str::startsWith($embedUrl, ['http://', 'https://']) ? $embedUrl : 'https://' . $embedUrl }}" target="_blank">    
+        <a onmouseover="this.style.color='black'" class="text-black font-bold" href="{{ Str::startsWith($embedUrl, ['http://', 'https://']) ? $embedUrl : 'https://' . $embedUrl }}" target="_blank">    
             Location
         </a>
     @endif

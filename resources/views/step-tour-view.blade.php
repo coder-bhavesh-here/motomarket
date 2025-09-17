@@ -22,9 +22,6 @@
     .lg-toolbar .lg-icon {
         color: #999 !important;
     }
-    a:hover{
-        color: white !important;
-    }
 </style>
 @php
     $currency = $tour->user->tour_currency;
@@ -184,7 +181,7 @@
 </div>
 @if ($embedUrl!='')
 <div class="mx-3 mt-5">
-    <span style="font-weight: 900" class="flex mb-2 text-black text-sm womsm:text-lg wommd:text-xl">TOUR MEETING LOCATION</span>
+    <span onmouseover="this.style.color='black'" style="font-weight: 900" class="flex mb-2 text-black text-sm womsm:text-lg wommd:text-xl">TOUR MEETING LOCATION</span>
     @if (str_contains($embedUrl, 'google.com'))
         <iframe 
             src="{{$embedUrl}}" 
