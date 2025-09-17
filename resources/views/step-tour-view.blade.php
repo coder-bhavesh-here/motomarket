@@ -192,7 +192,8 @@
         referrerpolicy="no-referrer-when-downgrade">
     </iframe>
     @if ($tour->tour_meeting_location_notes !='')
-        <div class="m-3">
+    <div class="m-3">
+            <span style="font-weight: 900" class="mb-2 text-black text-sm womsm:text-base wommd:text-lg">TOUR MEETING LOCATION NOTES</span>
             {!!$tour->tour_meeting_location_notes!!}
         </div>
     @endif
