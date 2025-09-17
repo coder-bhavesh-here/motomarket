@@ -300,6 +300,8 @@ class TourController extends Controller
                 // Fallback for place links
                 $embedUrl = str_replace("https://www.google.com/maps", "https://www.google.com/maps/embed", $url);
             }
+        } else {
+            $embedUrl = $url;
         }
         return view('tour-detail', [
             'tour' => $tour,
