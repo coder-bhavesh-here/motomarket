@@ -246,7 +246,7 @@ integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxV
         $counter = 0;
     @endphp
     @if($grouped->isEmpty())
-        <div class="font-bold text-black text-xl">
+        <div class="font-bold text-red-600 mx-3 text-xl">
             No future tours
         </div>
     @else
