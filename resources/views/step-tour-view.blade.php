@@ -181,6 +181,7 @@
 </div>
 @if ($embedUrl!='')
 <div class="mx-3 mt-5">
+    <span style="font-weight: 900" class="text-black text-sm womsm:text-lg wommd:text-xl">TOUR MEETING LOCATION</span>
     <iframe 
         src="{{$embedUrl}}" 
         width="100%" 
@@ -190,6 +191,11 @@
         loading="lazy" 
         referrerpolicy="no-referrer-when-downgrade">
     </iframe>
+    @if ($tour->tour_meeting_location_notes !='')
+        <div class="m-3">
+            {!!$tour->tour_meeting_location_notes!!}
+        </div>
+    @endif
 </div>
 @endif
 <div class="features mx-3 grid grid-cols-1 womsm:grid-cols-2 justify-center w-full">
