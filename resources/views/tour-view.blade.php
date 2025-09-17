@@ -189,7 +189,7 @@ integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxV
 </div>
 @if ($embedUrl!='')
 <div class="mx-3 mt-5">
-    <span style="font-weight: 900" class="text-black text-sm womsm:text-lg wommd:text-xl">TOUR MEETING LOCATION</span>
+    <span style="font-weight: 900" class="mb-4 text-black text-sm womsm:text-lg wommd:text-xl">TOUR MEETING LOCATION</span>
     <iframe 
         src="{{$embedUrl}}" 
         width="100%" 
@@ -200,8 +200,8 @@ integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxV
         referrerpolicy="no-referrer-when-downgrade">
     </iframe>
     @if ($tour->tour_meeting_location_notes !='')
-    <div class="m-3">
-            <span style="font-weight: 900" class="mb-2 text-black text-sm womsm:text-base wommd:text-lg">TOUR MEETING LOCATION NOTES</span>
+    <div class="my-4">
+            <span style="font-weight: 900" class="mb-3 text-black text-sm womsm:text-base wommd:text-lg">TOUR MEETING LOCATION NOTES</span>
             {!!$tour->tour_meeting_location_notes!!}
         </div>
     @endif
