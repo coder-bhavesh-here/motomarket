@@ -22,6 +22,9 @@
     .lg-toolbar .lg-icon {
         color: #999 !important;
     }
+    a:hover{
+        color: white !important;
+    }
 </style>
 @php
     $currency = $tour->user->tour_currency;

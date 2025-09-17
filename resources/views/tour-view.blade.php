@@ -17,6 +17,9 @@ integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxV
     .lg-toolbar .lg-icon {
         color: #999 !important;
     }
+    a:hover{
+        color: white !important;
+    }
 </style>
 @php
     $currency = $tour->user->tour_currency;
