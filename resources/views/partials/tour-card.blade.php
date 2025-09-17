@@ -69,12 +69,33 @@
                     <img src="{{ asset('images') . '/hourglass.svg' }}" alt="">
                     <span>{{ isset($tour->prices[0]) && isset($tour->prices[0]->duration_days) ? $tour->prices[0]->duration_days : 0 }} days</span>
                 </span>
-                @if ($tour->prices->count() > 0)
+                {{-- @if ($tour->prices->count() > 0)
                     <span class="badge">
                         <img src="{{ asset('images') . '/cal.svg' }}" alt="">
                         <span>{{ $tour->prices[0]->date . ($tour->prices->count() > 1 ? ' (+' . ($tour->prices->count() - 1) . ' more)' : '') }}</span>
                     </span>
+                @endif --}}
+                @php
+                use Carbon\Carbon;
+                $futurePrices = $tour->prices->filter(function ($price) {
+                    return Carbon::parse($price->date)->isToday() || Carbon::parse($price->date)->isFuture();
+                });
+                $futurePrices = $futurePrices->sortBy('date')->values();
+                @endphp
+                @if ($futurePrices->count() > 0)
+                    <span class="badge">
+                        <img src="{{ asset('images') . '/cal.svg' }}" alt="">
+                        <span>
+                            {{ $futurePrices[0]->date . ($futurePrices->count() > 1 ? ' (+' . ($futurePrices->count() - 1) . ' more)' : '') }}
+                        </span>
+                    </span>
+                @else
+                    <span class="badge">
+                        <img src="{{ asset('images') . '/cal.svg' }}" alt="">
+                        <span>No future tours</span>
+                    </span>
                 @endif
+
                 <span class="badge">
                     <img src="{{ asset('images') . '/earth.svg' }}" alt="">
                     <span>{{ str_replace(',', ', ', $tour->countries) }}</span></span>
