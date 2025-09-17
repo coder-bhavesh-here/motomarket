@@ -180,7 +180,7 @@
     {!! $tour->tour_description !!}
 </div>
 @if ($embedUrl!='')
-<div class="mx-3">
+<div class="mx-3 mt-5">
     <iframe 
         src="{{$embedUrl}}" 
         width="100%" 
