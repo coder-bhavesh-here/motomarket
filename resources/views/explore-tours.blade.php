@@ -186,17 +186,10 @@
                                         </span>
                                     @endif --}}
                                     @php
-                                    use Carbon\Carbon;
-
-                                    // Filter future dates only (including today)
-                                    $futurePrices = $tour->prices->filter(function ($price) {
-                                        return Carbon::parse($price->date)->isToday() || Carbon::parse($price->date)->isFuture();
-                                    });
-
-                                    // Sort future dates so the earliest one comes first
-                                    $futurePrices = $futurePrices->sortBy('date')->values();
+                                        $futurePrices = $tour->prices->filter(function ($price) {
+                                            return \Carbon\Carbon::parse($price->date)->isToday() || \Carbon\Carbon::parse($price->date)->isFuture();
+                                        })->sortBy('date')->values();
                                     @endphp
-
                                     @if ($futurePrices->count() > 0)
                                         <span class="badge">
                                             <img src="{{ asset('images') . '/cal.svg' }}" alt="">
