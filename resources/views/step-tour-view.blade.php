@@ -237,49 +237,55 @@
 
         $counter = 0;
     @endphp
-    @foreach ($grouped as $monthName => $prices)
-        <div class="accordion mt-2" id="accordionExample">
-            <div class="accordion-item" style="border: 0 !important;">
-                <h2 class="accordion-header" id="heading{{ $counter }}">
-                    <button class="border-0 accordion-button text-base womsm:text-lg wommd:text-xl font-bold text-black"
-                        style="background-color: #f2f2f2" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#collapse{{ $counter }}" aria-controls="collapse{{ $counter }}">
-                        {{ $monthName }}
-                    </button>
-                </h2>
-                <div id="collapse{{ $counter }}" class="accordion-collapse show" style="background-color: #f2f2f2"
-                    aria-labelledby="heading{{ $counter }}" data-bs-parent="#accordionExample">
-                    <div class="accordion-body justify-items-center p-1 womsm:p-3">
-                        @php
-                            $tac = 0;
-                        @endphp
-                        @foreach ($prices as $key => $price)
-                            <div
-                                class="grid grid-cols-4 rounded-sm w-full justify-between womsm:justify-start items-center p-3 womsm:p-4 {{ $tac % 2 === 0 ? 'bg-customlightgreen' : '' }}">
-                                <div class="text-xs womsm:text-sm text-left wommd:text-base text-[#0F172A]">
-                                    {{ \Carbon\Carbon::parse($price->date)->format('F d, Y') }}</div>
-                                <div class="text-xs text-end womsm:text-sm wommd:text-base womsm:ml-8 wommd:ml-16 font-bold text-[#0F172A]">
-                                    {{($price->duration_days + 1)." days"}}</div>
-                                <div class="text-xs text-end womsm:text-sm wommd:text-base womsm:ml-8 wommd:ml-16 font-bold text-[#0F172A]">
-                                    {{ $symbol ." " . number_format($price->price, 2) }}</div>
-                                @php
-                                    $hasAddons = $price->tour->addonGroups()->exists();
-                                    $bookUrl = $hasAddons ? "/bookAddon/{$price->id}" : "/book/{$price->id}";
-                                @endphp
-                                <div class="text-xs womsm:text-sm text-right wommd:text-base ml-2 womsm:ml-8 wommd:ml-16 font-bold text-[#0F172A]">
-                                    <a class="bg-[#556b2f] rounded disabled-button text-white border-0 p-2">BOOK</a>
-                                </div>
-                            </div>
+    @if($grouped->isEmpty())
+        <div class="font-bold text-black text-xl">
+            No future tours
+        </div>
+    @else
+        @foreach ($grouped as $monthName => $prices)
+            <div class="accordion mt-2" id="accordionExample">
+                <div class="accordion-item" style="border: 0 !important;">
+                    <h2 class="accordion-header" id="heading{{ $counter }}">
+                        <button class="border-0 accordion-button text-base womsm:text-lg wommd:text-xl font-bold text-black"
+                            style="background-color: #f2f2f2" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapse{{ $counter }}" aria-controls="collapse{{ $counter }}">
+                            {{ $monthName }}
+                        </button>
+                    </h2>
+                    <div id="collapse{{ $counter }}" class="accordion-collapse show" style="background-color: #f2f2f2"
+                        aria-labelledby="heading{{ $counter }}" data-bs-parent="#accordionExample">
+                        <div class="accordion-body justify-items-center p-1 womsm:p-3">
                             @php
-                                $counter++;
-                                $tac++;
+                                $tac = 0;
                             @endphp
-                        @endforeach
+                            @foreach ($prices as $key => $price)
+                                <div
+                                    class="grid grid-cols-4 rounded-sm w-full justify-between womsm:justify-start items-center p-3 womsm:p-4 {{ $tac % 2 === 0 ? 'bg-customlightgreen' : '' }}">
+                                    <div class="text-xs womsm:text-sm text-left wommd:text-base text-[#0F172A]">
+                                        {{ \Carbon\Carbon::parse($price->date)->format('F d, Y') }}</div>
+                                    <div class="text-xs text-end womsm:text-sm wommd:text-base womsm:ml-8 wommd:ml-16 font-bold text-[#0F172A]">
+                                        {{($price->duration_days + 1)." days"}}</div>
+                                    <div class="text-xs text-end womsm:text-sm wommd:text-base womsm:ml-8 wommd:ml-16 font-bold text-[#0F172A]">
+                                        {{ $symbol ." " . number_format($price->price, 2) }}</div>
+                                    @php
+                                        $hasAddons = $price->tour->addonGroups()->exists();
+                                        $bookUrl = $hasAddons ? "/bookAddon/{$price->id}" : "/book/{$price->id}";
+                                    @endphp
+                                    <div class="text-xs womsm:text-sm text-right wommd:text-base ml-2 womsm:ml-8 wommd:ml-16 font-bold text-[#0F172A]">
+                                        <a class="bg-[#556b2f] rounded disabled-button text-white border-0 p-2">BOOK</a>
+                                    </div>
+                                </div>
+                                @php
+                                    $counter++;
+                                    $tac++;
+                                @endphp
+                            @endforeach
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    @endforeach
+        @endforeach
+    @endif
 </div>
 @push('scripts')
 <script>
