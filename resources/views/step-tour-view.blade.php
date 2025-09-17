@@ -193,7 +193,9 @@
             referrerpolicy="no-referrer-when-downgrade">
         </iframe>
     @else
-        <a href="{{$embedUrl}}">Location</a>
+    <a class="text-black font-bold" href="{{ Str::startsWith($embedUrl, ['http://', 'https://']) ? $embedUrl : 'https://' . $embedUrl }}" target="_blank">    
+        Location
+    </a>
     @endif
 </div>
 @endif
