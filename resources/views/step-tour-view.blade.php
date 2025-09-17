@@ -181,7 +181,7 @@
 </div>
 @if ($embedUrl!='')
 <div class="mx-3 mt-5">
-    <span style="font-weight: 900" class="mb-4 text-black text-sm womsm:text-lg wommd:text-xl">TOUR MEETING LOCATION</span>
+    <span style="font-weight: 900" class="flex mb-2 text-black text-sm womsm:text-lg wommd:text-xl">TOUR MEETING LOCATION</span>
     <iframe 
         src="{{$embedUrl}}" 
         width="100%" 
@@ -193,7 +193,7 @@
     </iframe>
     @if ($tour->tour_meeting_location_notes !='')
     <div class="my-4">
-            <span style="font-weight: 900" class="mb-3 text-black text-sm womsm:text-base wommd:text-lg">TOUR MEETING LOCATION NOTES</span>
+            <span style="font-weight: 900" class="flex mb-2 text-black text-sm womsm:text-base wommd:text-lg">TOUR MEETING LOCATION NOTES</span>
             {!!$tour->tour_meeting_location_notes!!}
         </div>
     @endif
