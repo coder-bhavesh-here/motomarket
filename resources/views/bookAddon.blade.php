@@ -111,7 +111,7 @@
                 </div>
                 <div class="flex mt-2 mb-6">
                     @foreach ($tour->addonGroups as $key => $group)
-                        <a href="#{{strtolower(str_replace(' ','_', $group->name))}}" class="text-lg text-green underline font-bold mr-2">{{ $group->name }} {{ ($key + 1) < count($tour->addonGroups) ? "|" : '' }}</a>
+                        <a href="#{{strtolower(str_replace(' ','_', $group->name))}}" class="scoller text-lg text-green underline font-bold mr-2">{{ $group->name }} {{ ($key + 1) < count($tour->addonGroups) ? "|" : '' }}</a>
                     @endforeach
                 </div>
                 @foreach ($tour->addonGroups as $group)
@@ -316,6 +316,16 @@
         }
         $(".addon-checkbox").on("click", function() {
             calculateTotalPrice();
+        });
+    });
+    document.querySelectorAll('a.scoller').forEach(link => {
+        link.addEventListener('click', function(e) {
+            e.preventDefault();
+            const targetId = this.getAttribute('href').substring(1);
+            const targetEl = document.getElementById(targetId);
+            if (targetEl) {
+                targetEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
         });
     });
 </script>
