@@ -127,7 +127,7 @@
                         <div class="w-full">
                             <span class="form-label font-medium text-[#000F22]">Full Name</span>
                             <div class="items-center">
-                                <x-input id="name" placeholder="Please provide your formal full name" />
+                                <x-input id="name" placeholder="Please provide your formal full name" value="{{auth()->user()->name." ".auth()->user()->last_name}}"/>
                             </div>
                         </div>
                     </div>
@@ -147,7 +147,7 @@
                         <div class="w-full">
                             <span class="form-label font-medium text-[#000F22]">Your Address</span>
                             <div class="items-center">
-                                <x-textarea id="address" placeholder="Please provide your address" />
+                                <x-textarea id="address" placeholder="Please provide your address">{{ auth()->user()->address }}</x-textarea>
                             </div>
                         </div>
                     </div>
@@ -160,7 +160,7 @@
                                 {{-- <x-input id="country" placeholder="Please provide country" /> --}}
                                 <select name="country" style="width: 100%" id="country">
                                     @foreach (config('countries.list') as $countryName)
-                                        <option value="{{ $countryName }}">
+                                        <option value="{{ $countryName }}" {{($country == $countryName ? "selected" : '')}}>
                                             {{ $countryName }}
                                         </option>
                                     @endforeach
@@ -174,7 +174,7 @@
                         <div class="w-full">
                             <span class="form-label font-medium text-[#000F22]">Postcode</span>
                             <div class="items-center">
-                                <x-input id="postcode" placeholder="Please provide postal code" />
+                                <x-input id="postcode" value="{{$pincode}}" placeholder="Please provide postal code" />
                             </div>
                         </div>
                     </div>
@@ -292,6 +292,10 @@
         strictMode: true,
         loadUtils: () => import("https://cdn.jsdelivr.net/npm/intl-tel-input@25.3.1/build/js/utils.js"),
     });
+    const storedNumber = "{{ auth()->user()->contact_number }}";
+    if (storedNumber) {
+        iti.setNumber(storedNumber); // Will auto-select country & fill number
+    }
 </script>
 <script>
     function openFilterModal() {
