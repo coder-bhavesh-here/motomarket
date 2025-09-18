@@ -31,6 +31,8 @@ class User extends Authenticatable
         'bank_name',
         'bank_operating_country',
         'iban',
+        'nationality',
+        'address',
         'swift_bic',
         'bank_account_number',
         'sort_code',

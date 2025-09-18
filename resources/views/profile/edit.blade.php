@@ -84,6 +84,20 @@
                             <x-input-error class="mt-2" :messages="$errors->get('last_name')" />
                         </div>
                         <div>
+                            <label class="font-bold text-black" for="nationality">Nationality</label>
+                            <x-text-input id="nationality" name="nationality" type="text" class="mt-1 block w-full" :value="old('nationality', $user->nationality)"
+                                required autofocus autocomplete="nationality" />
+                            <x-input-error class="mt-2" :messages="$errors->get('nationality')" />
+                        </div>
+                        <div>
+                            <label class="font-bold text-black" for="address">Address</label>
+                            <x-textarea 
+                                id="address" 
+                                name="answer"  
+                            >{{ $user->address }}</x-textarea>
+                            <x-input-error class="mt-2" :messages="$errors->get('address')" />
+                        </div>
+                        <div>
                             <label class="font-bold text-black" for="nickname">Nickname</label>
                             <x-text-input id="nickname" name="nickname" type="text" class="mt-1 block w-full" :value="old('nickname', $user->nickname)"
                                 required autofocus autocomplete="nickname" />
