@@ -127,7 +127,7 @@
                         <div class="w-full">
                             <span class="form-label font-medium text-[#000F22]">Full Name</span>
                             <div class="items-center">
-                                <x-input id="name" placeholder="Please provide your formal full name" value="{{auth()->user()->name." ".auth()->user()->last_name}}"/>
+                                <x-input id="name" placeholder="Please provide your formal full name" value="{{auth()->user()->name.' '.auth()->user()->last_name}}"/>
                             </div>
                         </div>
                     </div>
