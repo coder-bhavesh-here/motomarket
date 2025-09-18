@@ -92,13 +92,13 @@
                             class="text-sm womsm:text-base wommd:text-lg font-semibold text-black tour-owner ml-4">{{ $tour_operation_name }}</span>
                     </a>
                 </div>
-                <div class="font-extrabold text-black mt-2 text-lg womsm:text-xl wommd:text-2xl">
+                {{-- <div class="font-extrabold text-black mt-2 text-lg womsm:text-xl wommd:text-2xl">
                     YOUR BOOKING
                 </div>
                 <div class="text-sm womsm:text-base wommd:text-lg my-2 text-[#0F172A] inline-flex justify-center">
                     <span>{{ \Carbon\Carbon::parse($selectedDate->date)->format('F jS, Y') }}</span>
                     <span><a href="/tour/{{ $tour->id }}" class="text-green font-semibold ml-2 text-xs womsm:text-sm wommd:text-base"><u>Change</u></a></span>
-                </div>
+                </div> --}}
             </div>
             <div class="mt-5">
                 <input type="hidden" value="{{ $tour->id }}" id="tour_id">
@@ -111,7 +111,7 @@
                 </div>
                 <div class="flex mt-2 mb-6">
                     @foreach ($tour->addonGroups as $key => $group)
-                        <h2 class="text-lg text-green underline font-bold mr-2">{{ $group->name }} {{ ($key + 1) < count($tour->addonGroups) ? "|" : '' }}</h2>
+                        <a href="{{strtolower(str_replace(' ','_', $group->name))}}" class="text-lg text-green underline font-bold mr-2">{{ $group->name }} {{ ($key + 1) < count($tour->addonGroups) ? "|" : '' }}</a>
                     @endforeach
                 </div>
                 @foreach ($tour->addonGroups as $group)
