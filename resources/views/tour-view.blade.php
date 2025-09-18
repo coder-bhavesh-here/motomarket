@@ -187,6 +187,27 @@ integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxV
 <div class="text-[#0F172A] mx-3 mt-4 text-xs womsm:text-sm wommd:text-base font-medium">
     {!! $tour->tour_description !!}
 </div>
+
+<div class="features mx-3 grid grid-cols-1 womsm:grid-cols-2 justify-center w-full">
+    <div class="included mt-4">
+        <div class="header inline-flex justify-center items-center">
+            <img src="{{ asset('images/like.png') }}" alt="Included">
+            <span class="ml-3 text-base womsm:text-lg wommd:text-xl font-bold text-[#556B2F]">What’s included</span>
+        </div>
+        <div class="text-xs mt-6 womsm:text-sm wommd:text-base mr-5 wommd:mr-12 text-[#0F172A]">
+            {!! $tour->included !!}
+        </div>
+    </div>
+    <div class="not-included mt-4">
+        <div class="header inline-flex justify-center items-center">
+            <img src="{{ asset('images/dislike.png') }}" alt="Not Included">
+            <span class="ml-3 text-base womsm:text-lg wommd:text-xl font-bold text-[#B91C1C]">What’s not included</span>
+        </div>
+        <div class="text-xs mt-6 womsm:text-sm wommd:text-base mr-5 wommd:mr-12 text-[#0F172A]">
+            {!! $tour->not_included !!}
+        </div>
+    </div>
+</div>
 @if ($embedUrl!='')
 <div class="mx-3 mt-5">
     <span style="font-weight: 900" class="flex mb-2 text-black text-sm womsm:text-lg wommd:text-xl">TOUR MEETING LOCATION</span>
@@ -213,26 +234,6 @@ integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxV
     {!!$tour->tour_meeting_location_notes!!}
 </div>
 @endif
-<div class="features mx-3 grid grid-cols-1 womsm:grid-cols-2 justify-center w-full">
-    <div class="included mt-4">
-        <div class="header inline-flex justify-center items-center">
-            <img src="{{ asset('images/like.png') }}" alt="Included">
-            <span class="ml-3 text-base womsm:text-lg wommd:text-xl font-bold text-[#556B2F]">What’s included</span>
-        </div>
-        <div class="text-xs mt-6 womsm:text-sm wommd:text-base mr-5 wommd:mr-12 text-[#0F172A]">
-            {!! $tour->included !!}
-        </div>
-    </div>
-    <div class="not-included mt-4">
-        <div class="header inline-flex justify-center items-center">
-            <img src="{{ asset('images/dislike.png') }}" alt="Not Included">
-            <span class="ml-3 text-base womsm:text-lg wommd:text-xl font-bold text-[#B91C1C]">What’s not included</span>
-        </div>
-        <div class="text-xs mt-6 womsm:text-sm wommd:text-base mr-5 wommd:mr-12 text-[#0F172A]">
-            {!! $tour->not_included !!}
-        </div>
-    </div>
-</div>
 
 <div class="my-6" id="dates">
     @php
