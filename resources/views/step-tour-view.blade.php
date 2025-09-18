@@ -252,7 +252,7 @@
     @endphp
     @if($grouped->isEmpty())
         <div style="color: red;" class="font-extrabold mx-3 text-xl">
-            No future tours
+            oh oh, apologies, There are no active tours planned at the moment.
         </div>
     @else
         @foreach ($grouped as $monthName => $prices)
