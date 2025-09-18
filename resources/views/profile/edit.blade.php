@@ -86,7 +86,7 @@
                         <div>
                             <label class="font-bold text-black" for="nationality">Nationality</label>
                             <x-text-input id="nationality" name="nationality" type="text" class="mt-1 block w-full" :value="old('nationality', $user->nationality)"
-                                required autofocus autocomplete="nationality" />
+                                autofocus autocomplete="nationality" />
                             <x-input-error class="mt-2" :messages="$errors->get('nationality')" />
                         </div>
                         <div>
