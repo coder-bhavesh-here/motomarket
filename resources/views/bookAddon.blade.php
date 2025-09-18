@@ -111,12 +111,12 @@
                 </div>
                 <div class="flex mt-2 mb-6">
                     @foreach ($tour->addonGroups as $key => $group)
-                        <a href="{{strtolower(str_replace(' ','_', $group->name))}}" class="text-lg text-green underline font-bold mr-2">{{ $group->name }} {{ ($key + 1) < count($tour->addonGroups) ? "|" : '' }}</a>
+                        <a href="#{{strtolower(str_replace(' ','_', $group->name))}}" class="text-lg text-green underline font-bold mr-2">{{ $group->name }} {{ ($key + 1) < count($tour->addonGroups) ? "|" : '' }}</a>
                     @endforeach
                 </div>
                 @foreach ($tour->addonGroups as $group)
                 
-                    <div class="mb-12">
+                    <div class="mb-12" id="{{strtolower(str_replace(' ','_', $group->name))}}">
                         <h2 class="text-xl text-black font-bold">{{ $group->name }}</h2>
                         <p class="text-sm text-black mb-4">
                             {{ $group->is_required ? 'Mandatory. You must select one add-on from the list below.' : 'Optional. You can select multiple options.' }}
