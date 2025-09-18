@@ -137,7 +137,7 @@
                         <div class="w-full">
                             <span class="form-label font-medium text-[#000F22]">Nationality</span>
                             <div class="items-center">
-                                <x-input id="nationality" placeholder="Please provide your nationality" />
+                                <x-input id="nationality" placeholder="Please provide your nationality" value="{{$nationality}}"/>
                             </div>
                         </div>
                     </div>

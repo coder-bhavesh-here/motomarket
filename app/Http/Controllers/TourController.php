@@ -16,6 +16,7 @@ use App\Models\TourImage;
 use App\Models\TourPrice;
 use App\Models\TourQuestion;
 use App\Models\TourSetting;
+use Illuminate\Support\Str;
 use App\Models\User;
 use Carbon\Carbon;
 use DateTime;
@@ -750,12 +751,27 @@ class TourController extends Controller
                 'user_id' => auth()->user()->id,
             ]
         );
+        $nationality = auth()->user->nationality;
+        $address = auth()->user->address;
+        $countryList = config('countries.list'); // e.g. ['India', 'USA', 'Portugal', ...]
+        $foundCountry = null;
+        foreach ($countryList as $country) {
+            if (Str::contains(strtolower($address), strtolower($country))) {
+                $foundCountry = $country;
+                break;
+            }
+        }
+        preg_match_all('/\b\d{4,6}\b/', $address, $matches);
+        $pincode = !empty($matches[0]) ? end($matches[0]) : null;
         return view('book', [
             'tour' => $tour,
             'nationalities' => ['India', 'Europe', 'US  '],
             'tourDates' => $tour->prices,
             'selectedDate' => $price,
-            'addons' => $addons
+            'addons' => $addons,
+            'nationality' => $nationality,
+            'country' => $foundCountry,
+            'pincode' => $pincode
         ]);
     }
     public function details($bookingId): View
