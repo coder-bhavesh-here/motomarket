@@ -751,8 +751,8 @@ class TourController extends Controller
                 'user_id' => auth()->user()->id,
             ]
         );
-        $nationality = auth()->user->nationality;
-        $address = auth()->user->address;
+        $nationality = auth()->user()->nationality;
+        $address = auth()->user()->address;
         $countryList = config('countries.list'); // e.g. ['India', 'USA', 'Portugal', ...]
         $foundCountry = null;
         foreach ($countryList as $country) {
