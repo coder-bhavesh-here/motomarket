@@ -51,7 +51,7 @@
                     <div class="grid">
                         <div class="font-bold text-black">
                         </div>
-                        <a href="#modal">Select Tour</a>
+                        <a class="flex items-center text black underline bold text-lg" href="#modal">Select Tour</a>
                     </div>
                 </div>
                 <button type="submit" class="btn-orange mt-5">Show Bookings</button>
