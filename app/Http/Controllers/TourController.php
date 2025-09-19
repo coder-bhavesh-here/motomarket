@@ -414,6 +414,16 @@ class TourController extends Controller
                 }
             }
         }
+        if (auth()->user()->nationality == '') {
+            $user = User::find(auth()->user()->id);
+            $user->nationality = $request->nationality;
+            $user->save();
+        }
+        if (auth()->user()->address == '') {
+            $user = User::find(auth()->user()->id);
+            $user->address = $request->address;
+            $user->save();
+        }
         $tourPriceDetails = TourPrice::find($request->id);
         $tour = Tour::find($tourPriceDetails->tour_id);
         $image = TourImage::where('tour_id', $tour->id)->first();
