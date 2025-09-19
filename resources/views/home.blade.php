@@ -91,38 +91,32 @@
 </div>
 <div>
     <div class="grid grid-cols-1 wommd:grid-cols-2 mt-5 max-w-7xl mx-5 py-8 gap-8 justify-self-center">
-        <a href="/about">
-            <div class="bg-[#E2E8F0] p-5 rounded-md">
-                <p class="text-xl womsm:text-2xl font-semibold m-2 text-[#0F172A]">About WorldonMoto.com</p>
-                <p class="text-xs womsm:text-xl font-normal m-2 text-[#0F172A]">Welcome to WorldOnMoto, where motorcycle
-                    enthusiasts connect
-                    with epic adventures worldwide! Discover thrilling routes, meet passionate riders, and
-                    explore unforgettable journeys—all on one platform designed for riders, by riders.</p>
-                <a href="/about"><button class="secondary-button mt-2">read more</button></a>
-            </div>
-        </a>
-        <a href="/blogs">
-            <div class="bg-[#E2E8F0] p-5 rounded-md">
-                <p class="text-xl womsm:text-2xl font-semibold m-2 text-[#0F172A]">Our very first post here...</p>
-                <p class="text-xs womsm:text-xl font-normal m-2 text-[#0F172A]">Welcome to WorldOnMoto, where motorcycle
-                    enthusiasts connect with epic adventures worldwide! Discover thrilling routes, meet
-                    passionate riders, and explore unforgettable journeys—all on one platform designed for
-                    riders, by riders.</p>
-                <a href="/blogs"><button class="secondary-button mt-2">read more</button></a>
-            </div>
-        </a>
-    </div>
-    <a href="/invite-operators">
-        <div
-            class="mt-2 mb-10 max-w-7xl mx-5 py-8 justify-self-center justify-items-start wommd:justify-items-center text-start wommd:text-center bg-[#E2E8F0] p-5 rounded-md">
-            <p class="font-semibold m-2 text-xl womsm:text-2xl text-[#0F172A]">Do you organise motorbike tours?</p>
-            <p class="text-xs womsm:text-xl m-2 wommd:py-5 wommd:px-10 text-[#0F172A]">We are inviting motorcycle adventure
-                tour
-                operators from around the world to join us. Together we can provide to best experience to our
-                fellow riders looking to explore the world on a motorbike!</p>
-                <a href="/invite-operators"><button class="secondary-button mt-2">find out more</button></a>
+        <div class="bg-[#E2E8F0] p-5 rounded-md">
+            <a href="/about"><p class="text-xl womsm:text-2xl font-semibold m-2 text-[#0F172A]">About WorldonMoto.com</p></a>
+            <p class="text-xs womsm:text-xl font-normal m-2 text-[#0F172A]">Welcome to WorldOnMoto, where motorcycle
+                enthusiasts connect
+                with epic adventures worldwide! Discover thrilling routes, meet passionate riders, and
+                explore unforgettable journeys—all on one platform designed for riders, by riders.</p>
+            <a href="/about"><button class="secondary-button mt-2">read more</button></a>
         </div>
-    </a>
+        <div class="bg-[#E2E8F0] p-5 rounded-md">
+            <a href="/blogs"><p class="text-xl womsm:text-2xl font-semibold m-2 text-[#0F172A]">Our very first post here...</p></a>
+            <p class="text-xs womsm:text-xl font-normal m-2 text-[#0F172A]">Welcome to WorldOnMoto, where motorcycle
+                enthusiasts connect with epic adventures worldwide! Discover thrilling routes, meet
+                passionate riders, and explore unforgettable journeys—all on one platform designed for
+                riders, by riders.</p>
+            <a href="/blogs"><button class="secondary-button mt-2">read more</button></a>
+        </div>
+    </div>
+    <div
+        class="mt-2 mb-10 max-w-7xl mx-5 py-8 justify-self-center justify-items-start wommd:justify-items-center text-start wommd:text-center bg-[#E2E8F0] p-5 rounded-md">
+        <a href="/invite-operators"><p class="font-semibold m-2 text-xl womsm:text-2xl text-[#0F172A]">Do you organise motorbike tours?</p></a>
+        <p class="text-xs womsm:text-xl m-2 wommd:py-5 wommd:px-10 text-[#0F172A]">We are inviting motorcycle adventure
+            tour
+            operators from around the world to join us. Together we can provide to best experience to our
+            fellow riders looking to explore the world on a motorbike!</p>
+            <a href="/invite-operators"><button class="secondary-button mt-2">find out more</button></a>
+    </div>
 </div>
 
 <script>
