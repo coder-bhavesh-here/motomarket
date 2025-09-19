@@ -348,6 +348,7 @@
         e.preventDefault();
         // First validate the form
         if (!validateForm()) {
+            hideLoader();
             return false;
         }
         const id = $(this).data("id");
