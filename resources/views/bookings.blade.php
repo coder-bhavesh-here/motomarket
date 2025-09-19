@@ -48,6 +48,9 @@
                         <input type="date" name="date"
                             class="mt-2 w-[80%] rounded-md text-black" placeholder="Tour Date" value="{{$date}}">
                     </div>
+                    <div>
+                        <a href="#modal">Select Tour</a>
+                    </div>
                 </div>
                 <button type="submit" class="btn-orange mt-5">Show Bookings</button>
             </form>
