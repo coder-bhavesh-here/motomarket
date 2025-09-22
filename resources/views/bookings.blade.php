@@ -51,7 +51,7 @@
                     <div class="grid">
                         <div class="font-bold text-black">
                         </div>
-                        <a class="flex items-center text-black underline font-bold" onclick="openFilterModal()">Select Tour</a>
+                        <a class="flex items-center text-black underline font-bold cursor-pointer" onclick="openFilterModal()">Select Tour</a>
                     </div>
                 </div>
                 <button type="submit" class="btn-orange mt-5">Show Bookings</button>
