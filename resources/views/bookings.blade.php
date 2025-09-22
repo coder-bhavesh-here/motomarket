@@ -58,7 +58,7 @@
             </form>
             <!-- Filter Modal -->
             <div id="filterModal" class="absolute inset-0 backdrop-blur-md z-50 hidden" style="background: #00000042;">
-                <div style="max-height: calc(100vh - 120px) !important; overflow-y: scroll;" class="bg-white rounded-lg py-4 px-2 wommd:p-8 womsm:max-w-[80%] wommd:max-w-[75%] womsm:mx-auto womsm:mt-20 relative" style="box-shadow: 0 0 10px 0px gray;">
+                <div style="max-height: calc(100vh - 120px) !important;" class="bg-white rounded-lg py-4 px-2 wommd:p-8 womsm:max-w-[80%] wommd:max-w-[75%] womsm:mx-auto womsm:mt-20 relative" style="box-shadow: 0 0 10px 0px gray;">
                     <svg onclick="closeFilterModal()"
                         class="cursor-pointer absolute m-4 top-4 right-4 text-gray-500 hover:text-gray-700 w-6 h-6" width="32"
                         height="31" viewBox="0 0 32 31" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -78,8 +78,8 @@
                                         <label class="block text-sm womsm:text-base wommd:text-lg text-black font-medium text-left wommd:text-right wommd:mr-3 wommd:w-[-15%]">Countries</label>
                                     </div>
                                     <div class="pb-6 col-span-2 w-full">
-                                        <select id="countries" name="countries[]" multiple
-                                            class="w-full rounded-md border-gray-300 shadow-sm select2">
+                                        <select id="countries" name="country"
+                                            class="w-full rounded-md border-gray-300 shadow-sm">
                                             @foreach ($tours as $tour)
                                                 <option value="{{ $tour->id }}">{{ $tour->title }}</option>
                                             @endforeach
@@ -94,10 +94,6 @@
                                     <button type="button" onclick="closeFilterModal()"
                                         class="womsm:px-4 womsm:py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 primary-button">
                                         Close
-                                    </button>
-                                    <button type="button" onclick="clearFilters()"
-                                        class="womsm:px-4 womsm:py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 primary-button">
-                                        Reset to default
                                     </button>
                                 </div>
                             </table>
