@@ -71,7 +71,7 @@
 
                     <div class="w-full justify-items-center">
                         <form id="filterForm" class="w-full womsm:w-5/6 wommd:w-4/5 space-y-6 px-4">
-                            <table class="w-full flex">
+                            <div class="w-full flex">
                                 <div class="grid w-5/12 grid-cols-1">
                                     <div class="wommd:pb-6 w-full">
                                         <label for="tour" class="block text-sm womsm:text-base wommd:text-lg text-black font-medium text-left wommd:text-right wommd:mr-3 wommd:w-[-15%]">Tour</label>
@@ -108,7 +108,7 @@
                                         Close
                                     </button>
                                 </div>
-                            </table>
+                            </div>
                         </form>
                     </div>
                 </div>
