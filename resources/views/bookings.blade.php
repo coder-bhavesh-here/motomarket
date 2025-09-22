@@ -71,17 +71,17 @@
 
                     <div class="w-full justify-items-center">
                         <form id="filterForm" class="w-full womsm:w-5/6 wommd:w-4/5 space-y-6 px-4">
-                            <div class="w-full grid grid-cols-1 wommd:grid-cols-2 gap-6">
+                            <div class="w-full grid grid-cols-1 wommd:grid-cols-2 gap-6 items-start">
                                 <div class="grid grid-cols-1">
                                     <div class="wommd:pb-6 w-full">
                                         <label for="tour" class="block text-sm womsm:text-base wommd:text-lg text-black font-medium text-left wommd:mr-3 wommd:w-[-15%]">Tour</label>
                                     </div>
                                     <div class="pb-6 col-span-2 w-full">
-                                        <select id="tour" name="tour"
+                                        <select id="tour" name="title"
                                             class="w-full rounded-md border-gray-300 shadow-sm">
                                             <option value="">- Select Tour -</option>
                                             @foreach ($tours as $tour)
-                                                <option value="{{ $tour->id }}">{{ $tour->title }}</option>
+                                                <option value="{{ $tour->title }}">{{ $tour->title }}</option>
                                             @endforeach
                                         </select>
                                     </div>
@@ -184,7 +184,7 @@
                             dates.forEach(function(date, index){
                                 html += `
                                     <label class="flex items-center space-x-2 mb-2">
-                                        <input type="radio" name="tour_date" value="${date}" class="form-radio text-green-600">
+                                        <input type="radio" name="date" value="${date}" class="form-radio text-green-600">
                                         <span>${date}</span>
                                     </label>
                                 `;
