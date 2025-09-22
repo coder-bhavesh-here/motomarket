@@ -72,13 +72,12 @@
                     <div class="w-full justify-items-center">
                         <form id="filterForm" class="w-full womsm:w-5/6 wommd:w-3/4 space-y-6 px-4">
                             <table class="w-full">
-                                <!-- Countries -->
-                                <div class="grid w-full grid-cols-2 wommd:grid-cols-3">
+                                <div class="grid w-full grid-cols-1">
                                     <div class="wommd:pb-6 w-full">
-                                        <label class="block text-sm womsm:text-base wommd:text-lg text-black font-medium text-left wommd:text-right wommd:mr-3 wommd:w-[-15%]">Countries</label>
+                                        <label for="tour" class="block text-sm womsm:text-base wommd:text-lg text-black font-medium text-left wommd:text-right wommd:mr-3 wommd:w-[-15%]">Tour</label>
                                     </div>
                                     <div class="pb-6 col-span-2 w-full">
-                                        <select id="countries" name="country"
+                                        <select id="tour" name="tour"
                                             class="w-full rounded-md border-gray-300 shadow-sm">
                                             @foreach ($tours as $tour)
                                                 <option value="{{ $tour->id }}">{{ $tour->title }}</option>
