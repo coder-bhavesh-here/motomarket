@@ -1,4 +1,4 @@
-<x-app-layout>
+@include('tour-operator-profile-header')
     <style>
         .btn-orange {
             min-height: 36px !important;
@@ -297,4 +297,4 @@
             }
         });
     </script>    
-</x-app-layout>
+@include('footer')

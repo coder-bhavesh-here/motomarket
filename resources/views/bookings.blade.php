@@ -1,4 +1,4 @@
-<x-app-layout>
+@include('tour-operator-profile-header')
     <style>
         td {
             border: unset !important;
@@ -224,4 +224,4 @@
             document.body.style.overflowY = "scroll";
         }
     </script>
-</x-app-layout>
+@include('footer')
