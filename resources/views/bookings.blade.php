@@ -172,7 +172,7 @@
         $("#tour").change(function (e) { 
             e.preventDefault();
             showLoader();
-            let tourId = $(this).data('id');
+            let tourId = $(this).find(":selected").data('id');
             alert(tourId);
             if(tourId) {
                 $.ajax({
