@@ -937,7 +937,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/slick.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/slick-theme.css') }}" />
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    @wireUiScripts
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
 </head>
 
 <body class="antialiased dark:bg-black dark:text-white/50 bg-[#f9fafb]">

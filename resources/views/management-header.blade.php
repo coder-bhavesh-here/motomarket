@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>World On Moto</title>
-    <wireui:scripts />
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
@@ -937,7 +936,9 @@
     <link rel="stylesheet" type="text/css" href="{{ asset('css/slick.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('css/slick-theme.css') }}" />
     <script type="text/javascript" src="//cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    @wireUiScripts
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @livewireStyles
 </head>
 
 <body class="antialiased dark:bg-black dark:text-white/50 bg-[#f9fafb]">
