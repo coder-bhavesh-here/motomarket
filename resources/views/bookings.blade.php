@@ -174,6 +174,9 @@
                 let selectedTour = $("#tour").val();
                 if(selectedTour){
                     $("#tour").trigger("change"); // force change event to load dates
+                    setTimeout(() => {
+                        $('input[name="tour_date"][value="' + new URLSearchParams(window.location.search).get("date") + '"]').prop("checked", true);
+                    }, 500);
                 }
             }, 1000);
         });
