@@ -159,6 +159,7 @@
                             <div class="items-center">
                                 {{-- <x-input id="country" placeholder="Please provide country" /> --}}
                                 <select name="country" style="width: 100%" id="country">
+                                    <option value="">- Select country -</option>
                                     @foreach (config('countries.list') as $countryName)
                                         <option value="{{ $countryName }}" {{($country == $countryName ? "selected" : '')}}>
                                             {{ $countryName }}

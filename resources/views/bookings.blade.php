@@ -79,6 +79,7 @@
                                     <div class="pb-6 col-span-2 w-full">
                                         <select id="tour" name="tour"
                                             class="w-full rounded-md border-gray-300 shadow-sm">
+                                            <option value="">- Select Tour -</option>
                                             @foreach ($tours as $tour)
                                                 <option value="{{ $tour->id }}">{{ $tour->title }}</option>
                                             @endforeach
@@ -87,26 +88,17 @@
                                 </div>
                                 <div class="grid grid-cols-1">
                                     <div class="wommd:pb-6 w-full">
-                                        <label for="tour" class="block text-sm womsm:text-base wommd:text-lg text-black font-medium text-left wommd:mr-3 wommd:w-[-15%]">Tour</label>
+                                        <label for="dates" class="block text-sm womsm:text-base wommd:text-lg text-black font-medium text-left wommd:mr-3 wommd:w-[-15%]">Dates</label>
                                     </div>
-                                    <div class="pb-6 col-span-2 w-full">
-                                        <select id="tour" name="tour"
-                                            class="w-full rounded-md border-gray-300 shadow-sm">
-                                            @foreach ($tours as $tour)
-                                                <option value="{{ $tour->id }}">{{ $tour->title }}</option>
-                                            @endforeach
-                                        </select>
+                                    <div class="pb-6 col-span-2 w-full" id="dateList">
+                                        <span class="text-black">No dates available.</span>
                                     </div>
                                 </div>
                             </div>
                             <div class="flex justify-evenly space-x-4">
                                 <button type="submit"
                                     class="womsm:px-4 womsm:py-2 bg-green text-white rounded-md hover:bg-dark-green primary-button">
-                                    Show Trips
-                                </button>
-                                <button type="button" onclick="closeFilterModal()"
-                                    class="womsm:px-4 womsm:py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 primary-button">
-                                    Close
+                                    Show Bookings
                                 </button>
                             </div>
                         </form>
