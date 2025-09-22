@@ -171,6 +171,7 @@
     <script>
         $("#tour").change(function (e) { 
             e.preventDefault();
+            showLoader();
             let tourId = $(this).val();
             if(tourId) {
                 $.ajax({
@@ -191,8 +192,8 @@
                         } else {
                             html = `<span class="text-black">No dates available.</span>`;
                         }
-
                         $("#dateList").html(html);
+                        hideLoader();
                     },
                     error: function () {
                         $("#dateList").html(`<span class="text-red-500">Error loading dates.</span>`);
