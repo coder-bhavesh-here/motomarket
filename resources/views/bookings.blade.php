@@ -51,7 +51,7 @@
                     <div class="grid">
                         <div class="font-bold text-black">
                         </div>
-                        <a class="flex items-center text-black underline font-bold" href="#modal">Select Tour</a>
+                        <a class="flex items-center text-black underline font-bold" onclick="openFilterModal()" href="#modal">Select Tour</a>
                     </div>
                 </div>
                 <button type="submit" class="btn-orange mt-5">Show Bookings</button>
@@ -88,8 +88,7 @@
                                 </div>
                                 <div class="flex justify-evenly space-x-4">
                                     <button type="submit"
-                                        class="womsm:px-4 womsm:py-2 bg-green text-white rounded-md hover:bg-dark-green primary-button"
-                                        onclick="openFilterModal()">
+                                        class="womsm:px-4 womsm:py-2 bg-green text-white rounded-md hover:bg-dark-green primary-button">
                                         Show Trips
                                     </button>
                                     <button type="button" onclick="closeFilterModal()"
