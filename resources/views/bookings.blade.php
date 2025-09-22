@@ -169,6 +169,13 @@
         </div>
     </div>
     <script>
+        $(document).ready(function(){
+            let selectedTour = $("#tour").val();
+            if(selectedTour){
+                $("#tour").trigger("change"); // force change event to load dates
+                
+            }
+        });
         $("#tour").change(function (e) { 
             e.preventDefault();
             showLoader();
