@@ -170,17 +170,18 @@
     </div>
     <script>
         $(document).ready(function(){
-            let selectedTour = $("#tour").val();
-            if(selectedTour){
-                $("#tour").trigger("change"); // force change event to load dates
-                
-            }
+            setTimeout(() => {
+                let selectedTour = $("#tour").val();
+                if(selectedTour){
+                    $("#tour").trigger("change"); // force change event to load dates
+                }
+            }, 1000);
         });
         $("#tour").change(function (e) { 
             e.preventDefault();
-            showLoader();
             let tourId = $(this).find(":selected").data('id');
             if(tourId) {
+                showLoader();
                 $.ajax({
                     url: "{{ route('getTourDates', '') }}/" + tourId,
                     type: "GET",
