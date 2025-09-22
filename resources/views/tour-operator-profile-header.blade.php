@@ -10,7 +10,16 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link rel="icon" type="image/png" href="{{ asset('images/logo.png') }}">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/carousel/carousel.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/carousel/carousel.thumbs.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/carousel/carousel.lazyload.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/carousel/carousel.arrows.umd.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
     <!-- Styles -->
     <style>
