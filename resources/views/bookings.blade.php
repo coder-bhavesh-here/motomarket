@@ -71,10 +71,10 @@
 
                     <div class="w-full justify-items-center">
                         <form id="filterForm" class="w-full womsm:w-5/6 wommd:w-4/5 space-y-6 px-4">
-                            <div class="w-full flex">
+                            <div class="w-full grid grid-cols-1 wommd:grid-cols-2 gap-6">
                                 <div class="grid w-5/12 grid-cols-1">
                                     <div class="wommd:pb-6 w-full">
-                                        <label for="tour" class="block text-sm womsm:text-base wommd:text-lg text-black font-medium text-left wommd:text-right wommd:mr-3 wommd:w-[-15%]">Tour</label>
+                                        <label for="tour" class="block text-sm womsm:text-base wommd:text-lg text-black font-medium text-left wommd:mr-3 wommd:w-[-15%]">Tour</label>
                                     </div>
                                     <div class="pb-6 col-span-2 w-full">
                                         <select id="tour" name="tour"
@@ -87,7 +87,7 @@
                                 </div>
                                 <div class="grid w-5/12 grid-cols-1">
                                     <div class="wommd:pb-6 w-full">
-                                        <label for="tour" class="block text-sm womsm:text-base wommd:text-lg text-black font-medium text-left wommd:text-right wommd:mr-3 wommd:w-[-15%]">Tour</label>
+                                        <label for="tour" class="block text-sm womsm:text-base wommd:text-lg text-black font-medium text-left wommd:mr-3 wommd:w-[-15%]">Tour</label>
                                     </div>
                                     <div class="pb-6 col-span-2 w-full">
                                         <select id="tour" name="tour"
@@ -98,16 +98,16 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="flex justify-evenly space-x-4">
-                                    <button type="submit"
-                                        class="womsm:px-4 womsm:py-2 bg-green text-white rounded-md hover:bg-dark-green primary-button">
-                                        Show Trips
-                                    </button>
-                                    <button type="button" onclick="closeFilterModal()"
-                                        class="womsm:px-4 womsm:py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 primary-button">
-                                        Close
-                                    </button>
-                                </div>
+                            </div>
+                            <div class="flex justify-evenly space-x-4">
+                                <button type="submit"
+                                    class="womsm:px-4 womsm:py-2 bg-green text-white rounded-md hover:bg-dark-green primary-button">
+                                    Show Trips
+                                </button>
+                                <button type="button" onclick="closeFilterModal()"
+                                    class="womsm:px-4 womsm:py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 primary-button">
+                                    Close
+                                </button>
                             </div>
                         </form>
                     </div>
