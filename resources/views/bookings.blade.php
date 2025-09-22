@@ -56,6 +56,60 @@
                 </div>
                 <button type="submit" class="btn-orange mt-5">Show Bookings</button>
             </form>
+            <!-- Filter Modal -->
+            <div id="filterModal" class="absolute inset-0 backdrop-blur-md z-50 hidden" style="background: #00000042;">
+                <div style="max-height: calc(100vh - 120px) !important; overflow-y: scroll;" class="bg-white rounded-lg py-4 px-2 wommd:p-8 womsm:max-w-[80%] wommd:max-w-[75%] womsm:mx-auto womsm:mt-20 relative" style="box-shadow: 0 0 10px 0px gray;">
+                    <svg onclick="closeFilterModal()"
+                        class="cursor-pointer absolute m-4 top-4 right-4 text-gray-500 hover:text-gray-700 w-6 h-6" width="32"
+                        height="31" viewBox="0 0 32 31" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.56836 1.4082L30.6327 29.4725" stroke="black" stroke-width="2" stroke-linecap="round" />
+                        <path d="M29.6973 1.4082L1.63293 29.4725" stroke="black" stroke-width="2" stroke-linecap="round" />
+                    </svg>
+
+
+                    <h2 class="text-base womsm:text-xl wommd:text-2xl font-semibold ml-5 wommd:ml-0 mt-4 mb-6 text-black text-left wommd:text-center">Edit Filters</h2>
+
+                    <div class="w-full justify-items-center">
+                        <form id="filterForm" class="w-full womsm:w-5/6 wommd:w-3/4 space-y-6 px-4">
+                            <table class="w-full">
+                                <!-- Countries -->
+                                <div class="grid w-full grid-cols-2 wommd:grid-cols-3">
+                                    <div class="wommd:pb-6 w-full">
+                                        <label class="block text-sm womsm:text-base wommd:text-lg text-black font-medium text-left wommd:text-right wommd:mr-3 wommd:w-[-15%]">Countries</label>
+                                    </div>
+                                    <div class="pb-6 col-span-2 w-full">
+                                        <select id="countries" name="countries[]" multiple
+                                            class="w-full rounded-md border-gray-300 shadow-sm select2">
+                                            @foreach ($countries as $country)
+                                                <option value="{{ $country }}">{{ $country }}</option>
+                                            @endforeach
+                                        </select>
+                                        <span class="text-sm font-normal text-[#0F172A] mt-2">
+                                            Add all the countries you want to travel in. Leave it empty if you want to see featured
+                                            trips from around the world.
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="flex justify-evenly space-x-4">
+                                    <button type="submit"
+                                        class="womsm:px-4 womsm:py-2 bg-green text-white rounded-md hover:bg-dark-green primary-button"
+                                        onclick="openFilterModal()">
+                                        Show Trips
+                                    </button>
+                                    <button type="button" onclick="closeFilterModal()"
+                                        class="womsm:px-4 womsm:py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 primary-button">
+                                        Close
+                                    </button>
+                                    <button type="button" onclick="clearFilters()"
+                                        class="womsm:px-4 womsm:py-2 border border-gray-300 rounded-md text-gray-700 hover:bg-gray-50 primary-button">
+                                        Reset to default
+                                    </button>
+                                </div>
+                            </table>
+                        </form>
+                    </div>
+                </div>
+            </div>
             <div>
                 <table class="border-separate border-spacing-y-3 w-full mt-10 block overflow-x-scroll 2xl:overflow-hidden">
                     <thead>
@@ -119,4 +173,15 @@
             </div>
         </div>
     </div>
+    <script>
+        function openFilterModal() {
+            document.getElementById('filterModal').classList.remove('hidden');
+            document.body.style.overflowY = "hidden";
+        }
+
+        function closeFilterModal() {
+            document.getElementById('filterModal').classList.add('hidden');
+            document.body.style.overflowY = "scroll";
+        }
+    </script>
 </x-app-layout>
