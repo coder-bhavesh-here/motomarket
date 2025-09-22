@@ -1238,6 +1238,7 @@ class TourController extends Controller
     public function getTourDates($tourId)
     {
         $dates = TourPrice::where('tour_id', $tourId)
+            ->orderBy('date', 'asc')
             ->pluck('date');
         return response()->json($dates);
     }
