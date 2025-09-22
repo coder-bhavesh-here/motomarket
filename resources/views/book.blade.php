@@ -73,38 +73,13 @@
                 <p class="my-4 font-semibold text-[#0F172A] text-lg womsm:text-xl wommd:text-2xl">
                     {{ $tour->title }} - {{ $tour->countries }}
                 </p>
-                <div class="inline-flex justify-center items-center my-3">
-                    @php
-                        $profile_picture =
-                            $tour->user->tour_profile_picture != ''
-                                ? $tour->user->tour_profile_picture
-                                : ($tour->user->profile_picture != ''
-                                    ? $tour->user->profile_picture
-                                    : '');
-                        $tour_operation_name =
-                            $tour->user->tour_operation_name != ''
-                                ? $tour->user->tour_operation_name
-                                : ($tour->user->name != ''
-                                    ? $tour->user->name
-                                    : '');
-                    @endphp
-                    @if ($profile_picture != '')
-                        <img src="{{ asset('storage') . '/' . ($tour->user->tour_profile_picture != '' ? $tour->user->tour_profile_picture : $tour->user->profile_picture) }}"
-                            alt="Tour operator picture"
-                            style="width: 40px; height: 40px; border-radius: 20px;">
-                    @endif
-                    <a href="#" class="underline">
-                        <span
-                            class="text-sm womsm:text-base wommd:text-lg font-semibold text-black tour-owner ml-4">{{ $tour_operation_name }}</span>
-                    </a>
-                </div>
-                <div class="font-extrabold text-black mt-2 text-lg womsm:text-xl wommd:text-2xl">
+                {{-- <div class="font-extrabold text-black mt-2 text-lg womsm:text-xl wommd:text-2xl">
                     YOUR BOOKING
                 </div>
                 <div class="text-sm womsm:text-base wommd:text-lg my-2 text-[#0F172A] inline-flex justify-center">
                     <span>{{ \Carbon\Carbon::parse($selectedDate->date)->format('F jS, Y') }}</span>
                     <span><a href="/tour/{{ $tour->id }}" class="text-green font-semibold ml-2 text-xs womsm:text-sm wommd:text-base"><u>Change</u></a></span>
-                </div>
+                </div> --}}
             </div>
             <div class="mt-5">
                 {{-- <h2 class="text-2xl font-semibold">Select a Date</h2> --}}
@@ -228,7 +203,7 @@
                         @endphp
                         @foreach ($addons as $addon)
                             <div class='w-full mt-4 inline-flex justify-between'>
-                                <span>{{ $addon->group->name }} - {{ $addon->name }}</span><span> {{$symbol}} {{ $addon->price }} </span>
+                                <span>{{ $addon->group->name }} - {{ $addon->name }}</span><span style="min-width: 100px;text-align: right;"> {{$symbol}} {{ $addon->price }} </span>
                             </div>
                             @php
                                 $addonPrices = $addonPrices + $addon->price;

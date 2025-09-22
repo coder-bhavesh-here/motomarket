@@ -67,31 +67,6 @@
                 <p class="my-4 font-semibold text-[#0F172A] text-lg womsm:text-xl wommd:text-2xl">
                     {{ $tour->title }} - {{ $tour->countries }}
                 </p>
-                <div class="inline-flex justify-center items-center my-3">
-                    @php
-                        $profile_picture =
-                            $tour->user->tour_profile_picture != ''
-                                ? $tour->user->tour_profile_picture
-                                : ($tour->user->profile_picture != ''
-                                    ? $tour->user->profile_picture
-                                    : '');
-                        $tour_operation_name =
-                            $tour->user->tour_operation_name != ''
-                                ? $tour->user->tour_operation_name
-                                : ($tour->user->name != ''
-                                    ? $tour->user->name
-                                    : '');
-                    @endphp
-                    @if ($profile_picture != '')
-                        <img src="{{ asset('storage') . '/' . ($tour->user->tour_profile_picture != '' ? $tour->user->tour_profile_picture : $tour->user->profile_picture) }}"
-                            alt="Tour operator picture"
-                            style="width: 40px; height: 40px; border-radius: 20px;">
-                    @endif
-                    <a href="#" class="underline">
-                        <span
-                            class="text-sm womsm:text-base wommd:text-lg font-semibold text-black tour-owner ml-4">{{ $tour_operation_name }}</span>
-                    </a>
-                </div>
                 {{-- <div class="font-extrabold text-black mt-2 text-lg womsm:text-xl wommd:text-2xl">
                     YOUR BOOKING
                 </div>
@@ -111,7 +86,7 @@
                 </div>
                 <div class="flex mt-2 mb-6">
                     @foreach ($tour->addonGroups as $key => $group)
-                        <a href="#{{strtolower(str_replace(' ','_', $group->name))}}" class="scoller text-lg text-green underline font-bold mr-2">{{ $group->name }} {{ ($key + 1) < count($tour->addonGroups) ? "|" : '' }}</a>
+                        <a href="#{{strtolower(str_replace(' ','_', $group->name))}}" class="scoller text-lg text-green underline font-bold mr-2">{{ $group->name }}</a> {{ ($key + 1) < count($tour->addonGroups) ? "|" : '' }}
                     @endforeach
                 </div>
                 @foreach ($tour->addonGroups as $group)
