@@ -124,9 +124,11 @@ class TourController extends Controller
             ->where('permanently_deleted', false);
 
         $tourIds = $tourIdsQuery->pluck('id');
+        $tours = $tourIdsQuery->get();
 
         if ($tourId) {
             $tour = Tour::find($tourId);
+            $tours = Tour::where('id', $tourId)->get();
         }
         // Base query
         $bookingsQuery = Booking::select([
@@ -187,6 +189,7 @@ class TourController extends Controller
         return view('bookings', [
             'bookings' => $bookings,
             'date' => $date,
+            'tours' => $tours,
             'title' => $title
         ]);
     }

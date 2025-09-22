@@ -80,14 +80,10 @@
                                     <div class="pb-6 col-span-2 w-full">
                                         <select id="countries" name="countries[]" multiple
                                             class="w-full rounded-md border-gray-300 shadow-sm select2">
-                                            @foreach ($countries as $country)
-                                                <option value="{{ $country }}">{{ $country }}</option>
+                                            @foreach ($tours as $tour)
+                                                <option value="{{ $tour->id }}">{{ $tour->title }}</option>
                                             @endforeach
                                         </select>
-                                        <span class="text-sm font-normal text-[#0F172A] mt-2">
-                                            Add all the countries you want to travel in. Leave it empty if you want to see featured
-                                            trips from around the world.
-                                        </span>
                                     </div>
                                 </div>
                                 <div class="flex justify-evenly space-x-4">
