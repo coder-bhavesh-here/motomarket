@@ -1235,4 +1235,10 @@ class TourController extends Controller
         $image->delete();
         return response()->json(['message' => 'Image deleted successfully']);
     }
+    public function getTourDates($tourId)
+    {
+        $dates = TourPrice::where('tour_id', $tourId)
+            ->get();
+        return response()->json($dates);
+    }
 }

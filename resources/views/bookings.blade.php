@@ -169,6 +169,39 @@
         </div>
     </div>
     <script>
+        $("#tour").change(function (e) { 
+            e.preventDefault();
+            let tourId = $(this).val();
+            if(tourId) {
+                $.ajax({
+                    url: "{{ route('getTourDates', '') }}/" + tourId,
+                    type: "GET",
+                    success: function (dates) {
+                        let html = "";
+
+                        if(dates.length > 0){
+                            dates.forEach(function(date, index){
+                                html += `
+                                    <label class="flex items-center space-x-2 mb-2">
+                                        <input type="radio" name="tour_date" value="${date}" class="form-radio text-green-600">
+                                        <span>${date}</span>
+                                    </label>
+                                `;
+                            });
+                        } else {
+                            html = `<span class="text-black">No dates available.</span>`;
+                        }
+
+                        $("#dateList").html(html);
+                    },
+                    error: function () {
+                        $("#dateList").html(`<span class="text-red-500">Error loading dates.</span>`);
+                    }
+                });
+            } else {
+                $("#dateList").html(`<span class="text-black">No dates available.</span>`);
+            }
+        });
         function openFilterModal() {
             document.getElementById('filterModal').classList.remove('hidden');
             document.body.style.overflowY = "hidden";

@@ -57,6 +57,7 @@ Route::middleware(['auth', 'throttle:60,1'])->group(function () {
     Route::get('/bookAddon/{tourId}', [TourController::class, 'bookAddon']);
     Route::get('/book/{priceId}', [TourController::class, 'book'])->name('book');
     Route::get('/details/{bookingId}', [TourController::class, 'details'])->name('details');
+    Route::get('/get-tour-dates/{tourId}', [TourController::class, 'getTourDates'])->name('getTourDates');
     Route::post('/book', [TourController::class, 'bookTour'])->name('bookTour');
     Route::get('/my-tours', [TourController::class, 'myTours'])->name('my-tours');
     Route::get('/my-favourite-tours', [TourController::class, 'myFavouriteTours'])->name('my-favourite-tours');
