@@ -67,7 +67,7 @@
                     </svg>
 
 
-                    <h2 class="text-base womsm:text-xl wommd:text-2xl font-semibold ml-5 wommd:ml-0 mt-4 mb-6 text-black text-left wommd:text-center">Select Tours</h2>
+                    <h2 class="text-base womsm:text-xl wommd:text-2xl font-semibold ml-5 wommd:ml-0 mt-4 mb-6 text-black text-left wommd:text-center">Select Tour</h2>
 
                     <div class="w-full justify-items-center">
                         <form id="filterForm" class="w-full womsm:w-5/6 wommd:w-4/5 space-y-6 px-4">
