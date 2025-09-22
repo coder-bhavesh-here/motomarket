@@ -81,7 +81,7 @@
                                             class="w-full rounded-md border-gray-300 shadow-sm">
                                             <option value="">- Select Tour -</option>
                                             @foreach ($tours as $tour)
-                                                <option value="{{ $tour->title }}">{{ $tour->title }}</option>
+                                                <option value="{{ $tour->title }}" data-id="{{ $tour->id }}">{{ $tour->title }}</option>
                                             @endforeach
                                         </select>
                                     </div>
