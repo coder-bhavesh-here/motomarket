@@ -175,7 +175,7 @@
                 if(selectedTour){
                     $("#tour").trigger("change"); // force change event to load dates
                     setTimeout(() => {
-                        $('input[name="tour_date"][value="' + new URLSearchParams(window.location.search).get("date") + '"]').prop("checked", true);
+                        $('input[id="tourDate"][value="' + new URLSearchParams(window.location.search).get("date") + '"]').prop("checked", true);
                     }, 500);
                 }
             }, 1000);
@@ -195,7 +195,7 @@
                             dates.forEach(function(date, index){
                                 html += `
                                     <label class="flex items-center space-x-2 mb-2">
-                                        <input type="radio" name="date" value="${date}" class="form-radio text-green-600">
+                                        <input type="radio" id="tourDate" name="date" value="${date}" class="form-radio text-green-600">
                                         <span>${date}</span>
                                     </label>
                                 `;
