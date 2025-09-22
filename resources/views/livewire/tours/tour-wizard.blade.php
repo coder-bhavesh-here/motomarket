@@ -1,3 +1,3 @@
-<x-app-layout>
+@include('management-header')
     <livewire:tour-wizard tour-id="1" />
-</x-app-layout>
+@include('footer')

@@ -1,4 +1,4 @@
-@include('new-header')
+@include('management-header')
 <style>
     td {
         border: unset;
