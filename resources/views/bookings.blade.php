@@ -73,7 +73,7 @@
                         <form id="filterForm" class="w-full womsm:w-5/6 wommd:w-4/5 space-y-6 px-4">
                             <div class="w-full grid grid-cols-1 wommd:grid-cols-2 gap-6 items-start">
                                 <div class="grid grid-cols-1">
-                                    <div class="wommd:pb-6 w-full">
+                                    <div class="wommd:pb-3 w-full">
                                         <label for="tour" class="block text-sm womsm:text-base wommd:text-lg text-black font-medium text-left wommd:mr-3 wommd:w-[-15%]">Tour</label>
                                     </div>
                                     <div class="pb-6 col-span-2 w-full">
@@ -87,7 +87,7 @@
                                     </div>
                                 </div>
                                 <div class="grid grid-cols-1">
-                                    <div class="wommd:pb-6 w-full">
+                                    <div class="wommd:pb-3 w-full">
                                         <label for="dates" class="block text-sm womsm:text-base wommd:text-lg text-black font-medium text-left wommd:mr-3 wommd:w-[-15%]">Dates</label>
                                     </div>
                                     <div class="pb-6 col-span-2 w-full" id="dateList">
