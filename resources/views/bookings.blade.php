@@ -172,7 +172,7 @@
         $("#tour").change(function (e) { 
             e.preventDefault();
             showLoader();
-            let tourId = $(this).val();
+            let tourId = $(this).data('id');
             if(tourId) {
                 $.ajax({
                     url: "{{ route('getTourDates', '') }}/" + tourId,
