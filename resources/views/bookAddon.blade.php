@@ -86,7 +86,7 @@
                 </div>
                 <div class="flex mt-2 mb-6">
                     @foreach ($tour->addonGroups as $key => $group)
-                        <a href="#{{strtolower(str_replace(' ','_', $group->name))}}" class="scoller text-lg text-green underline font-bold mr-2">{{ $group->name }}</a> {{ ($key + 1) < count($tour->addonGroups) ? "|" : '' }}
+                        <a href="#{{strtolower(str_replace(' ','_', $group->name))}}" class="scoller text-lg text-green underline font-bold mr-2">{{ $group->name }}</a> {{ ($key + 1) < count($tour->addonGroups) ? "| " : '' }}
                     @endforeach
                 </div>
                 @foreach ($tour->addonGroups as $group)
