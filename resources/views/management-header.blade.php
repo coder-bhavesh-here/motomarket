@@ -1129,16 +1129,13 @@
                 </script>
                 <script>
                     // Mobile detect function
-                    function isMobile() {
-                        return (/Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent) || window.innerWidth < 500);
-                    }
-
-                    if (isMobile()) {
-                        // Clear body content
-                        document.addEventListener("DOMContentLoaded", function () {
+                    function handleDeviceCheck() {
+                        if (/Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent) || window.innerWidth < 500){
                             document.body.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;font-size:20px;font-weight:bold;text-align:center;padding:20px;">This functionality is not available on the mobile website</div>';
-                        });
+                        }
                     }
+                    document.addEventListener("DOMContentLoaded", handleDeviceCheck);
+                    window.addEventListener("resize", handleDeviceCheck);
                 </script>
 
 @stack('scripts')
