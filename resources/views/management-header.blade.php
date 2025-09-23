@@ -1128,25 +1128,22 @@
                     }
                 </script>
                 <script>
-                    // Mobile detect function
                     function handleDeviceCheck() {
+                        let mobileBox = document.getElementById("mobileBox");
+                        if (!mobileBox) {
+                            mobileBox = document.createElement("div");
+                            mobileBox.id = "mobileBox";
+                            mobileBox.style.cssText = "color:black;display:none;justify-content:center;align-items:center;height:100vh;font-size:20px;font-weight:bold;text-align:center;padding:20px;position:fixed;top:0;left:0;width:100%;background:white;z-index:9999;";
+                            mobileBox.innerText = "This functionality is not available on the mobile website";
+                            document.body.appendChild(mobileBox);
+                        }
                         if (/Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent) 
                             || window.innerWidth < 720) {
-
-                            // Agar mobile ya small screen hai to message show karo
-                            if (!document.getElementById("mobileBox")) {
-                                document.body.innerHTML = '<div id="mobileBox" style="color:black;display:flex;justify-content:center;align-items:center;height:100vh;font-size:20px;font-weight:bold;text-align:center;padding:20px;">This functionality is not available on the mobile website</div>';
-                            }
-
+                            mobileBox.style.display = "flex";   // Show
                         } else {
-                            // Agar bada screen hai to box ko hide kar do
-                            let mobileBox = document.getElementById("mobileBox");
-                            if (mobileBox) {
-                                mobileBox.style.display = "none";  // ✅ ye karega hide
-                            }
+                            mobileBox.style.display = "none";   // Hide
                         }
                     }
-
                     document.addEventListener("DOMContentLoaded", handleDeviceCheck);
                     window.addEventListener("resize", handleDeviceCheck);
                 </script>
