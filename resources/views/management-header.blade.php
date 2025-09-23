@@ -1130,9 +1130,7 @@
                 <script>
                     // Mobile detect function
                     function handleDeviceCheck() {
-                        alert("In check");
-                        alert(window.innerWidth);
-                        if (/Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent) || window.innerWidth < 500){
+                        if (/Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent) || window.innerWidth < 720){
                             alert("OK IN");
                             document.body.innerHTML = '<div style="display:flex;justify-content:center;align-items:center;height:100vh;font-size:20px;font-weight:bold;text-align:center;padding:20px;">This functionality is not available on the mobile website</div>';
                         }
