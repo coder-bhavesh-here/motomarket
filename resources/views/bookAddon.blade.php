@@ -114,7 +114,7 @@
                                 <div class="overflow-hidden rounded grayscale peer-checked:grayscale-0 relative">
                                     <img 
                                         {{-- src="{{ asset('storage/addons/0d6148c6ba176fe3cf777f2044ee6a6fbe0136a3.jpg') }}"  --}}
-                                        src="{{ isset($addon->image_path) && $addon->image_path != '' ? asset('storage/' . $addon->image_path) : asset('images/no-image.png') }}" 
+                                        src="{{ isset($addon->image_path) && $addon->image_path != '' ? asset('storage/' . $addon->image_path) : asset('images/no-image-new.png') }}" 
                                         class="w-full object-cover transition duration-200"
                                     >
                             
