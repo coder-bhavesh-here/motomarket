@@ -73,7 +73,6 @@
         </div>            
     </div>
 </form>
-@push('scripts')
 <script>
 let groupIndex = {{ count($addonGroups) }};
 
@@ -175,4 +174,3 @@ document.addEventListener('change', function (e) {
 });
 
 </script>
-@endpush
