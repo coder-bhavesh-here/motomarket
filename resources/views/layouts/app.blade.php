@@ -239,5 +239,4 @@
                 </script>
 
                 {{ $slot }}
-                @stack('scripts')
                 @include('../footer')

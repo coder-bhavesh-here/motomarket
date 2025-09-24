@@ -219,4 +219,3 @@
                         document.body.style.overflow = '';
                     }
                 </script>
-@stack('scripts')

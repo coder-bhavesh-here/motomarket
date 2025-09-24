@@ -240,5 +240,3 @@
                     document.addEventListener("DOMContentLoaded", handleDeviceCheck);
                     window.addEventListener("resize", handleDeviceCheck);
                 </script>
-
-@stack('scripts')
