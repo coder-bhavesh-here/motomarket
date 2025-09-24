@@ -128,7 +128,6 @@ class TourController extends Controller
 
         if ($tourId) {
             $tour = Tour::find($tourId);
-            $tours = Tour::where('id', $tourId)->get();
         }
         // Base query
         $bookingsQuery = Booking::select([
