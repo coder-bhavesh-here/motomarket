@@ -260,10 +260,10 @@
             <div class="mt-4 italic">If you are paying the <b>25% of the tour price</b>, the full payment will need to be made before the <b>{{$fullPaymentDue}}</b></div>
             @else
             <div class="mt-4 italic">
-                We need the full payment to confirm your booking because the tour starts in less than 60 days.
+                We need the <b>full payment</b> to confirm your booking <b>because</b> the tour starts in <b>less than 60 days</b>.
             </div>
             <div class="mt-4 italic">
-                Tours that are more than 60 days from the start date can be booked with a 25% payment of the tour price.
+                Tours that are <b>more than 60 days</b> from the start date <b>can be booked with a 25%</b> payment of the tour price.
             </div>
             @endif
             <div class="mt-4 italic">Read more about our: <a onclick="openFilterModal()" class="text-green underline cursor-pointer">payment terms and refund policy</a>.</div>
