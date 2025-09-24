@@ -253,12 +253,20 @@
         <div class="text-xs womsm:text-sm wommd:text-base text-[#0F172A]">
             @php
                 $tourDate = \Carbon\Carbon::parse($selectedDate->date);
+                $fullPaymentDue = $tourDate->copy()->subDays(60)->format('F jS, Y');
             @endphp
             @if ($tourDate->diffInDays(now()) > 60)
-            <div class="mt-4">Since you tour is <b>more than 60 days</b> away, you can confirm your place by paying the <b>full tour price</b> or <b>25% of the price</b>.</div>
+            <div class="mt-4 italic">Since you tour is <b>more than 60 days</b> away, you can confirm your place by paying the <b>full tour price</b> or <b>25% of the price</b>.</div>
+            <div class="mt-4 italic">If you are paying the <b>25% of the tour price</b>, the full payment will need to be made before the <b>{{$fullPaymentDue}}</b></div>
+            @else
+            <div class="mt-4 italic">
+                We need the full payment to confirm your booking because the tour starts in less than 60 days.
+            </div>
+            <div class="mt-4 italic">
+                Tours that are more than 60 days from the start date can be booked with a 25% payment of the tour price.
+            </div>
             @endif
-            <div class="mt-4">If you are paying the <b>25% of the tour price</b>, the full payment will need to be made before the 12.01.2025</div>
-            <div class="mt-4">Read more about our: <a onclick="openFilterModal()" class="text-green underline cursor-pointer">payment terms and refund policy</a>.</div>
+            <div class="mt-4 italic">Read more about our: <a onclick="openFilterModal()" class="text-green underline cursor-pointer">payment terms and refund policy</a>.</div>
         </div>
     </div>
 </div>
