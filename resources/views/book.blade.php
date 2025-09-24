@@ -251,7 +251,7 @@
             </div>
         </div>
         <div class="text-xs womsm:text-sm wommd:text-base text-[#0F172A]">
-            @if (! $selectedDate->date < now()->addMonths(2))
+            @if ($selectedDate->date->diffInDays(now()) > 60)
             <div class="mt-4">Since you tour is <b>more than 60 days</b> away, you can confirm your place by paying the <b>full tour price</b> or <b>25% of the price</b>.</div>
             @endif
             <div class="mt-4">If you are paying the <b>25% of the tour price</b>, the full payment will need to be made before the 12.01.2025</div>
