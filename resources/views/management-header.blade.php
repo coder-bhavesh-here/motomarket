@@ -227,7 +227,7 @@
                             mobileBox = document.createElement("div");
                             mobileBox.id = "mobileBox";
                             mobileBox.style.cssText = "color:black;display:none;justify-content:center;align-items:center;height:100vh;font-size:20px;font-weight:bold;text-align:center;padding:20px;position:fixed;top:0;left:0;width:100%;background:white;z-index:9999;";
-                            mobileBox.innerText = "This functionality is not available on the mobile website";
+                            mobileBox.innerText = "This functionality is only supported on larger screens";
                             document.body.appendChild(mobileBox);
                         }
                         if (/Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent) 
