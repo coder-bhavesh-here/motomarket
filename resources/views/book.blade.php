@@ -255,6 +255,7 @@
                 $tourDate = \Carbon\Carbon::parse($selectedDate->date);
                 $fullPaymentDue = $tourDate->copy()->subDays(60)->format('F jS, Y');
             @endphp
+            {{ $tourDate->diffInDays(now()) }}
             @if ($tourDate->diffInDays(now()) > 60)
             <div class="mt-4 italic">Since you tour is <b>more than 60 days</b> away, you can confirm your place by paying the <b>full tour price</b> or <b>25% of the price</b>.</div>
             <div class="mt-4 italic">If you are paying the <b>25% of the tour price</b>, the full payment will need to be made before the <b>{{$fullPaymentDue}}</b></div>
