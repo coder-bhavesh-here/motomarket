@@ -53,7 +53,7 @@
                 </ul>
             </div>
             <div class="w-4/5 wommd:w-3/4">
-                <a href="{{ asset('docs/terms-conditions.pdf') }}" class="text-green underline text-xs womsm:text-sm wommd:text-base">Read the full terms here</a>
+                <a target="_blank" href="{{ asset('docs/terms-conditions.pdf') }}" class="text-green underline text-xs womsm:text-sm wommd:text-base">Read the full terms here</a>
             </div>
             <div class="flex justify-evenly space-x-4">
                 <button type="button" onclick="closeFilterModal()"
