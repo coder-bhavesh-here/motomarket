@@ -24,7 +24,7 @@
                 @endphp
                 <div class="w-full justify-items-center masterDiv" id="masterDiv{{ $tour->id }}">
                     <div class="max-w-[320px] wommd:max-w-[500px] ">
-                        <a class="block relative" href='/tour/{{ $tour->id }}'>
+                        <a class="block relative" href='/details/{{ $booking->id }}'>
                             {{-- <img class="aspect-square rounded-lg object-cover h-full w-full"
                                 src="https://worldonmoto.com/storage/uploads/1732685873_2.jpg"
                                 alt="Tour photo"> --}}
