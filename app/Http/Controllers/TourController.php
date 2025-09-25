@@ -240,20 +240,59 @@ class TourController extends Controller
         ]);
     }
 
+    // public function yourTours(Request $request): View
+    // {
+    //     $search = $request->get('search');
+    //     $myTours = Booking::where('user_id', auth()->user()->id)->pluck('tour_id')->toArray();
+    //     $tours = Tour::whereIn('id', $myTours)->with(['images', 'prices']);
+    //     if ($search) {
+    //         $tours->where('title', 'like', '%' . $search . '%');
+    //     }
+    //     $tours = $tours->get();
+    //     $now = Carbon::now();
+    //     $pastTours = $tours->filter(function ($tour) use ($now) {
+    //         return $tour->prices->max('start_date') < $now;
+    //     });
+    //     $upcomingTours = $tours->filter(function ($tour) use ($now) {
+    //         return $tour->prices->min('start_date') >= $now;
+    //     });
+    //     return view('your-tours', [
+    //         'pastTours' => $pastTours,
+    //         'upcomingTours' => $upcomingTours,
+    //         'search' => $search
+    //     ]);
+    // }
+
     public function yourTours(Request $request): View
     {
         $search = $request->get('search');
-        $myTours = Booking::where('user_id', auth()->user()->id)->pluck('tour_id')->toArray();
-        $tours = Tour::whereIn('id', $myTours)->with('images');
-        if ($search) {
-            $tours->where('title', 'like', '%' . $search . '%');
-        }
-        $tours = $tours->get();
+
+        $bookings = Booking::with(['tour.images', 'price'])
+            ->where('user_id', auth()->user()->id)
+            ->when($search, function ($query, $search) {
+                $query->whereHas('tour', function ($q) use ($search) {
+                    $q->where('title', 'like', '%' . $search . '%');
+                });
+            })
+            ->get();
+
+        $now = Carbon::now();
+
+        $upcomingTours = $bookings->filter(function ($booking) use ($now) {
+            return $booking->price && $booking->price->start_date >= $now;
+        });
+
+        $pastTours = $bookings->filter(function ($booking) use ($now) {
+            return $booking->price && $booking->price->start_date < $now;
+        });
+
         return view('your-tours', [
-            'tours' => $tours,
+            'upcomingTours' => $upcomingTours,
+            'pastTours' => $pastTours,
             'search' => $search
         ]);
     }
+
 
     function create(): View
     {

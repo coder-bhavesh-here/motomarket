@@ -11,10 +11,14 @@
         </div>
         <div id="upcomingTours" class="w-full justify-items-center">
             <div class="w-full grid grid-cols-1 womsm:grid-cols-2 wommd:grid-cols-3 gap-4 wommd:gap-16">
-                @foreach ($tours as $tour)
+                @foreach ($pastTours as $booking)
+                @php
+                    $tour = $booking->tour;
+                @endphp
                 @php
                     $today = \Carbon\Carbon::now();
-                    $startDate = \Carbon\Carbon::parse('2025-11-20');
+                    $stDate = $booking->price->date;
+                    $startDate = \Carbon\Carbon::parse($stDate);
                     $daysToGo = $startDate->greaterThan($today) ? $today->diffInDays($startDate) : 0;
                     $digits = str_split((string) floor($daysToGo)); // Split digits as array
                 @endphp
@@ -61,7 +65,10 @@
         </div>
         <div id="pastTours" class="hidden w-full justify-items-center">
             <div class="w-full grid grid-cols-1 womsm:grid-cols-2 wommd:grid-cols-3 gap-4 wommd:gap-16">
-                @foreach ($tours as $tour)
+                @foreach ($pastTours as $booking)
+                @php
+                    $tour = $booking->tour;
+                @endphp
                 <div class="w-full justify-items-center masterDiv" id="masterDiv{{ $tour->id }}">
                     <div class="max-w-[320px] wommd:max-w-[500px] ">
                         <a class="block relative" href='/tour/{{ $tour->id }}'>
