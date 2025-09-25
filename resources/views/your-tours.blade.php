@@ -25,10 +25,10 @@
                                 src="https://worldonmoto.com/storage/uploads/1732685873_2.jpg"
                                 alt="Tour photo"> --}}
                             @php
-                                $tour->images = $tour->images->sortBy('index')->first();
+                                $firstImage = $tour->images->sortBy('index')->first();
                             @endphp
                             <img class="aspect-square rounded-lg object-cover h-full w-full"
-                                src="{{ isset($tour->images) && isset($tour->images->image_path) ? asset('storage') . '/' . $tour->images->image_path : 'https://photos.smugmug.com/Galleries/Motorcycles/i-jX3tNwR/0/K2H4fw8P5MqPD8SRLWSrRZm4479d3ZvH8HL773j2D/L/cj.photos-_CJ09043-L.jpg' }}"
+                                src="{{ isset($firstImage) && isset($firstImage->image_path) ? asset('storage') . '/' . $firstImage->image_path : 'https://photos.smugmug.com/Galleries/Motorcycles/i-jX3tNwR/0/K2H4fw8P5MqPD8SRLWSrRZm4479d3ZvH8HL773j2D/L/cj.photos-_CJ09043-L.jpg' }}"
                                 alt="Tour photo">
                             
                             @if($daysToGo > 0)
