@@ -174,7 +174,7 @@
                 </div>
             </div>
         </div>
-        <div class="mt-4">
+        <div class="px-4 py-6 mt-4 inline-flex justify-evenly">
             @php
                 $addonPrices = 0;
             @endphp
