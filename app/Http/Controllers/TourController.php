@@ -279,11 +279,11 @@ class TourController extends Controller
         $now = Carbon::now();
 
         $upcomingTours = $bookings->filter(function ($booking) use ($now) {
-            return $booking->price && $booking->price->start_date >= $now;
+            return $booking->price && $booking->price->date >= $now;
         });
 
         $pastTours = $bookings->filter(function ($booking) use ($now) {
-            return $booking->price && $booking->price->start_date < $now;
+            return $booking->price && $booking->price->date < $now;
         });
 
         return view('your-tours', [
