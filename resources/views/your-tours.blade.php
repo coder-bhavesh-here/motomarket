@@ -65,6 +65,7 @@
         </div>
         <div id="pastTours" class="hidden w-full justify-items-center">
             <div class="w-full grid grid-cols-1 womsm:grid-cols-2 wommd:grid-cols-3 gap-4 wommd:gap-16">
+                @dd($pastTours)
                 @foreach ($pastTours as $booking)
                 @php
                     $tour = $booking->tour;
