@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Stripe\Price;
+use App\Models\TourPrice;
 
 class Booking extends Model
 {
@@ -35,6 +35,6 @@ class Booking extends Model
 
     public function price()
     {
-        return $this->belongsTo(Price::class, 'tour_date_id'); // price table ka id
+        return $this->belongsTo(TourPrice::class, 'tour_date_id'); // price table ka id
     }
 }
