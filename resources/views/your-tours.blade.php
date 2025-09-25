@@ -69,6 +69,7 @@
                                 src="https://worldonmoto.com/storage/uploads/1732685873_2.jpg"
                                 alt="Tour photo"> --}}
                             @php
+                            dd($tour->images);
                                 $tour->images = $tour->images->sortBy('index')->first();
                             @endphp
                             <img class="aspect-square rounded-lg object-cover h-full w-full"
