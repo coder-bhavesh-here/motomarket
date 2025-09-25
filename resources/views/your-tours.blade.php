@@ -34,7 +34,7 @@
                             @if($daysToGo > 0)
                                 <div class="absolute top-2 right-2 rounded-md p-2 flex flex-col items-center">
                                     <div class="flex space-x-1">
-                                        <@foreach ($digits as $digit)
+                                        @foreach ($digits as $digit)
                                             <span class="bg-white text-green text-2xl font-bold rounded w-8 h-10 flex items-center justify-center">
                                                 {{ $digit }}
                                             </span>
