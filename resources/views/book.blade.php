@@ -112,7 +112,14 @@
                         <div class="w-full">
                             <span class="form-label font-medium text-[#000F22]">Nationality</span>
                             <div class="items-center">
-                                <x-input id="nationality" placeholder="Please provide your nationality" value="{{$nationality}}"/>
+                                <select name="nationality" style="width: 100%" id="nationality">
+                                    <option value="">- Select Nationality -</option>
+                                    @foreach (config('countries.list') as $countryName)
+                                        <option value="{{ $countryName }}" {{($nationality == $countryName ? "selected" : '')}}>
+                                            {{ $countryName }}
+                                        </option>
+                                    @endforeach
+                                </select>
                             </div>
                         </div>
                     </div>
@@ -256,15 +263,15 @@
                 $fullPaymentDue = $tourDate->copy()->subDays(60)->format('jS F, Y');
             @endphp
             @if (now()->diffInDays($tourDate) > 60)
-            <div class="mt-4 italic">Since you tour is <b>more than 60 days</b> away, you can confirm your place by paying the <b>full tour price</b> or <b>25% of the price</b>.</div>
-            <div class="mt-4 italic">If you are paying the <b>25% of the tour price</b>, the full payment will need to be made before the <b>{{$fullPaymentDue}}</b></div>
+                <div class="mt-4 italic">Since your tour is <b>more than 60 days</b> away, you can secure your spot by either paying the <b>full tour price now</b> or <b>making a 25% deposit</b>.</div>
+                <div class="mt-4 italic">If you choose the <b>deposit option</b>, the <b>remaining balance</b> must <b>be paid</b> in full by <b>{{$fullPaymentDue}}</b>.</div>
             @else
-            <div class="mt-4 italic">
-                We need the <b>full payment</b> to confirm your booking <b>because</b> the tour starts in <b>less than 60 days</b>.
-            </div>
-            <div class="mt-4 italic">
-                Tours that are <b>more than 60 days</b> from the start date <b>can be booked with a 25%</b> payment of the tour price.
-            </div>
+                <div class="mt-4 italic">
+                    For tours starting in <b>less than 60 days</b>, <b>full payment is required</b> to confirm your booking.
+                </div>
+                <div class="mt-4 italic">
+                    For tours starting <b>more than 60 days away</b>, you can <b>secure your spot with a 25%</b> deposit of the tour price.
+                </div>
             @endif
             <div class="mt-4 italic">Read more about our: <a onclick="openFilterModal()" class="text-green underline cursor-pointer">payment terms and refund policy</a>.</div>
         </div>

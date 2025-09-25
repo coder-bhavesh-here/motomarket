@@ -85,8 +85,14 @@
                         </div>
                         <div>
                             <label class="font-bold text-black" for="nationality">Nationality</label>
-                            <x-text-input id="nationality" name="nationality" type="text" class="mt-1 block w-full" :value="old('nationality', $user->nationality)"
-                                autofocus autocomplete="nationality" />
+                            <select name="nationality" style="width: 100%" id="nationality">
+                                <option value="">- Select Nationality -</option>
+                                @foreach (config('countries.list') as $countryName)
+                                    <option value="{{ $countryName }}" {{($user->nationality == $countryName ? "selected" : '')}}>
+                                        {{ $countryName }}
+                                    </option>
+                                @endforeach
+                            </select>
                             <x-input-error class="mt-2" :messages="$errors->get('nationality')" />
                         </div>
                         <div>
