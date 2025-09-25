@@ -174,6 +174,25 @@
                 </div>
             </div>
         </div>
+        <div class="mt-4">
+            @if ($selectedDate->date < now()->addMonths(2))
+                @php
+                    // Pay 100% of the total price
+                    $pay = $totalPrice = $selectedDate->price + $addonPrices;
+                @endphp
+            @else
+                @php
+                    // Pay 25% of the total price
+                    $totalPrice = ($selectedDate->price + $addonPrices) * 0.25;
+                    $pay = $selectedDate->price + $addonPrices;
+                @endphp
+                <button class="make-payment primary-button w-full mb-4" data-id="{{ $selectedDate->id }}"
+                    data-price="{{ $totalPrice }}" id="payWithStripe">Book now - 25% (<span
+                        id="twentyFivePay">{{$symbol}} {{ number_format($totalPrice, 2) }}</span>)</button>
+            @endif
+            <button class="make-payment primary-button w-full" data-id="{{ $selectedDate->id }}"
+                data-price="{{ $pay }}" id="payWithStripe">Book now - 100% ({{ $symbol }} <span id="hundredPay">{{ number_format($pay, 2) }}</span>)</button>
+        </div>
     </div>
     <div class="m-10 col-span-2">
         <div class="rounded-2xl bg-[#556B2F0F]">
