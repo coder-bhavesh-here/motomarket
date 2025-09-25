@@ -244,7 +244,7 @@ class TourController extends Controller
     {
         $search = $request->get('search');
         $myTours = Booking::where('user_id', auth()->user()->id)->pluck('tour_id')->toArray();
-        $tours = Tour::whereIn('id', $myTours);
+        $tours = Tour::whereIn('id', $myTours)->with('images');
         if ($search) {
             $tours->where('title', 'like', '%' . $search . '%');
         }
