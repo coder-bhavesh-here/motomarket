@@ -249,6 +249,7 @@ class TourController extends Controller
             $tours->where('title', 'like', '%' . $search . '%');
         }
         $tours = $tours->get();
+        dd($tours);
         return view('your-tours', [
             'tours' => $tours,
             'search' => $search
