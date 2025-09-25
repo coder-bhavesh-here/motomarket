@@ -174,7 +174,7 @@
                 </div>
             </div>
         </div>
-        <div class="px-4 py-6 mt-4 flex justify-evenly space-x-4">
+        <div class="px-4 py-6 mt-4 flex flex-col justify-evenly">
             @php
                 $addonPrices = 0;
             @endphp
@@ -194,12 +194,12 @@
                     $totalPrice = ($selectedDate->price + $addonPrices) * 0.25;
                     $pay = $selectedDate->price + $addonPrices;
                 @endphp
-                <button class="make-payment primary-button w-1/3" data-id="{{ $selectedDate->id }}"
-                    data-price="{{ $totalPrice }}" id="payWithStripe">Book now - 25% (<span
+                    <button class="make-payment primary-button w-1/2 mb-4" data-id="{{ $selectedDate->id }}"
+                        data-price="{{ $totalPrice }}" id="payWithStripe">Book now - 25% (<span
                         id="twentyFivePay">{{$symbol}} {{ number_format($totalPrice, 2) }}</span>)</button>
-            @endif
-            <button class="make-payment primary-button w-1/3" data-id="{{ $selectedDate->id }}"
-                data-price="{{ $pay }}" id="payWithStripe">Book now - 100% ({{ $symbol }} <span id="hundredPay">{{ number_format($pay, 2) }}</span>)</button>
+                @endif
+            <button class="make-payment primary-button w-1/2" data-id="{{ $selectedDate->id }}"
+            data-price="{{ $pay }}" id="payWithStripe">Book now - 100% ({{ $symbol }} <span id="hundredPay">{{ number_format($pay, 2) }}</span>)</button>
         </div>
     </div>
     <div class="m-10 col-span-2">
