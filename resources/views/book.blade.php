@@ -174,7 +174,7 @@
                 </div>
             </div>
         </div>
-        <div class="px-4 py-6 mt-4 flex flex-col justify-evenly">
+        <div class="px-4 py-6 mt-4 flex flex-col justify-evenly items-center">
             @php
                 $addonPrices = 0;
             @endphp
