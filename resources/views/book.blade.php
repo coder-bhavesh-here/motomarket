@@ -179,9 +179,6 @@
                 $addonPrices = 0;
             @endphp
             @foreach ($addons as $addon)
-                <div class='w-full mt-4 inline-flex justify-between'>
-                    <span>{{ $addon->group->name }} - {{ $addon->name }}</span><span style="min-width: 100px;text-align: right;"> {{$symbol}} {{ $addon->price }} </span>
-                </div>
                 @php
                     $addonPrices = $addonPrices + $addon->price;
                 @endphp
