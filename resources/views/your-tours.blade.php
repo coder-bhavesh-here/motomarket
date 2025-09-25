@@ -98,7 +98,7 @@
             </div>
         </div>
         <div id="cancelledTours" class="hidden w-full justify-items-center">
-            <div class="w-full grid grid-cols-1 womsm:grid-cols-2 wommd:grid-cols-3 gap-4 wommd:gap-16">
+            {{-- <div class="w-full grid grid-cols-1 womsm:grid-cols-2 wommd:grid-cols-3 gap-4 wommd:gap-16">
                 @foreach ($tours as $tour)
                 <div class="w-full justify-items-center masterDiv" id="masterDiv{{ $tour->id }}">
                     <div class="max-w-[320px] wommd:max-w-[500px] ">
@@ -129,7 +129,7 @@
                     </div>
                 </div>
                 @endforeach
-            </div>
+            </div> --}}
         </div>
     </div>
     <script>
