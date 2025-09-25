@@ -175,6 +175,17 @@
             </div>
         </div>
         <div class="mt-4">
+            @php
+                $addonPrices = 0;
+            @endphp
+            @foreach ($addons as $addon)
+                <div class='w-full mt-4 inline-flex justify-between'>
+                    <span>{{ $addon->group->name }} - {{ $addon->name }}</span><span style="min-width: 100px;text-align: right;"> {{$symbol}} {{ $addon->price }} </span>
+                </div>
+                @php
+                    $addonPrices = $addonPrices + $addon->price;
+                @endphp
+            @endforeach
             @if ($selectedDate->date < now()->addMonths(2))
                 @php
                     // Pay 100% of the total price
