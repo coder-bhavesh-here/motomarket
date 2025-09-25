@@ -243,8 +243,8 @@ class TourController extends Controller
     public function yourTours(Request $request): View
     {
         $search = $request->get('search');
-        $favouriteTours = auth()->user()->favouriteTours->pluck('tour_id')->toArray();
-        $tours = Tour::whereIn('id', $favouriteTours);
+        $myTours = Booking::where('user_id', auth()->user()->id)->pluck('tour_id')->toArray();
+        $tours = Tour::whereIn('id', $myTours);
         if ($search) {
             $tours->where('title', 'like', '%' . $search . '%');
         }
