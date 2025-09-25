@@ -103,9 +103,6 @@
                 <div class="w-full justify-items-center masterDiv" id="masterDiv{{ $tour->id }}">
                     <div class="max-w-[320px] wommd:max-w-[500px] ">
                         <a class="block relative" href='/tour/{{ $tour->id }}'>
-                            {{-- <img class="aspect-square rounded-lg object-cover h-full w-full"
-                                src="https://worldonmoto.com/storage/uploads/1732685873_2.jpg"
-                                alt="Tour photo"> --}}
                             @php
                                 $tour->images = $tour->images->sortBy('index')->first();
                             @endphp
