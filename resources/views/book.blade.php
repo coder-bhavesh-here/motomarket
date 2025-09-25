@@ -249,11 +249,11 @@
                             $pay = $selectedDate->price + $addonPrices;
                         @endphp
                         <button class="make-payment primary-button w-full mb-4" data-id="{{ $selectedDate->id }}"
-                            data-price="{{ $totalPrice }}" id="payWithStripe">Pay 25% - <span
-                                id="twentyFivePay">{{$symbol}} {{ number_format($totalPrice, 2) }}</span></button>
+                            data-price="{{ $totalPrice }}" id="payWithStripe">Book now - 25% (<span
+                                id="twentyFivePay">{{$symbol}} {{ number_format($totalPrice, 2) }}</span>)</button>
                     @endif
                     <button class="make-payment primary-button w-full" data-id="{{ $selectedDate->id }}"
-                        data-price="{{ $pay }}" id="payWithStripe">Pay 100% - {{ $symbol }} <span id="hundredPay">{{ number_format($pay, 2) }}</span></button>
+                        data-price="{{ $pay }}" id="payWithStripe">Book now - 100% ({{ $symbol }} <span id="hundredPay">{{ number_format($pay, 2) }}</span>)</button>
                 </div>
             </div>
         </div>
