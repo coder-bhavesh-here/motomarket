@@ -151,16 +151,17 @@
                     <li>Confirm your ICE (emergency contacts) are up to date</li>
                 </ul>
             </div>
-            <div class="mt-8">
+            {{-- <div class="mt-8">
                 <span class="text-black font-bold text-xl">Meeting Location Details </span>
             </div>
             <div class="mt-2 text-black">
                 {!! $tour->tour_meeting_location_notes !!}
-            </div>
+            </div> --}}
             <div class="mt-4 text-black">
                 @if ($embedUrl!='')
                 <div class="mx-3 mt-5">
-                    <span style="font-weight: 900" class="flex mb-2 text-black text-sm womsm:text-lg wommd:text-xl">TOUR MEETING LOCATION</span>
+                    <span class="text-black font-bold text-xl">Tour Start Location </span>
+                    {{-- <span style="font-weight: 900" class="flex mb-2 text-black text-sm womsm:text-lg wommd:text-xl">TOUR MEETING LOCATION</span> --}}
                     @if (str_contains($embedUrl, 'google.com'))
                         <iframe 
                             src="{{$embedUrl}}" 
@@ -180,7 +181,7 @@
                 @endif
                 @if ($tour->tour_meeting_location_notes !='')
                 <div class="mx-3 my-4">
-                    <span style="font-weight: 900" class="flex mb-2 text-black text-sm womsm:text-base wommd:text-lg">TOUR MEETING LOCATION NOTES</span>
+                    <span class="text-black font-bold text-xl">Meeting Location Details </span>
                     {!!$tour->tour_meeting_location_notes!!}
                 </div>
                 @endif
