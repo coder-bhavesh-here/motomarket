@@ -49,13 +49,7 @@
     </div> --}}
     <div class="flex justify-between items-start relative w-full">
         <div class="flex flex-col">
-            <p class="text-green-600 font-semibold text-sm">
-                <a href="{{ route('homepage') }}" class="underline">Home</a> > 
-                <a href="{{ route('profiles') }}" class="underline">Settings</a> > 
-                <a href="{{ route('your-tours') }}" class="underline">Your Tours</a> > Booking Details
-            </p>
             <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > <u><a href="{{ route('profiles') }}">Settings</a></u> > <u><a href="{{ route('your-tours') }}">Your Tours</a></u> > Booking details</p>
-
             <p class="mt-4 mb-2 font-semibold text-[#0F172A] text-lg womsm:text-xl wommd:text-2xl">
                 {{ $tour->title }} - {{ $tour->countries }}
             </p>
@@ -72,10 +66,20 @@
         @endphp
 
         @if($daysToGo > 0)
-            <div class="flex flex-col items-center bg-white rounded-md p-2 shadow-md">
+            {{-- <div class="absolute top-2 right-2 rounded-md p-2 flex flex-col items-center">
                 <div class="flex space-x-1">
                     @foreach ($digits as $digit)
-                        <span class="bg-white text-green-600 text-2xl font-bold rounded w-8 h-10 flex items-center justify-center">
+                        <span class="bg-white text-green text-2xl font-bold rounded w-8 h-10 flex items-center justify-center">
+                            {{ $digit }}
+                        </span>
+                    @endforeach
+                </div>
+                <span class="text-sm font-semibold text-white mt-1">DAYS TO GO</span>
+            </div> --}}
+            <div class="flex flex-col items-center bg-white rounded-md p-2">
+                <div class="flex space-x-1">
+                    @foreach ($digits as $digit)
+                        <span class="bg-[#556B2F] text-white text-2xl font-bold rounded w-8 h-10 flex items-center justify-center">
                             {{ $digit }}
                         </span>
                     @endforeach
