@@ -345,7 +345,7 @@
             postcode: "Postcode"
         };
         Object.keys(requiredFields).forEach(field => {
-            $(`#${field}`).removeClass('border-red-500');
+            $(`#${field}`).removeClass('border-4 border-red-500');
         });
 
         let errors = [];
@@ -355,13 +355,13 @@
             const $fieldEl = $(`#${field}`);
             if (!$fieldEl.val()) {
                 errors.push(`${label} is required`);
-                $fieldEl.addClass('border-red-500'); // add red border
+                $fieldEl.addClass('border-4 border-red-500'); // add red border
             }
         });
 
         if (!iti.isValidNumber()) {
             errors.push('Please enter a valid phone number');
-            $("#mobile_number").addClass('border-red-500');
+            $("#mobile_number").addClass('border-4 border-red-500');
         }
 
         // Display errors if any
