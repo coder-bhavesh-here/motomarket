@@ -112,7 +112,7 @@
                         <div class="w-full">
                             <span class="form-label font-medium text-[#000F22]">Nationality</span>
                             <div class="items-center">
-                                <select name="nationality" style="width: 100%" id="nationality">
+                                <select name="nationality" style="width: 100%" id="nationality" class="border rounded">
                                     <option value="">- Select Nationality -</option>
                                     @foreach (config('countries.list') as $countryName)
                                         <option value="{{ $countryName }}" {{($nationality == $countryName ? "selected" : '')}}>
