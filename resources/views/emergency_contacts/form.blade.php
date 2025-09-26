@@ -10,7 +10,7 @@
         <div class="bg-green-100 text-green p-2 mb-4 rounded">{{ session('success') }}</div>
     @endif --}}
 
-    <form action="{{ route('emergency-contacts.update') }}" method="POST" class="mx-auto p-6">
+    <form action="{{ route('emergency-contacts.update') }}" method="POST">
         @csrf
         @for ($i = 1; $i <= 3; $i++)
             <div class="mb-10">
