@@ -17,10 +17,36 @@
 
 <div class="sm:px-6 lg:px-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > <u><a href="{{ route('profiles') }}">Settings</a></u> > <u><a href="{{ route('your-tours') }}">Your Tours</a></u> > Booking Details</p>
-    <p class="mt-4 mb-2 font-semibold text-[#0F172A] text-lg womsm:text-xl wommd:text-2xl">
-        {{ $tour->title }} - {{ $tour->countries }}
-    </p>
+    <div class="flex">
+        <div class="flex flex-col">
+            <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > <u><a href="{{ route('profiles') }}">Settings</a></u> > <u><a href="{{ route('your-tours') }}">Your Tours</a></u> > Booking Details</p>
+            <p class="mt-4 mb-2 font-semibold text-[#0F172A] text-lg womsm:text-xl wommd:text-2xl">
+                {{ $tour->title }} - {{ $tour->countries }}
+            </p>
+        </div>
+        <div>
+            @php
+                $today = \Carbon\Carbon::now();
+                $stDate = $selectedDate->date;
+                $startDate = \Carbon\Carbon::parse($stDate);
+                $formattedStartDate = $startDate->format('d-M-Y');
+                $daysToGo = $startDate->greaterThan($today) ? $today->diffInDays($startDate) + 1 : 0;
+                $digits = str_split((string) floor($daysToGo)); // Split digits as array
+            @endphp
+            @if($daysToGo > 0)
+                <div class="absolute top-2 right-2 rounded-md p-2 flex flex-col items-center">
+                    <div class="flex space-x-1">
+                        @foreach ($digits as $digit)
+                            <span class="bg-white text-green text-2xl font-bold rounded w-8 h-10 flex items-center justify-center">
+                                {{ $digit }}
+                            </span>
+                        @endforeach
+                    </div>
+                    <span class="text-sm font-semibold text-white mt-1">DAYS TO GO</span>
+                </div>
+            @endif
+        </div>
+    </div>
     <div class="inline-flex justify-center items-center mb-3">
         @php
             $profile_picture =
