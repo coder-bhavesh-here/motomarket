@@ -1,6 +1,7 @@
 <x-app-layout>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <div class="mx-10 my-2">
+    <div class="sm:px-6 lg:px-8">
+        <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > <u><a href="{{ route('profiles') }}">Settings</a></u> > Your Favourite Tours</p>
         {{-- <form action="/explore-tours" method="GET" class="grid grid-cols-1 wommd:grid-cols-2">
             <input type="text" value="" name="search" class="mt-3 w-full rounded-md text-black">
             <button class="wommd:ml-5 wommd:w-1/2 mt-2 button-text text-base font-bold">Search for tours</button>
