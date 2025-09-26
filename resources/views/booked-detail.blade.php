@@ -48,7 +48,7 @@
     </div>
 </div>
 <div class="w-full grid grid-cols-1 xl:grid-cols-5">
-    <div class="col-span-2 m-10">
+    <div class="col-span-2 m-6">
         <div class="rounded-2xl bg-[#556B2F0F]">
             @php
                 $tour->images = $tour->images->sortBy('index')->first();
