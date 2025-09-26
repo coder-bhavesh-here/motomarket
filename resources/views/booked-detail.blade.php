@@ -18,6 +18,7 @@
 <div class="sm:px-6 lg:px-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > <u><a href="{{ route('explore-tours') }}">Tour Search</a></u> > <u><a href="/tour/{{ $tour->id }}">Tour Details</a></u> > Booking</p>
+    <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > <u><a href="{{ route('profiles') }}">Settings</a></u> > <a href="{{ route('your-tours') }}">Your Tours</a> > Booking Details</p>
     <p class="mt-4 mb-2 font-semibold text-[#0F172A] text-lg womsm:text-xl wommd:text-2xl">
         {{ $tour->title }} - {{ $tour->countries }}
     </p>
