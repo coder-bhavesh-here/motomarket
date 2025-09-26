@@ -160,7 +160,7 @@
             <div class="mt-4 text-black">
                 @if ($embedUrl!='')
                 <div class="mt-5">
-                    <span class="text-black font-bold text-xl">Tour Start Location </span>
+                    <span class="text-black flex mb-3 mt-3 font-bold text-xl">Tour Start Location </span>
                     {{-- <span style="font-weight: 900" class="flex mb-2 text-black text-sm womsm:text-lg wommd:text-xl">TOUR MEETING LOCATION</span> --}}
                     @if (str_contains($embedUrl, 'google.com'))
                         <iframe 
@@ -180,8 +180,8 @@
                 </div>
                 @endif
                 @if ($tour->tour_meeting_location_notes !='')
-                <div class="my-4">
-                    <span class="text-black font-bold text-xl">Meeting Location Details </span>
+                <div class="mt-5">
+                    <span class="text-black font-bold flex mb-3 mt-3 text-xl">Meeting Location Details </span>
                     {!!$tour->tour_meeting_location_notes!!}
                 </div>
                 @endif
