@@ -4,7 +4,7 @@
 {{-- <div class="mx-auto p-4"> --}}
 <div class="sm:px-6 lg:px-8">
     <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > <u><a href="{{ route('profiles') }}">Settings</a></u> > Emergency Contacts</p>
-    <h2 class="text-2xl font-bold mb-4 text-green px-6">Emergency Contacts</h2>
+    <h2 class="text-2xl font-bold mb-4 text-green py-6">Emergency Contacts</h2>
 
     {{-- @if(session('success'))
         <div class="bg-green-100 text-green p-2 mb-4 rounded">{{ session('success') }}</div>
