@@ -339,28 +339,39 @@
             country: "Country",
             postcode: "Postcode"
         };
+        Object.keys(requiredFields).forEach(field => {
+            $(`#${field}`).removeClass('border-red-500');
+        });
 
         let errors = [];
 
         // Check each required field
         Object.entries(requiredFields).forEach(([field, label]) => {
-            if (!$(`#${field}`).val()) {
+            const $fieldEl = $(`#${field}`);
+            if (!$fieldEl.val()) {
                 errors.push(`${label} is required`);
+                $fieldEl.addClass('border-red-500'); // add red border
             }
         });
+
         if (!iti.isValidNumber()) {
             errors.push('Please enter a valid phone number');
-            // alert("Please enter a valid phone number.");
+            $("#mobile_number").addClass('border-red-500');
         }
 
         // Display errors if any
-        const errorDiv = $("#validation-errors");
+        // const errorDiv = $("#validation-errors");
+        // if (errors.length > 0) {
+        //     errorDiv.html(errors.join('<br>')).removeClass('hidden');
+        //     return false;
+        // }
         if (errors.length > 0) {
-            errorDiv.html(errors.join('<br>')).removeClass('hidden');
+            errors.forEach(err => {
+                new Notyf().error(err);
+            });
             return false;
         }
-
-        errorDiv.addClass('hidden');
+        // errorDiv.addClass('hidden');
         return true;
     }
 
