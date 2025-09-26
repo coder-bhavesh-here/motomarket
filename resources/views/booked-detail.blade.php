@@ -17,7 +17,7 @@
 
 <div class="sm:px-6 lg:px-8">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <div class="flex">
+    {{-- <div class="flex">
         <div class="flex flex-col">
             <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > <u><a href="{{ route('profiles') }}">Settings</a></u> > <u><a href="{{ route('your-tours') }}">Your Tours</a></u> > Booking Details</p>
             <p class="mt-4 mb-2 font-semibold text-[#0F172A] text-lg womsm:text-xl wommd:text-2xl">
@@ -46,7 +46,45 @@
                 </div>
             @endif
         </div>
+    </div> --}}
+    <div class="flex justify-between items-start relative w-full">
+    <!-- Left: Breadcrumbs + Title -->
+    <div class="flex flex-col">
+        <p class="text-green-600 font-semibold text-sm">
+            <a href="{{ route('homepage') }}" class="underline">Home</a> > 
+            <a href="{{ route('profiles') }}" class="underline">Settings</a> > 
+            <a href="{{ route('your-tours') }}" class="underline">Your Tours</a> > Booking Details
+        </p>
+
+        <p class="mt-4 mb-2 font-semibold text-[#0F172A] text-lg womsm:text-xl wommd:text-2xl">
+            {{ $tour->title }} - {{ $tour->countries }}
+        </p>
     </div>
+
+    <!-- Right: Days to go -->
+    @php
+        $today = \Carbon\Carbon::now();
+        $stDate = $selectedDate->date;
+        $startDate = \Carbon\Carbon::parse($stDate);
+        $formattedStartDate = $startDate->format('d-M-Y');
+        $daysToGo = $startDate->greaterThan($today) ? $today->diffInDays($startDate) + 1 : 0;
+        $digits = str_split((string) floor($daysToGo));
+    @endphp
+
+    @if($daysToGo > 0)
+        <div class="flex flex-col items-center bg-white rounded-md p-2 shadow-md">
+            <div class="flex space-x-1">
+                @foreach ($digits as $digit)
+                    <span class="bg-white text-green-600 text-2xl font-bold rounded w-8 h-10 flex items-center justify-center">
+                        {{ $digit }}
+                    </span>
+                @endforeach
+            </div>
+            <span class="text-sm font-semibold text-black mt-1">DAYS TO GO</span>
+        </div>
+    @endif
+</div>
+
     <div class="inline-flex justify-center items-center mb-3">
         @php
             $profile_picture =
