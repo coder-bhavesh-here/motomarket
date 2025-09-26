@@ -159,7 +159,7 @@
             </div> --}}
             <div class="mt-4 text-black">
                 @if ($embedUrl!='')
-                <div class="mx-3 mt-5">
+                <div class="mt-5">
                     <span class="text-black font-bold text-xl">Tour Start Location </span>
                     {{-- <span style="font-weight: 900" class="flex mb-2 text-black text-sm womsm:text-lg wommd:text-xl">TOUR MEETING LOCATION</span> --}}
                     @if (str_contains($embedUrl, 'google.com'))
@@ -180,7 +180,7 @@
                 </div>
                 @endif
                 @if ($tour->tour_meeting_location_notes !='')
-                <div class="mx-3 my-4">
+                <div class="my-4">
                     <span class="text-black font-bold text-xl">Meeting Location Details </span>
                     {!!$tour->tour_meeting_location_notes!!}
                 </div>
