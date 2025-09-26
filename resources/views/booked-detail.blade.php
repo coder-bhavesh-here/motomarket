@@ -107,7 +107,7 @@
                 </div>
                 <div class="mt-6 border-t inline-flex items-center justify-between border-black pt-4 w-full">
                     <input type="hidden" id="tour_price" value="{{ number_format($selectedDate->price + $addonPrices, 2) }}">
-                    <span class="text-black font-semibold">Total</span> 
+                    <span class="text-black font-semibold">Total Due</span> 
                     <strong>
                         <span class="text-2xl text-black" id="total_price">{{$symbol}} {{ number_format(($selectedDate->price + $addonPrices) - $booking->amount, 2) }}</span>
                     </strong>
