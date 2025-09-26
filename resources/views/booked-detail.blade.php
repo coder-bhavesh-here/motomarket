@@ -161,7 +161,7 @@
             </div> --}}
             <div class="mt-4 text-black">
                 @if ($embedUrl!='')
-                <div class="flex flex-col mt-5">
+                <div class="flex flex-col mt-5 mr-5">
                     <span class="text-black flex mb-3 mt-3 font-bold text-xl">Tour Start Location </span>
                     {{-- <span style="font-weight: 900" class="flex mb-2 text-black text-sm womsm:text-lg wommd:text-xl">TOUR MEETING LOCATION</span> --}}
                     @if (str_contains($embedUrl, 'google.com'))
