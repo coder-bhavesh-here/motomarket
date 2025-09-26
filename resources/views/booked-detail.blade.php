@@ -143,7 +143,9 @@
             </div>
             <div class="mt-2 text-black">
                 <ul class="ml-5" style="list-style: disc">
-                    <li>Pay the outstanding amount before the 2025-03-15</li>
+                    @if ($booking->amount < $selectedDate->price + $addonPrices)
+                        <li>Pay the outstanding amount before the {{\Carbon\Carbon::parse($selectedDate->date)->format('F jS, Y')}}</li>
+                    @endif
                     <li>Agree to the tour operator indemnity terms</li>
                     <li>Learn about sports and travel insurance for additional safety</li>
                     <li>Make the travel arrangements to get to the starting point</li>
@@ -159,7 +161,7 @@
             </div> --}}
             <div class="mt-4 text-black">
                 @if ($embedUrl!='')
-                <div class="mt-5">
+                <div class="flex flex-col mt-5">
                     <span class="text-black flex mb-3 mt-3 font-bold text-xl">Tour Start Location </span>
                     {{-- <span style="font-weight: 900" class="flex mb-2 text-black text-sm womsm:text-lg wommd:text-xl">TOUR MEETING LOCATION</span> --}}
                     @if (str_contains($embedUrl, 'google.com'))
