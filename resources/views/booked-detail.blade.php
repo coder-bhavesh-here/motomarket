@@ -47,15 +47,38 @@
             @endif
         </div>
     </div> --}}
+    <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > <u><a href="{{ route('profiles') }}">Settings</a></u> > <u><a href="{{ route('your-tours') }}">Your Tours</a></u> > Booking details</p>
     <div class="flex justify-between items-start relative w-full">
         <div class="flex flex-col">
-            <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > <u><a href="{{ route('profiles') }}">Settings</a></u> > <u><a href="{{ route('your-tours') }}">Your Tours</a></u> > Booking details</p>
             <p class="mt-4 mb-2 font-semibold text-[#0F172A] text-lg womsm:text-xl wommd:text-2xl">
                 {{ $tour->title }} - {{ $tour->countries }}
             </p>
+            <div class="inline-flex justify-center items-center mb-3">
+            @php
+                $profile_picture =
+                    $tour->user->tour_profile_picture != ''
+                        ? $tour->user->tour_profile_picture
+                        : ($tour->user->profile_picture != ''
+                            ? $tour->user->profile_picture
+                            : '');
+                $tour_operation_name =
+                    $tour->user->tour_operation_name != ''
+                        ? $tour->user->tour_operation_name
+                        : ($tour->user->name != ''
+                            ? $tour->user->name
+                            : '');
+            @endphp
+            @if ($profile_picture != '')
+                <img src="{{ asset('storage') . '/' . ($tour->user->tour_profile_picture != '' ? $tour->user->tour_profile_picture : $tour->user->profile_picture) }}"
+                    alt="Tour operator picture"
+                    style="width: 40px; height: 40px; border-radius: 20px;">
+            @endif
+            <a href="#" class="underline">
+                <span
+                    class="text-sm womsm:text-base wommd:text-lg font-semibold text-black tour-owner ml-4">{{ $tour_operation_name }}</span>
+            </a>
         </div>
-
-        <!-- Right: Days to go -->
+        </div>
         @php
             $today = \Carbon\Carbon::now();
             $stDate = $selectedDate->date;
@@ -64,18 +87,7 @@
             $daysToGo = $startDate->greaterThan($today) ? $today->diffInDays($startDate) + 1 : 0;
             $digits = str_split((string) floor($daysToGo));
         @endphp
-
         @if($daysToGo > 0)
-            {{-- <div class="absolute top-2 right-2 rounded-md p-2 flex flex-col items-center">
-                <div class="flex space-x-1">
-                    @foreach ($digits as $digit)
-                        <span class="bg-white text-green text-2xl font-bold rounded w-8 h-10 flex items-center justify-center">
-                            {{ $digit }}
-                        </span>
-                    @endforeach
-                </div>
-                <span class="text-sm font-semibold text-white mt-1">DAYS TO GO</span>
-            </div> --}}
             <div class="flex flex-col items-center bg-white rounded-md p-2">
                 <div class="flex space-x-1">
                     @foreach ($digits as $digit)
@@ -87,32 +99,6 @@
                 <span class="text-sm font-semibold text-black mt-1">DAYS TO GO</span>
             </div>
         @endif
-    </div>
-
-    <div class="inline-flex justify-center items-center mb-3">
-        @php
-            $profile_picture =
-                $tour->user->tour_profile_picture != ''
-                    ? $tour->user->tour_profile_picture
-                    : ($tour->user->profile_picture != ''
-                        ? $tour->user->profile_picture
-                        : '');
-            $tour_operation_name =
-                $tour->user->tour_operation_name != ''
-                    ? $tour->user->tour_operation_name
-                    : ($tour->user->name != ''
-                        ? $tour->user->name
-                        : '');
-        @endphp
-        @if ($profile_picture != '')
-            <img src="{{ asset('storage') . '/' . ($tour->user->tour_profile_picture != '' ? $tour->user->tour_profile_picture : $tour->user->profile_picture) }}"
-                alt="Tour operator picture"
-                style="width: 40px; height: 40px; border-radius: 20px;">
-        @endif
-        <a href="#" class="underline">
-            <span
-                class="text-sm womsm:text-base wommd:text-lg font-semibold text-black tour-owner ml-4">{{ $tour_operation_name }}</span>
-        </a>
     </div>
 </div>
 <div class="w-full grid grid-cols-1 xl:grid-cols-5">
