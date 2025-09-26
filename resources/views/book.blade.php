@@ -112,7 +112,7 @@
                         <div class="w-full">
                             <span class="form-label font-medium text-[#000F22]">Nationality</span>
                             <div class="items-center">
-                                <select name="nationality" style="width: 100%" id="nationality" class="border rounded">
+                                <select name="nationality" style="width: 100%" id="nationality" class="border border-[#d6d3d1] rounded">
                                     <option value="">- Select Nationality -</option>
                                     @foreach (config('countries.list') as $countryName)
                                         <option value="{{ $countryName }}" {{($nationality == $countryName ? "selected" : '')}}>
@@ -140,7 +140,7 @@
                             <span class="form-label font-medium text-[#000F22]">Country</span>
                             <div class="items-center">
                                 {{-- <x-input id="country" placeholder="Please provide country" /> --}}
-                                <select name="country" style="width: 100%" id="country">
+                                <select name="country" style="width: 100%" id="country" class="border border-[#d6d3d1] rounded">
                                     <option value="">- Select country -</option>
                                     @foreach (config('countries.list') as $countryName)
                                         <option value="{{ $countryName }}" {{($country == $countryName ? "selected" : '')}}>
