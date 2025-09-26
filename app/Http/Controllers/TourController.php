@@ -280,7 +280,6 @@ class TourController extends Controller
         $upcomingTours = $bookings->filter(function ($booking) use ($now) {
             return $booking->price && Carbon::parse($booking->price->date)->greaterThanOrEqualTo($now);
         });
-        dd($upcomingTours);
 
         $pastTours = $bookings->filter(function ($booking) use ($now) {
             return $booking->price && Carbon::parse($booking->price->date)->lessThan($now);
