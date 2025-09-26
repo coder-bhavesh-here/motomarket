@@ -330,6 +330,11 @@
     function closeFilterModal() {
         document.getElementById('filterModal').classList.add('hidden');
     }
+    const notyf = new Notyf({
+        position: { x: 'center', y: 'top' },
+        duration: 3000, // optional, toast visible 3 seconds
+        dismissible: true
+    });
     function validateForm() {
         const requiredFields = {
             name: "Name",
@@ -367,8 +372,7 @@
         // }
         if (errors.length > 0) {
             errors.forEach(err => {
-                new Notyf().error(err);
-                return false;
+                notyf.error(err);
             });
             return false;
         }
