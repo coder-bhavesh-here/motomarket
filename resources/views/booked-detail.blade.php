@@ -158,7 +158,33 @@
                 {!! $tour->tour_meeting_location_notes !!}
             </div>
             <div class="mt-4 text-black">
-                <a class="underline italic" href="{{ $tour->tour_start_location }}">{{ $tour->tour_start_location }}</a>
+                @if ($embedUrl!='')
+                <div class="mx-3 mt-5">
+                    <span style="font-weight: 900" class="flex mb-2 text-black text-sm womsm:text-lg wommd:text-xl">TOUR MEETING LOCATION</span>
+                    @if (str_contains($embedUrl, 'google.com'))
+                        <iframe 
+                            src="{{$embedUrl}}" 
+                            width="100%" 
+                            height="450" 
+                            style="border:0;" 
+                            allowfullscreen 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    @else
+                        <a onmouseover="this.style.color='black'" class="text-black font-bold" href="{{ Str::startsWith($embedUrl, ['http://', 'https://']) ? $embedUrl : 'https://' . $embedUrl }}" target="_blank">    
+                            Location
+                        </a>
+                    @endif
+                </div>
+                @endif
+                @if ($tour->tour_meeting_location_notes !='')
+                <div class="mx-3 my-4">
+                    <span style="font-weight: 900" class="flex mb-2 text-black text-sm womsm:text-base wommd:text-lg">TOUR MEETING LOCATION NOTES</span>
+                    {!!$tour->tour_meeting_location_notes!!}
+                </div>
+                @endif
+                {{-- <a class="underline italic" href="{{ $tour->tour_start_location }}">{{ $tour->tour_start_location }}</a> --}}
             </div>
             @if (count($otherUser) > 0)
             <div class="mt-8">
