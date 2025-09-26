@@ -368,6 +368,7 @@
         if (errors.length > 0) {
             errors.forEach(err => {
                 new Notyf().error(err);
+                return false;
             });
             return false;
         }
