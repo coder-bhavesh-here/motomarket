@@ -126,7 +126,7 @@
         </div>
     </div>
     <div class="col-span-3">
-        <div class="px-4 py-6">
+        <div class="py-6">
             <div>
                 <span class="text-black font-bold text-xl">Quick Links</span>
             </div>
