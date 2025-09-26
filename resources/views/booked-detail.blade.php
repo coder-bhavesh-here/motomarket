@@ -59,7 +59,7 @@
             {{-- <img class="max-h-[300px] rounded-xl object-cover h-full w-full"
                 src="https://images.wanderon.in/blogs/new/2023/03/stones-at-chandrataal-lake-1.jpg"
                 alt="Tour photo"> --}}
-            <div class="content p-10">
+            <div class="content py-8 mx-6">
                 <div class="inline-flex justify-center items-center">
                     <span class="text-black font-bold text-lg womsm:text-xl wommd:text-2xl">YOUR BOOKING</span>
                 {{-- <span><a href="/tour/{{ $tour->id }}" class="text-green font-semibold ml-2 text-xs womsm:text-sm wommd:text-base"><u>Change</u></a></span> --}}
