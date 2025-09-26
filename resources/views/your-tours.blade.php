@@ -2,7 +2,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <div class="sm:px-6 lg:px-8">
         <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > <u><a href="{{ route('profiles') }}">Settings</a></u> > Your Tours</p>
-        <span class="text-green text-xl font-bold womsm:text-2xl wommd:text-3xl">
+        <span class="flex mt-4 text-green text-xl font-bold womsm:text-2xl wommd:text-3xl">
             Your Tours
         </span>
         <div class="flex mt-4 mb-14">
