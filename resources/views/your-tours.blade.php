@@ -19,6 +19,7 @@
                     $today = \Carbon\Carbon::now();
                     $stDate = $booking->price->date;
                     $startDate = \Carbon\Carbon::parse($stDate);
+                    $formattedStartDate = $startDate->format('d-M-Y');
                     $daysToGo = $startDate->greaterThan($today) ? $today->diffInDays($startDate) + 1 : 0;
                     $digits = str_split((string) floor($daysToGo)); // Split digits as array
                 @endphp
@@ -56,7 +57,7 @@
                                 <span><img style="width: 17px; height: 23px;" src="{{ asset('images') . '/map-pin.png' }}" alt=""></span>
                                 <span class="ml-1 text-sm font-medium wommd:text-base">{{ $tour->countries }}</span>
                             </span>
-                            <span class="text-green font-semibold text-sm wommd:text-base">20-Nov-2025</span>
+                            <span class="text-green font-semibold text-sm wommd:text-base">{{ $formattedStartDate }}</span>
                         </div>
                     </div>
                 </div>
@@ -68,6 +69,9 @@
                 @foreach ($pastTours as $booking)
                 @php
                     $tour = $booking->tour;
+                    $stDate = $booking->price->date;
+                    $startDate = \Carbon\Carbon::parse($stDate);
+                    $formattedStartDate = $startDate->format('d-M-Y');
                 @endphp
                 <div class="w-full justify-items-center masterDiv" id="masterDiv{{ $tour->id }}">
                     <div class="max-w-[320px] wommd:max-w-[500px] ">
@@ -90,7 +94,7 @@
                                 <span><img style="width: 17px; height: 23px;" src="{{ asset('images') . '/map-pin.png' }}" alt=""></span>
                                 <span class="ml-1 text-sm font-medium wommd:text-base">{{ $tour->countries }}</span>
                             </span>
-                            <span class="text-green font-semibold text-sm wommd:text-base">20-Nov-2025</span>
+                            <span class="text-green font-semibold text-sm wommd:text-base">{{ $formattedStartDate }}</span>
                         </div>
                     </div>
                 </div>
