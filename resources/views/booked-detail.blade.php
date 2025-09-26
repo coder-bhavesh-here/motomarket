@@ -42,7 +42,7 @@
                             </span>
                         @endforeach
                     </div>
-                    <span class="text-sm font-semibold text-white mt-1">DAYS TO GO</span>
+                    <span class="text-sm font-semibold text-black mt-1">DAYS TO GO</span>
                 </div>
             @endif
         </div>
