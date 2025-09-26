@@ -30,8 +30,8 @@
     </x-slot> --}}
 
     <div>
-        <div class="mx-auto sm:px-6 lg:px-8 space-y-6">
-            <div class="p-4 sm:p-8">
+        {{-- <div class="mx-auto sm:px-6 lg:px-8 space-y-6"> --}}
+            <div class="sm:px-6 lg:px-8">
                 <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > <u><a href="{{ route('profiles') }}">Settings</a></u> > Your Details</p>
                 <span class="block text-green text-xl womsm:text-2xl wommd:text-3xl font-bold my-6">Your Details</span>
                 <div class="w-full">
@@ -253,7 +253,7 @@
                     @include('profile.partials.delete-user-form')
                 </div>
             </div> --}}
-        </div>
+        {{-- </div> --}}
     </div>
     <script>
         function previewImage(input, previewId) {
