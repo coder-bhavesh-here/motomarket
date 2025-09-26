@@ -19,7 +19,7 @@
                     $today = \Carbon\Carbon::now();
                     $stDate = $booking->price->date;
                     $startDate = \Carbon\Carbon::parse($stDate);
-                    $daysToGo = $startDate->greaterThan($today) ? $today->diffInDays($startDate) : 0;
+                    $daysToGo = $startDate->greaterThan($today) ? $today->diffInDays($startDate) + 1 : 0;
                     $digits = str_split((string) floor($daysToGo)); // Split digits as array
                 @endphp
                 <div class="w-full justify-items-center masterDiv" id="masterDiv{{ $tour->id }}">
