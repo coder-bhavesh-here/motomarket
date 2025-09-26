@@ -53,7 +53,7 @@
             <p class="mt-4 mb-2 font-semibold text-[#0F172A] text-lg womsm:text-xl wommd:text-2xl">
                 {{ $tour->title }} - {{ $tour->countries }}
             </p>
-            <div class="inline-flex justify-center items-center mb-3">
+            <div class="inline-flex items-center mb-3">
             @php
                 $profile_picture =
                     $tour->user->tour_profile_picture != ''
