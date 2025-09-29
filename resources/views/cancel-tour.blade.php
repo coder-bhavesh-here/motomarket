@@ -28,13 +28,13 @@
             <div id="refundAction" class="cancel-options">
                 Cancel </br>&</br> refund
             </div>
-            <span class="text-black font-semibold">95% of paid amount</span>
+            <span class="text-black font-medium">95% of paid amount</span>
         </div>
         <div class="max-w-[200px]">
             <div id="creditsAction" class="cancel-options">
                 Cancel </br>&</br> credits
             </div>
-            <div class="text-black font-semibold">100% of paid amount as credits</div>
+            <div class="text-black font-medium">100% of paid amount as credits</div>
             <div class="text-red-500">[Use within 24 months]</div>
         </div>
     </div>
