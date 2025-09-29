@@ -192,7 +192,7 @@
                     <a href="/tour-operator/{{$tour->user->tour_nickname}}">Tour Operator Info</a>
                 </span>
             </div>
-            <div>
+            <div class="mt-8">
                 <span class="text-black font-bold text-xl">Actions</span>
             </div>
             <div class="inline-flex mt-2">
