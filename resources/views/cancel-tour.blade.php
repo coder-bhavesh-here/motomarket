@@ -12,8 +12,8 @@
         {{ $tour->title }} - {{ $tour->countries }}
     </p>
     <span class="text-red-500 opacity-75 font-bold">You are about to cancel the tour.</span>
-    <span>Choose one option</span>
-    <div class="grid grid-cols-1 wommd:grid-cols-2">
+    <div>Choose one option</div>
+    <div class="grid grid-cols-1 wommd:grid-cols-2 max-w-screen-sm">
         <div>
             <div id="refundAction" class="cancel-options">
                 Cancel & get refund
