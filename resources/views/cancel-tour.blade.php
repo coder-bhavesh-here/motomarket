@@ -12,6 +12,7 @@
         padding: 24px;
         max-width: 200px;
         cursor: pointer;
+        font-size: 18px;
     }
 </style>
 <wireui:scripts />
