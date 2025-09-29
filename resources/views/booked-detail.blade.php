@@ -197,7 +197,7 @@
             </div>
             <div class="inline-flex mt-2">
                 <span class="underline text-black text-lg font-normal">
-                    <a href="/cancel-tour/{{$booking->id}}">Cancel</a>
+                    <a href="/cancel-tour/{{$booking->id}}">Cancel Booking</a>
                 </span>
             </div>
             <div class="mt-8">
