@@ -23,7 +23,7 @@
         {{ $tour->title }} - {{ $tour->countries }}
     </p>
     <span class="text-red-500 opacity-75 font-bold">You are about to cancel the tour.</span>
-    <div class="flex my-4 font-semibold text-black">Choose one option</div>
+    {{-- <div class="flex my-4 font-semibold text-black">Choose one option</div> --}}
     <div class="grid grid-cols-1 wommd:grid-cols-2 max-w-screen-womsm gap-6 mt-4">
         <div class="max-w-[200px]">
             <div id="refundAction" class="cancel-options">
