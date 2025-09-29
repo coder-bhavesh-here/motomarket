@@ -16,12 +16,12 @@
     <div class="grid grid-cols-1 wommd:grid-cols-2 max-w-screen-sm">
         <div>
             <div id="refundAction" class="cancel-options">
-                Cancel & get refund
+                Cancel </br>&</br> refund
             </div>
         </div>
         <div>
             <div id="creditsAction" class="cancel-options">
-                Cancel & get credits
+                Cancel </br>&</br> credits
             </div>
         </div>
     </div>
