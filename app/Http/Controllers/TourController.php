@@ -1326,6 +1326,8 @@ class TourController extends Controller
     public function cancelTour($bookingId)
     {
         $booking = Booking::find($bookingId);
-        return response()->json($booking);
+        return view('cancel-tour', [
+            'booking' => $booking,
+        ]);
     }
 }
