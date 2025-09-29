@@ -34,8 +34,8 @@
             <div id="creditsAction" class="cancel-options">
                 Cancel </br>&</br> credits
             </div>
-            <div>100% of paid amount</div>
-            <div>As credits</div>
+            <div>100% of paid amount as credits</div>
+            <div class="text-red-500">[Use within 24 months]</div>
         </div>
     </div>
 </div>
