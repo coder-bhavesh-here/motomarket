@@ -11,6 +11,7 @@
         text-align: center;
         padding: 24px;
         max-width: 200px;
+        cursor: pointer;
     }
 </style>
 <wireui:scripts />
