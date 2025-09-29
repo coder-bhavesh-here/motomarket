@@ -1323,4 +1323,9 @@ class TourController extends Controller
             ->pluck('date');
         return response()->json($dates);
     }
+    public function cancelTour($bookingId)
+    {
+        $booking = Booking::find($bookingId);
+        return response()->json($booking);
+    }
 }

@@ -192,6 +192,14 @@
                     <a href="/tour-operator/{{$tour->user->tour_nickname}}">Tour Operator Info</a>
                 </span>
             </div>
+            <div>
+                <span class="text-black font-bold text-xl">Actions</span>
+            </div>
+            <div class="inline-flex mt-2">
+                <span class="underline text-black text-lg font-normal">
+                    <a href="/cancel-tour/{{$booking->id}}">Cancel</a>
+                </span>
+            </div>
             <div class="mt-8">
                 <span class="text-black font-bold text-xl">Your Actions</span>
             </div>
