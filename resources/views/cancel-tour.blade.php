@@ -24,15 +24,18 @@
     <span class="text-red-500 opacity-75 font-bold">You are about to cancel the tour.</span>
     <div class="flex my-4">Choose one option</div>
     <div class="grid grid-cols-1 wommd:grid-cols-2 max-w-screen-womsm gap-6 mt-4">
-        <div>
+        <div class="max-w-[200px]">
             <div id="refundAction" class="cancel-options">
                 Cancel </br>&</br> refund
             </div>
+            <span>95% of paid amount</span>
         </div>
-        <div>
+        <div class="max-w-[200px]">
             <div id="creditsAction" class="cancel-options">
                 Cancel </br>&</br> credits
             </div>
+            <div>100% of paid amount</div>
+            <div>As credits</div>
         </div>
     </div>
 </div>
