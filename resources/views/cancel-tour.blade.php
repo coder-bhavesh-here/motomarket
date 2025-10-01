@@ -17,7 +17,7 @@
 </style>
 <wireui:scripts />
 
-<div class="sm:px-6 lg:px-8">
+<div class="sm:px-6 lg:px-8 justify-items-center">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <p class="mt-4 mb-2 font-semibold text-[#0F172A] text-lg womsm:text-xl wommd:text-2xl">
         {{ $tour->title }} - {{ $tour->countries }}
@@ -27,13 +27,13 @@
     <div class="grid grid-cols-1 wommd:grid-cols-2 max-w-screen-womsm gap-6 mt-4">
         <div class="max-w-[200px]">
             <div id="refundAction" class="cancel-options">
-                Cancel </br>&</br> refund
+                Cancel </br>with</br> refund
             </div>
             <span class="text-black font-medium">95% of paid amount</span>
         </div>
         <div class="max-w-[200px]">
             <div id="creditsAction" class="cancel-options">
-                Cancel </br>&</br> credits
+                Cancel </br>with</br> credits
             </div>
             <div class="text-black font-medium">100% of paid amount as credits</div>
             <div class="text-red-500">[Use within 24 months]</div>
