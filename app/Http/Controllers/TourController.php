@@ -491,7 +491,7 @@ class TourController extends Controller
             $imagePath = asset('images/bike4.jpg');
         }
 
-        $payment = 'stripe';
+        $payment = env('PAYMENT_METHOD');
         if ($payment == 'stripe') {
             $stripe = new StripeClient(env('STRIPE_SECRET_KEY'));
             $product = $stripe->products->create([
