@@ -47,6 +47,17 @@ $(document).ready(function () {
         let urlSegments = window.location.pathname.split("/"); 
         let bookingId = urlSegments[urlSegments.length - 1];
         let selectedType = this.id === "refundAction" ? "refund" : "credits";
+        var notyf = new Notyf({
+            duration: 2500,
+            position: {
+                x: 'center',
+                y: 'top',
+            },
+            types: [
+                { type: 'success', background: '#556b2f', icon: false },
+                { type: 'error', background: 'red', icon: false }
+            ]
+        });
         if (confirm("Are you sure you want to cancel this tour with " + selectedType + "?")) {
             $.ajax({
                 url: "/cancel-tour/" + bookingId,
@@ -57,15 +68,18 @@ $(document).ready(function () {
                 },
                 success: function (response) {
                     if (response.success) {
-                        alert("Booking cancelled successfully with " + selectedType);
+                        notyf.success("Booking cancelled successfully with " + selectedType);
+                        setTimeout(function() {
+                            window.location.href = '/your-tours'; // Redirect to /your-tours page
+                        }, 2500);
                         location.reload();
                     } else {
-                        alert("Error: " + response.message);
+                        notyf.error(response.message);
                     }
                 },
                 error: function (xhr, status, error) {
                     console.error(error);
-                    alert("Server error, please try again.");
+                    notyf.error("Something went wrong, please try again.");
                 }
             });
         }

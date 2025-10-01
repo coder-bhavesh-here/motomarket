@@ -1366,6 +1366,9 @@ class TourController extends Controller
         if (!$booking) {
             return response()->json(['success' => false, 'message' => 'Booking not found']);
         }
+        if (in_array($booking->status, ['cancelled', 'refunded'])) {
+            return redirect()->back()->with('error', 'This booking has already been refunded.');
+        }
         $tour = Tour::find($booking->tour_id);
         $user = User::find($tour->user_id);
         $currency = $user->tour_currency;
