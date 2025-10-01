@@ -270,6 +270,7 @@ class TourController extends Controller
 
         $bookings = Booking::with(['tour.images', 'price'])
             ->where('user_id', auth()->user()->id)
+            ->where('status', 'confirmed')
             ->when($search, function ($query, $search) {
                 $query->whereHas('tour', function ($q) use ($search) {
                     $q->where('title', 'like', '%' . $search . '%');
