@@ -103,20 +103,26 @@
             </div>
         </div>
         <div id="cancelledTours" class="hidden w-full justify-items-center">
-            {{-- <div class="w-full grid grid-cols-1 womsm:grid-cols-2 wommd:grid-cols-3 gap-4 wommd:gap-16">
-                @foreach ($tours as $tour)
+            <div class="w-full grid grid-cols-1 womsm:grid-cols-2 wommd:grid-cols-3 gap-4 wommd:gap-16">
+                @foreach ($cancelledBookings as $booking)
+                @php
+                    $tour = $booking->tour;
+                    $stDate = $booking->price->date;
+                    $startDate = \Carbon\Carbon::parse($stDate);
+                    $formattedStartDate = $startDate->format('d-M-Y');
+                @endphp
                 <div class="w-full justify-items-center masterDiv" id="masterDiv{{ $tour->id }}">
                     <div class="max-w-[320px] wommd:max-w-[500px] ">
                         <a class="block relative" href='/tour/{{ $tour->id }}'>
+                            {{-- <img class="aspect-square rounded-lg object-cover h-full w-full"
+                                src="https://worldonmoto.com/storage/uploads/1732685873_2.jpg"
+                                alt="Tour photo"> --}}
                             @php
-                                $tour->images = $tour->images->sortBy('index')->first();
+                                $FirsttImages = $tour->images->sortBy('index')->first();
                             @endphp
                             <img class="aspect-square rounded-lg object-cover h-full w-full"
-                                src="{{ isset($tour->images) && isset($tour->images->image_path) ? asset('storage') . '/' . $tour->images->image_path : 'https://photos.smugmug.com/Galleries/Motorcycles/i-jX3tNwR/0/K2H4fw8P5MqPD8SRLWSrRZm4479d3ZvH8HL773j2D/L/cj.photos-_CJ09043-L.jpg' }}"
+                                src="{{ isset($FirsttImages) && isset($FirsttImages->image_path) ? asset('storage') . '/' . $FirsttImages->image_path : 'https://photos.smugmug.com/Galleries/Motorcycles/i-jX3tNwR/0/K2H4fw8P5MqPD8SRLWSrRZm4479d3ZvH8HL773j2D/L/cj.photos-_CJ09043-L.jpg' }}"
                                 alt="Tour photo">
-                            <div class="absolute top-2 right-2 rounded-md p-2 flex flex-col items-center">
-                                <span class="border-2 border-solid text-red-600 border-red-600 rounded-lg bg-white text-lg font-bold p-2">Cancelled</span>
-                            </div>
                         </a>
                         <div class="flex justify-between mt-2">
                             <span class="text-green font-bold max-h-5 max-w-[70%] block text-sm wommd:text-base overflow-hidden">{{ Str::limit(strip_tags($tour->title), 40) }}</span>
@@ -126,12 +132,12 @@
                                 <span><img style="width: 17px; height: 23px;" src="{{ asset('images') . '/map-pin.png' }}" alt=""></span>
                                 <span class="ml-1 text-sm font-medium wommd:text-base">{{ $tour->countries }}</span>
                             </span>
-                            <span class="text-green font-semibold text-sm wommd:text-base">20-Nov-2025</span>
+                            <span class="text-green font-semibold text-sm wommd:text-base">{{ $formattedStartDate }}</span>
                         </div>
                     </div>
                 </div>
                 @endforeach
-            </div> --}}
+            </div>
         </div>
     </div>
     <script>

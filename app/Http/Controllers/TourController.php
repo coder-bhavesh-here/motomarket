@@ -277,6 +277,15 @@ class TourController extends Controller
                 });
             })
             ->get();
+        $cancelledBookings = Booking::with(['tour.images', 'price'])
+            ->where('user_id', auth()->user()->id)
+            ->where('status', 'refunded')
+            ->when($search, function ($query, $search) {
+                $query->whereHas('tour', function ($q) use ($search) {
+                    $q->where('title', 'like', '%' . $search . '%');
+                });
+            })
+            ->get();
 
         $now = Carbon::now();
         $upcomingTours = $bookings->filter(function ($booking) use ($now) {
@@ -296,6 +305,7 @@ class TourController extends Controller
         return view('your-tours', [
             'upcomingTours' => $upcomingTours,
             'pastTours' => $pastTours,
+            'cancelledBookings' => $cancelledBookings,
             'search' => $search
         ]);
     }
