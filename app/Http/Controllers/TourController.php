@@ -851,6 +851,20 @@ class TourController extends Controller
             $addonIds = explode(',', $booking->addons);
             $addons = Addon::with('group')->whereIn('id', $addonIds)->get();
         }
+        if (!$price) {
+            $price = TourPrice::where('tour_id', $booking->tour_id ?? 0)
+                ->where('date', $booking->date ?? null) // assuming booking has a date column
+                ->first();
+
+            if ($price) {
+                // Update booking with new tour_date_id
+                $booking->tour_date_id = $price->id;
+                $booking->save();
+                $priceId = $price->id;
+            } else {
+                abort(404, 'Tour price not found for the booking date');
+            }
+        }
         $tour = Tour::with(['prices'])->where('permanently_deleted', false)->find($price->tour_id);
         $url = $tour->tour_start_location;
         if (!empty($url) && filter_var($url, FILTER_VALIDATE_URL) && str_contains($url, 'maps')) {
