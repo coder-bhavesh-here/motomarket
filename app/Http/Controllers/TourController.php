@@ -1332,4 +1332,15 @@ class TourController extends Controller
             'tour' => $tour,
         ]);
     }
+    public function cancelTours($bookingId)
+    {
+        $booking = Booking::find($bookingId);
+        $tour = Tour::find($booking->tour_id);
+        $dates = TourPrice::where('tour_id', $tour->id)
+            ->select('date')
+            ->distinct()
+            ->orderBy('date', 'asc')
+            ->pluck('date');
+        return response()->json($dates);
+    }
 }

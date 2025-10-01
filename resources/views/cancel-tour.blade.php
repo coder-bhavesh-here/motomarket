@@ -41,4 +41,36 @@
     </div>
     <a target="_blank" href="{{ asset('docs/terms-conditions.pdf') }}" class="text-green underline text-xs womsm:text-sm wommd:text-base flex mt-4 font-medium">Read the full terms here</a>
 </div>
+<script>
+$(document).ready(function () {
+    $(".cancel-options").on("click", function () {
+        let urlSegments = window.location.pathname.split("/"); 
+        let bookingId = urlSegments[urlSegments.length - 1];
+        let selectedType = this.id === "refundAction" ? "refund" : "credits";
+        if (confirm("Are you sure you want to cancel this tour with " + selectedType + "?")) {
+            $.ajax({
+                url: "/cancel-tour/" + bookingId,
+                type: "POST",
+                data: {
+                    _token: $('meta[name="csrf-token"]').attr("content"),
+                    refund_type: selectedType
+                },
+                success: function (response) {
+                    if (response.success) {
+                        alert("Booking cancelled successfully with " + selectedType);
+                        location.reload();
+                    } else {
+                        alert("Error: " + response.message);
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error(error);
+                    alert("Server error, please try again.");
+                }
+            });
+        }
+    });
+});
+</script>
+
 @include('footer')
