@@ -1348,7 +1348,7 @@ class TourController extends Controller
         // Determine gateway
         if (str_starts_with($paymentId, 'pi_')) {
             $gateway = 'stripe';
-        } elseif (preg_match('/\d+SB\d+L/', $paymentId)) {
+        } elseif (preg_match('/^[A-Z0-9]{17,20}$/', $paymentId)) {
             $gateway = 'paypal';
         } else {
             $gateway = 'unknown';
