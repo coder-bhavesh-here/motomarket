@@ -255,7 +255,7 @@
             <div class="mt-8">
                 <span class="text-black font-bold text-xl">Who’s joining you</span>
             </div>
-            <div class="mt-2 text-black flex">
+            <div class="flex mt-2 text-black">
                 @if (count($otherUser) > 0)
                     @foreach ($otherUser as $user)
                     <img src="{{ asset('storage') . '/' . ($user->profile_picture != '' ? $user->profile_picture : '') }}"
