@@ -8,6 +8,7 @@ use App\Mail\QuestionPosted;
 use App\Models\Addon;
 use App\Models\AddonGroup;
 use App\Models\Booking;
+use App\Models\CreditLog;
 use App\Models\FavouriteTour;
 use App\Models\IncompleteBooking;
 use App\Models\Tour;
@@ -1332,15 +1333,83 @@ class TourController extends Controller
             'tour' => $tour,
         ]);
     }
-    public function cancelTours($bookingId)
+    public function cancelTours(Request $request, $bookingId)
     {
         $booking = Booking::find($bookingId);
+        if (!$booking) {
+            return response()->json(['success' => false, 'message' => 'Booking not found']);
+        }
         $tour = Tour::find($booking->tour_id);
-        $dates = TourPrice::where('tour_id', $tour->id)
-            ->select('date')
-            ->distinct()
-            ->orderBy('date', 'asc')
-            ->pluck('date');
-        return response()->json($dates);
+        $user = User::find($tour->user_id);
+        $currency = $user->tour_currency;
+        $refundType = $request->refund_type; // 'refund' or 'credits'
+        $paymentId = $booking->payment_id;
+
+        // Determine gateway
+        if (str_starts_with($paymentId, 'pi_')) {
+            $gateway = 'stripe';
+        } elseif (preg_match('/\d+SB\d+L/', $paymentId)) {
+            $gateway = 'paypal';
+        } else {
+            $gateway = 'unknown';
+        }
+
+        // Handle Credits
+        if ($refundType === 'credits') {
+            CreditLog::create([
+                'user_id' => $booking->user_id,
+                'booking_id' => $booking->id,
+                'amount' => $booking->amount, // 100% credits
+                'currency' => $currency ?? 'USD',
+                'type' => 'credit',
+                'notes' => 'Booking cancelled and converted to credits'
+            ]);
+
+            $booking->status = 'refunded';
+            $booking->refund_type = 'credits';
+            $booking->save();
+
+            return response()->json(['success' => true, 'message' => 'Credits issued successfully']);
+        }
+
+        // Handle Refund
+        if ($refundType === 'refund') {
+            $refundAmount = $booking->amount * 0.95;
+            try {
+                if ($gateway === 'stripe') {
+                    $stripe = new StripeClient(env('STRIPE_SECRET_KEY'));
+                    $stripe->refunds->create([
+                        'payment_intent' => $paymentId,
+                        'amount' => intval($refundAmount * 100), // Stripe amount in cents
+                    ]);
+                } elseif ($gateway === 'paypal') {
+                    $provider = new PayPalClient();
+                    $paypalToken = $provider->getAccessToken();
+
+                    // Assuming $paymentId is PayPal order ID
+                    $response = $provider->refundPayment([
+                        'amount' => $refundAmount,
+                        'currency' => $currency ?? 'USD',
+                        'sale_id' => $paymentId // or capture ID from PayPal order
+                    ]);
+
+                    if (!isset($response['id'])) {
+                        return response()->json(['success' => false, 'message' => 'PayPal refund failed']);
+                    }
+                } else {
+                    return response()->json(['success' => false, 'message' => 'Unknown payment gateway']);
+                }
+
+                $booking->status = 'refunded';
+                $booking->refund_type = 'refund';
+                $booking->save();
+
+                return response()->json(['success' => true, 'message' => 'Refund processed successfully']);
+            } catch (\Exception $e) {
+                return response()->json(['success' => false, 'message' => $e->getMessage()]);
+            }
+        }
+
+        return response()->json(['success' => false, 'message' => 'Invalid refund type']);
     }
 }
