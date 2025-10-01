@@ -603,6 +603,7 @@ class TourController extends Controller
                 $unit = $response['purchase_units'][0];
                 $amount = $unit['payments']['captures'][0]['amount']['value'];
                 $customId = $unit['payments']['captures'][0]['custom_id'] ?? null;
+                $captureId = $unit['payments']['captures'][0]['id'];
                 if ($customId) {
                     $parts = explode("_", $customId); // ["booking", "12", "user", "5"]
                     $bookingId = $parts[1] ?? null;
@@ -626,6 +627,7 @@ class TourController extends Controller
                     'user_id'       => $userId ?? null,
                     'amount'        => $amount,
                     'payment_id'    => $response['id'], // PayPal Order ID
+                    'capture_id'    => $captureId, // PayPal CaptureID
                     'status'        => 'confirmed',
                 ];
                 if ($booking) {
@@ -1345,6 +1347,7 @@ class TourController extends Controller
         $currency = $user->tour_currency;
         $refundType = $request->refund_type; // 'refund' or 'credits'
         $paymentId = $booking->payment_id;
+        $captureId = $booking->capture_id;
 
         // Determine gateway
         if (str_starts_with($paymentId, 'pi_')) {
@@ -1388,11 +1391,13 @@ class TourController extends Controller
                     $paypalToken = $provider->getAccessToken();
 
                     // Assuming $paymentId is PayPal order ID
-                    $response = $provider->refundPayment([
-                        'amount' => $refundAmount,
-                        'currency' => $currency ?? 'USD',
-                        'sale_id' => $paymentId // or capture ID from PayPal order
-                    ]);
+                    $refundData = [
+                        'amount' => [
+                            'currency' => $currency ?? 'USD',
+                            'total'    => number_format($booking->amount * 0.95, 2)
+                        ]
+                    ];
+                    $response = $provider->refundSale($captureId, $refundData);
 
                     if (!isset($response['id'])) {
                         return response()->json(['success' => false, 'message' => 'PayPal refund failed']);
