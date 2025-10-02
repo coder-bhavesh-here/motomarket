@@ -72,7 +72,6 @@ $(document).ready(function () {
                         setTimeout(function() {
                             window.location.href = '/your-tours'; // Redirect to /your-tours page
                         }, 2500);
-                        location.reload();
                     } else {
                         notyf.error(response.message);
                     }

@@ -618,12 +618,21 @@ class TourController extends Controller
                     $parts = explode("_", $customId); // ["booking", "12", "user", "5"]
                     $bookingId = $parts[1] ?? null;
                     $userId    = $parts[3] ?? null;
-                    $booking = Booking::where('tour_date_id', $bookingId)->where('user_id', $userId)->orderBy('id', 'desc')->first();
+                    // $booking = Booking::where('tour_date_id', $bookingId)->where('user_id', $userId)->orderBy('id', 'desc')->first();
                     $description    = $parts[5] ?? null;
                 }
 
                 $booking = Booking::where('tour_date_id', $bookingId)->where('user_id', $userId)->orderBy('id', 'desc')->first();
                 $tourPrice = TourPrice::find($bookingId);
+                $totalAddon = 0;
+                if ($booking->addons) {
+                    $addonArray = explode(',', $booking->addons);
+                    $addonAmounts = Addon::whereIn('id', $addonArray)->pluck('price');
+                    $totalAddon = $addonAmounts->sum();
+                }
+                if (($amount + $booking->amount) != ($tourPrice->price + $totalAddon)) {
+                    $booking = null;
+                }
                 if (!$booking) {
                     $tourId = $tourPrice->tour_id;
                 } else {
@@ -680,6 +689,15 @@ class TourController extends Controller
                 if (isset($session->metadata->booking_id)) {
                     $booking = Booking::find($session->metadata->booking_id);
                     $tourPrice = TourPrice::find($booking->tour_date_id);
+                    // $totalAddon = 0;
+                    // if ($booking->addons) {
+                    //     $addonArray = explode(',', $booking->addons);
+                    //     $addonAmounts = Addon::whereIn('id', $addonArray)->pluck('price');
+                    //     $totalAddon = $addonAmounts->sum();
+                    // }
+                    // if (($session->amount_total + $booking->amount) != ($tourPrice->price + $totalAddon)) {
+                    //     $booking = null;
+                    // }
                     $data = [
                         'amount' => ($session->amount_total / 100) + $booking->amount, // Convert from cents
                         'payment_id' => $session->payment_intent,
