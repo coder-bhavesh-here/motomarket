@@ -826,7 +826,7 @@ class TourController extends Controller
         if (!$price) {
             abort(404, 'Tour Price not found');
         }
-        $booking = Booking::where('tour_date_id', $priceId)->where('user_id', auth()->user()->id)->first();
+        $booking = Booking::where('tour_date_id', $priceId)->where('user_id', auth()->user()->id)->orderBy('id', 'desc')->first();
         $addons = [];
         if (isset($booking->addons) && $booking->addons != null) {
             $addonIds = explode(',', $booking->addons);
