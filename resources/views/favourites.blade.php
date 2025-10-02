@@ -48,7 +48,7 @@
                         <div class="flex items-center justify-between mt-2">
                             <span class="flex items-center">
                                 <span><img style="width: 17px; height: 23px;" src="{{ asset('images') . '/map-pin.png' }}" alt=""></span>
-                                <span class="ml-1 text-sm font-medium wommd:text-base">{{ $tour->countries }}</span>
+                                <span class="ml-1 text-sm font-medium wommd:text-base">{{ str_replace(",",", ", $tour->countries) }}</span>
                             </span>
                             <span class="text-green font-semibold text-sm wommd:text-base">20-Nov-2025</span>
                         </div>
