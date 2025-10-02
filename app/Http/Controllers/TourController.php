@@ -867,7 +867,7 @@ class TourController extends Controller
         $booking = Booking::find($bookingId);
         $priceId = $booking->tour_date_id;
         $price = TourPrice::find($priceId);
-        $booking = Booking::where('tour_date_id', $priceId)->where('user_id', auth()->user()->id)->first();
+        // $booking = Booking::where('tour_date_id', $priceId)->where('user_id', auth()->user()->id)->first();
         $otherUsers = Booking::where('tour_date_id', $booking->tour_date_id)
             ->where('id', '!=', $booking->id)
             ->pluck('user_id')
