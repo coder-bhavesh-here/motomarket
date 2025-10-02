@@ -26,6 +26,7 @@ class Booking extends Model
         'country',
         'postcode',
         'payment_id',
+        'capture_id',
         'status',
     ];
     public function tour()
