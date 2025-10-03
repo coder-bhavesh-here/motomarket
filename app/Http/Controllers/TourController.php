@@ -1467,16 +1467,16 @@ class TourController extends Controller
                     ]);
                     $paypalToken = $provider->getAccessToken();
 
-                    // Assuming $paymentId is PayPal order ID
-                    // $refundData = [
-                    //     'amount' => [
-                    //         'currency_code' => $currency ?? 'USD',
-                    //         'value'    => number_format($booking->amount * 0.95, 2)
-                    //     ]
-                    // ];
-
-                    $amountToRefund = round($booking->amount * 0.95, 2);
-                    $response = $provider->refundCapturedPayment($captureId, "BOOKING-" . uniqid(), $amountToRefund, "Refunded 95% for cancellation");
+                    if ($captureId && !$captureIdTwo) {
+                        $amountToRefund = round($booking->amount * 0.95, 2);
+                        $response = $provider->refundCapturedPayment($captureId, "BOOKING-" . uniqid(), $amountToRefund, "Refunded 95% for cancellation");
+                    }
+                    if ($captureId && $captureIdTwo) {
+                        $amountToRefundOne = round(($booking->amount * 0.25) * 0.95, 2);
+                        $response = $provider->refundCapturedPayment($captureId, "BOOKING-" . uniqid(), $amountToRefundOne, "Refunded 95% for cancellation");
+                        $amountToRefundTwo = round(($booking->amount * 0.75) * 0.95, 2);
+                        $response = $provider->refundCapturedPayment($captureIdTwo, "BOOKING-" . uniqid(), $amountToRefundTwo, "Refunded 95% for cancellation");
+                    }
 
                     if (!isset($response['id'])) {
                         return response()->json(['success' => false, 'message' => 'PayPal refund failed']);
