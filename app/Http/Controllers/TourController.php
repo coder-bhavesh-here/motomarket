@@ -383,7 +383,7 @@ class TourController extends Controller
             } else {
                 $imagePath = asset('images/bike4.jpg');
             }
-            $payment = 'paypal';
+            $payment = env('PAYMENT_METHOD');
             if ($payment == 'stripe') {
                 $stripe = new StripeClient(env('STRIPE_SECRET_KEY'));
                 $product = $stripe->products->create([
@@ -646,18 +646,23 @@ class TourController extends Controller
                     'status'        => 'confirmed',
                 ];
                 if ($booking) {
-                    $booking->update([
+                    $updateData = [
                         'amount'     => $amount + $booking->amount,
                         'payment_id' => $data['payment_id'],
-                        'capture_id' => $captureId,
                         'status'     => 'confirmed',
-                        'name'  => session('name'),
-                        'nationality'   => session('nationality'),
-                        'mobile_number'     => session('mobile_number'),
-                        'address'   => session('address'),
-                        'country'   => session('country'),
-                        'postcode'  => session('postcode'),
-                    ]);
+                        'name'       => session('name'),
+                        'nationality' => session('nationality'),
+                        'mobile_number' => session('mobile_number'),
+                        'address'    => session('address'),
+                        'country'    => session('country'),
+                        'postcode'   => session('postcode'),
+                    ];
+                    if ($booking->capture_id) {
+                        $updateData['capture_id_two'] = $captureId;
+                    } else {
+                        $updateData['capture_id'] = $captureId;
+                    }
+                    $booking->update($updateData);
                 } else {
                     $data['name'] = session('name');
                     $data['nationality'] = session('nationality');
@@ -1464,7 +1469,6 @@ class TourController extends Controller
 
                     $amountToRefund = round($booking->amount * 0.95, 2);
                     $response = $provider->refundCapturedPayment($captureId, "BOOKING-" . uniqid(), $amountToRefund, "Refunded 95% for cancellation");
-                    echo json_encode($response);
 
                     if (!isset($response['id'])) {
                         return response()->json(['success' => false, 'message' => 'PayPal refund failed']);
