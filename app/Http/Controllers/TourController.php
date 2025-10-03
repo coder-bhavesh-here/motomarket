@@ -377,6 +377,7 @@ class TourController extends Controller
         if (count($request->all()) == 2) {
             $booking = Booking::find($request->id);
             $tour = Tour::where('permanently_deleted', false)->find($booking->tour_id);
+            $user = User::find($tour->user_id);
             $image = TourImage::where('tour_id', $tour->id)->first();
             if ($image != null) {
                 $imagePath = asset('storage') . '/' . $image->image_path;
@@ -391,12 +392,11 @@ class TourController extends Controller
                     'description' => 'Payment for : ' . $tour->title,
                     'images' => [$imagePath],
                 ]);
-
                 // create a stripe price with actual amount from request
                 $price = $stripe->prices->create([
                     'product' => $product->id,
                     'unit_amount' => $request->price * 100, // Convert to cents
-                    'currency' => 'usd',
+                    'currency' => $user->tour_currency,
                 ]);
 
                 $session = $stripe->checkout->sessions->create([
@@ -432,7 +432,7 @@ class TourController extends Controller
                     'locale'         => env('PAYPAL_LOCALE', 'en_US'),
                     'validate_ssl'   => env('PAYPAL_VALIDATE_SSL', true),
                     'notify_url'     => env('PAYPAL_NOTIFY_URL', ''),
-                    'currency'       => env('PAYPAL_CURRENCY', 'USD'),
+                    'currency'       => $user->tour_currency,
                 ]);
                 $paypalToken = $provider->getAccessToken();
 
@@ -484,6 +484,7 @@ class TourController extends Controller
         }
         $tourPriceDetails = TourPrice::find($request->id);
         $tour = Tour::find($tourPriceDetails->tour_id);
+        $user = User::find($tour->user_id);
         $image = TourImage::where('tour_id', $tour->id)->first();
         if ($image != null) {
             $imagePath = asset('storage') . '/' . $image->image_path;
@@ -504,7 +505,7 @@ class TourController extends Controller
             $price = $stripe->prices->create([
                 'product' => $product->id,
                 'unit_amount' => $request->price * 100, // Convert to cents
-                'currency' => 'usd',
+                'currency' => $user->tour_currency,
             ]);
 
             $session = $stripe->checkout->sessions->create([
@@ -539,7 +540,7 @@ class TourController extends Controller
                 'locale'         => env('PAYPAL_LOCALE', 'en_US'),
                 'validate_ssl'   => env('PAYPAL_VALIDATE_SSL', true),
                 'notify_url'     => env('PAYPAL_NOTIFY_URL', ''),
-                'currency'       => env('PAYPAL_CURRENCY', 'USD'),
+                'currency'       => $user->tour_currency,
             ]);
             $paypalToken = $provider->getAccessToken();
 
