@@ -1444,7 +1444,7 @@ class TourController extends Controller
                         $refundAmount = $payment->amount_received * 0.95;
                         $stripe->refunds->create([
                             'payment_intent' => $pi,
-                            'amount' => $refundAmount,
+                            'amount' => ceil($refundAmount),
                         ]);
                     }
                 } elseif ($gateway === 'paypal') {
