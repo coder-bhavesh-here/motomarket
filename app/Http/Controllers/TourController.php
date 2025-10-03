@@ -623,7 +623,6 @@ class TourController extends Controller
                 }
 
                 $booking = Booking::where('tour_date_id', $bookingId)->where('user_id', $userId)->orderBy('id', 'desc')->first();
-                dd($booking);
                 $tourPrice = TourPrice::find($bookingId);
                 $totalAddon = 0;
                 if ($booking->addons) {
@@ -631,9 +630,9 @@ class TourController extends Controller
                     $addonAmounts = Addon::whereIn('id', $addonArray)->pluck('price');
                     $totalAddon = $addonAmounts->sum();
                 }
-                if (($amount + $booking->amount) != ($tourPrice->price + $totalAddon)) {
-                    $booking = null;
-                }
+                // if (($amount + $booking->amount) != ($tourPrice->price + $totalAddon)) {
+                //     $booking = null;
+                // }
                 $tourId = $tourPrice->tour_id;
                 $data = [
                     'tour_id'       => $tourId ?? null,   // Agar tour_id bhejna hai to pehle se custom_id me dalna hoga
