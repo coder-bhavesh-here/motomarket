@@ -633,14 +633,9 @@ class TourController extends Controller
                 if (($amount + $booking->amount) != ($tourPrice->price + $totalAddon)) {
                     $booking = null;
                 }
-                if (!$booking) {
-                    $tourId = $tourPrice->tour_id;
-                } else {
-                    $tourId = $booking->tour_id;
-                }
+                $tourId = $tourPrice->tour_id;
                 $data = [
                     'tour_id'       => $tourId ?? null,   // Agar tour_id bhejna hai to pehle se custom_id me dalna hoga
-                    'booking_id'    => $bookingId ?? null,
                     'date'          => $tourPrice->date ?? null,
                     'tour_date_id'  => $bookingId ?? null,
                     'user_id'       => $userId ?? null,
