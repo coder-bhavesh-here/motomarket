@@ -1461,6 +1461,7 @@ class TourController extends Controller
 
                     $amountToRefund = round($booking->amount * 0.95, 2);
                     $response = $provider->refundCapturedPayment($captureId, "", $amountToRefund, "Refunded 95% for cancellation");
+                    echo json_encode($response);
 
                     if (!isset($response['id'])) {
                         return response()->json(['success' => false, 'message' => 'PayPal refund failed']);
