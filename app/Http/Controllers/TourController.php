@@ -649,7 +649,14 @@ class TourController extends Controller
                     $booking->update([
                         'amount'     => $amount + $booking->amount,
                         'payment_id' => $data['payment_id'],
+                        'capture_id' => $captureId,
                         'status'     => 'confirmed',
+                        'name'  => session('name'),
+                        'nationality'   => session('nationality'),
+                        'mobile_number'     => session('mobile_number'),
+                        'address'   => session('address'),
+                        'country'   => session('country'),
+                        'postcode'  => session('postcode'),
                     ]);
                 } else {
                     $data['name'] = session('name');
