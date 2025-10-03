@@ -696,7 +696,7 @@ class TourController extends Controller
             if ($session->payment_status === 'paid') {
                 if (isset($session->metadata->booking_id)) {
                     $booking = Booking::find($session->metadata->booking_id);
-                    // dd($booking);
+                    dd($booking);
                     $tourPrice = TourPrice::find($booking->tour_date_id);
                     $data = [
                         'amount' => ($session->amount_total / 100) + $booking->amount, // Convert from cents
