@@ -637,6 +637,7 @@ class TourController extends Controller
                 $data = [
                     'tour_id'       => $tourId ?? null,   // Agar tour_id bhejna hai to pehle se custom_id me dalna hoga
                     'date'          => $tourPrice->date ?? null,
+                    'addons'        => $booking->addons ?? null,
                     'tour_date_id'  => $bookingId ?? null,
                     'user_id'       => $userId ?? null,
                     'amount'        => $amount,
