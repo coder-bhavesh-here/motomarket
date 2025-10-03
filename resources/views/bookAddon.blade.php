@@ -255,7 +255,7 @@
                 tour_date_id,
                 addons,
                 date,
-                amount,
+                // amount,
             },
             dataType: "JSON",
             headers: {
