@@ -623,6 +623,7 @@ class TourController extends Controller
                 }
 
                 $booking = Booking::where('tour_date_id', $bookingId)->where('user_id', $userId)->orderBy('id', 'desc')->first();
+                dd($booking);
                 $tourPrice = TourPrice::find($bookingId);
                 $totalAddon = 0;
                 if ($booking->addons) {
