@@ -697,20 +697,16 @@ class TourController extends Controller
                 if (isset($session->metadata->booking_id)) {
                     $booking = Booking::find($session->metadata->booking_id);
                     $tourPrice = TourPrice::find($booking->tour_date_id);
-                    // $totalAddon = 0;
-                    // if ($booking->addons) {
-                    //     $addonArray = explode(',', $booking->addons);
-                    //     $addonAmounts = Addon::whereIn('id', $addonArray)->pluck('price');
-                    //     $totalAddon = $addonAmounts->sum();
-                    // }
-                    // if (($session->amount_total + $booking->amount) != ($tourPrice->price + $totalAddon)) {
-                    //     $booking = null;
-                    // }
                     $data = [
                         'amount' => ($session->amount_total / 100) + $booking->amount, // Convert from cents
-                        'payment_id' => $session->payment_intent,
+                        // 'payment_id' => $session->payment_intent,
                         'status' => 'confirmed',
                     ];
+                    if ($booking->payment_id) {
+                        $updateData['payment_id_two'] = $session->payment_intent;
+                    } else {
+                        $updateData['payment_id'] = $session->payment_intent;
+                    }
                     $booking->update($data);
                     $tour = Tour::withTrashed()->find($booking->tour_id);
                     $user = User::find($tour->user_id);
@@ -1400,7 +1396,9 @@ class TourController extends Controller
         $currency = $user->tour_currency;
         $refundType = $request->refund_type; // 'refund' or 'credits'
         $paymentId = $booking->payment_id;
+        $paymentIdTwo = $booking->payment_id_two;
         $captureId = $booking->capture_id;
+        $captureIdTwo = $booking->capture_id_two;
 
         // Determine gateway
         if (str_starts_with($paymentId, 'pi_')) {
@@ -1435,10 +1433,18 @@ class TourController extends Controller
             try {
                 if ($gateway === 'stripe') {
                     $stripe = new StripeClient(env('STRIPE_SECRET_KEY'));
-                    $stripe->refunds->create([
-                        'payment_intent' => $paymentId,
-                        'amount' => intval($refundAmount * 100), // Stripe amount in cents
-                    ]);
+                    $paymentIntents = [$paymentId]; // always at least one
+                    if ($paymentIdTwo) {
+                        $paymentIntents[] = $paymentIdTwo;
+                    }
+                    foreach ($paymentIntents as $pi) {
+                        $payment = $stripe->paymentIntents->retrieve($pi);
+                        $refundAmount = $payment->amount_received * 0.95;
+                        $stripe->refunds->create([
+                            'payment_intent' => $pi,
+                            'amount' => $refundAmount,
+                        ]);
+                    }
                 } elseif ($gateway === 'paypal') {
                     $provider = new PayPalClient();
                     $provider->setApiCredentials([
