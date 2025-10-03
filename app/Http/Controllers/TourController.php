@@ -698,7 +698,7 @@ class TourController extends Controller
                     $booking = Booking::find($session->metadata->booking_id);
                     dd($booking);
                     $tourPrice = TourPrice::find($booking->tour_date_id);
-                    $data = [
+                    $updateData = [
                         'amount' => ($session->amount_total / 100) + $booking->amount, // Convert from cents
                         // 'payment_id' => $session->payment_intent,
                         'status' => 'confirmed',
@@ -708,7 +708,7 @@ class TourController extends Controller
                     } else {
                         $updateData['payment_id'] = $session->payment_intent;
                     }
-                    $booking->update($data);
+                    $booking->update($updateData);
                     $tour = Tour::withTrashed()->find($booking->tour_id);
                     $user = User::find($tour->user_id);
                     Mail::to($user->tour_contact_email)->send(new BookingConfirmedAgency($booking));
@@ -747,6 +747,8 @@ class TourController extends Controller
                     'date' => $tourPrice->date // Add the tour date from TourPrice
                 ];
                 if ($booked) {
+                    $data['payment_id'] = $booked->payment_id ? $booked->payment_id : $session->payment_intent;
+                    $data['payment_id_two'] = $booked->payment_id ? $session->payment_intent : '';
                     $booked->update($data);
                     $booking = $booked;
                 } else {
