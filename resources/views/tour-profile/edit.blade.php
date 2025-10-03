@@ -109,9 +109,9 @@
 
                     <div class="flex">
                         <label class="font-bold text-black mr-2" for="tour_currency">Tour Currency</label>
-                        <div class="flex items-center"><input type="radio" name="tour_currency" class="ml-4" <?= $user->tour_currency == 'euro' ? 'checked' : ''?> value="euro" id="euro"><label class="ml-2 text-black" for="euro">€ - Euro </label></div>
-                        <div class="flex items-center"><input type="radio" name="tour_currency" class="ml-10" <?= $user->tour_currency == 'gbp' ? 'checked' : ''?> value="gbp" id="gbp"><label class="ml-2 text-black" for="gbp">£ - GBP </label></div>
-                        <div class="flex items-center"><input type="radio" name="tour_currency" class="ml-10" <?= $user->tour_currency == 'usd' ? 'checked' : ''?> value="usd" id="usd"><label class="ml-2 text-black" for="usd">$ - USD </label></div>
+                        <div class="flex items-center"><input type="radio" name="tour_currency" class="ml-4" <?= $user->tour_currency == 'EUR' ? 'checked' : ''?> value="EUR" id="euro"><label class="ml-2 text-black" for="euro">€ - Euro </label></div>
+                        <div class="flex items-center"><input type="radio" name="tour_currency" class="ml-10" <?= $user->tour_currency == 'GBP' ? 'checked' : ''?> value="GBP" id="gbp"><label class="ml-2 text-black" for="gbp">£ - GBP </label></div>
+                        <div class="flex items-center"><input type="radio" name="tour_currency" class="ml-10" <?= $user->tour_currency == 'USD' ? 'checked' : ''?> value="USD" id="usd"><label class="ml-2 text-black" for="usd">$ - USD </label></div>
                         <x-input-error class="mt-2" :messages="$errors->get('tour_currency')" />
                     </div>
 
