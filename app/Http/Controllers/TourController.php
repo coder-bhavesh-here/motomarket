@@ -1433,16 +1433,34 @@ class TourController extends Controller
                     ]);
                 } elseif ($gateway === 'paypal') {
                     $provider = new PayPalClient();
+                    $provider->setApiCredentials([
+                        'mode'    => env('PAYPAL_MODE', 'sandbox'), // Can only be 'sandbox' Or 'live'. If empty or invalid, 'live' will be used.
+                        'sandbox' => [
+                            'client_id'         => env('PAYPAL_SANDBOX_CLIENT_ID', ''),
+                            'client_secret'     => env('PAYPAL_SANDBOX_CLIENT_SECRET', ''),
+                        ],
+                        'live' => [
+                            'client_id'         => env('PAYPAL_LIVE_CLIENT_ID', ''),
+                            'client_secret'     => env('PAYPAL_LIVE_CLIENT_SECRET', ''),
+                        ],
+                        'payment_action' => env('PAYPAL_PAYMENT_ACTION', 'Sale'),
+                        'locale'         => env('PAYPAL_LOCALE', 'en_US'),
+                        'validate_ssl'   => env('PAYPAL_VALIDATE_SSL', true),
+                        'notify_url'     => env('PAYPAL_NOTIFY_URL', ''),
+                        'currency'       => env('PAYPAL_CURRENCY', 'USD'),
+                    ]);
                     $paypalToken = $provider->getAccessToken();
 
                     // Assuming $paymentId is PayPal order ID
-                    $refundData = [
-                        'amount' => [
-                            'currency' => $currency ?? 'USD',
-                            'total'    => number_format($booking->amount * 0.95, 2)
-                        ]
-                    ];
-                    $response = $provider->refundSale($captureId, $refundData);
+                    // $refundData = [
+                    //     'amount' => [
+                    //         'currency_code' => $currency ?? 'USD',
+                    //         'value'    => number_format($booking->amount * 0.95, 2)
+                    //     ]
+                    // ];
+
+                    $amountToRefund = round($booking->amount * 0.95, 2);
+                    $response = $provider->refundCapturedPayment($captureId, "", $amountToRefund, "Refunded 95% for cancellation");
 
                     if (!isset($response['id'])) {
                         return response()->json(['success' => false, 'message' => 'PayPal refund failed']);
