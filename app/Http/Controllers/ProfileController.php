@@ -276,6 +276,8 @@ class ProfileController extends Controller
         $user->nickname = $request->input('nickname');
         $user->nationality = $request->input('nationality');
         $user->address = $request->input('address');
+        $user->country = $request->input('country');
+        $user->pincode = $request->input('pincode');
         $user->dob = $request->input('dob');
         $user->contact_number = $request->input('contact_number');
         $user->introduction = $request->input('introduction');

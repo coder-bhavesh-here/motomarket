@@ -84,6 +84,12 @@
                             <x-input-error class="mt-2" :messages="$errors->get('last_name')" />
                         </div>
                         <div>
+                            <label class="font-bold text-black" for="nickname">Nickname</label>
+                            <x-text-input id="nickname" name="nickname" type="text" class="mt-1 block w-full" :value="old('nickname', $user->nickname)"
+                                required autofocus autocomplete="nickname" />
+                            <x-input-error class="mt-2" :messages="$errors->get('nickname')" />
+                        </div>
+                        <div>
                             <label class="font-bold text-black" for="nationality">Nationality</label>
                             <select name="nationality" style="width: 100%" id="nationality">
                                 <option value="">- Select Nationality -</option>
@@ -104,10 +110,22 @@
                             <x-input-error class="mt-2" :messages="$errors->get('address')" />
                         </div>
                         <div>
-                            <label class="font-bold text-black" for="nickname">Nickname</label>
-                            <x-text-input id="nickname" name="nickname" type="text" class="mt-1 block w-full" :value="old('nickname', $user->nickname)"
-                                required autofocus autocomplete="nickname" />
-                            <x-input-error class="mt-2" :messages="$errors->get('nickname')" />
+                            <label class="font-bold text-black" for="country">Country</label>
+                            <select name="country" style="width: 100%" id="country">
+                                <option value="">- Select Country -</option>
+                                @foreach (config('countries.list') as $countryName)
+                                    <option value="{{ $countryName }}" {{($user->country == $countryName ? "selected" : '')}}>
+                                        {{ $countryName }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <x-input-error class="mt-2" :messages="$errors->get('country')" />
+                        </div>
+                        <div>
+                            <label class="font-bold text-black" for="pincode">Pincode</label>
+                            <x-text-input class="mt-1 block w-full" :value="old('pincode', $user->pincode)"
+                                required autocomplete="pincode" />
+                            <x-input-error class="mt-2" :messages="$errors->get('pincode')" />
                         </div>
                         <div>
                             <label class="font-bold text-black" for="dob">DOB</label>

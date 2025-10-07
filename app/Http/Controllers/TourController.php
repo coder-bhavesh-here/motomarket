@@ -472,14 +472,21 @@ class TourController extends Controller
                 }
             }
         }
+        $user = User::find(auth()->user()->id);
         if (auth()->user()->nationality == '') {
-            $user = User::find(auth()->user()->id);
             $user->nationality = $request->nationality;
             $user->save();
         }
         if (auth()->user()->address == '') {
-            $user = User::find(auth()->user()->id);
             $user->address = $request->address;
+            $user->save();
+        }
+        if (auth()->user()->country == '') {
+            $user->country = $request->country;
+            $user->save();
+        }
+        if (auth()->user()->pincode == '') {
+            $user->pincode = $request->pincode;
             $user->save();
         }
         $tourPriceDetails = TourPrice::find($request->id);
@@ -849,15 +856,8 @@ class TourController extends Controller
         $nationality = auth()->user()->nationality;
         $address = auth()->user()->address;
         $countryList = config('countries.list'); // e.g. ['India', 'USA', 'Portugal', ...]
-        $foundCountry = null;
-        foreach ($countryList as $country) {
-            if (Str::contains(strtolower($address), strtolower($country))) {
-                $foundCountry = $country;
-                break;
-            }
-        }
-        preg_match_all('/\b\d{4,6}\b/', $address, $matches);
-        $pincode = !empty($matches[0]) ? end($matches[0]) : null;
+        $foundCountry = auth()->user()->country;
+        $pincode = auth()->user()->pincode;
         return view('book', [
             'tour' => $tour,
             'nationalities' => ['India', 'Europe', 'US  '],

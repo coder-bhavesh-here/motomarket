@@ -66,7 +66,7 @@
 </div>
 <div class="w-full grid grid-cols-1 xl:grid-cols-5">
     <div class="col-span-3">
-        <div class="px-4 py-6">
+        <div>
             <meta name="csrf-token" content="{{ csrf_token() }}">
             <div class="sm:px-6 lg:px-8">
                 <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > <u><a href="{{ route('explore-tours') }}">Tour Search</a></u> > <u><a href="/tour/{{ $tour->id }}">Tour Details</a></u> > Booking</p>
@@ -97,7 +97,7 @@
             </div>
         
             <div class="mt-6">
-                <div class="my-10 sm:px-6 lg:px-8">
+                <div class="my-6 sm:px-6 lg:px-8">
                     <div class="flex items-center">
                         <div class="w-full">
                             <span class="form-label font-medium text-[#000F22]">Full Name</span>
@@ -107,7 +107,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="my-10 sm:px-6 lg:px-8">
+                <div class="my-6 sm:px-6 lg:px-8">
                     <div class="flex items-center">
                         <div class="w-full">
                             <span class="form-label font-medium text-[#000F22]">Nationality</span>
@@ -124,7 +124,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="my-10 sm:px-6 lg:px-8">
+                <div class="my-6 sm:px-6 lg:px-8">
                     <div class="flex items-center">
                         <div class="w-full">
                             <span class="form-label font-medium text-[#000F22]">Your Address</span>
@@ -134,7 +134,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="my-10 sm:px-6 lg:px-8">
+                <div class="my-6 sm:px-6 lg:px-8">
                     <div class="flex items-center">
                         <div class="w-full">
                             <span class="form-label font-medium text-[#000F22]">Country</span>
@@ -152,7 +152,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="my-10 sm:px-6 lg:px-8">
+                <div class="my-6 sm:px-6 lg:px-8">
                     <div class="flex items-center">
                         <div class="w-full">
                             <span class="form-label font-medium text-[#000F22]">Postcode</span>
@@ -162,7 +162,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="my-10 sm:px-6 lg:px-8">
+                <div class="my-6 sm:px-6 lg:px-8">
                     <div class="flex items-center">
                         <div class="w-full">
                             <span class="form-label font-medium text-[#000F22]">Mobile</span>
