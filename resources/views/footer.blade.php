@@ -10,8 +10,8 @@
             <li><a href="/about">About</a></li>
             <li>Contact</li>
             <li><a href="/blogs">News</a></li>
-            <li><a href="{{ asset('docs/terms-conditions.pdf') }}" target="_blank">Terms of use</a></li>
-            <li><a href="{{ asset('docs/privacy-policy.pdf') }}" target="_blank">Privacy policy</a></li>
+            <li><a href="/terms-of-use" target="_blank">Terms of use</a></li>
+            <li><a href="/privacy-policy" target="_blank">Privacy policy</a></li>
             <div class="flex justify-start items-center align-center gap-4 mt-10">
                 <a href="https://www.facebook.com/WorldonMotoAdventures" target="_blank"><img src="{{ asset('images/fb.png') }}"></a>
                 <img src="{{ asset('images/yt.png') }}">

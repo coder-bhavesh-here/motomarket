@@ -39,7 +39,7 @@
             <div class="text-red-500">[Use within 24 months]</div>
         </div>
     </div>
-    <a target="_blank" href="{{ asset('docs/terms-conditions.pdf') }}" class="text-green underline text-xs womsm:text-sm wommd:text-base flex mt-4 font-medium">Read the full terms here</a>
+    <a target="_blank" href="/terms-of-use" class="text-green underline text-xs womsm:text-sm wommd:text-base flex mt-4 font-medium">Read the full terms here</a>
 </div>
 <script>
 $(document).ready(function () {
