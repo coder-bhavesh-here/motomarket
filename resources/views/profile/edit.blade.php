@@ -124,7 +124,7 @@
                         <div>
                             <label class="font-bold text-black" for="pincode">Pincode</label>
                             <input type="text" name="pincode" id="pincode" class="w-full border-[#d1d5db] rounded-md" value="{{$user->pincode}}"
-                                required autocomplete="pincode" />
+                             autocomplete="pincode" />
                             <x-input-error class="mt-2" :messages="$errors->get('pincode')" />
                         </div>
                         <div>
