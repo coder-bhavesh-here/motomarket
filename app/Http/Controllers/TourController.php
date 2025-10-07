@@ -486,7 +486,7 @@ class TourController extends Controller
             $user->save();
         }
         if (auth()->user()->pincode == '') {
-            $user->pincode = $request->pincode;
+            $user->pincode = $request->postcode;
             $user->save();
         }
         $tourPriceDetails = TourPrice::find($request->id);
