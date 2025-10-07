@@ -123,7 +123,7 @@
                         </div>
                         <div>
                             <label class="font-bold text-black" for="pincode">Pincode</label>
-                            <x-text-input class="mt-1 block w-full" :value="old('pincode', $user->pincode)"
+                            <input type="text" name="pincode" id="pincode" class="w-full border-[#d1d5db] rounded-md" value="{{$user->pincode}}"
                                 required autocomplete="pincode" />
                             <x-input-error class="mt-2" :messages="$errors->get('pincode')" />
                         </div>
