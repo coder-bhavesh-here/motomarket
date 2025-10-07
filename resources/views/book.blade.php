@@ -291,7 +291,7 @@
                 $fullPaymentDue = $tourDate->copy()->subDays(60)->format('jS F, Y');
             @endphp
             @if (now()->diffInDays($tourDate) > 60)
-                <div class="mt-4 italic">Since your tour is <b>more than 60 days</b> away, you can secure your spot by either paying the <b>full tour price now</b> or <b>making a 25% deposit</b>.</div>
+                <div class="mt-4 italic">Since your tour is <b>more than 60 days</b> away, you can secure your spot by either paying the <b>full tour price now</b> or <b>paying a 25% deposit</b>.</div>
                 <div class="mt-4 italic">If you choose the <b>deposit option</b>, the <b>remaining balance</b> must <b>be paid</b> in full by <b>{{$fullPaymentDue}}</b>.</div>
             @else
                 <div class="mt-4 italic">
