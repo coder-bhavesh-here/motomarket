@@ -1498,4 +1498,12 @@ class TourController extends Controller
 
         return response()->json(['success' => false, 'message' => 'Invalid refund type']);
     }
+    function termsConditions()
+    {
+        return view('terms-conditions');
+    }
+    function privacyPolicy()
+    {
+        return view('privacy-policy');
+    }
 }

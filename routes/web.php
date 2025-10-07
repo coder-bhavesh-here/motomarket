@@ -95,6 +95,8 @@ Route::middleware(['auth', 'throttle:60,1'])->group(function () {
     Route::post('/update-tour-picture', [ProfileController::class, 'updateTourPicture'])->name('update.tour.picture');
 });
 
+Route::get('/terms-of-user', [TourController::class, 'termsConditions'])->name('terms-of-user');
+Route::get('/privacy-policy', [TourController::class, 'privacyPolicy'])->name('privacy-policy');
 Route::get('/payment/success', [TourController::class, 'paymentSuccess'])->name('payment.success');
 Route::get('/payment/cancel', [TourController::class, 'paymentCancel'])->name('payment.cancel');
 
