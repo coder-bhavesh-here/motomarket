@@ -122,7 +122,7 @@
                             <x-input-error class="mt-2" :messages="$errors->get('country')" />
                         </div>
                         <div>
-                            <label class="font-bold text-black" for="pincode">Pincode</label>
+                            <label class="font-bold text-black" for="pincode">Postcode</label>
                             <input type="text" name="pincode" id="pincode" class="w-full border-[#d1d5db] rounded-md" value="{{$user->pincode}}"
                              autocomplete="pincode" />
                             <x-input-error class="mt-2" :messages="$errors->get('pincode')" />
