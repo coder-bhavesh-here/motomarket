@@ -1396,8 +1396,8 @@ class TourController extends Controller
         if (in_array($booking->status, ['cancelled', 'refunded'])) {
             return response()->json(['success' => false, 'message' => 'This booking has already been refunded.']);
         }
-        Mail::to('bhavesh@motomob.tech')->send(new BookingCancel($booking));
-        Mail::to('bhavesh@motomob.tech')->send(new BookingCancelAgency($booking));
+        Mail::to(auth()->user()->email)->send(new BookingCancel($booking));
+        Mail::to(auth()->user()->email)->send(new BookingCancelAgency($booking));
         $tour = Tour::find($booking->tour_id);
         $user = User::find($tour->user_id);
         $currency = $user->tour_currency;
