@@ -52,7 +52,7 @@
 <body>
     <div class="email-container">
         <div class="header">
-            <h1>Booking Confirmation</h1>
+            <h1>Booking Cancellation</h1>
         </div>
         <div class="content">
             <h2>Hello {{ $booking->name }},</h2>
@@ -69,30 +69,6 @@
                 <tr>
                     <td><strong>Amount Paid:</strong></td>
                     <td>€{{ $booking->amount }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Name:</strong></td>
-                    <td>{{ $booking->name }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Nationality:</strong></td>
-                    <td>{{ $booking->nationality }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Mobile Number:</strong></td>
-                    <td>{{ $booking->mobile_number }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Address:</strong></td>
-                    <td>{{ $booking->address }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Country:</strong></td>
-                    <td>{{ $booking->country }}</td>
-                </tr>
-                <tr>
-                    <td><strong>Postcode:</strong></td>
-                    <td>{{ $booking->postcode }}</td>
                 </tr>
             </table>
             <p>If you have made the payment in two installments, then the refund will also be credited in two parts.</p>
