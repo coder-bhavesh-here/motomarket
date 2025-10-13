@@ -1,12 +1,273 @@
 @include('new-header')
 <div class="mt-2 px-6">
-    <div style="height: 90vh;">
-        <iframe 
-            src="{{ asset('docs/terms-conditions.pdf') }}" 
-            width="100%" 
-            height="100%" 
-            style="border:none;">
-        </iframe>
-    </div>
+    <head>
+		<meta content="text/html; charset=UTF-8" http-equiv="content-type">
+		<style type="text/css">@import url(https://themes.googleusercontent.com/fonts/css?kit=-lTUqgJg2dxbe4D7B5DEICbzagQlgiMMTcfwSOywUzNl9RG9jbURsXEdpaTs_nuV96xlbbE5D7Gw2o7jubnkMA);.lst-kix_inc3jf81kw96-1>li:before{content:"\0025cb   "}.lst-kix_1zifbkkh1pyr-2>li{counter-increment:lst-ctn-kix_1zifbkkh1pyr-2}ol.lst-kix_1zifbkkh1pyr-0.start{counter-reset:lst-ctn-kix_1zifbkkh1pyr-0 0}.lst-kix_inc3jf81kw96-0>li:before{content:"\0025cf   "}ul.lst-kix_zgy8fqmzcr3m-3{list-style-type:none}ul.lst-kix_zgy8fqmzcr3m-2{list-style-type:none}ul.lst-kix_zgy8fqmzcr3m-1{list-style-type:none}.lst-kix_inc3jf81kw96-3>li:before{content:"\0025cf   "}ul.lst-kix_zgy8fqmzcr3m-0{list-style-type:none}.lst-kix_inc3jf81kw96-2>li:before{content:"\0025a0   "}.lst-kix_inc3jf81kw96-7>li:before{content:"\0025cb   "}.lst-kix_zgy8fqmzcr3m-2>li:before{content:"\0025a0   "}ul.lst-kix_zgy8fqmzcr3m-8{list-style-type:none}ul.lst-kix_zgy8fqmzcr3m-7{list-style-type:none}ul.lst-kix_zgy8fqmzcr3m-6{list-style-type:none}ul.lst-kix_zgy8fqmzcr3m-5{list-style-type:none}.lst-kix_inc3jf81kw96-4>li:before{content:"\0025cb   "}.lst-kix_inc3jf81kw96-8>li:before{content:"\0025a0   "}.lst-kix_zgy8fqmzcr3m-1>li:before{content:"\0025cb   "}ul.lst-kix_zgy8fqmzcr3m-4{list-style-type:none}.lst-kix_inc3jf81kw96-5>li:before{content:"\0025a0   "}.lst-kix_zgy8fqmzcr3m-0>li:before{content:"\0025cf   "}.lst-kix_inc3jf81kw96-6>li:before{content:"\0025cf   "}ul.lst-kix_lvtbomc4t3m0-0{list-style-type:none}ul.lst-kix_lvtbomc4t3m0-1{list-style-type:none}ul.lst-kix_lvtbomc4t3m0-2{list-style-type:none}ul.lst-kix_lvtbomc4t3m0-3{list-style-type:none}ul.lst-kix_lvtbomc4t3m0-4{list-style-type:none}ul.lst-kix_lvtbomc4t3m0-5{list-style-type:none}ul.lst-kix_lvtbomc4t3m0-6{list-style-type:none}ul.lst-kix_lvtbomc4t3m0-7{list-style-type:none}ol.lst-kix_1zifbkkh1pyr-6.start{counter-reset:lst-ctn-kix_1zifbkkh1pyr-6 0}.lst-kix_lvtbomc4t3m0-7>li:before{content:"\0025cb   "}.lst-kix_lvtbomc4t3m0-8>li:before{content:"\0025a0   "}ul.lst-kix_lvtbomc4t3m0-8{list-style-type:none}ul.lst-kix_3v3p2vidz8dc-4{list-style-type:none}ul.lst-kix_3v3p2vidz8dc-3{list-style-type:none}ul.lst-kix_3v3p2vidz8dc-2{list-style-type:none}ul.lst-kix_3v3p2vidz8dc-1{list-style-type:none}ul.lst-kix_3v3p2vidz8dc-0{list-style-type:none}ol.lst-kix_1zifbkkh1pyr-5.start{counter-reset:lst-ctn-kix_1zifbkkh1pyr-5 0}.lst-kix_lvtbomc4t3m0-6>li:before{content:"\0025cf   "}.lst-kix_lvtbomc4t3m0-4>li:before{content:"\0025cb   "}.lst-kix_lvtbomc4t3m0-5>li:before{content:"\0025a0   "}ul.lst-kix_1g99jw56ocsb-8{list-style-type:none}ul.lst-kix_1g99jw56ocsb-7{list-style-type:none}ul.lst-kix_1g99jw56ocsb-6{list-style-type:none}.lst-kix_1zifbkkh1pyr-0>li{counter-increment:lst-ctn-kix_1zifbkkh1pyr-0}ul.lst-kix_1g99jw56ocsb-5{list-style-type:none}.lst-kix_lvtbomc4t3m0-3>li:before{content:"\0025cf   "}ul.lst-kix_1g99jw56ocsb-4{list-style-type:none}ul.lst-kix_1g99jw56ocsb-3{list-style-type:none}ul.lst-kix_1g99jw56ocsb-2{list-style-type:none}ul.lst-kix_1g99jw56ocsb-1{list-style-type:none}.lst-kix_lvtbomc4t3m0-0>li:before{content:"\0025cf   "}.lst-kix_lvtbomc4t3m0-1>li:before{content:"\0025cb   "}ul.lst-kix_1g99jw56ocsb-0{list-style-type:none}.lst-kix_lvtbomc4t3m0-2>li:before{content:"\0025a0   "}ul.lst-kix_9jd0u5lnfjr0-8{list-style-type:none}.lst-kix_8kdz0xu5pvy5-4>li:before{content:"\0025cb   "}.lst-kix_8kdz0xu5pvy5-6>li:before{content:"\0025cf   "}ol.lst-kix_1zifbkkh1pyr-4.start{counter-reset:lst-ctn-kix_1zifbkkh1pyr-4 0}ul.lst-kix_9jd0u5lnfjr0-1{list-style-type:none}ul.lst-kix_9jd0u5lnfjr0-0{list-style-type:none}ul.lst-kix_9jd0u5lnfjr0-3{list-style-type:none}ul.lst-kix_9jd0u5lnfjr0-2{list-style-type:none}ul.lst-kix_9jd0u5lnfjr0-5{list-style-type:none}ol.lst-kix_1zifbkkh1pyr-1.start{counter-reset:lst-ctn-kix_1zifbkkh1pyr-1 0}ul.lst-kix_9jd0u5lnfjr0-4{list-style-type:none}ul.lst-kix_9jd0u5lnfjr0-7{list-style-type:none}ul.lst-kix_9jd0u5lnfjr0-6{list-style-type:none}ul.lst-kix_wn7glzxfxmha-8{list-style-type:none}.lst-kix_9chdzete007s-7>li:before{content:"\0025cb   "}ul.lst-kix_wn7glzxfxmha-3{list-style-type:none}ul.lst-kix_wn7glzxfxmha-2{list-style-type:none}ul.lst-kix_wn7glzxfxmha-1{list-style-type:none}.lst-kix_8kdz0xu5pvy5-8>li:before{content:"\0025a0   "}ul.lst-kix_wn7glzxfxmha-0{list-style-type:none}ul.lst-kix_wn7glzxfxmha-7{list-style-type:none}ul.lst-kix_wn7glzxfxmha-6{list-style-type:none}ul.lst-kix_wn7glzxfxmha-5{list-style-type:none}ul.lst-kix_wn7glzxfxmha-4{list-style-type:none}.lst-kix_bfcyacpziwmn-5>li:before{content:"\0025a0   "}ol.lst-kix_1zifbkkh1pyr-0{list-style-type:none}.lst-kix_sf1sdma1bqgh-4>li:before{content:"\0025cb   "}.lst-kix_sf1sdma1bqgh-6>li:before{content:"\0025cf   "}ol.lst-kix_1zifbkkh1pyr-2{list-style-type:none}ol.lst-kix_1zifbkkh1pyr-1{list-style-type:none}ul.lst-kix_3v3p2vidz8dc-8{list-style-type:none}ul.lst-kix_3v3p2vidz8dc-7{list-style-type:none}ul.lst-kix_3v3p2vidz8dc-6{list-style-type:none}ul.lst-kix_3v3p2vidz8dc-5{list-style-type:none}.lst-kix_9chdzete007s-3>li:before{content:"\0025cf   "}.lst-kix_sf1sdma1bqgh-0>li:before{content:"\0025cf   "}.lst-kix_sf1sdma1bqgh-8>li:before{content:"\0025a0   "}.lst-kix_bfcyacpziwmn-3>li:before{content:"\0025cf   "}.lst-kix_9chdzete007s-5>li:before{content:"\0025a0   "}.lst-kix_1zifbkkh1pyr-7>li{counter-increment:lst-ctn-kix_1zifbkkh1pyr-7}.lst-kix_sf1sdma1bqgh-2>li:before{content:"\0025a0   "}.lst-kix_bfcyacpziwmn-7>li:before{content:"\0025cb   "}.lst-kix_9chdzete007s-1>li:before{content:"\0025cb   "}.lst-kix_y254zhm8pas3-7>li:before{content:"\0025cb   "}.lst-kix_1ih1azoc5yy1-1>li:before{content:"\0025cb   "}.lst-kix_1ih1azoc5yy1-3>li:before{content:"\0025cf   "}.lst-kix_o13rq8uwsvfv-7>li:before{content:"\0025cb   "}.lst-kix_y254zhm8pas3-5>li:before{content:"\0025a0   "}.lst-kix_1ih1azoc5yy1-7>li:before{content:"\0025cb   "}.lst-kix_1nxjw4d8hpcp-5>li:before{content:"\0025a0   "}.lst-kix_1nxjw4d8hpcp-7>li:before{content:"\0025cb   "}.lst-kix_9jd0u5lnfjr0-8>li:before{content:"\0025a0   "}.lst-kix_zgy8fqmzcr3m-3>li:before{content:"\0025cf   "}.lst-kix_9jd0u5lnfjr0-2>li:before{content:"\0025a0   "}ul.lst-kix_cpzsjsew4oge-0{list-style-type:none}ul.lst-kix_cpzsjsew4oge-1{list-style-type:none}ul.lst-kix_cpzsjsew4oge-2{list-style-type:none}.lst-kix_o13rq8uwsvfv-3>li:before{content:"\0025cf   "}ul.lst-kix_y254zhm8pas3-7{list-style-type:none}ul.lst-kix_cpzsjsew4oge-3{list-style-type:none}.lst-kix_y254zhm8pas3-1>li:before{content:"\0025cb   "}ul.lst-kix_y254zhm8pas3-8{list-style-type:none}ul.lst-kix_cpzsjsew4oge-4{list-style-type:none}ul.lst-kix_cpzsjsew4oge-5{list-style-type:none}.lst-kix_zgy8fqmzcr3m-5>li:before{content:"\0025a0   "}ul.lst-kix_cpzsjsew4oge-6{list-style-type:none}ol.lst-kix_1zifbkkh1pyr-2.start{counter-reset:lst-ctn-kix_1zifbkkh1pyr-2 0}ul.lst-kix_y254zhm8pas3-3{list-style-type:none}.lst-kix_9jd0u5lnfjr0-6>li:before{content:"\0025cf   "}.lst-kix_bfcyacpziwmn-1>li:before{content:"\0025cb   "}ol.lst-kix_1zifbkkh1pyr-8{list-style-type:none}.lst-kix_y254zhm8pas3-3>li:before{content:"\0025cf   "}ul.lst-kix_y254zhm8pas3-4{list-style-type:none}ol.lst-kix_1zifbkkh1pyr-7{list-style-type:none}ul.lst-kix_y254zhm8pas3-5{list-style-type:none}ul.lst-kix_y254zhm8pas3-6{list-style-type:none}.lst-kix_o13rq8uwsvfv-5>li:before{content:"\0025a0   "}.lst-kix_9jd0u5lnfjr0-4>li:before{content:"\0025cb   "}ol.lst-kix_1zifbkkh1pyr-4{list-style-type:none}ul.lst-kix_y254zhm8pas3-0{list-style-type:none}ol.lst-kix_1zifbkkh1pyr-3{list-style-type:none}ul.lst-kix_y254zhm8pas3-1{list-style-type:none}ol.lst-kix_1zifbkkh1pyr-6{list-style-type:none}ul.lst-kix_y254zhm8pas3-2{list-style-type:none}.lst-kix_1g99jw56ocsb-7>li:before{content:"\0025cb   "}.lst-kix_zgy8fqmzcr3m-7>li:before{content:"\0025cb   "}ol.lst-kix_1zifbkkh1pyr-5{list-style-type:none}.lst-kix_6cgw2dqkwyty-1>li:before{content:"\0025cb   "}.lst-kix_1zifbkkh1pyr-8>li{counter-increment:lst-ctn-kix_1zifbkkh1pyr-8}.lst-kix_3v3p2vidz8dc-6>li:before{content:"\0025cf   "}.lst-kix_fev9oryjgmhj-1>li:before{content:"\0025cb   "}.lst-kix_6cgw2dqkwyty-3>li:before{content:"\0025cf   "}.lst-kix_fev9oryjgmhj-3>li:before{content:"\0025cf   "}.lst-kix_1g99jw56ocsb-5>li:before{content:"\0025a0   "}.lst-kix_1zifbkkh1pyr-8>li:before{content:"" counter(lst-ctn-kix_1zifbkkh1pyr-8,decimal) ". "}ul.lst-kix_cpzsjsew4oge-7{list-style-type:none}.lst-kix_6cgw2dqkwyty-5>li:before{content:"\0025a0   "}.lst-kix_3v3p2vidz8dc-2>li:before{content:"\0025a0   "}.lst-kix_fev9oryjgmhj-5>li:before{content:"\0025a0   "}ul.lst-kix_cpzsjsew4oge-8{list-style-type:none}.lst-kix_3v3p2vidz8dc-0>li:before{content:"\0025cf   "}.lst-kix_9jd0u5lnfjr0-0>li:before{content:"\0025cf   "}.lst-kix_3v3p2vidz8dc-8>li:before{content:"\0025a0   "}.lst-kix_1zifbkkh1pyr-6>li:before{content:"" counter(lst-ctn-kix_1zifbkkh1pyr-6,lower-latin) ". "}.lst-kix_1g99jw56ocsb-3>li:before{content:"\0025cf   "}.lst-kix_1nxjw4d8hpcp-1>li:before{content:"\0025cb   "}.lst-kix_1nxjw4d8hpcp-3>li:before{content:"\0025cf   "}.lst-kix_o13rq8uwsvfv-1>li:before{content:"\0025cb   "}.lst-kix_6cgw2dqkwyty-7>li:before{content:"\0025cb   "}.lst-kix_1zifbkkh1pyr-0>li:before{content:"" counter(lst-ctn-kix_1zifbkkh1pyr-0,lower-latin) ") "}.lst-kix_1zifbkkh1pyr-4>li:before{content:"(" counter(lst-ctn-kix_1zifbkkh1pyr-4,lower-roman) ") "}.lst-kix_1g99jw56ocsb-1>li:before{content:"\0025cb   "}.lst-kix_wn7glzxfxmha-0>li:before{content:"\0025cf   "}.lst-kix_1ih1azoc5yy1-5>li:before{content:"\0025a0   "}.lst-kix_8kdz0xu5pvy5-0>li:before{content:"\0025cf   "}.lst-kix_8kdz0xu5pvy5-2>li:before{content:"\0025a0   "}.lst-kix_3v3p2vidz8dc-4>li:before{content:"\0025cb   "}.lst-kix_wn7glzxfxmha-2>li:before{content:"\0025a0   "}.lst-kix_1zifbkkh1pyr-2>li:before{content:"" counter(lst-ctn-kix_1zifbkkh1pyr-2,decimal) ") "}.lst-kix_wn7glzxfxmha-4>li:before{content:"\0025cb   "}.lst-kix_wn7glzxfxmha-5>li:before{content:"\0025a0   "}.lst-kix_wn7glzxfxmha-3>li:before{content:"\0025cf   "}.lst-kix_wn7glzxfxmha-7>li:before{content:"\0025cb   "}.lst-kix_wn7glzxfxmha-6>li:before{content:"\0025cf   "}ul.lst-kix_6cgw2dqkwyty-0{list-style-type:none}.lst-kix_1zifbkkh1pyr-1>li{counter-increment:lst-ctn-kix_1zifbkkh1pyr-1}ul.lst-kix_6cgw2dqkwyty-1{list-style-type:none}ul.lst-kix_6cgw2dqkwyty-2{list-style-type:none}ul.lst-kix_6cgw2dqkwyty-3{list-style-type:none}ul.lst-kix_6cgw2dqkwyty-4{list-style-type:none}ul.lst-kix_6cgw2dqkwyty-5{list-style-type:none}.lst-kix_fev9oryjgmhj-7>li:before{content:"\0025cb   "}.lst-kix_fev9oryjgmhj-8>li:before{content:"\0025a0   "}ul.lst-kix_6cgw2dqkwyty-6{list-style-type:none}ul.lst-kix_6cgw2dqkwyty-7{list-style-type:none}ul.lst-kix_6cgw2dqkwyty-8{list-style-type:none}ul.lst-kix_fev9oryjgmhj-1{list-style-type:none}ul.lst-kix_o13rq8uwsvfv-5{list-style-type:none}ul.lst-kix_fev9oryjgmhj-2{list-style-type:none}.lst-kix_wn7glzxfxmha-8>li:before{content:"\0025a0   "}ul.lst-kix_o13rq8uwsvfv-4{list-style-type:none}ul.lst-kix_o13rq8uwsvfv-7{list-style-type:none}ul.lst-kix_fev9oryjgmhj-0{list-style-type:none}ul.lst-kix_o13rq8uwsvfv-6{list-style-type:none}ul.lst-kix_o13rq8uwsvfv-8{list-style-type:none}ul.lst-kix_o13rq8uwsvfv-1{list-style-type:none}ul.lst-kix_o13rq8uwsvfv-0{list-style-type:none}ul.lst-kix_o13rq8uwsvfv-3{list-style-type:none}ul.lst-kix_o13rq8uwsvfv-2{list-style-type:none}ul.lst-kix_inc3jf81kw96-3{list-style-type:none}ul.lst-kix_1nxjw4d8hpcp-1{list-style-type:none}ul.lst-kix_inc3jf81kw96-2{list-style-type:none}ul.lst-kix_1nxjw4d8hpcp-0{list-style-type:none}ul.lst-kix_inc3jf81kw96-5{list-style-type:none}ul.lst-kix_1nxjw4d8hpcp-3{list-style-type:none}ul.lst-kix_inc3jf81kw96-4{list-style-type:none}ul.lst-kix_1nxjw4d8hpcp-2{list-style-type:none}ul.lst-kix_inc3jf81kw96-1{list-style-type:none}ul.lst-kix_inc3jf81kw96-0{list-style-type:none}ul.lst-kix_1nxjw4d8hpcp-8{list-style-type:none}ul.lst-kix_inc3jf81kw96-7{list-style-type:none}ul.lst-kix_1nxjw4d8hpcp-5{list-style-type:none}ul.lst-kix_inc3jf81kw96-6{list-style-type:none}ul.lst-kix_1nxjw4d8hpcp-4{list-style-type:none}ul.lst-kix_1nxjw4d8hpcp-7{list-style-type:none}ol.lst-kix_1zifbkkh1pyr-3.start{counter-reset:lst-ctn-kix_1zifbkkh1pyr-3 0}ul.lst-kix_inc3jf81kw96-8{list-style-type:none}ul.lst-kix_1nxjw4d8hpcp-6{list-style-type:none}.lst-kix_cpzsjsew4oge-5>li:before{content:"\0025a0   "}.lst-kix_cpzsjsew4oge-7>li:before{content:"\0025cb   "}.lst-kix_cpzsjsew4oge-4>li:before{content:"\0025cb   "}.lst-kix_cpzsjsew4oge-8>li:before{content:"\0025a0   "}.lst-kix_cpzsjsew4oge-1>li:before{content:"\0025cb   "}.lst-kix_cpzsjsew4oge-3>li:before{content:"\0025cf   "}.lst-kix_cpzsjsew4oge-2>li:before{content:"\0025a0   "}ul.lst-kix_8kdz0xu5pvy5-6{list-style-type:none}ul.lst-kix_8kdz0xu5pvy5-7{list-style-type:none}ul.lst-kix_8kdz0xu5pvy5-8{list-style-type:none}ul.lst-kix_8kdz0xu5pvy5-2{list-style-type:none}ul.lst-kix_8kdz0xu5pvy5-3{list-style-type:none}ul.lst-kix_8kdz0xu5pvy5-4{list-style-type:none}ul.lst-kix_8kdz0xu5pvy5-5{list-style-type:none}ul.lst-kix_8kdz0xu5pvy5-0{list-style-type:none}ul.lst-kix_8kdz0xu5pvy5-1{list-style-type:none}.lst-kix_cpzsjsew4oge-6>li:before{content:"\0025cf   "}ul.lst-kix_sf1sdma1bqgh-8{list-style-type:none}ul.lst-kix_sf1sdma1bqgh-7{list-style-type:none}ul.lst-kix_sf1sdma1bqgh-4{list-style-type:none}ul.lst-kix_sf1sdma1bqgh-3{list-style-type:none}ul.lst-kix_sf1sdma1bqgh-6{list-style-type:none}ul.lst-kix_sf1sdma1bqgh-5{list-style-type:none}.lst-kix_cpzsjsew4oge-0>li:before{content:"\0025cf   "}.lst-kix_1zifbkkh1pyr-3>li{counter-increment:lst-ctn-kix_1zifbkkh1pyr-3}ul.lst-kix_1ih1azoc5yy1-7{list-style-type:none}ul.lst-kix_bfcyacpziwmn-7{list-style-type:none}ul.lst-kix_1ih1azoc5yy1-8{list-style-type:none}ul.lst-kix_bfcyacpziwmn-6{list-style-type:none}ul.lst-kix_bfcyacpziwmn-5{list-style-type:none}ul.lst-kix_bfcyacpziwmn-4{list-style-type:none}.lst-kix_8kdz0xu5pvy5-3>li:before{content:"\0025cf   "}.lst-kix_8kdz0xu5pvy5-7>li:before{content:"\0025cb   "}ul.lst-kix_bfcyacpziwmn-8{list-style-type:none}ul.lst-kix_bfcyacpziwmn-3{list-style-type:none}.lst-kix_1zifbkkh1pyr-6>li{counter-increment:lst-ctn-kix_1zifbkkh1pyr-6}ul.lst-kix_9chdzete007s-2{list-style-type:none}ul.lst-kix_bfcyacpziwmn-2{list-style-type:none}ul.lst-kix_9chdzete007s-1{list-style-type:none}ul.lst-kix_bfcyacpziwmn-1{list-style-type:none}ul.lst-kix_9chdzete007s-0{list-style-type:none}.lst-kix_8kdz0xu5pvy5-5>li:before{content:"\0025a0   "}ul.lst-kix_bfcyacpziwmn-0{list-style-type:none}ul.lst-kix_sf1sdma1bqgh-0{list-style-type:none}ul.lst-kix_sf1sdma1bqgh-2{list-style-type:none}ul.lst-kix_sf1sdma1bqgh-1{list-style-type:none}.lst-kix_9chdzete007s-8>li:before{content:"\0025a0   "}ul.lst-kix_1ih1azoc5yy1-0{list-style-type:none}ul.lst-kix_1ih1azoc5yy1-1{list-style-type:none}ul.lst-kix_1ih1azoc5yy1-2{list-style-type:none}ol.lst-kix_1zifbkkh1pyr-7.start{counter-reset:lst-ctn-kix_1zifbkkh1pyr-7 0}ul.lst-kix_1ih1azoc5yy1-3{list-style-type:none}ul.lst-kix_1ih1azoc5yy1-4{list-style-type:none}ul.lst-kix_1ih1azoc5yy1-5{list-style-type:none}ul.lst-kix_1ih1azoc5yy1-6{list-style-type:none}.lst-kix_sf1sdma1bqgh-5>li:before{content:"\0025a0   "}.lst-kix_9chdzete007s-0>li:before{content:"\0025cf   "}.lst-kix_9chdzete007s-2>li:before{content:"\0025a0   "}.lst-kix_bfcyacpziwmn-6>li:before{content:"\0025cf   "}.lst-kix_bfcyacpziwmn-2>li:before{content:"\0025a0   "}.lst-kix_sf1sdma1bqgh-1>li:before{content:"\0025cb   "}.lst-kix_9chdzete007s-4>li:before{content:"\0025cb   "}.lst-kix_9chdzete007s-6>li:before{content:"\0025cf   "}.lst-kix_sf1sdma1bqgh-7>li:before{content:"\0025cb   "}.lst-kix_bfcyacpziwmn-4>li:before{content:"\0025cb   "}ul.lst-kix_9chdzete007s-6{list-style-type:none}ul.lst-kix_9chdzete007s-5{list-style-type:none}ul.lst-kix_9chdzete007s-4{list-style-type:none}ul.lst-kix_9chdzete007s-3{list-style-type:none}ul.lst-kix_9chdzete007s-8{list-style-type:none}ul.lst-kix_9chdzete007s-7{list-style-type:none}.lst-kix_bfcyacpziwmn-8>li:before{content:"\0025a0   "}.lst-kix_sf1sdma1bqgh-3>li:before{content:"\0025cf   "}.lst-kix_1nxjw4d8hpcp-8>li:before{content:"\0025a0   "}.lst-kix_y254zhm8pas3-8>li:before{content:"\0025a0   "}.lst-kix_o13rq8uwsvfv-8>li:before{content:"\0025a0   "}.lst-kix_1ih1azoc5yy1-2>li:before{content:"\0025a0   "}.lst-kix_1ih1azoc5yy1-6>li:before{content:"\0025cf   "}.lst-kix_1nxjw4d8hpcp-6>li:before{content:"\0025cf   "}.lst-kix_1zifbkkh1pyr-4>li{counter-increment:lst-ctn-kix_1zifbkkh1pyr-4}.lst-kix_9jd0u5lnfjr0-7>li:before{content:"\0025cb   "}.lst-kix_1ih1azoc5yy1-8>li:before{content:"\0025a0   "}.lst-kix_y254zhm8pas3-6>li:before{content:"\0025cf   "}.lst-kix_1ih1azoc5yy1-0>li:before{content:"\0025cf   "}.lst-kix_o13rq8uwsvfv-2>li:before{content:"\0025a0   "}.lst-kix_y254zhm8pas3-0>li:before{content:"\0025cf   "}.lst-kix_9jd0u5lnfjr0-1>li:before{content:"\0025cb   "}.lst-kix_9jd0u5lnfjr0-3>li:before{content:"\0025cf   "}.lst-kix_zgy8fqmzcr3m-4>li:before{content:"\0025cb   "}.lst-kix_o13rq8uwsvfv-4>li:before{content:"\0025cb   "}.lst-kix_y254zhm8pas3-4>li:before{content:"\0025cb   "}.lst-kix_9jd0u5lnfjr0-5>li:before{content:"\0025a0   "}.lst-kix_1g99jw56ocsb-8>li:before{content:"\0025a0   "}.lst-kix_zgy8fqmzcr3m-6>li:before{content:"\0025cf   "}.lst-kix_zgy8fqmzcr3m-8>li:before{content:"\0025a0   "}.lst-kix_y254zhm8pas3-2>li:before{content:"\0025a0   "}.lst-kix_6cgw2dqkwyty-0>li:before{content:"\0025cf   "}.lst-kix_bfcyacpziwmn-0>li:before{content:"\0025cf   "}.lst-kix_1zifbkkh1pyr-5>li{counter-increment:lst-ctn-kix_1zifbkkh1pyr-5}.lst-kix_o13rq8uwsvfv-6>li:before{content:"\0025cf   "}.lst-kix_3v3p2vidz8dc-5>li:before{content:"\0025a0   "}.lst-kix_fev9oryjgmhj-2>li:before{content:"\0025a0   "}ul.lst-kix_fev9oryjgmhj-7{list-style-type:none}.lst-kix_1g99jw56ocsb-4>li:before{content:"\0025cb   "}.lst-kix_1g99jw56ocsb-6>li:before{content:"\0025cf   "}ul.lst-kix_fev9oryjgmhj-8{list-style-type:none}ul.lst-kix_fev9oryjgmhj-5{list-style-type:none}.lst-kix_3v3p2vidz8dc-3>li:before{content:"\0025cf   "}.lst-kix_3v3p2vidz8dc-7>li:before{content:"\0025cb   "}.lst-kix_fev9oryjgmhj-0>li:before{content:"\0025cf   "}.lst-kix_fev9oryjgmhj-4>li:before{content:"\0025cb   "}ul.lst-kix_fev9oryjgmhj-6{list-style-type:none}ul.lst-kix_fev9oryjgmhj-3{list-style-type:none}.lst-kix_6cgw2dqkwyty-2>li:before{content:"\0025a0   "}ul.lst-kix_fev9oryjgmhj-4{list-style-type:none}.lst-kix_1zifbkkh1pyr-5>li:before{content:"(" counter(lst-ctn-kix_1zifbkkh1pyr-5,decimal) ") "}.lst-kix_fev9oryjgmhj-6>li:before{content:"\0025cf   "}.lst-kix_1g99jw56ocsb-2>li:before{content:"\0025a0   "}.lst-kix_1zifbkkh1pyr-7>li:before{content:"" counter(lst-ctn-kix_1zifbkkh1pyr-7,lower-roman) ". "}li.li-bullet-0:before{margin-left:-18pt;white-space:nowrap;display:inline-block;min-width:18pt}.lst-kix_3v3p2vidz8dc-1>li:before{content:"\0025cb   "}.lst-kix_6cgw2dqkwyty-4>li:before{content:"\0025cb   "}.lst-kix_1nxjw4d8hpcp-2>li:before{content:"\0025a0   "}.lst-kix_1zifbkkh1pyr-1>li:before{content:"" counter(lst-ctn-kix_1zifbkkh1pyr-1,lower-roman) ") "}ol.lst-kix_1zifbkkh1pyr-8.start{counter-reset:lst-ctn-kix_1zifbkkh1pyr-8 0}.lst-kix_1nxjw4d8hpcp-0>li:before{content:"\0025cf   "}.lst-kix_1nxjw4d8hpcp-4>li:before{content:"\0025cb   "}.lst-kix_6cgw2dqkwyty-6>li:before{content:"\0025cf   "}.lst-kix_o13rq8uwsvfv-0>li:before{content:"\0025cf   "}.lst-kix_wn7glzxfxmha-1>li:before{content:"\0025cb   "}.lst-kix_1g99jw56ocsb-0>li:before{content:"\0025cf   "}.lst-kix_1zifbkkh1pyr-3>li:before{content:"(" counter(lst-ctn-kix_1zifbkkh1pyr-3,lower-latin) ") "}.lst-kix_6cgw2dqkwyty-8>li:before{content:"\0025a0   "}.lst-kix_8kdz0xu5pvy5-1>li:before{content:"\0025cb   "}.lst-kix_1ih1azoc5yy1-4>li:before{content:"\0025cb   "}ol{margin:0;padding:0}table td,table th{padding:0}.c6{margin-left:36pt;padding-top:0pt;padding-left:0pt;padding-bottom:9pt;line-height:1.15;orphans:2;widows:2;text-align:left}.c8{padding-top:0pt;padding-bottom:9pt;line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left;height:20pt}.c15{color:#000000;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:12pt;font-family:"Montserrat";font-style:normal}.c3{color:#434343;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:9pt;font-family:"Montserrat";font-style:normal}.c4{color:#434343;font-weight:400;text-decoration:none;vertical-align:baseline;font-size:12pt;font-family:"Montserrat";font-style:normal}.c2{padding-top:0pt;padding-bottom:9pt;line-height:1.15;orphans:2;widows:2;text-align:left;height:12pt}.c1{color:#434343;font-weight:700;text-decoration:none;vertical-align:baseline;font-size:12pt;font-family:"Montserrat";font-style:normal}.c12{color:#0e0e0e;font-weight:700;text-decoration:none;vertical-align:baseline;font-size:10.5pt;font-family:"Montserrat";font-style:normal}.c19{margin-left:36pt;padding-top:9pt;padding-bottom:0pt;line-height:1.15;orphans:2;widows:2;text-align:left}.c29{padding-top:12pt;padding-bottom:12pt;line-height:1.15;orphans:2;widows:2;text-align:left}.c24{padding-top:0pt;padding-bottom:3pt;line-height:1.15;orphans:2;widows:2;text-align:center}.c18{padding-top:0pt;padding-bottom:0pt;line-height:1.0;orphans:2;widows:2;text-align:left}.c22{font-weight:400;text-decoration:none;vertical-align:baseline;font-size:15pt;font-family:"Montserrat";font-style:normal}.c25{font-weight:800;text-decoration:none;vertical-align:baseline;font-size:26pt;font-family:"Montserrat";font-style:normal}.c9{padding-top:0pt;padding-bottom:9pt;line-height:1.15;orphans:2;widows:2;text-align:left}.c16{color:#000000;text-decoration:none;vertical-align:baseline;font-size:12pt;font-family:"Montserrat";font-style:normal}.c23{padding-top:0pt;padding-bottom:10pt;line-height:1.15;orphans:2;widows:2;text-align:left}.c26{font-weight:400;text-decoration:none;vertical-align:baseline;font-size:11.5pt;font-family:"Montserrat";font-style:normal}.c0{padding-top:0pt;padding-bottom:0pt;line-height:1.15;orphans:2;widows:2;text-align:left}.c28{text-decoration:none;vertical-align:baseline;font-size:11.5pt;font-family:"Montserrat";font-style:normal}.c11{text-decoration:none;vertical-align:baseline;font-size:20pt;font-family:"Montserrat";font-style:normal}.c30{background-color:#ffffff;padding:72pt 72pt 72pt 72pt}.c14{padding:0;margin:0}.c5{color:#434343;font-weight:700}.c20{margin-left:72pt;padding-left:0pt}.c13{font-weight:700}.c31{font-size:12pt}.c27{padding-left:0pt}.c7{color:#434343}.c17{height:12pt}.c21{margin-left:36pt}.c10{page-break-after:avoid}.title{padding-top:0pt;color:#434343;font-weight:800;font-size:26pt;padding-bottom:3pt;font-family:"Montserrat";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:center}.subtitle{padding-top:0pt;color:#666666;font-size:15pt;padding-bottom:16pt;font-family:"Arial";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}li{color:#000000;font-size:12pt;font-family:"Montserrat"}p{margin:0;color:#000000;font-size:12pt;font-family:"Montserrat"}h1{padding-top:0pt;color:#666666;font-weight:700;font-size:20pt;padding-bottom:9pt;font-family:"Montserrat";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h2{padding-top:18pt;color:#000000;font-size:16pt;padding-bottom:6pt;font-family:"Montserrat";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h3{padding-top:16pt;color:#434343;font-size:14pt;padding-bottom:4pt;font-family:"Montserrat";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h4{padding-top:14pt;color:#666666;font-size:12pt;padding-bottom:4pt;font-family:"Montserrat";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h5{padding-top:12pt;color:#666666;font-size:11pt;padding-bottom:4pt;font-family:"Montserrat";line-height:1.15;page-break-after:avoid;orphans:2;widows:2;text-align:left}h6{padding-top:12pt;color:#666666;font-size:11pt;padding-bottom:4pt;font-family:"Montserrat";line-height:1.15;page-break-after:avoid;font-style:italic;orphans:2;widows:2;text-align:left}</style>
+	</head>
+	<body class="c30 doc-content">
+		<p class="c24 c10 title" id="h.v7xztljyrcpc"><span class="c7 c25">WorldonMoto.com </span></p>
+		<p class="c10 c24 title" id="h.q11092fawxtn"><span>Terms and Conditions</span></p>
+		<p class="c2"><span class="c4"></span></p>
+		<h1 class="c9 c10" id="h.umshak2ufj4t"><span class="c11 c5">1. Definitions</span></h1>
+		<p class="c0"><span class="c1">1.1. &ldquo;WorldOnMoto.com,&rdquo; &ldquo;we,&rdquo; &ldquo;our,&rdquo; or &ldquo;us&rdquo;</span></p>
+		<p class="c9"><span class="c4">Refers to the platform WorldOnMoto.com and its operating entity, MotoMob Limited, a company registered in the United Kingdom.</span></p>
+		<p class="c0"><span class="c1">1.2. &ldquo;Rider&rdquo; or &ldquo;user&rdquo;</span></p>
+		<p class="c9"><span class="c4">Refers to any individual who accesses and/or uses the platform for the purpose of browsing, booking, or participating in tours listed on WorldOnMoto.com.</span></p>
+		<p class="c0"><span class="c1">1.3. &ldquo;Tour Organizer&rdquo; or &ldquo;Organizer&rdquo;</span></p>
+		<p class="c9"><span class="c4">Refers to any individual or entity that lists, organizes, and operates tours on the platform for riders to book and participate in.</span></p>
+		<p class="c0"><span class="c1">1.4. &ldquo;Platform&rdquo;</span></p>
+		<p class="c23"><span class="c4">Refers to the website WorldOnMoto.com and all associated services, features, and functionalities offered by MotoMob Limited.</span></p>
+		<p class="c0"><span class="c1">1.5. &ldquo;Booking&rdquo;</span></p>
+		<p class="c23"><span class="c4">Refers to the act of reserving a spot on a tour listed on the platform, which may involve partial or full payment depending on the timing and nature of the booking.</span></p>
+		<p class="c0"><span class="c1">1.6. &ldquo;Tour&rdquo;</span></p>
+		<p class="c9"><span class="c4">Refers to the motorcycle adventure trips organized by third-party tour organizers or member-organized events, as listed on the platform.</span></p>
+		<p class="c0"><span class="c1">1.7. &ldquo;Smurfing&rdquo;</span></p>
+		<p class="c9"><span class="c4">Refers to any behavior where users exploit or manipulate the platform&rsquo;s rules or systems to gain an unfair advantage or negatively impact other users.</span></p>
+		<p class="c0"><span class="c1">1.8. &ldquo;Exceptional Circumstances&rdquo;</span></p>
+		<p class="c9"><span class="c4">Refers to unforeseen or extraordinary events beyond the user&rsquo;s control, such as medical emergencies or force majeure situations, which may warrant special consideration under these Terms and Conditions.</span></p>
+		<p class="c0 c17"><span class="c1"></span></p>
+		<p class="c0"><span class="c1">1.9. &ldquo;Platform Credit&rdquo;</span></p>
+		<p class="c0"><span class="c4">Refers to the non-refundable credit issued to users for canceled tours, which can be applied toward future bookings on the platform within a specified validity period.</span></p>
+		<p class="c2"><span class="c4"></span></p>
+		<h1 class="c9 c10" id="h.ca6muuxp5t5k"><span class="c7">2</span><span class="c11 c5">. Effective Date</span></h1>
+		<p class="c9"><span class="c4">These Terms and Conditions are effective as of 01st January 2025.</span></p>
+		<p class="c2"><span class="c4"></span></p>
+		<h1 class="c9 c10" id="h.aguythod3cec"><span class="c7">3</span><span class="c11 c5">. Introduction</span></h1>
+		<p class="c9"><span class="c5">3.1.</span><span class="c4">&nbsp;Welcome to WorldOnMoto.com, a platform dedicated to connecting motorcycle enthusiasts with independent tour organizers for adventure travel.</span></p>
+		<p class="c9"><span class="c5">3.2.</span><span class="c4">&nbsp;WorldOnMoto.com is owned and operated by MotoMob Limited, a company registered in the United Kingdom.</span></p>
+		<p class="c9"><span class="c5">3.3.</span><span class="c4">&nbsp;By accessing or using our website, you agree to comply with these Terms and Conditions. If you do not agree to these terms, please refrain from using our website.</span></p>
+		<p class="c2"><span class="c3"></span></p>
+		<h1 class="c9 c10" id="h.nsaimdj8i6o"><span class="c7">4</span><span class="c11 c5">. Platform Overview and Purpose</span></h1>
+		<p class="c9"><span class="c5">4.1. </span><span class="c4">WorldOnMoto.com provides an online marketplace to connect riders with independent tour organizers.</span></p>
+		<p class="c9"><span class="c5">4.2.</span><span class="c4">&nbsp;We do not organize, run, or manage tours. All tours are managed by third-party organizers, and we do not assume responsibility for the quality, safety, or delivery of these tours.</span></p>
+		<p class="c9"><span class="c5">4.3. </span><span class="c4">Our role is limited to providing the platform and facilitating connections; we do not vet, manage, or monitor the activities or interactions of users beyond the platform&rsquo;s functionality.</span></p>
+		<p class="c2 c10 subtitle" id="h.ehuro0kt8fgs"><span class="c22 c7"></span></p>
+		<h1 class="c9 c10" id="h.prh20drip6xt"><span class="c7">5</span><span class="c11 c5">. User Eligibility</span></h1>
+		<p class="c9"><span class="c5">5.1.</span><span class="c4">&nbsp;Users must be at least 18 years old to create an account, post tours, or participate in activities on the platform.</span></p>
+		<p class="c9"><span class="c5">5.2.</span><span class="c4">&nbsp;By using the platform, you affirm that you have the legal right to enter into these Terms and Conditions.</span></p>
+		<h1 class="c8" id="h.ijoiq3u1zouv"><span class="c11 c5"></span></h1>
+		<h1 class="c9 c10" id="h.kbosz57rhj4g"><span class="c11 c5">6. User Accounts and Responsibilities</span></h1>
+		<p class="c9"><span class="c5">6.1.</span><span class="c4">&nbsp;Users are responsible for providing accurate information during registration and keeping their account information up to date.</span></p>
+		<p class="c9"><span class="c5">6.2.</span><span class="c4">&nbsp;Users agree not to use the platform for any unlawful activities or in a manner that could harm other users or the platform.</span></p>
+		<p class="c2"><span class="c3"></span></p>
+		<h1 class="c9 c10" id="h.t6zom2b9rjlu"><span class="c7">7</span><span class="c5 c11">. Tour Posting and Content Guidelines</span></h1>
+		<p class="c9"><span class="c7"><br></span><span class="c5">7.1.</span><span class="c4">&nbsp;Tour organizers may post tours, itineraries, and related content, which must be truthful, accurate, and up to date.</span></p>
+		<p class="c9"><span class="c5">7.2.</span><span class="c4">&nbsp;Organizers are solely responsible for ensuring they meet all necessary legal, insurance, and permit requirements for their tours.</span></p>
+		<p class="c9"><span class="c5">7.3. </span><span class="c4">WorldOnMoto.com reserves the right to remove or modify content that is misleading, inappropriate, or in violation of these Terms.</span></p>
+		<p class="c2"><span class="c3"></span></p>
+		<h1 class="c9 c10" id="h.oiy9nzqb80fw"><span class="c7">8</span><span class="c11 c5">. Member-Organized Tours and User Responsibility</span></h1>
+		<p class="c9"><span class="c7"><br></span><span class="c5">8.1. Member-Organized Tours:</span><span class="c4"><br>WorldOnMoto.com allows members to independently organize tours and invite other riders to join. These member-organized tours are not vetted, endorsed, or managed by WorldOnMoto.com.</span></p>
+		<p class="c9"><span class="c5">8.2. User Responsibility:</span><span class="c4"><br>When joining a member-organized tour, users must exercise due diligence and conduct their own research into the tour organizer and arrangements.</span></p>
+		<p class="c9"><span class="c5">8.3. Payments for Member-Organized Tours:</span><span class="c4"><br>Users are advised not to make payments for member-organized tours until they are fully confident in the authenticity and reliability of the organizer and tour details.</span></p>
+		<p class="c9"><span class="c5">8.4. Applicability to All Tours:</span><span class="c4"><br>This clause applies to all tours listed or organized through the platform, whether by professional tour operators or individual members. Users bear full responsibility for verifying the legitimacy and details of any tour before committing to participation or payment.</span></p>
+		<p class="c2 c10 subtitle" id="h.y30ynnuvrfx2"><span class="c7 c22"></span></p>
+		<h1 class="c9 c10" id="h.68u42yd38osl"><span class="c7">9</span><span class="c11 c5">. Tour Payments </span></h1>
+		<p class="c9"><span class="c1">9.1. Payment Method</span></p>
+		<p class="c9"><span class="c4">All payments for tours must be made through WorldOnMoto.com. Payments can be completed via:</span></p>
+		<ul class="c14 lst-kix_1g99jw56ocsb-0 start">
+			<li class="c6 li-bullet-0"><span class="c4">Bank transfer: Processed directly through your bank.</span></li>
+			<li class="c6 li-bullet-0"><span class="c4">Payment page: Available on our website for secure and convenient transactions.</span></li>
+		</ul>
+		<p class="c9"><span class="c1">9.2. Payment Schedule</span></p>
+		<ul class="c14 lst-kix_1g99jw56ocsb-0">
+			<li class="c6 li-bullet-0"><span class="c4">Full Payment: For tours starting less than 60 days from the booking date, full payment is required at the time of booking.</span></li>
+			<li class="c6 li-bullet-0"><span class="c4">Partial Payment: For tours starting more than 60 days from the booking date, a payment of 25% of the total tour price or full payment is required to confirm the booking. The remaining balance must be paid no later than 30 days before the tour start date.</span></li>
+		</ul>
+		<p class="c9"><span class="c1">9.3. Payment Deadlines</span></p>
+		<ul class="c14 lst-kix_1g99jw56ocsb-0">
+			<li class="c6 li-bullet-0"><span class="c4">For tours booked with a 25% deposit, full payment is due 30 days before the tour start date.</span></li>
+			<li class="c6 li-bullet-0"><span class="c4">Ample notice and reminders will be provided to help ensure timely payment.</span></li>
+			<li class="c6 li-bullet-0"><span class="c4">Failure to complete full payment by the 30-day deadline will result in the forfeiture of the initial payment and cancellation of the booking. Users are encouraged to review the Refund and Cancellation section to understand how to mitigate such losses.</span></li>
+		</ul>
+		<p class="c9"><span class="c1">9.4. Liability for Payments:</span></p>
+		<ul class="c14 lst-kix_1g99jw56ocsb-0">
+			<li class="c6 li-bullet-0"><span class="c4">WorldOnMoto.com is not liable for payment disputes or delays in fund transfers caused by third-party payment processors or issues with the Tour Operator.</span></li>
+			<li class="c6 li-bullet-0"><span class="c4">Users accept that payments made via the platform are at their own risk, and the platform&rsquo;s role is limited to processing and passing on payments to the respective Tour Operator.</span></li>
+		</ul>
+		<p class="c2"><span class="c3"></span></p>
+		<h1 class="c9 c10" id="h.ey3uo1raq95x"><span class="c7">10</span><span class="c11 c5">. Cancellations and Refunds</span></h1>
+		<p class="c9"><span class="c1">10.1. Cancellation Policy</span></p>
+		<ul class="c14 lst-kix_1g99jw56ocsb-0">
+			<li class="c6 li-bullet-0"><span class="c4">Users may cancel a tour up to 30 days before the tour start date.</span></li>
+			<li class="c6 li-bullet-0"><span class="c4">Cancellations made within 30 days of the tour start date will result in a forfeiture of the full payment.</span></li>
+		</ul>
+		<p class="c9"><span class="c1">10.2. Refund or Credit Options for Cancellations</span></p>
+		<p class="c9"><span class="c4">When a user cancels a tour 30 or more days prior to the tour start date, they have the following options:</span></p>
+		<p class="c9 c21"><span class="c1">10.2.a) Refund Request:</span></p>
+		<ul class="c14 lst-kix_1g99jw56ocsb-0">
+			<li class="c9 c20 li-bullet-0"><span class="c4">Users can request a refund to their original payment method.</span></li>
+			<li class="c9 c20 li-bullet-0"><span class="c4">Refunds will be processed after deducting a 5% servicing and bank handling charges.</span></li>
+			<li class="c9 c20 li-bullet-0"><span class="c4">This means 95% of the payment will be refunded to the user.<br></span></li>
+		</ul>
+		<p class="c2 c21"><span class="c1"></span></p>
+		<p class="c9 c21"><span class="c1">10.2.b) Platform Credit Request:</span></p>
+		<ul class="c14 lst-kix_1g99jw56ocsb-0">
+			<li class="c9 c20 li-bullet-0"><span class="c4">Users can opt to receive 100% of the payment as platform credit.</span></li>
+			<li class="c9 c20 li-bullet-0"><span class="c4">Credits can be used to book future tours on the platform and are valid for 24 months from the date of issuance.</span></li>
+			<li class="c9 c20 li-bullet-0"><span class="c4">Platform credits can be applied to multiple bookings until the total credit amount is exhausted.</span></li>
+		</ul>
+		<p class="c2"><span class="c1"></span></p>
+		<p class="c9"><span class="c1">10.3. Forfeiture of Funds</span></p>
+		<p class="c9"><span class="c4">Cancellations made less than 30 days before the tour start date will result in the loss of all payments made.</span></p>
+		<p class="c9"><span class="c1">10.4. Transfer of Booking to Another Member</span></p>
+		<ul class="c14 lst-kix_1g99jw56ocsb-0">
+			<li class="c6 li-bullet-0"><span class="c4">If a user is unable to attend a tour after making the full payment for the booking they may transfer their booking to another WorldOnMoto.com member.</span></li>
+			<li class="c6 li-bullet-0"><span class="c4">Transfer of the booking is not possible for tours where the full payment is outstanding.</span></li>
+			<li class="c6 li-bullet-0"><span class="c4">WorldOnMoto.com does not facilitate or take responsibility for any financial agreements or transactions between members in such cases.</span></li>
+			<li class="c6 li-bullet-0"><span class="c4">The platform&rsquo;s role is limited to allowing one user to take the place of another.</span></li>
+			<li class="c6 li-bullet-0"><span class="c4">WorldOnMoto.com will not be held responsible for any disputes or issues arising from such transfers.</span></li>
+		</ul>
+		<p class="c9"><span class="c1">10.5. Exceptional Circumstances</span></p>
+		<p class="c9"><span class="c4">Exceptions to the payment policy may be considered in extraordinary circumstances. To request an exception:</span></p>
+		<ul class="c14 lst-kix_1g99jw56ocsb-0">
+			<li class="c6 li-bullet-0"><span class="c4">Contact us at exceptions@worldonmoto.com with detailed information about your case and any supporting evidence.</span></li>
+			<li class="c6 li-bullet-0"><span class="c4">Please note: Any exceptions are at the sole discretion of the respective Tour Operator. WorldOnMoto.com does not influence the decision-making process in these cases.</span></li>
+		</ul>
+		<h1 class="c0 c10" id="h.ugdv13guf3v9"><span class="c7 c31">10.6. Tour Operator Cancellations</span></h1>
+		<p class="c0 c17"><span class="c15"></span></p>
+		<p class="c0"><span class="c15">If a tour operator cancels the tour before the tour start date, the rider will:</span></p>
+		<ul class="c14 lst-kix_1nxjw4d8hpcp-0 start">
+			<li class="c19 c27 li-bullet-0"><span class="c15">Receive a full refund of the complete payment made for the booking.</span></li>
+			<li class="c19 c27 li-bullet-0"><span class="c15">Potentially have the right to claim reasonable expenses incurred before the cancellation.</span></li>
+		</ul>
+		<p class="c0 c17"><span class="c15"></span></p>
+		<p class="c0"><span class="c15">To claim reimbursement for these expenses:</span></p>
+		<ul class="c14 lst-kix_8kdz0xu5pvy5-0 start">
+			<li class="c19 c27 li-bullet-0"><span class="c15">Riders must provide proof of the incurred expenses (e.g., receipts or invoices).</span></li>
+			<li class="c19 c27 li-bullet-0"><span class="c15">The proof must be submitted directly to the tour operator via email.</span></li>
+		</ul>
+		<p class="c17 c19"><span class="c15"></span></p>
+		<p class="c0"><span class="c15">WorldOnMoto.com is not responsible for processing or mediating expense reimbursement claims between riders and tour operators.</span></p>
+		<h1 class="c8" id="h.ugdv13guf3v9-1"><span class="c11 c5"></span></h1>
+		<h1 class="c9 c10" id="h.d6bks1p0eikj"><span class="c7">11. Fees</span></h1>
+		<p class="c9"><span class="c1">11.1. Platform Usage for Riders and Tour operators</span></p>
+		<p class="c9"><span class="c4">The platform is completely free for riders and tour operators to use. Users are not charged for creating an account, browsing tours, publishing tours or engaging with the platform.</span></p>
+		<p class="c2"><span class="c4"></span></p>
+		<p class="c9"><span class="c1">11.2. Service Fee</span></p>
+		<p class="c9"><span class="c4">WorldOnMoto.com charges a 8% service fee based on the purchase price of the tour. </span></p>
+		<p class="c2"><span class="c4"></span></p>
+		<p class="c9"><span class="c1">11.3. Financial Terms with Tour Operators</span></p>
+		<p class="c9"><span class="c4">WorldOnMoto.com reserves the right to establish specific financial terms and agreements with tour operators to ensure the sustainability and continued operation of the platform.</span></p>
+		<p class="c2"><span class="c4"></span></p>
+		<p class="c9"><span class="c1">11.4. Payment Transfers to Tour Operators</span></p>
+		<p class="c9"><span class="c4">Tours Booked More Than 30 Days in Advance: Payments for these bookings will be transferred to the tour operator after the refund and cancellation period of 30 days has expired.</span></p>
+		<p class="c9"><span class="c4">Tours Booked Within 30 Days of the Start Date: Payments for bookings made less than 30 days before the tour start date will be transferred to the tour operator immediately upon confirmation of the booking.</span></p>
+		<p class="c2"><span class="c4"></span></p>
+		<p class="c9"><span class="c1">11.5. Default Payment Currency</span></p>
+		<p class="c9"><span class="c4">All payments to tour operators will be made in the default currency designated for the trip payment. The available default currencies are:</span></p>
+		<ul class="c14 lst-kix_bfcyacpziwmn-0 start">
+			<li class="c9 c20 li-bullet-0"><span class="c4">Euro (EUR)</span></li>
+			<li class="c9 c20 li-bullet-0"><span class="c4">United Kingdom Pound Sterling (GBP)</span></li>
+			<li class="c9 c20 li-bullet-0"><span class="c4">United States Dollar (USD)</span></li>
+		</ul>
+		<p class="c9"><span class="c4">Tour operators are responsible for ensuring their banking information supports these currencies.</span></p>
+		<p class="c2"><span class="c4"></span></p>
+		<p class="c9"><span class="c1">11.6. Bank Fees, Transfers, and Currency Exchange Costs</span></p>
+		<p class="c9"><span class="c4">WorldOnMoto.com cannot be held accountable for the following fees or costs associated with payments to tour operators:</span></p>
+		<ul class="c14 lst-kix_lvtbomc4t3m0-0 start">
+			<li class="c6 li-bullet-0"><span class="c4">Bank fees charged by the tour operator&rsquo;s bank or any intermediary banks involved in the payment process.</span></li>
+			<li class="c6 li-bullet-0"><span class="c4">Currency exchange fees or costs incurred during the conversion of the payment into the default or local currency of the tour operator.</span></li>
+		</ul>
+		<p class="c9"><span class="c4">WorldOnMoto.com will work with tour operators to ensure that:</span></p>
+		<ul class="c14 lst-kix_zgy8fqmzcr3m-0 start">
+			<li class="c6 li-bullet-0"><span class="c4">Bank transfer fees are kept to a minimum whenever possible.</span></li>
+			<li class="c6 li-bullet-0"><span class="c4">Payment is made efficiently and accurately in the designated default currency for the trip (EUR, GBP, or USD).</span></li>
+			<li class="c6 li-bullet-0"><span class="c4">Tour operators are encouraged to consult their banks regarding any potential fees, including those for receiving international payments or currency conversion where applicable.</span></li>
+		</ul>
+		<p class="c9"><span class="c4">Tour operators are solely responsible for:</span></p>
+		<ul class="c14 lst-kix_inc3jf81kw96-0 start">
+			<li class="c6 li-bullet-0"><span class="c4">Ensuring the accuracy and completeness of the bank details they provide to WorldOnMoto.com.</span></li>
+			<li class="c6 li-bullet-0"><span class="c4">Resolving any issues directly with their bank in the event of delays or other complications.</span></li>
+		</ul>
+		<h1 class="c8" id="h.b35yuyjcm4ki"><span class="c11 c5"></span></h1>
+		<h1 class="c9 c10" id="h.ndlmoa6r9rpl"><span class="c11 c5">12. Assumption of Risk</span></h1>
+		<p class="c9"><span class="c5">12.1.</span><span class="c4">&nbsp;Adventure travel on motorcycles involves inherent risks, including but not limited to accidents, personal injury, and property loss. By using the platform, you acknowledge and accept these risks.</span></p>
+		<p class="c9"><span class="c5">12.2. </span><span class="c4">WorldOnMoto.com bears no liability for injuries, damages, or losses incurred during participation in any tours listed on the platform.</span></p>
+		<p class="c2"><span class="c3"></span></p>
+		<h1 class="c9 c10" id="h.pl64r8vks82f"><span class="c11 c5">13. Limitation of Liability and Disclaimer of Warranties</span></h1>
+		<p class="c9"><span class="c5">13.1. Platform Functionality:</span><span class="c4">&nbsp;</span></p>
+		<p class="c9"><span class="c4">WorldOnMoto.com provides the platform &ldquo;as is&rdquo; and &ldquo;as available&rdquo; without warranties of any kind, express or implied. We make no guarantees regarding the reliability, accuracy, or completeness of the platform.</span></p>
+		<p class="c9"><span class="c5">13.2. Assumption of Risk:</span><span class="c4">&nbsp;</span></p>
+		<p class="c9"><span class="c4">Users agree to assume full responsibility for their decisions and any associated risks when participating in tours or interacting with other users.</span></p>
+		<p class="c9"><span class="c5">13.3. Third-Party Liability:</span><span class="c4">&nbsp;</span></p>
+		<p class="c9"><span class="c4">We are not responsible for the conduct, negligence, or actions of any users, tour organizers, or third parties.</span></p>
+		<p class="c9"><span class="c1">13.4. Limitation of Liability: </span></p>
+		<p class="c9"><span class="c4">To the fullest extent permitted by law, WorldOnMoto.com disclaims all liability for direct, indirect, incidental, consequential, or punitive damages arising from your use of the platform or participation in tours.</span></p>
+		<p class="c9"><span class="c1">13.5. Jurisdictional Disclaimer:</span></p>
+		<p class="c9"><span class="c4">&nbsp;Some jurisdictions may not allow certain limitations of liability, and in such cases, our liability will be limited to the fullest extent permitted by applicable law.</span></p>
+		<p class="c2"><span class="c3"></span></p>
+		<h1 class="c9 c10" id="h.5qwy9uuponvy"><span class="c11 c5">14. Indemnification</span></h1>
+		<p class="c9"><span class="c13">14.1.</span><span class="c15">&nbsp;By using WorldOnMoto.com, you agree to indemnify, defend, and hold harmless MotoMob Limited, WorldOnMoto.com, its affiliates, officers, employees, agents, and representatives from and against any and all claims, demands, damages, liabilities, losses, or expenses, including reasonable legal fees, arising out of or related to:</span></p>
+		<p class="c9"><span class="c13">14.1.1. </span><span class="c15">Your use of the platform, including but not limited to booking or participating in tours.</span></p>
+		<p class="c9"><span class="c13">14.1.2. </span><span class="c15">Any breach of these Terms and Conditions by you or a party acting on your behalf.</span></p>
+		<p class="c9"><span class="c13">14.1.3. </span><span class="c15">Your violation of any applicable laws or regulations in connection with your use of the platform or participation in tours.</span></p>
+		<p class="c9"><span class="c13">14.1.4. </span><span class="c15">Claims or disputes arising between you and any other user or tour organizer, including but not limited to payment disputes, tour cancellations, or safety concerns.</span></p>
+		<p class="c9"><span class="c13">14.1.5.</span><span class="c15">&nbsp;Any damages or losses resulting from your participation in tours, including but not limited to personal injury, property damage, or third-party claims.</span></p>
+		<p class="c2"><span class="c15"></span></p>
+		<p class="c9"><span class="c13">14.2.</span><span class="c15">&nbsp;You acknowledge and agree that your use of the platform and participation in any tours is entirely at your own risk and that MotoMob Limited and WorldOnMoto.com bear no liability for any claims, damages, or losses that arise.</span></p>
+		<p class="c29 c17"><span class="c3"></span></p>
+		<h1 class="c9 c10" id="h.mkmr6x2hzvc8"><span class="c11 c5">15. Intellectual Property</span></h1>
+		<p class="c9"><span class="c5">15.1.</span><span class="c4">&nbsp;All content, design elements, and functionalities of WorldOnMoto.com are protected by intellectual property laws.</span></p>
+		<p class="c9"><span class="c5">15.2. </span><span class="c4">Users retain ownership of the content they post but grant WorldOnMoto.com a non-exclusive, royalty-free license to use, display, and distribute their content within the platform and promotional materials without limitation..</span></p>
+		<h1 class="c8" id="h.6s7p9ryiwmpu"><span class="c11 c5"></span></h1>
+		<h1 class="c9 c10" id="h.pu5wry9cc5nv"><span class="c11 c5">16. Dispute Resolution</span></h1>
+		<p class="c9"><span class="c5">16.1. </span><span class="c4">Disputes between riders and tour organizers must be resolved directly between the parties.</span></p>
+		<p class="c9"><span class="c5">16.2.</span><span class="c4">&nbsp;WorldOnMoto.com does not mediate disputes but may take appropriate action, such as account suspension, in cases of verified misconduct.</span></p>
+		<p class="c2"><span class="c3"></span></p>
+		<h1 class="c9 c10" id="h.f2jagiitu55o"><span class="c11 c5">17. Force Majeure</span></h1>
+		<p class="c9"><span class="c5">17.1.</span><span class="c4">&nbsp;MotoMob Limited and WorldonMoto.com is not liable for failures or delays caused by events beyond our control, including but not limited to:</span></p>
+		<ul class="c14 lst-kix_o13rq8uwsvfv-0 start">
+			<li class="c6 li-bullet-0"><span class="c4">Natural disasters.</span></li>
+			<li class="c6 li-bullet-0"><span class="c4">Political instability or unrest.</span></li>
+			<li class="c6 li-bullet-0"><span class="c4">Internet or technical disruptions.</span></li>
+		</ul>
+		<p class="c17 c29"><span class="c3"></span></p>
+		<h1 class="c9 c10" id="h.i4373jbspaz3"><span class="c11 c5">18. Modifications to Terms</span></h1>
+		<p class="c9"><span class="c5">18.1.</span><span class="c4">&nbsp;We reserve the right to update or modify these Terms and Conditions at any time without prior notice.</span></p>
+		<p class="c9"><span class="c5">18.2.</span><span class="c4">&nbsp;Continued use of the platform after modifications constitutes acceptance of the revised terms.</span></p>
+		<p class="c2"><span class="c3"></span></p>
+		<h1 class="c9 c10" id="h.qqsrbfbz8d8"><span class="c11 c5">19. Governing Law</span></h1>
+		<p class="c9"><span class="c5">19.1. </span><span class="c4">These Terms and Conditions are governed by the laws of England and Wales.</span></p>
+		<p class="c9"><span class="c5">19.2. </span><span class="c4">Users agree to submit to the exclusive jurisdiction of the courts in England and Wales for resolving disputes.</span></p>
+		<p class="c2 c10 subtitle" id="h.80i2u5v1kpjt"><span class="c22 c7"></span></p>
+		<h1 class="c9 c10" id="h.vk29pts93l5k"><span class="c7">20</span><span class="c11 c5">. Trust and Safety</span></h1>
+		<p class="c0"><span class="c5">20.1. Commitment to Trust and Safety</span></p>
+		<p class="c9"><span class="c4">WorldOnMoto.com is committed to protecting all users of the platform, including both riders and tour organizers, as well as safeguarding the integrity of the platform itself. To achieve this, we will implement procedures and checks designed to enhance trust and safety. While we aim to keep these measures minimally intrusive, we reserve the right to apply them at our sole discretion.</span></p>
+		<p class="c18 c17"><span class="c4"></span></p>
+		<hr style="page-break-before:always;display:none;">
+		<p class="c2"><span class="c16 c13"></span></p>
+		<p class="c9"><span class="c13 c16">20.2. Account Security</span></p>
+		<p class="c9"><span class="c15">To ensure the safety and security of all users, it is your responsibility to take the necessary precautions to protect your account. This includes, but is not limited to:</span></p>
+		<ul class="c14 lst-kix_9chdzete007s-0 start">
+			<li class="c6 li-bullet-0"><span class="c15">Keeping your account credentials (username and password) confidential and not sharing them with anyone.</span></li>
+			<li class="c6 li-bullet-0"><span class="c15">Using strong, unique passwords that include a combination of letters, numbers, and special characters.</span></li>
+			<li class="c6 li-bullet-0"><span class="c15">Updating your password regularly to minimize the risk of unauthorized access.</span></li>
+		</ul>
+		<p class="c9"><span class="c15">Immediately notify WorldOnMoto.com if you suspect any unauthorized access or security breach of your account.</span></p>
+		<p class="c9"><span class="c15">WorldOnMoto.com will not be held responsible for losses or damages resulting from the unauthorized use of your account due to negligence in securing your credentials.</span></p>
+		<p class="c17 c18"><span class="c4"></span></p>
+		<p class="c18 c17"><span class="c4"></span></p>
+		<p class="c18"><span class="c1">20.2. Prohibited Conduct</span></p>
+		<p class="c9"><span class="c4">Users are prohibited from circumventing our rules or engaging in activities that exploit or harm other users or the platform. This includes, but is not limited to, behaviors such as smurfing or other actions that, as judged by WorldOnMoto.com, negatively impact the integrity or user experience of the platform and WorldonMoto.com business.</span></p>
+		<p class="c2"><span class="c4"></span></p>
+		<p class="c0"><span class="c1">20.3. Enforcement and Actions</span></p>
+		<p class="c0"><span class="c4">WorldOnMoto.com reserves the right to take any necessary action to protect the platform and its users. This may include, but is not limited to:</span></p>
+		<p class="c0 c17"><span class="c4"></span></p>
+		<ul class="c14 lst-kix_y254zhm8pas3-0 start">
+			<li class="c0 c27 c21 li-bullet-0"><span class="c4">Temporary or permanent bans from the platform.</span></li>
+			<li class="c0 c27 c21 li-bullet-0"><span class="c4">Removal of content or restrictions on account functionality.</span></li>
+		</ul>
+		<p class="c0 c17"><span class="c4"></span></p>
+		<p class="c0"><span class="c1">20.4. Discretionary Decision-Making</span></p>
+		<p class="c0"><span class="c4">To maintain a high level of trust and security, WorldOnMoto.com retains the full right to make decisions that may not be explicitly mentioned in these Terms and Conditions. These decisions will always be guided by the goal of ensuring the safety, integrity, and positive experience of the platform for all users.</span></p>
+		<p class="c2"><span class="c4"></span></p>
+		<p class="c2"><span class="c4"></span></p>
+		<h1 class="c9 c10" id="h.nbl1ikgnm3cs"><span class="c11 c5">21. Contact Information</span></h1>
+		<p class="c9"><span class="c4">For questions or concerns about these Terms and Conditions, contact us at support@WorldonMoto.com.</span></p>
+		<p class="c2"><span class="c4"></span></p>
+		<p class="c2"><span class="c26 c7"></span></p>
+		<p class="c2"><span class="c7 c26"></span></p>
+		<p class="c2"><span class="c4"></span></p>
+	</body>
 </div>
 @include('footer')
