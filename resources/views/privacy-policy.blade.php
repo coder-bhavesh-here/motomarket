@@ -6,7 +6,7 @@
 	</head>
 	<body class="c10 doc-content">
 		<div class="text-center">
-			<p class="c9 title" id="h.v6lpvdpweixt"><span class="c11">WorldOnMoto.com</span></p>
+			<p class="c9 title" id="h.v6lpvdpweixt"><span class="c11">WorldonMoto.com</span></p>
 			<p class="c9 title" id="h.550nt65hnxzs"><span class="c11">Privacy Policy</span></p>
 		</div>
 		<p class="c7"><span class="c14"></span></p>
