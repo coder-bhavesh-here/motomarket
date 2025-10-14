@@ -116,7 +116,7 @@
                     <div class="tour-info rounded-3xl">
                         <div class="tour-details grid womsm:flex grid-cols-1 womsm:grid-cols-3">
                             <div class="h-[90px] womsm:h-auto">
-                                <a href='/tour/{{ $tour->id }}' target="_blank">
+                                <a href='{{ route('tour.show', ['tourId' => $tour->id]) }}' target="_blank">
                                     @php
                                         $tour->images = $tour->images->sortBy('index')->first();
                                     @endphp
@@ -158,11 +158,11 @@
                                             <span class="text-xl font-semibold text-black tour-owner ml-4">{{ $tour_operation_name }}</span>
                                     </div>
                                 </a>
-                                <a href='/tour/{{ $tour->id }}' target="_blank">
+                                <a href='{{ route('tour.show', ['tourId' => $tour->id]) }}' target="_blank">
                                     <p class="text-base womsm:text-lg wommd:text-xl font-semibold text-black">{{ $tour->title }}</p>
                                 </a>
                                 <p>
-                                    <a href='/tour/{{ $tour->id }}' class="text-xs womsm:text-sm wommd:text-base text-black font-normal">
+                                    <a href='{{ route('tour.show', ['tourId' => $tour->id]) }}' class="text-xs womsm:text-sm wommd:text-base text-black font-normal">
                                         {!! Str::limit(strip_tags($tour->tour_description), 350) !!}
                                     </a>
                                 </p>
@@ -236,7 +236,7 @@
                                         @endif
                                     </div>
                                     <div class="links flex items-center">
-                                        <a href='/tour/{{ $tour->id }}' class="button-text">Tour Details</a>
+                                        <a href='{{ route('tour.show', ['tourId' => $tour->id]) }}' class="button-text">Tour Details</a>
                                         @if ($tour->is_favourite)
                                             <a class="unfavourite">
                                                 <img style="height: 50px !important; max-width: 50px !important; width: 50px !important;"

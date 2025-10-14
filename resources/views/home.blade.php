@@ -16,7 +16,7 @@
         @foreach ($tours as $tour_sr => $tour)
             @if ($tour_sr < 8)
                 <div class="rounded flex flex-col p-3">
-                    <a class="" href='/tour/{{ $tour->id }}'>
+                    <a class="" href='{{ route('tour.show', ['tourId' => $tour->id]) }}'>
                         <div>
                             {{-- <div class="bg-gray-300 h-32 rounded mb-4"></div> --}}
                             @php

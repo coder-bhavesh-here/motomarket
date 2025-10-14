@@ -77,12 +77,12 @@
         @foreach ($tours as $tour)
             @if ($tour->status === 'draft')
                 <div class="tour-info rounded-3xl">
-                    <a href='/tour/{{ $tour->id }}' target="_blank">
+                    <a href='{{ route('tour.show', ['tourId' => $tour->id]) }}' target="_blank">
                         <p class="py-2 text-lg womsm:text-xl wommd:text-2xl font-semibold text-black">{{ $tour->title }}</p>
                     </a>
                     <div class="tour-details grid grid-cols-1 womsm:grid-cols-4">
                         <div class="h-[80px] womsm:h-auto">
-                            <a href='/tour/{{ $tour->id }}' target="_blank">
+                            <a href='{{ route('tour.show', ['tourId' => $tour->id]) }}' target="_blank">
                                 {{-- <img class="aspect-square rounded-t-lg womsm:rounded-tr-none womsm:rounded-l-lg object-cover h-full w-full"
                                     src="https://worldonmoto.com/storage/uploads/1732685873_2.jpg"
                                     alt="Tour photo"> --}}

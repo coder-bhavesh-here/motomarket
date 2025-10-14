@@ -116,7 +116,7 @@
             <div class="content py-8 mx-6">
                 <div class="inline-flex justify-center items-center">
                     <span class="text-black font-bold text-lg womsm:text-xl wommd:text-2xl">YOUR BOOKING</span>
-                {{-- <span><a href="/tour/{{ $tour->id }}" class="text-green font-semibold ml-2 text-xs womsm:text-sm wommd:text-base"><u>Change</u></a></span> --}}
+                {{-- <span><a href="{{ route('tour.show', ['tourId' => $tour->id]) }}" class="text-green font-semibold ml-2 text-xs womsm:text-sm wommd:text-base"><u>Change</u></a></span> --}}
                 </div>
                 <div class="title">
                     <p class="my-4 font-semibold text-[#0F172A] text-base womsm:text-lg wommd:text-xl">
@@ -186,7 +186,7 @@
             </div>
             <div class="inline-flex mt-2">
                 <span class="underline text-black text-lg font-normal">
-                    <a href="/tour/{{$tour->id}}">Tour Page</a>
+                    <a href="{{ route('tour.show', ['tourId' => $tour->id]) }}">Tour Page</a>
                 </span>
                 <span class="underline text-black text-lg font-normal ml-4">
                     <a href="/tour-operator/{{$tour->user->tour_nickname}}">Tour Operator Info</a>

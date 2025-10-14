@@ -11,7 +11,7 @@
                     @foreach ($tours as $tour)
                     <div class="w-full justify-items-center masterDiv" id="masterDiv{{ $tour->id }}">
                         <div class="max-w-[320px] wommd:max-w-[500px] ">
-                            <a href='/tour/{{ $tour->id }}'>
+                            <a href='{{ route('tour.show', ['tourId' => $tour->id]) }}'>
                                 @php
                                     $tour->images = $tour->images->sortBy('index')->first();
                                 @endphp

@@ -63,7 +63,7 @@
         <div class="px-4 py-6">
             <meta name="csrf-token" content="{{ csrf_token() }}">
             <div class="sm:px-6 lg:px-8">
-                <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > <u><a href="{{ route('explore-tours') }}">Tour Search</a></u> > <u><a href="/tour/{{ $tour->id }}">Tour Details</a></u> > Booking</p>
+                <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > <u><a href="{{ route('explore-tours') }}">Tour Search</a></u> > <u><a href="{{ route('tour.show', ['tourId' => $tour->id]) }}">Tour Details</a></u> > Booking</p>
                 <p class="my-4 font-semibold text-[#0F172A] text-lg womsm:text-xl wommd:text-2xl">
                     {{ $tour->title }} - {{ $tour->countries }}
                 </p>
@@ -72,7 +72,7 @@
                 </div>
                 <div class="text-sm womsm:text-base wommd:text-lg my-2 text-[#0F172A] inline-flex justify-center">
                     <span>{{ \Carbon\Carbon::parse($selectedDate->date)->format('F jS, Y') }}</span>
-                    <span><a href="/tour/{{ $tour->id }}" class="text-green font-semibold ml-2 text-xs womsm:text-sm wommd:text-base"><u>Change</u></a></span>
+                    <span><a href="{{ route('tour.show', ['tourId' => $tour->id]) }}" class="text-green font-semibold ml-2 text-xs womsm:text-sm wommd:text-base"><u>Change</u></a></span>
                 </div> --}}
             </div>
             <div class="mt-5">
@@ -153,7 +153,7 @@
             <div class="content p-10">
                 <div class="inline-flex justify-center items-center">
                     <span class="text-black font-bold text-lg womsm:text-xl wommd:text-2xl">YOUR BOOKING</span>
-                <span><a href="/tour/{{ $tour->id }}" class="text-green font-semibold ml-2 text-xs womsm:text-sm wommd:text-base"><u>Change</u></a></span>
+                <span><a href="{{ route('tour.show', ['tourId' => $tour->id]) }}" class="text-green font-semibold ml-2 text-xs womsm:text-sm wommd:text-base"><u>Change</u></a></span>
                 </div>
                 <div class="title">
                     <p class="my-4 font-semibold text-[#0F172A] text-base womsm:text-lg wommd:text-xl">
