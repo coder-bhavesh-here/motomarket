@@ -96,11 +96,11 @@
                     <button class="mt-5 w-full primary-button font-bold" style="padding: 12px">
                         {{ __('Confirm email') }}
                     </button>
-                    <div class="text-center mt-10">
+                    {{-- <div class="text-center mt-10">
                         <a class="underline text-sm wommd:text-base font-bold text-green" href="#">
                             {{ __('Resend Email') }}
                         </a>
-                    </div>
+                    </div> --}}
                 </form>
             </div>
         </div>
