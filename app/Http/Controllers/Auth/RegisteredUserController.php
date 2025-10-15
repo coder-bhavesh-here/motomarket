@@ -27,25 +27,36 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-            'password' => ['required', Rules\Password::defaults()],
-            'terms-conditions' => ['accepted'],
+            // 'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make($request->string('password')),
         ]);
+
+        $verificationCode = rand(100000, 999999);
+
+        // Save the code temporarily (you can store it in DB or session)
+        $user->verification_code = $verificationCode;
+        $user->save();
+
+        // 4️⃣ Send email
+        Mail::to($user->email)->send(new VerifyEmail($verificationCode));
 
         event(new Registered($user));
 
-        Auth::login($user);
+        // Auth::login($user);
 
-        return redirect(route('dashboard', absolute: false));
+        // return response()->noContent();
+        return view(
+            'auth.verify'
+        );
     }
 }
