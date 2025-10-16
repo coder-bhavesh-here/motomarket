@@ -63,10 +63,10 @@ class LoginRequest extends FormRequest
                 'email' => __('auth.failed'),
             ]);
         }
-        var_dump($user->is_verified !== 1);
-        exit;
+        // var_dump($user->is_verified !== 1);
+        // exit;
         if ($user->is_verified !== 1) {
-            throw \Illuminate\Validation\ValidationException::withMessages([
+            throw ValidationException::withMessages([
                 'email' => 'Please verify your email before logging in.',
             ]);
         }
