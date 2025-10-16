@@ -83,7 +83,6 @@ class RegisteredUserController extends Controller
         $user->save();
 
         Auth::login($user);
-        return response()->noContent();
         return redirect()->route('dashboard')->with('success', 'Email verified successfully!');
     }
 }
