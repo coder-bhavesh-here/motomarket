@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\EmergencyContactController;
 use App\Http\Controllers\ProfileController;
@@ -23,6 +24,7 @@ Route::middleware('throttle:60,1')->group(function () {
     Route::get('/user/{nickname}', [ProfileController::class, 'showUser']);
     Route::get('/tour-operator/{nickname}', [ProfileController::class, 'showTourUser']);
     Route::get('/verify', [ProfileController::class, 'verifyEmail'])->name('verifyEmail');
+    Route::post('/verify-email', [RegisteredUserController::class, 'verifyOtp'])->name('verify.email.otp');
     Route::post('/payment', [TourController::class, 'makePayment'])->name('makePayment');
     Route::get('/', [ProfileController::class, 'newHome'])->name('homepage');
     Route::redirect('/dashboard', '/')->name('dashboard');

@@ -66,22 +66,23 @@
 
                 <!-- Form Section -->
 
-                <form method="POST" action="{{ route('password.email') }}">
+                <form method="POST" action="{{ route('verify.email.otp') }}">
                     @csrf
+                    <input type="hidden" name="email" value="{{ $email }}">
                     <h2 style="margin-top: 5rem" class="text-lg womsm:text-xl wommd:text-2xl font-semibold text-gray-700 mb-5 text-center">
                         Verify your account
                     </h2>
                     <div class="text-center">
-                        <div class="text-sm">We sent you an email to your email address <b>johndoe@gmail.com</b></div>
+                        <div class="text-sm">We sent you an email to your email address <b>{{ $email }}</b></div>
                         <div class="text-sm mt-4">Please confirm the email by typing the number on the email.</div>
                     </div>
                       <div class="flex gap-2 justify-center" style="margin-top: 2.5rem;">
-                        <input type="text" maxlength="1" style="max-width: 48px !important;" class="otp-box" />
-                        <input type="text" maxlength="1" style="max-width: 48px !important;" class="otp-box" />
-                        <input type="text" maxlength="1" style="max-width: 48px !important;" class="otp-box" />
-                        <input type="text" maxlength="1" style="max-width: 48px !important;" class="otp-box" />
-                        <input type="text" maxlength="1" style="max-width: 48px !important;" class="otp-box" />
-                        <input type="text" maxlength="1" style="max-width: 48px !important;" class="otp-box" />
+                        <input type="text" maxlength="1" style="max-width: 48px !important;" name="otp[]" class="otp-box" />
+                        <input type="text" maxlength="1" style="max-width: 48px !important;" name="otp[]" class="otp-box" />
+                        <input type="text" maxlength="1" style="max-width: 48px !important;" name="otp[]" class="otp-box" />
+                        <input type="text" maxlength="1" style="max-width: 48px !important;" name="otp[]" class="otp-box" />
+                        <input type="text" maxlength="1" style="max-width: 48px !important;" name="otp[]" class="otp-box" />
+                        <input type="text" maxlength="1" style="max-width: 48px !important;" name="otp[]" class="otp-box" />
                     </div>
                     <div class="text-center mt-5">
                         <x-input-error :messages="$errors->get('email')" class="mt-2 text-sm wommd:text-base" />
@@ -140,6 +141,15 @@
             inputs[index - 1].focus();
         }
         });
+    });
+    document.querySelector('form').addEventListener('submit', function(e) {
+        const otpInputs = document.querySelectorAll('.otp-box');
+        const otpValue = Array.from(otpInputs).map(i => i.value).join('');
+        const hiddenOtp = document.createElement('input');
+        hiddenOtp.type = 'hidden';
+        hiddenOtp.name = 'otp';
+        hiddenOtp.value = otpValue;
+        this.appendChild(hiddenOtp);
     });
 </script>
 

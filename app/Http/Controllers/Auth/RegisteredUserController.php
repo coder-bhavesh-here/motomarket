@@ -58,7 +58,32 @@ class RegisteredUserController extends Controller
 
         // return response()->noContent();
         return view(
-            'auth.verify'
+            'auth.verify',
+            ["email" => $user->email]
         );
+    }
+
+    public function verifyOtp(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+            'otp' => 'required|digits:6',
+        ]);
+
+        $user = User::where('email', $request->email)
+            ->where('email_otp', $request->otp)
+            ->first();
+
+        if (!$user) {
+            return back()->withErrors(['otp' => 'Invalid or expired OTP.']);
+        }
+
+        $user->is_verified = true;
+        $user->email_otp = null;
+        $user->save();
+
+        Auth::login($user);
+        return response()->noContent();
+        return redirect()->route('dashboard')->with('success', 'Email verified successfully!');
     }
 }
