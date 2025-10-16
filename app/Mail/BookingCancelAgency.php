@@ -28,7 +28,7 @@ class BookingCancelAgency extends Mailable
     {
         $tour = Tour::find($this->booking->tour_id);
         return new Envelope(
-            from: new Address('info@worldonmoto.com', 'World On Moto'),
+            from: new Address('hello@worldonmoto.com', 'World On Moto'),
             replyTo: [
                 new Address('hello@worldonmoto.com', 'World On Moto'),
             ],

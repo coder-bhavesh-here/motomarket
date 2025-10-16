@@ -27,7 +27,7 @@ class VerifyEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            from: new Address('info@worldonmoto.com', 'World On Moto'),
+            from: new Address('hello@worldonmoto.com', 'World On Moto'),
             replyTo: [
                 new Address('hello@worldonmoto.com', 'World On Moto'),
             ],
