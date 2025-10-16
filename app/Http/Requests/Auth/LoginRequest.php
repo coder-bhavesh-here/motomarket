@@ -64,6 +64,7 @@ class LoginRequest extends FormRequest
             ]);
         }
         var_dump($user->is_verified);
+        exit;
         if (! $user->is_verified) {
             throw \Illuminate\Validation\ValidationException::withMessages([
                 'email' => 'Please verify your email before logging in.',
