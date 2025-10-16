@@ -71,7 +71,7 @@ class RegisteredUserController extends Controller
         ]);
 
         $user = User::where('email', $request->email)
-            ->where('email_otp', $request->otp)
+            ->where('verification_code', $request->otp)
             ->first();
 
         if (!$user) {
@@ -79,7 +79,7 @@ class RegisteredUserController extends Controller
         }
 
         $user->is_verified = true;
-        $user->email_otp = null;
+        $user->verification_code = null;
         $user->save();
 
         Auth::login($user);
