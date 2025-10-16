@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
@@ -56,6 +57,20 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
         $user = User::where('email', $this->email)->first();
+        if (! $user || ! Hash::check($this->password, $user->password)) {
+            RateLimiter::hit($this->throttleKey());
+
+            throw ValidationException::withMessages([
+                'email' => __('auth.failed'),
+            ]);
+        }
+
+        // ✅ Check email verification BEFORE logging in
+        if (! $user->is_verified) {
+            throw ValidationException::withMessages([
+                'email' => 'Please verify your email before logging in.',
+            ]);
+        }
         if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
             RateLimiter::hit($this->throttleKey());
 
@@ -63,14 +78,6 @@ class LoginRequest extends FormRequest
                 'email' => __('auth.failed'),
             ]);
         }
-        // var_dump($user->is_verified !== 1);
-        // exit;
-        if ($user->is_verified !== 1) {
-            throw ValidationException::withMessages([
-                'email' => 'Please verify your email before logging in.',
-            ]);
-        }
-
         RateLimiter::clear($this->throttleKey());
     }
 
