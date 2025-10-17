@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Auth;
 
+use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Models\User;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
@@ -67,6 +68,8 @@ class LoginRequest extends FormRequest
 
         // ✅ Check email verification BEFORE logging in
         if (! $user->is_verified) {
+            redirect()->route('verification.resend', ['email' => $user->email])->send();
+            exit;
             throw ValidationException::withMessages([
                 'email' => 'Please verify your email before logging in.',
             ]);

@@ -63,6 +63,20 @@ class RegisteredUserController extends Controller
         );
     }
 
+    public function updateOtp($email)
+    {
+        $user = User::where('email', $email)->first();
+        $verificationCode = rand(100000, 999999);
+        $user->verification_code = $verificationCode;
+        $user->save();
+        Mail::to($user->email)->send(new VerifyEmail($verificationCode));
+        event(new Registered($user));
+        return view(
+            'auth.verify',
+            ["email" => $user->email]
+        );
+    }
+
     public function verifyOtp(Request $request)
     {
         $request->validate([
