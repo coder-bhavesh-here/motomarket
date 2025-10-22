@@ -61,12 +61,12 @@
                         </div>
                         <div class="w-auto mx-auto">
                             @if ($tours->count() > 0)
-                                <div class="flex justify-between px-10">
+                                <div class="flex justify-between px-8">
                                     <span class="text-green text-lg font-semibold">Upcoming tours by {{$user->tour_operation_name}}</span>
-                                    <span class="text-green underline font-semibold">See All</span>
+                                    <span class="text-green underline font-semibold"><a href="/explore-tours/{{$user->tour_nickname}}">See All</a></span>
                                 </div>
                             @endif
-                            <div class="grid grid-cols-1 womsm:grid-cols-2 wommd:grid-cols-4 px-[2%] py-2">
+                            <div class="grid grid-cols-1 womsm:grid-cols-2 wommd:grid-cols-4 px-5 py-2">
                                 <!-- Tour Card -->
                                 @foreach ($tours as $tour_sr => $tour)
                                     @if ($tour_sr < 8)

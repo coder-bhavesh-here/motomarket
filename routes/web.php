@@ -30,6 +30,7 @@ Route::middleware('throttle:60,1')->group(function () {
     Route::get('/', [ProfileController::class, 'newHome'])->name('homepage');
     Route::redirect('/dashboard', '/')->name('dashboard');
     Route::get('/explore-tours', [ProfileController::class, 'exploreTours'])->name('explore-tours');
+    Route::get('/explore-tours/{tourNickName}', [ProfileController::class, 'exploreTours'])->name('explore-tours-operator');
     Route::get('/tour/{tourId}', [TourController::class, 'show'])->name('tour.show');
     Route::post('/mark-as-favourite', [TourController::class, 'markFavourite']);
     Route::post('/delete-favourite', [TourController::class, 'deleteFavourite']);

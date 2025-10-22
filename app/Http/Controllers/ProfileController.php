@@ -37,12 +37,17 @@ class ProfileController extends Controller
         ]);
     }
 
-    public function exploreTours(Request $request): View|JsonResponse
+    public function exploreTours(Request $request, $nickName = null): View|JsonResponse
     {
         // dd($request->all());
         $search = $request->get('search');
         $query = Tour::with(['user', 'prices', 'images', 'favourites']);
 
+        if ($nickName && $nickName != null) {
+            $query->whereHas('user', function ($query) use ($search) {
+                $query->where('tour_nickname', $search);
+            });
+        }
         if ($search) {
             $query->where('title', 'like', '%' . $search . '%')
                 ->orWhereHas('user', function ($query) use ($search) {
