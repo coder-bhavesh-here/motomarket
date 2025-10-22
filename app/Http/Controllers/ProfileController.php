@@ -60,6 +60,13 @@ class ProfileController extends Controller
         $filters = $request->all();
 
         // Filter by selected countries (handling comma-separated values)
+
+        if (!empty($filters['tour_nickname'])) {
+            $nickName = $filters['tour_nickname'];
+            $query->whereHas('user', function ($query) use ($nickName) {
+                $query->where('tour_nickname', $nickName);
+            });
+        }
         if (!empty($filters['countries'])) {
             $query->where(function ($q) use ($filters) {
                 foreach ($filters['countries'] as $country) {
