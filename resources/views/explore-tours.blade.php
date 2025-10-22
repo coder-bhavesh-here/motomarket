@@ -535,7 +535,7 @@
         const urlParams = new URLSearchParams(window.location.search);
         const path = window.location.pathname; // "/explore-tours/advzen"
         const segments = path.split("/").filter(Boolean); // ["explore-tours", "advzen"]
-        const lastSegment = (segments.length > 1) ? segments[segments.length - 1] : null;
+        const nickName = (segments.length > 1) ? segments[segments.length - 1] : null;
         const countries = urlParams.getAll('countries[]'); // Array of selected countries
         const minDays = urlParams.get('min_days'); // Minimum days
         const maxPrice = urlParams.get('max_price'); // Maximum price
@@ -558,7 +558,7 @@
                 tour_level: tourLevel,
                 bike_options: bikeOptions,
                 two_riding: twoRiding,
-                tour_nickname: tourNickname,
+                tour_nickname: nickName,
                 search: $('input[name="search"]').val()
             },
             dataType: "JSON",
