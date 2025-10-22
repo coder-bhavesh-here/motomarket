@@ -50,7 +50,11 @@
 <main class="mt-2 px-6">
     <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > Tour Search Results</p>
     <div class="grid grid-cols-1 wommd:grid-cols-2">
-        <form action="/explore-tours" method="GET" class="grid grid-cols-1 wommd:grid-cols-2">
+        @php
+            $segments = request()->segments();
+            $tourNickname = (isset($segments[1])) ? $segments[1] : null;
+        @endphp
+        <form action="{{ url('explore-tours' . ($tourNickname ? '/' . $tourNickname : '')) }}" method="GET" class="grid grid-cols-1 wommd:grid-cols-2">
             <input type="text" value="{{ $search }}" name="search" class="mt-3 w-full rounded-md text-black">
             <button class="wommd:ml-5 wommd:w-1/2 mt-2 button-text text-base font-bold">Search</button>
         </form>
