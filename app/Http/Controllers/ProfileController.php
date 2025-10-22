@@ -45,7 +45,7 @@ class ProfileController extends Controller
 
         if ($nickName && $nickName != null) {
             $query->whereHas('user', function ($query) use ($search) {
-                $query->where('tour_nickname', $search);
+                $query->where('tour_nickname', $nickName);
             });
         }
         if ($search) {
