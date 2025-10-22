@@ -7,11 +7,11 @@
                         <img class="img-with-preview" src="{{ asset('storage') . '/' . ($user->tour_profile_picture != '' ? $user->tour_profile_picture : $user->profile_picture) }}"
                                             alt="Tour operator picture"
                                             style="width: 320px; height: 320ox; border-radius: 20px;">
-                        <span class="text-green text-2xl font-semibold mt-4">{{$user->tour_operation_name}}</span>
-                        <span class="text-green text-lg font-medium mt-4">{{ '@'.$user->tour_nickname}}</span>
-                        <span class="text-black text-lg font-normal mt-4">{{ $user->tour_contact_number}} | {{ $user->tour_contact_email }}</span>
-                        <span class="mt-4 px-8 text-green text-lg underline font-semibold"><a href="/explore-tours/{{$user->tour_nickname}}">See All {{$user->tour_operation_name}} Tours</a></span>
-                        <span class="mt-6 px-8 text-black">
+                        <span class="text-green text-2xl font-semibold mt-2">{{$user->tour_operation_name}}</span>
+                        <span class="text-green text-lg font-medium mt-2">{{ '@'.$user->tour_nickname}}</span>
+                        <span class="text-black text-lg font-normal mt-2">{{ $user->tour_contact_number}} | {{ $user->tour_contact_email }}</span>
+                        <span class="mt-2 px-8 text-green text-lg underline font-semibold"><a href="/explore-tours/{{$user->tour_nickname}}">See All {{$user->tour_operation_name}} Tours</a></span>
+                        <span class="mt-4 px-8 text-black">
                             {!!$user->tour_introduction!!}
                         </span>
                         @php
@@ -31,7 +31,7 @@
                                 return '<p>Unsupported video format or link.</p>';
                             }
                         @endphp
-                        <div class="w-full grid grid-cols-1 wommd:grid-cols-2 gap-6 mt-6">
+                        <div class="w-full grid grid-cols-1 wommd:grid-cols-2 gap-6 mt-4">
                             @if ($user->company_showcase_link1 !='')
                                 <div class="responsive-iframe-container py-4">
                                     {!! renderVideo($user->company_showcase_link1) !!}
@@ -43,7 +43,7 @@
                                 </div>
                             @endif
                         </div>
-                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-6">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mt-4">
                             @foreach ($user->tour_riding_images as $imagePath)
                             @php
                             $tempimagePath = storage_path('app/public/' . $imagePath); // full path
