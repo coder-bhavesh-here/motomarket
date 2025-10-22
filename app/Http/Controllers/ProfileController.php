@@ -44,7 +44,7 @@ class ProfileController extends Controller
         $query = Tour::with(['user', 'prices', 'images', 'favourites']);
 
         if ($nickName && $nickName != null) {
-            $query->whereHas('user', function ($query) use ($search) {
+            $query->whereHas('user', function ($query) use ($nickName) {
                 $query->where('tour_nickname', $nickName);
             });
         }
