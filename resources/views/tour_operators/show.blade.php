@@ -66,7 +66,7 @@
                                     <span class="text-green underline font-semibold">See All</span>
                                 </div>
                             @endif
-                            <div class="grid grid-cols-1 womsm:grid-cols-2 wommd:grid-cols-4 p-[2%]">
+                            <div class="grid grid-cols-1 womsm:grid-cols-2 wommd:grid-cols-4 px-[2%] py-2">
                                 <!-- Tour Card -->
                                 @foreach ($tours as $tour_sr => $tour)
                                     @if ($tour_sr < 8)
