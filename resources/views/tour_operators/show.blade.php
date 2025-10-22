@@ -62,7 +62,7 @@
                         <div class="w-auto mx-auto">
                             @if ($tours->count() > 0)
                                 <div class="flex justify-between px-10">
-                                    <span class="text-green text-lg font-semibold">Upcoming tours by Explore Algarve</span>
+                                    <span class="text-green text-lg font-semibold">Upcoming tours by {{$user->tour_operation_name}}</span>
                                     <span class="text-green underline font-semibold">See All</span>
                                 </div>
                             @endif
