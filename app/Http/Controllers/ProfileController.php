@@ -430,7 +430,7 @@ class ProfileController extends Controller
             $tours = Tour::with(['user', 'prices', 'images', 'favourites'])
                 ->where('user_id', $user->id)->get();
         }
-        return view('tour_operators.show', ['user', 'tours']);
+        return view('tour_operators.show', compact('user', 'tours'));
     }
 
     public function updateProfilePicture(Request $request)
