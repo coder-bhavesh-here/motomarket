@@ -426,6 +426,10 @@ class ProfileController extends Controller
     function showTourUser($nickname)
     {
         $user = user::whereRaw('LOWER(tour_nickname) = ?', [strtolower($nickname)])->first();
+        if ($user) {
+            $tours = Tour::with(['user', 'prices', 'images', 'favourites'])
+                ->where('user_id', $user->id)->get();
+        }
         return view('tour_operators.show', compact('user'));
     }
 
