@@ -440,6 +440,8 @@ class ProfileController extends Controller
         $user = user::whereRaw('LOWER(tour_nickname) = ?', [strtolower($nickname)])->first();
         if ($user) {
             $tours = Tour::with(['user', 'prices', 'images', 'favourites'])
+                ->inRandomOrder()
+                ->take(8)
                 ->where('user_id', $user->id)->get();
         }
         return view('tour_operators.show', compact('user', 'tours'));
