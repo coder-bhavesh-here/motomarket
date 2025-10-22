@@ -10,7 +10,8 @@
                         <span class="text-green text-2xl font-semibold mt-4">{{$user->tour_operation_name}}</span>
                         <span class="text-green text-lg font-medium mt-4">{{ '@'.$user->tour_nickname}}</span>
                         <span class="text-black text-lg font-normal mt-4">{{ $user->tour_contact_number}} | {{ $user->tour_contact_email }}</span>
-                        <span class="mt-6 text-black">
+                        <span class="mt-4 px-8 text-green text-lg underline font-semibold"><a href="/explore-tours/{{$user->tour_nickname}}">See All {{$user->tour_operation_name}} Tours</a></span>
+                        <span class="mt-6 px-8 text-black">
                             {!!$user->tour_introduction!!}
                         </span>
                         @php
