@@ -62,6 +62,12 @@
                         <div class="w-auto mx-auto">
                             <div class="grid grid-cols-1 womsm:grid-cols-2 wommd:grid-cols-4 p-[2%]">
                                 <!-- Tour Card -->
+                                @if ($tours->count() > 0)
+                                    <div class="flex">
+                                        <span>Upcoming tours by Explore Algarve</span>
+                                        <span>See All</span>
+                                    </div>
+                                @endif
                                 @foreach ($tours as $tour_sr => $tour)
                                     @if ($tour_sr < 8)
                                         <div class="rounded flex flex-col p-3">
@@ -133,11 +139,6 @@
                                     @else
                                     @endif
                                 @endforeach
-                            </div>
-                            <div class="flex items-center align-center justify-center">
-                                <button class="primary-button mt-5" onclick="window.location.href='/explore-tours'">
-                                    Search
-                                </button>
                             </div>
                         </div>
                     </div>
