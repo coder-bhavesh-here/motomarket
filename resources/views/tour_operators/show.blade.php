@@ -60,14 +60,14 @@
                             @endforeach
                         </div>
                         <div class="w-auto mx-auto">
+                            @if ($tours->count() > 0)
+                                <div class="flex justify-between px-10">
+                                    <span class="text-green text-lg font-semibold">Upcoming tours by Explore Algarve</span>
+                                    <span class="text-green underline font-semibold">See All</span>
+                                </div>
+                            @endif
                             <div class="grid grid-cols-1 womsm:grid-cols-2 wommd:grid-cols-4 p-[2%]">
                                 <!-- Tour Card -->
-                                @if ($tours->count() > 0)
-                                    <div class="flex">
-                                        <span>Upcoming tours by Explore Algarve</span>
-                                        <span>See All</span>
-                                    </div>
-                                @endif
                                 @foreach ($tours as $tour_sr => $tour)
                                     @if ($tour_sr < 8)
                                         <div class="rounded flex flex-col p-3">
