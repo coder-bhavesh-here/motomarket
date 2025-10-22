@@ -285,7 +285,6 @@
             if (iti.isValidNumber()) {
                 // Combine dial code + number
                 const fullNumber = iti.getNumber(intlTelInput.utils.numberFormat.INTERNATIONAL); // E.g. +91 99999 99999
-                alert(fullNumber);
 
                 // Set final value to input before real submission
                 phoneInput.value = fullNumber;
