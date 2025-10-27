@@ -112,39 +112,6 @@
         </div>
     </div>
 </body>
-<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
-<script>
-    var notyf = new Notyf({
-        duration: 2500,
-        position: {
-            x: 'center',
-            y: 'top',
-        },
-        types: [
-            { type: 'customSuccess', background: '#556b2f', icon: false },
-            { type: 'error', background: 'red', icon: false }
-        ]
-    });
-    @if (session('success'))
-        notyf.open({
-            type: 'customSuccess',
-            message: @json(session('success'))
-        });
-    @endif
-    @if (session('info'))
-        notyf.open({
-            type: 'info',
-            message: "{{ session('info') }}"
-        });
-    @endif
-
-    @if ($errors->any())
-        @foreach ($errors->all() as $error)
-            notyf.error("{{ $error }}");
-        @endforeach
-    @endif
-</script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const images = document.querySelectorAll('#imageSlider .slider-images img');
@@ -198,7 +165,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     resendBtn.addEventListener('click', function() {
         const email = "{{ $email }}"; // Email from Blade
-        const notyf = new Notyf();
+        var notyf = new Notyf({
+        duration: 2500,
+        position: {
+            x: 'center',
+            y: 'top',
+        },
+        types: [
+            { type: 'success', background: '#556b2f', icon: false },
+            { type: 'error', background: 'red', icon: false }
+        ]
+    });
 
         resendBtn.disabled = true; // Prevent multiple clicks
 
@@ -230,6 +207,4 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 </script>
-
-
 </html>
