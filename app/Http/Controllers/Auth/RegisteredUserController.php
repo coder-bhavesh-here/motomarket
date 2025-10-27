@@ -61,7 +61,14 @@ class RegisteredUserController extends Controller
 
     public function updateOtp($email)
     {
+        $email = base64_decode($email);
         $user = User::where('email', $email)->first();
+        $now = now();
+        if ($user->verification_code_sent_at && $now->diffInMinutes($user->verification_code_sent_at) < 10) {
+            return view('auth.verify', [
+                "email" => $user->email
+            ])->with('info', 'An OTP was already sent recently. Please check your email.');
+        }
         $verificationCode = rand(100000, 999999);
         $user->verification_code = $verificationCode;
         $user->save();
