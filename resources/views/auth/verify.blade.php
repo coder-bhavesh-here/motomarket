@@ -97,8 +97,8 @@
                     <button class="mt-5 w-full primary-button font-bold" style="padding: 12px">
                         {{ __('Confirm email') }}
                     </button>
-                    <div style="margin-top: 4rem;" class="text-center">
-                        <a class="underline text-sm wommd:text-base font-bold text-green" id="resendOtpBtn">
+                    <div style="margin-top: 1rem;" class="text-center">
+                        <a class="underline text-sm wommd:text-base font-bold text-green cursor-pointer" id="resendOtpBtn">
                             {{ __('Resend Email') }}
                         </a>
                     </div>
