@@ -43,20 +43,16 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->string('password')),
         ]);
 
-        $verificationCode = rand(100000, 999999);
+        $now = now();
+        if (!$user->verification_code_sent_at || $now->diffInMinutes($user->verification_code_sent_at) >= 10) {
+            $verificationCode = rand(100000, 999999);
+            $user->verification_code = $verificationCode;
+            $user->verification_code_sent_at = $now;
+            $user->save();
 
-        // Save the code temporarily (you can store it in DB or session)
-        $user->verification_code = $verificationCode;
-        $user->save();
-
-        // 4️⃣ Send email
-        Mail::to($user->email)->send(new VerifyEmail($verificationCode));
-
-        event(new Registered($user));
-
-        // Auth::login($user);
-
-        // return response()->noContent();
+            Mail::to($user->email)->send(new VerifyEmail($verificationCode));
+            event(new Registered($user));
+        }
         return view(
             'auth.verify',
             ["email" => $user->email]
