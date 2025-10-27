@@ -29,27 +29,6 @@
             box-shadow: 0 0 5px #556b2f;
         }
     </style>
-    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
-    <script>
-        const notyf = new Notyf();
-        @if (session('success'))
-            notyf.success("{{ session('success') }}");
-        @endif
-        @if (session('info'))
-            notyf.open({
-                type: 'info',
-                message: "{{ session('info') }}"
-            });
-        @endif
-
-        @if ($errors->any())
-            @foreach ($errors->all() as $error)
-                notyf.error("{{ $error }}");
-            @endforeach
-        @endif
-    </script>
-
 </head>
 
 <body class="bg-gray-100">
@@ -119,7 +98,7 @@
                         {{ __('Confirm email') }}
                     </button>
                     <div style="margin-top: 4rem;" class="text-center">
-                        <a class="underline text-sm wommd:text-base font-bold text-green" href="{{ route('force-resend-email', base64_encode($email)) }}">
+                        <a class="underline text-sm wommd:text-base font-bold text-green" id="resendOtpBtn">
                             {{ __('Resend Email') }}
                         </a>
                     </div>
@@ -133,6 +112,26 @@
         </div>
     </div>
 </body>
+<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+<script>
+    const notyf = new Notyf();
+    @if (session('success'))
+        notyf.success("{{ session('success') }}");
+    @endif
+    @if (session('info'))
+        notyf.open({
+            type: 'info',
+            message: "{{ session('info') }}"
+        });
+    @endif
+
+    @if ($errors->any())
+        @foreach ($errors->all() as $error)
+            notyf.error("{{ $error }}");
+        @endforeach
+    @endif
+</script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const images = document.querySelectorAll('#imageSlider .slider-images img');
@@ -178,5 +177,46 @@
         this.appendChild(hiddenOtp);
     });
 </script>
+<script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const resendBtn = document.getElementById('resendOtpBtn');
+
+    resendBtn.addEventListener('click', function() {
+        const email = "{{ $email }}"; // Email from Blade
+        const notyf = new Notyf();
+
+        resendBtn.disabled = true; // Prevent multiple clicks
+
+        fetch("{{ route('force-resend-email-ajax') }}", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRF-TOKEN': "{{ csrf_token() }}" // CSRF token
+            },
+            body: JSON.stringify({ email: email })
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                notyf.success(data.success);
+            } else if (data.info) {
+                notyf.open({ type: 'info', message: data.info });
+            } else if (data.error) {
+                notyf.error(data.error);
+            }
+        })
+        .catch(err => {
+            console.error(err);
+            notyf.error('Something went wrong. Please try again.');
+        })
+        .finally(() => {
+            resendBtn.disabled = false;
+        });
+    });
+});
+</script>
+
 
 </html>
