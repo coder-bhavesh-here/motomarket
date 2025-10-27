@@ -81,6 +81,21 @@ class RegisteredUserController extends Controller
         );
     }
 
+    public function forceResendOtp($email)
+    {
+        $email = base64_decode($email);
+        $user = User::where('email', $email)->firstOrFail();
+        $verificationCode = rand(100000, 999999);
+        $user->verification_code = $verificationCode;
+        $user->verification_code_sent_at = now();
+        $user->save();
+        Mail::to($user->email)->send(new VerifyEmail($verificationCode));
+        event(new Registered($user));
+        return view('auth.verify', [
+            "email" => $user->email
+        ])->with('success', 'A new OTP has been sent to your email.');
+    }
+
     public function verifyOtp(Request $request)
     {
         $request->validate([

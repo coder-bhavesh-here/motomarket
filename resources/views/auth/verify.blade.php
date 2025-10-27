@@ -29,6 +29,27 @@
             box-shadow: 0 0 5px #556b2f;
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
+    <script>
+        const notyf = new Notyf();
+        @if (session('success'))
+            notyf.success("{{ session('success') }}");
+        @endif
+        @if (session('info'))
+            notyf.open({
+                type: 'info',
+                message: "{{ session('info') }}"
+            });
+        @endif
+
+        @if ($errors->any())
+            @foreach ($errors->all() as $error)
+                notyf.error("{{ $error }}");
+            @endforeach
+        @endif
+    </script>
+
 </head>
 
 <body class="bg-gray-100">
@@ -97,6 +118,11 @@
                     <button class="mt-5 w-full primary-button font-bold" style="padding: 12px">
                         {{ __('Confirm email') }}
                     </button>
+                    <div style="margin-top: 4rem;" class="text-center">
+                        <a class="underline text-sm wommd:text-base font-bold text-green" href="{{ route('force-resend-email') }}">
+                            {{ __('Resend Email') }}
+                        </a>
+                    </div>
                     {{-- <div class="text-center mt-10">
                         <a class="underline text-sm wommd:text-base font-bold text-green" href="#">
                             {{ __('Resend Email') }}
