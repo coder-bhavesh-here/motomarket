@@ -24,7 +24,7 @@ Route::middleware('throttle:60,1')->group(function () {
     Route::get('/user/{nickname}', [ProfileController::class, 'showUser']);
     Route::get('/tour-operator/{nickname}', [ProfileController::class, 'showTourUser']);
     Route::get('/verify', [ProfileController::class, 'verifyEmail'])->name('verifyEmail');
-    Route::get('/resend-otp/{email}', [RegisteredUserController::class, 'updateOtp'])->name('verification.resend');
+    Route::get('/verify/{email}', [RegisteredUserController::class, 'updateOtp'])->name('verification.resend');
     Route::get('/force-resend-email/{email}', [RegisteredUserController::class, 'forceResendOtp'])->name('force-resend-email');
     Route::post('/force-resend-email-ajax', [RegisteredUserController::class, 'forceResendOtpAjax'])
         ->name('force-resend-email-ajax');
