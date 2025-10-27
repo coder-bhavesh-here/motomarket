@@ -115,7 +115,17 @@
 <script src="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.js"></script>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/notyf@3/notyf.min.css">
 <script>
-    const notyf = new Notyf();
+    var notyf = new Notyf({
+        duration: 2500,
+        position: {
+            x: 'center',
+            y: 'top',
+        },
+        types: [
+            { type: 'success', background: '#556b2f', icon: false },
+            { type: 'error', background: 'red', icon: false }
+        ]
+    });
     @if (session('success'))
         notyf.success("{{ session('success') }}");
     @endif
