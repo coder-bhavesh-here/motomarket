@@ -119,7 +119,7 @@
                         {{ __('Confirm email') }}
                     </button>
                     <div style="margin-top: 4rem;" class="text-center">
-                        <a class="underline text-sm wommd:text-base font-bold text-green" href="{{ route('force-resend-email') }}">
+                        <a class="underline text-sm wommd:text-base font-bold text-green" href="{{ route('force-resend-email', base64_encode($email)) }}">
                             {{ __('Resend Email') }}
                         </a>
                     </div>
