@@ -122,12 +122,15 @@
             y: 'top',
         },
         types: [
-            { type: 'success', background: '#556b2f', icon: false },
+            { type: 'customSuccess', background: '#556b2f', icon: false },
             { type: 'error', background: 'red', icon: false }
         ]
     });
     @if (session('success'))
-        notyf.success("{{ session('success') }}");
+        notyf.open({
+            type: 'customSuccess',
+            message: @json(session('success'))
+        });
     @endif
     @if (session('info'))
         notyf.open({
