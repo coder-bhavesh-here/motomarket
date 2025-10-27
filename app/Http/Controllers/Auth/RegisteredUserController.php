@@ -71,6 +71,7 @@ class RegisteredUserController extends Controller
         }
         $verificationCode = rand(100000, 999999);
         $user->verification_code = $verificationCode;
+        $user->verification_code_sent_at = $now;
         $user->save();
         Mail::to($user->email)->send(new VerifyEmail($verificationCode));
         event(new Registered($user));
