@@ -95,6 +95,31 @@ class RegisteredUserController extends Controller
             "email" => $user->email
         ])->with('success', 'A new OTP has been sent to your email.');
     }
+    public function forceResendOtpAjax(Request $request)
+    {
+        $request->validate([
+            'email' => 'required|email',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if (!$user) {
+            return response()->json(['error' => 'User not found.'], 404);
+        }
+
+        $verificationCode = rand(100000, 999999);
+        $user->verification_code = $verificationCode;
+        $user->verification_code_sent_at = now();
+        $user->save();
+
+        Mail::to($user->email)->send(new VerifyEmail($verificationCode));
+        event(new Registered($user));
+
+        return response()->json([
+            'success' => 'A new OTP has been sent to your email.'
+        ]);
+    }
+
 
     public function verifyOtp(Request $request)
     {
