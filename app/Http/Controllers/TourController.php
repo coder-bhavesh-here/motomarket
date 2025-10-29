@@ -1177,7 +1177,7 @@ class TourController extends Controller
 
                 // Now handle Addons
                 foreach ($group['addons'] ?? [] as $aIndex => $addon) {
-                    if (!empty($addon['id'])) {
+                    if (!empty($addon['id']) && isset($addon['name']) && isset($addon['price'])) {
                         $addonModel = Addon::find($addon['id']);
                         $submittedAddonIds[] = $addon['id'];
                     } else {
