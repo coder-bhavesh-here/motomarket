@@ -7,7 +7,7 @@
     <div class="grid grid-cols-1 womsm:grid-cols-2 wommd:grid-cols-4 w-full p-3 wommd:p-7">
         <ul>
             <li><a href="/">Home</a></li>
-            <li><a href="/about">About</a></li>
+            <li><a href="/about-worldonmoto">About</a></li>
             <li>Contact</li>
             <li><a href="/blogs">News</a></li>
             <li><a href="/terms-of-use" target="_blank">Terms of use</a></li>
@@ -20,7 +20,7 @@
             </div>
         </ul>
         <ul class="womsm:max-wommd:text-right">
-            <li><a href="invite-operators">Share your tours</a></li>
+            <li><a href="invite-tour-operators">Share your tours</a></li>
             <li><a href="/partner">Partner with us</a></li>
             <li><a href="/investor">Investor outreach</a></li>
         </ul>

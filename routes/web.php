@@ -9,10 +9,10 @@ use App\Models\User;
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('throttle:60,1')->group(function () {
-    Route::get('/about', function () {
+    Route::get('/about-worldonmoto', function () {
         return view('about');
     });
-    Route::get('/invite-operators', function () {
+    Route::get('/invite-tour-operators', function () {
         return view('invite-operators');
     });
     Route::get('/investor', function () {
