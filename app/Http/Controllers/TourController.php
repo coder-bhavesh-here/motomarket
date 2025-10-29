@@ -1184,17 +1184,19 @@ class TourController extends Controller
                         $addonModel = new Addon();
                     }
 
-                    $addonModel->addon_group_id = $addonGroup->id;
-                    $addonModel->name = $addon['name'];
-                    $addonModel->price = $addon['price'];
+                    if (isset($addon['name']) && isset($addon['price'])) {
+                        $addonModel->addon_group_id = $addonGroup->id;
+                        $addonModel->name = $addon['name'];
+                        $addonModel->price = $addon['price'];
 
-                    // Image upload
-                    $imageField = "groups.$gIndex.addons.$aIndex.image";
-                    if ($request->hasFile($imageField)) {
-                        $addonModel->image_path = $request->file($imageField)->store('addons', 'public');
+                        // Image upload
+                        $imageField = "groups.$gIndex.addons.$aIndex.image";
+                        if ($request->hasFile($imageField)) {
+                            $addonModel->image_path = $request->file($imageField)->store('addons', 'public');
+                        }
+
+                        $addonModel->save();
                     }
-
-                    $addonModel->save();
                 }
             }
         }
