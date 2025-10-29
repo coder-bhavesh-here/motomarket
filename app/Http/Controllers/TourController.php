@@ -416,6 +416,8 @@ class TourController extends Controller
                         'user_id' => Auth::id()
                     ]
                 ]);
+
+                return json_encode(['redirect_url' => $session->url]);
             } else {
                 $provider = new PayPalClient;
                 $provider->setApiCredentials([
@@ -450,6 +452,7 @@ class TourController extends Controller
                                 "value" => $request->price,
                             ],
                             "custom_id" => "booking_{$booking->tour_date_id}_user_" . Auth::id() . "_description_Payment for Tour: " . $request->tour_title,
+                            // "custom_id" => json_encode([
                             //     "amount"     => $request->price,
                             //     "booking_id" => $request->id,
                             //     "user_id"    => Auth::id(),
@@ -463,6 +466,7 @@ class TourController extends Controller
                 if (isset($response['id']) && $response['id'] != null) {
                     foreach ($response['links'] as $link) {
                         if ($link['rel'] === 'approve') {
+                            return json_encode(['redirect_url' => $link['href']]);
                         }
                     }
                 } else {
@@ -528,6 +532,7 @@ class TourController extends Controller
                     'user_id' => Auth::id()
                 ]
             ]);
+            return json_encode(['redirect_url' => $session->url]);
         } else {
             $provider = new PayPalClient;
             $provider->setApiCredentials([
@@ -567,6 +572,7 @@ class TourController extends Controller
                             "value" => $request->price,
                         ],
                         "custom_id" => "booking_{$request->id}_user_" . Auth::id() . "_description_Payment for Tour: " . $request->tour_title,
+                        // "custom_id" => json_encode([
                         //     "amount"     => $request->price,
                         //     "booking_id" => $request->id,
                         //     "user_id"    => Auth::id(),
@@ -580,6 +586,7 @@ class TourController extends Controller
             if (isset($response['id']) && $response['id'] != null) {
                 foreach ($response['links'] as $link) {
                     if ($link['rel'] === 'approve') {
+                        return json_encode(['redirect_url' => $link['href']]);
                     }
                 }
             } else {
@@ -1051,6 +1058,7 @@ class TourController extends Controller
             ]);
         }
         $tour->save();
+        echo json_encode(["message" => "Tour saved successfully", "tour_id" => $tour->id]);
     }
 
     public function saveSecondStep(Request $request)
@@ -1063,6 +1071,7 @@ class TourController extends Controller
             'tour_meeting_location_notes' => $postData['tour_meeting_location_notes'],
             'tour_start_location' => $postData['tour_start_location'],
         ));
+        echo json_encode(["message" => "Tour saved successfully", "tour_id" => $postData['tour_id']]);
     }
 
     public function saveThirdStep(Request $request)
@@ -1073,6 +1082,7 @@ class TourController extends Controller
             'video_two' => $postData['video_link_two'],
             'video_three' => $postData['video_link_three'],
         ));
+        echo json_encode(["message" => "Tour saved successfully", "tour_id" => $postData['tour_id']]);
     }
 
     public function saveFourthStep(Request $request)
@@ -1102,6 +1112,7 @@ class TourController extends Controller
                 }
             }
         }
+        echo json_encode(["message" => "Tour saved successfully", "tour_id" => $tour_id]);
     }
 
     // public function saveFifthStep(Request $request)
@@ -1210,6 +1221,7 @@ class TourController extends Controller
         $bookingData = $request->all();
         $bookingData['user_id'] = auth()->user()->id;
         $booked = Booking::create($bookingData);
+        echo json_encode(["redirect_url" => "/book/" . $booked->tour_date_id]);
     }
 
     function markFavourite(Request $request)
@@ -1217,6 +1229,7 @@ class TourController extends Controller
         $bookingData = $request->all();
         $bookingData['user_id'] = auth()->user()->id;
         $favouriteTour = FavouriteTour::create($bookingData);
+        echo json_encode(["message" => "Tour marked as favourite.!", "favouriteTour" => $favouriteTour]);
     }
 
     function deleteFavourite(Request $request)
@@ -1224,6 +1237,7 @@ class TourController extends Controller
         $tour_id = $request->tour_id;
         $user_id = auth()->user()->id;
         FavouriteTour::where('tour_id', $tour_id)->where('user_id', $user_id)->delete();
+        echo json_encode(["message" => "Tour removed from favourite.!"]);
     }
     function deleteIncomplete(Request $request)
     {
@@ -1231,6 +1245,7 @@ class TourController extends Controller
         IncompleteBooking::where('user_id', auth()->id())
             ->where('tour_id', $tour_id)
             ->delete();
+        echo json_encode(["message" => "Tour removed.!"]);
     }
 
     function profile(Request $request)
