@@ -1203,6 +1203,7 @@ class TourController extends Controller
 
         // DELETE Addons that were removed
         $addonsToDelete = array_diff($existingAddonIds, $submittedAddonIds);
+        echo json_encode($addonsToDelete);
         if (!empty($addonsToDelete)) {
             Addon::whereIn('id', $addonsToDelete)->delete();
         }
