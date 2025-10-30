@@ -63,7 +63,8 @@
                                     Reset your password
                                 </h2>
                                 <div class="text-sm">Type the email address that you used to register.</div>
-                                <div class="text-sm">We will send you a password reset link.</div>
+                                <div class="text-sm">We will send you a temporary password that you can login with.</div>
+                                <div class="text-sm">We recommend you, once you login to the account, kindly update the password from profile section.</div>
                             </td>
                         </tr>
 
