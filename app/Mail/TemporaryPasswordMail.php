@@ -45,7 +45,7 @@ class TemporaryPasswordMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'temporary-password',
+            view: 'mail.temporary-password',
             with: [
                 'tourId' => $this->tempPassword,
             ],
