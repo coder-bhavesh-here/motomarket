@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Mail\TemporaryPasswordMail;
 use App\Models\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\RedirectResponse;
@@ -41,15 +42,12 @@ class PasswordResetLinkController extends Controller
         // );
         $user = User::where('email', $request->email)->first();
         $tempPassword = Str::random(8);
-
-        // Hash & update it in DB
-        $user->update([
-            'password' => Hash::make($tempPassword),
-        ]);
-
-        // Send email
-        Mail::to($user->email)->send(new TemporaryPasswordMail($user, $tempPassword));
-
+        if ($user) {
+            $user->update([
+                'password' => Hash::make($tempPassword),
+            ]);
+            Mail::to($user->email)->send(new TemporaryPasswordMail($user, $tempPassword));
+        }
         $status = "Mail has been sent successfully.";
         return back()->with('status', __($status));
     }
