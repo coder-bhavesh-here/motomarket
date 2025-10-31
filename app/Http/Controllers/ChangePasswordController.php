@@ -51,6 +51,7 @@ class ChangePasswordController extends Controller
         }
 
         $user = User::find($data['user_id']);
+        dd($user);
         if ($user) {
             $user->update(['password' => $data['new_password']]);
         }
