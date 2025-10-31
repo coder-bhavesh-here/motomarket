@@ -4,7 +4,7 @@
 @if(session('status'))
     <script>
         var notyf = new Notyf({
-            duration: 2500,
+            duration: 3500,
             position: {
                 x: 'center',
                 y: 'top',
