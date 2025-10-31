@@ -45,7 +45,6 @@ class ChangePasswordController extends Controller
     public function confirmChange($token)
     {
         $data = Cache::get('password_change_' . $token);
-        dd($data);
 
         if (!$data) {
             return redirect()->route('login')->withErrors(['token' => 'Link expired or invalid.']);
