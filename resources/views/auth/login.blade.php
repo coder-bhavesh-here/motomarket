@@ -107,6 +107,11 @@
                         <tr>
                             <td colspan="2" class="w-full">
                                 <div class="text-center mt-5">
+                                    @if (session('status'))
+                                        <div class="mb-4 font-medium text-sm text-green-600">
+                                            {{ session('status') }}
+                                        </div>
+                                    @endif
                                     <x-input-error :messages="$errors->get('email')" class="mt-2 text-sm wommd:text-base" />
                                     <x-input-error :messages="$errors->get('password')" class="mt-2 text-sm wommd:text-base" />
                                 </div>
