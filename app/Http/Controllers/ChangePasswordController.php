@@ -57,6 +57,6 @@ class ChangePasswordController extends Controller
 
         Cache::forget('password_change_' . $token);
 
-        return redirect()->route('login')->with('status', 'Your password has been changed successfully.');
+        return redirect()->route('homepage')->with('status', 'Your password has been changed successfully.');
     }
 }

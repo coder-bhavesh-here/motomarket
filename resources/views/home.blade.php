@@ -1,6 +1,22 @@
 @include('new-header')
 {{-- <div class="flex-column justify-items-center text-center"> --}}
 {{-- Search form --}}
+@if(session('status'))
+    <script>
+        var notyf = new Notyf({
+            duration: 2500,
+            position: {
+                x: 'center',
+                y: 'top',
+            },
+            types: [
+                { type: 'success', background: '#556b2f', icon: false },
+                { type: 'error', background: 'red', icon: false }
+            ]
+        });
+        notyf.success('Your password has been changed successfully!');
+    </script>
+@endif
 <form action="/explore-tours" method="GET">
     <div class="flex flex-col justify-center items-center">
         <p class="womsm:text-sm wommd:text-2xl font-semibold text-black mt-5">Where do you want to go?</p>
