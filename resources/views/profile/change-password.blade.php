@@ -20,8 +20,8 @@
     </style>
     <div>
         <div class="sm:px-6 lg:px-8">
-            <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > <u><a href="{{ route('profiles') }}">Settings</a></u> > Your Details</p>
-            <span class="block text-green text-xl womsm:text-2xl wommd:text-3xl font-bold my-6">Your Details</span>
+            <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > <u><a href="{{ route('profiles') }}">Settings</a></u> > Change Password</p>
+            <span class="block text-green text-xl womsm:text-2xl wommd:text-3xl font-bold my-6">Change Password</span>
             <div class="w-full">
                 @if(session('status'))
                     <script>
