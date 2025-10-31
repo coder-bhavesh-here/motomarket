@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\EmergencyContactController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TourController;
@@ -100,6 +101,9 @@ Route::middleware(['auth', 'throttle:60,1'])->group(function () {
     Route::post('/tour-questions/answer/{questionId}', [TourController::class, 'answerQuestion'])->name('tour-questions.answer');
     Route::post('/update-profile-picture', [ProfileController::class, 'updateProfilePicture'])->name('update.profile.picture');
     Route::post('/update-tour-picture', [ProfileController::class, 'updateTourPicture'])->name('update.tour.picture');
+    Route::get('/change-password', [ProfileController::class, 'changePassword'])->name('password.change');
+    Route::post('/password/change-request', [ChangePasswordController::class, 'requestChange'])->name('password.change.request');
+    Route::get('/password/change-confirm/{token}', [ChangePasswordController::class, 'confirmChange'])->name('password.change.confirm');
 });
 
 Route::get('/terms-of-use', [TourController::class, 'termsConditions'])->name('terms-of-user');
