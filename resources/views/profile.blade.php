@@ -42,6 +42,7 @@
                 <a href="/my-favourite-tours" class="primary-button">Favourites</a>
                 <a href="/emergency-contacts" class="primary-button">ICE</a>
                 <a class="gray-button">Verification (Coming soon!)</a>
+                <a href="/change-password" class="primary-button">Change Password</a>
                 <a href="#" class="primary-button" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                     Log Out
                 </a>
