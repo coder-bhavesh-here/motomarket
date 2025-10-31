@@ -23,10 +23,21 @@
             <p class="text-green font-semibold"><u><a href="{{ route('homepage') }}">Home</a></u> > <u><a href="{{ route('profiles') }}">Settings</a></u> > Your Details</p>
             <span class="block text-green text-xl womsm:text-2xl wommd:text-3xl font-bold my-6">Your Details</span>
             <div class="w-full">
-                @if (session('status'))
-                    <div class="mb-4 font-medium text-sm text-green-600">
-                        {{ session('status') }}
-                    </div>
+                @if(session('status'))
+                    <script>
+                        var notyf = new Notyf({
+                            duration: 2500,
+                            position: {
+                                x: 'center',
+                                y: 'top',
+                            },
+                            types: [
+                                { type: 'success', background: '#556b2f', icon: false },
+                                { type: 'error', background: 'red', icon: false }
+                            ]
+                        });
+                        notyf.success('We’ve sent a confirmation link to your email!');
+                    </script>
                 @endif
                 <form method="POST" action="{{ route('password.change.request') }}" class="mt-6 space-y-6 w-full wommd:w-3/5">
                     @csrf
