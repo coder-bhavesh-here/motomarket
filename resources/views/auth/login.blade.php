@@ -107,6 +107,27 @@
                         <tr>
                             <td colspan="2" class="w-full">
                                 <div class="text-center mt-5">
+                                    @if (session('status'))
+                                        <div class="mb-4 font-medium text-sm text-green-600">
+                                            {{ session('status') }}
+                                        </div>
+                                    @endif
+
+                                    @if (session('error'))
+                                        <div class="mb-4 font-medium text-sm text-red-600">
+                                            {{ session('error') }}
+                                        </div>
+                                    @endif
+
+                                    @if ($errors->any())
+                                        <div class="mb-4 font-medium text-sm text-red-600">
+                                            <ul class="list-disc pl-5">
+                                                @foreach ($errors->all() as $error)
+                                                    <li>{{ $error }}</li>
+                                                @endforeach
+                                            </ul>
+                                        </div>
+                                    @endif
                                     <x-input-error :messages="$errors->get('email')" class="mt-2 text-sm wommd:text-base" />
                                     <x-input-error :messages="$errors->get('password')" class="mt-2 text-sm wommd:text-base" />
                                 </div>
