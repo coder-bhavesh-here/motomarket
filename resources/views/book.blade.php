@@ -200,7 +200,7 @@
                 @endif
             <button class="make-payment primary-button w-1/2" data-id="{{ $selectedDate->id }}"
             data-price="{{ $pay }}" id="payWithStripe">Book now - 100% ({{ $symbol }} <span id="hundredPay">{{ number_format($pay, 2) }}</span>)</button>
-            <span class="mt-2 italic font-medium text-sm text-[#0F172A]">you can call the tour operator on {{$tour->user->tour_contact_number}} </span>
+            <span class="mt-2 italic font-medium text-sm text-[#0F172A]">To book directly, please call the tour operator on {{$tour->user->tour_contact_number}} </span>
         </div>
     </div>
     <div class="m-10 col-span-2">
@@ -283,7 +283,7 @@
                     @endif
                     <button class="make-payment primary-button w-full" data-id="{{ $selectedDate->id }}"
                         data-price="{{ $pay }}" id="payWithStripe">Book now - 100% ({{ $symbol }} <span id="hundredPay">{{ number_format($pay, 2) }}</span>)</button>
-                    <span class="mt-2 italic font-medium text-sm text-[#0F172A]">you can call the tour operator on {{$tour->user->tour_contact_number}} </span>
+                    <span class="mt-2 italic font-medium text-sm text-[#0F172A]">To book directly, please call the tour operator on {{$tour->user->tour_contact_number}} </span>
                 </div>
             </div>
         </div>
