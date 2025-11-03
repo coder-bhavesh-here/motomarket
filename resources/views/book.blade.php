@@ -200,7 +200,7 @@
                 @endif
             <button class="make-payment primary-button w-1/2" data-id="{{ $selectedDate->id }}"
             data-price="{{ $pay }}" id="payWithStripe">Book now - 100% ({{ $symbol }} <span id="hundredPay">{{ number_format($pay, 2) }}</span>)</button>
-            <span class="italic font-medium text-sm text-[#0F172A]">you can call the tour operator on +351 926 214 888 </span>
+            <span class="mt-2 italic font-medium text-sm text-[#0F172A]">you can call the tour operator on +351 926 214 888 </span>
         </div>
     </div>
     <div class="m-10 col-span-2">
@@ -264,7 +264,7 @@
                         <span class="text-2xl text-black" id="total_price">{{$symbol}} {{ number_format($selectedDate->price + $addonPrices, 2) }}</span>
                     </strong>
                 </div>
-                <div class="mt-4">
+                <div class="mt-4 flex flex-col justify-evenly items-center">
                     <div id="validation-errors" class="text-red-600 mb-4 hidden"></div>
                     @if ($selectedDate->date < now()->addMonths(2))
                         @php
@@ -283,7 +283,7 @@
                     @endif
                     <button class="make-payment primary-button w-full" data-id="{{ $selectedDate->id }}"
                         data-price="{{ $pay }}" id="payWithStripe">Book now - 100% ({{ $symbol }} <span id="hundredPay">{{ number_format($pay, 2) }}</span>)</button>
-                    <span class="italic font-medium text-sm text-[#0F172A]">you can call the tour operator on +351 926 214 888 </span>
+                    <span class="mt-2 italic font-medium text-sm text-[#0F172A]">you can call the tour operator on +351 926 214 888 </span>
                 </div>
             </div>
         </div>
