@@ -62,6 +62,7 @@
 
     $('#addRow').on('click', function () {
         const lastRow = $('#dateContainer .mb-6').last(); // last existing row
+        console.log(lastRow);
         const newRow = lastRow.clone(); // clone it
         rowIndex++;
         newRow.find('input').each(function () {
