@@ -39,7 +39,7 @@
             </div>
         </div>
     </div> --}}
-    <div class="w-full flex justify-center mt-6 relative min-h-[900px]">
+    <div class="w-full flex justify-center mt-6 relative md:min-h-[900px]">
         <div class="w-[95%] relative rounded-lg">
             <!-- Static image (no shifting on zoom) -->
             <img src="{{ asset('images/bg.jpg') }}" alt="Background" 
