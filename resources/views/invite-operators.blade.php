@@ -43,10 +43,10 @@
         <div class="w-[95%] relative rounded-lg">
             <!-- Static image (no shifting on zoom) -->
             <img src="{{ asset('images/bg.jpg') }}" alt="Background" 
-                 class="absolute inset-0 w-full h-full max-h-[900px] object-cover z-0" />
+                 class="reletive womsm:absolute inset-0 w-full h-full max-h-[900px] object-cover z-0" />
     
             <!-- Text content -->
-            <div class="relative flex justify-center items-center px-4 py-20 md:py-16 z-10">
+            <div class="relative flex justify-center items-center px-4 py-10 md:py-16 z-10">
                 <div class="text-center text-gray-800 max-w-2xl py-8 wommd:px-20 rounded-lg shadow-lg"
                      style="background-color: #E2E8F05E;">
                     <h2 class="text-lg md:text-2xl font-bold mb-4">Your Passion Meets Our Vision</h2>
