@@ -71,11 +71,6 @@
                 const newName = oldName.replace(/\[\d+\]/, `[${rowIndex}]`);
                 $(this).attr('name', newName);
             }
-            if ($(this).attr('type') === 'number') {
-                $(this).val('0');
-            } else {
-                $(this).val('');
-            }
         });
 
         // Append cloned row
