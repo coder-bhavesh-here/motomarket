@@ -41,7 +41,7 @@
             <div class="grid grid-cols-5 gap-4 items-center">
                 <input type="date" name="date[0][date]" class="w-full" />
                 <input type="date" name="date[0][end_date]" class="w-full" />
-                <input type="number" name="date[0][rest_days]" class="w-full" />
+                <input type="number" name="date[0][rest_days]" value="0" class="w-full" />
                 <div class="flex items-center">
                     <span class="inline-block p-2 mr-2 bg-gray-200 rounded">{{ $symbol }}</span>
                     <input type="text" name="date[0][price]" class="w-full" />
@@ -61,31 +61,55 @@
     const symbol = @json($symbol); // safely pass PHP variable to JS
 
     $('#addRow').on('click', function () {
-        $(".remove-row").attr('src', "{{asset('images/delete-enabled.svg')}}");
-        const newRow = `
-            <div class="mb-6 p-4">
-                <div class="grid grid-cols-5 gap-4 font-semibold mb-2">
-                    <div>Tour start date</div>
-                    <div>Tour end date</div>
-                    <div>Number of rest days</div>
-                    <div>Tour Price</div>
-                    <div></div>
-                </div>
-                <div class="grid grid-cols-5 gap-4 items-center">
-                    <input type="date" name="date[${rowIndex}][date]" class="w-full" />
-                    <input type="date" name="date[${rowIndex}][end_date]" class="w-full" />
-                    <input type="number" name="date[${rowIndex}][rest_days]" class="w-full" />
-                    <div class="flex items-center">
-                        <span class="inline-block p-2 mr-2 bg-gray-200 rounded">${symbol}</span>
-                        <input type="text" name="date[${rowIndex}][price]" class="w-full" />
-                    </div>
-                    <img class="remove-row" src="{{asset('images/delete-enabled.svg')}}" alt="" srcset="">
-                </div>
-            </div>`;
-        
-        $('#dateContainer').append(newRow);
+        const lastRow = $('#dateContainer .mb-6').last(); // last existing row
+        const newRow = lastRow.clone(); // clone it
         rowIndex++;
+        newRow.find('input').each(function () {
+            const oldName = $(this).attr('name');
+            if (oldName) {
+                const newName = oldName.replace(/\[\d+\]/, `[${rowIndex}]`);
+                $(this).attr('name', newName);
+            }
+            if ($(this).attr('type') === 'number') {
+                $(this).val('0');
+            } else {
+                $(this).val('');
+            }
+        });
+
+        // Append cloned row
+        $('#dateContainer').append(newRow);
+
+        // Enable delete icon again
+        $(".remove-row").attr('src', "{{ asset('images/delete-enabled.svg') }}");
     });
+
+    // $('#addRow').on('click', function () {
+    //     $(".remove-row").attr('src', "{{asset('images/delete-enabled.svg')}}");
+    //     const newRow = `
+    //         <div class="mb-6 p-4">
+    //             <div class="grid grid-cols-5 gap-4 font-semibold mb-2">
+    //                 <div>Tour start date</div>
+    //                 <div>Tour end date</div>
+    //                 <div>Number of rest days</div>
+    //                 <div>Tour Price</div>
+    //                 <div></div>
+    //             </div>
+    //             <div class="grid grid-cols-5 gap-4 items-center">
+    //                 <input type="date" name="date[${rowIndex}][date]" class="w-full" />
+    //                 <input type="date" name="date[${rowIndex}][end_date]" class="w-full" />
+    //                 <input type="number" name="date[${rowIndex}][rest_days]" value="0" class="w-full" />
+    //                 <div class="flex items-center">
+    //                     <span class="inline-block p-2 mr-2 bg-gray-200 rounded">${symbol}</span>
+    //                     <input type="text" name="date[${rowIndex}][price]" class="w-full" />
+    //                 </div>
+    //                 <img class="remove-row" src="{{asset('images/delete-enabled.svg')}}" alt="" srcset="">
+    //             </div>
+    //         </div>`;
+        
+    //     $('#dateContainer').append(newRow);
+    //     rowIndex++;
+    // });
 
     $(document).on("change", "input[name^='date'][name$='[date]']", function () {
         // Get selected start date
