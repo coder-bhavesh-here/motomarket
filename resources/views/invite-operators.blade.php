@@ -43,7 +43,7 @@
         <div class="w-[95%] relative rounded-lg">
             <!-- Static image (no shifting on zoom) -->
             <img src="{{ asset('images/bg.jpg') }}" alt="Background" 
-                 class="absolute inset-0 w-full h-full object-cover z-0" />
+                 class="absolute inset-0 w-full h-full max-h-[900px] object-cover z-0" />
     
             <!-- Text content -->
             <div class="relative flex justify-center items-center px-4 py-20 md:py-16 z-10">
