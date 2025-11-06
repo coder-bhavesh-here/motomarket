@@ -14,7 +14,8 @@
             <li><a href="/privacy-policy" target="_blank">Privacy policy</a></li>
             <div class="flex justify-start items-center align-center gap-4 mt-10">
                 <a href="https://www.facebook.com/WorldonMotoAdventures" target="_blank"><img src="{{ asset('images/fb.png') }}"></a>
-                <img src="{{ asset('images/yt.png') }}">
+                <a href="https://www.youtube.com/@WorldonMoto" target="_blank"><img src="{{ asset('images/yt.png') }}"></a>
+                {{-- <img src="{{ asset('images/yt.png') }}"> --}}
                 <img src="{{ asset('images/ig.png') }}">
                 <img src="{{ asset('images/in.png') }}">
             </div>
