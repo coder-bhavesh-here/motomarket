@@ -683,8 +683,9 @@ class TourController extends Controller
                     $booking = Booking::create($data);
                 }
                 $tour = Tour::withTrashed()->find($booking->tour_id);
-                // Mail::to(Auth::user()->tour_contact_email)->send(new BookingConfirmedAgency($booking));
-                // Mail::to(Auth::user()->email)->send(new BookingConfirmed($booking));
+                $tourOperator = User::find($tour->user_id);
+                Mail::to($tourOperator->tour_contact_email)->send(new BookingConfirmedAgency($booking));
+                Mail::to(Auth::user()->email)->send(new BookingConfirmed($booking));
                 Mail::to('bhavesh@motomob.tech')->send(new BookingConfirmedAgency($booking));
                 Mail::to('bhavesh@motomob.tech')->send(new BookingConfirmed($booking));
                 IncompleteBooking::where('user_id', auth()->id())
@@ -1398,10 +1399,10 @@ class TourController extends Controller
         if (in_array($booking->status, ['cancelled', 'refunded'])) {
             return response()->json(['success' => false, 'message' => 'This booking has already been refunded.']);
         }
-        Mail::to(auth()->user()->email)->send(new BookingCancel($booking));
-        Mail::to(auth()->user()->email)->send(new BookingCancelAgency($booking));
         $tour = Tour::find($booking->tour_id);
         $user = User::find($tour->user_id);
+        Mail::to(auth()->user()->email)->send(new BookingCancel($booking));
+        Mail::to($user->tour_contact_email)->send(new BookingCancelAgency($booking));
         $currency = $user->tour_currency;
         $refundType = $request->refund_type; // 'refund' or 'credits'
         $paymentId = $booking->payment_id;
