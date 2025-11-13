@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking Confirmation</title>
+    <title>Booking Confirmation – World on Moto</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -35,10 +35,21 @@
 
         .content {
             margin-bottom: 20px;
+            color: #333;
         }
 
         .content h2 {
             color: #555;
+        }
+
+        .content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .content table td {
+            padding: 8px 0;
         }
 
         .footer {
@@ -54,10 +65,13 @@
         <div class="header">
             <h1>Booking Confirmation</h1>
         </div>
+
         <div class="content">
             <h2>Hello {{ $booking->name }},</h2>
-            <p>Thank you for booking your tour with us! Here are your booking details:</p>
-            <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+
+            <p>Thank you for booking your tour with <strong>World on Moto</strong>! Please find your booking details below:</p>
+
+            <table>
                 <tr>
                     <td><strong>Booking ID:</strong></td>
                     <td>{{ $booking->id }}</td>
@@ -95,11 +109,16 @@
                     <td>{{ $booking->postcode }}</td>
                 </tr>
             </table>
-            <p>If you have any questions or need to make changes to your booking, feel free to contact us.</p>
-            <p>We look forward to serving you!</p>
+
+            <p style="margin-top:20px;">
+                Should you have any questions or wish to make changes to your booking, please do not hesitate to get in touch with us.
+            </p>
+
+            <p>We look forward to welcoming you on your tour!</p>
         </div>
+
         <div class="footer">
-            <p>&copy; {{ date('Y') }} WorldOnMoto. All rights reserved.</p>
+            <p>&copy; {{ date('Y') }} World on Moto. All rights reserved.</p>
         </div>
     </div>
 </body>

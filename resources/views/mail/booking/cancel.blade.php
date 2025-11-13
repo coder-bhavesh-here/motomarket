@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking Confirmation</title>
+    <title>Booking Cancellation – World on Moto</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -35,10 +35,21 @@
 
         .content {
             margin-bottom: 20px;
+            color: #333;
         }
 
         .content h2 {
             color: #555;
+        }
+
+        .content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .content table td {
+            padding: 8px 0;
         }
 
         .footer {
@@ -54,10 +65,13 @@
         <div class="header">
             <h1>Booking Cancellation</h1>
         </div>
+
         <div class="content">
             <h2>Hello {{ $booking->name }},</h2>
-            <p>Thank you for booking your tour with us! Here are your booking details:</p>
-            <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+
+            <p>We regret to inform you that your tour booking has been cancelled. Below are your booking details:</p>
+
+            <table>
                 <tr>
                     <td><strong>Booking ID:</strong></td>
                     <td>{{ $booking->id }}</td>
@@ -71,11 +85,17 @@
                     <td>€{{ $booking->amount }}</td>
                 </tr>
             </table>
-            <p>If you have made the payment in two installments, then the refund will also be credited in two parts.</p>
-            <p>We look forward to serving you!</p>
+
+            <p style="margin-top:20px;">
+                If your payment was made in two installments, the refund will also be processed in two corresponding parts.  
+                Please allow a few business days for the funds to reflect in your account.
+            </p>
+
+            <p>We hope to welcome you on another tour in the near future and thank you for your understanding.</p>
         </div>
+
         <div class="footer">
-            <p>&copy; {{ date('Y') }} WorldOnMoto. All rights reserved.</p>
+            <p>&copy; {{ date('Y') }} World on Moto. All rights reserved.</p>
         </div>
     </div>
 </body>

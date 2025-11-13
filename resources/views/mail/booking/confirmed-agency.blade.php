@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Booking Notification</title>
+    <title>New Booking Notification – World on Moto</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -35,10 +35,21 @@
 
         .content {
             margin-bottom: 20px;
+            color: #333;
         }
 
-        .content h2 {
+        .content h2, .content h3 {
             color: #555;
+        }
+
+        .content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+
+        .content table td {
+            padding: 8px 0;
         }
 
         .footer {
@@ -54,10 +65,13 @@
         <div class="header">
             <h1>New Booking Notification</h1>
         </div>
+
         <div class="content">
             <h2>Dear Agency,</h2>
-            <p>A new booking has been made. Below are the details of the booking:</p>
-            <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+
+            <p>A new booking has been made. Please find the details below:</p>
+
+            <table>
                 <tr>
                     <td><strong>Booking ID:</strong></td>
                     <td>{{ $booking->id }}</td>
@@ -75,8 +89,10 @@
                     <td>{{ $booking->addons }}</td>
                 </tr>
             </table>
+
             <h3>Customer Details:</h3>
-            <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+
+            <table>
                 <tr>
                     <td><strong>Name:</strong></td>
                     <td>{{ $booking->name }}</td>
@@ -102,10 +118,15 @@
                     <td>{{ $booking->postcode }}</td>
                 </tr>
             </table>
-            <p>Please review the booking and prepare for the customer's tour accordingly.</p>
+
+            <p style="margin-top:20px;">
+                Please review the booking and make the necessary preparations for the customer’s tour.  
+                Thank you for your attention and support.
+            </p>
         </div>
+
         <div class="footer">
-            <p>&copy; {{ date('Y') }} WorldOnMoto. All rights reserved.</p>
+            <p>&copy; {{ date('Y') }} World on Moto. All rights reserved.</p>
         </div>
     </div>
 </body>

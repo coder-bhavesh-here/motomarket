@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Booking Cancellation</title>
+    <title>Booking Cancelled – World on Moto</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -35,10 +35,21 @@
 
         .content {
             margin-bottom: 20px;
+            color: #333;
         }
 
         .content h2 {
             color: #555;
+        }
+
+        .content table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .content table td {
+            padding: 8px 0;
         }
 
         .footer {
@@ -54,10 +65,13 @@
         <div class="header">
             <h1>Booking Cancelled</h1>
         </div>
+
         <div class="content">
-            <h2>Hello,</h2>
-            {{-- <p>Thank you for booking your tour with us! Here are your booking details:</p> --}}
-            <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+            <h2>Dear Agency,</h2>
+
+            <p>The following booking has been cancelled by the customer. Please review and update your records accordingly:</p>
+
+            <table>
                 <tr>
                     <td><strong>Booking ID:</strong></td>
                     <td>{{ $booking->id }}</td>
@@ -71,9 +85,17 @@
                     <td>€{{ $booking->amount }}</td>
                 </tr>
             </table>
+
+            <p style="margin-top:20px;">
+                If payment was made in multiple instalments, refunds will be processed in the corresponding parts.  
+                Please allow a few business days for the funds to reflect.
+            </p>
+
+            <p>Thank you for your attention to this matter.</p>
         </div>
+
         <div class="footer">
-            <p>&copy; {{ date('Y') }} WorldOnMoto. All rights reserved.</p>
+            <p>&copy; {{ date('Y') }} World on Moto. All rights reserved.</p>
         </div>
     </div>
 </body>

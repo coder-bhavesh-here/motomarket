@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Email Verification Code</title>
+    <title>Temporary Password – World on Moto</title>
 </head>
 <body style="background-color:#ffffff; font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; margin:0; padding:0;">
     <div style="max-width:600px; margin:0 auto; padding:40px 20px; text-align:center;">
@@ -14,12 +14,13 @@
 
         {{-- Heading --}}
         <h1 style="font-size:20px; font-weight:600; color:#556b2f; margin-bottom:20px;">
-            World on Moto Says Hello!
+            A Warm Hello from World on Moto
         </h1>
 
         {{-- Message --}}
-        <p style="font-size:16px; color:#333; margin-bottom:24px;">
-            Here is your temporary password that you can use for login:
+        <p style="font-size:16px; color:#333; margin-bottom:24px; line-height:1.6;">
+            We’ve created a <strong>temporary password</strong> for you to access your account. 
+            Please use the password below to log in, and make sure to update it soon for your security.
         </p>
 
         {{-- Code --}}
@@ -28,10 +29,11 @@
         </div>
 
         {{-- Footer text --}}
-        <p style="font-size:16px; color:#333; margin-top:24px;">
-            Please log in using this password and change it immediately for security.
-            <br>
-            Thanks,<br>WorldonMoto.
+        <p style="font-size:16px; color:#333; margin-top:24px; line-height:1.6;">
+            If you didn’t request this password reset, please disregard this email or get in touch with our support team.  
+            <br><br>
+            Kind regards,<br>
+            <strong>World on Moto Team</strong>
         </p>
     </div>
 </body>

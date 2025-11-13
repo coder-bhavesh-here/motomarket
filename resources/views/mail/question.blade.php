@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New Question Notification</title>
+    <title>New Question Notification – World on Moto</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -35,16 +35,27 @@
 
         .content {
             margin-bottom: 20px;
+            color: #333;
         }
 
-        .content h2 {
-            color: #555;
+        .content a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #556b2f;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .content a:hover {
+            text-decoration: underline;
         }
 
         .footer {
             text-align: center;
             font-size: 12px;
             color: #999;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
         }
     </style>
 </head>
@@ -52,16 +63,31 @@
 <body>
     <div class="email-container">
         <div class="header">
-            <h1>New Question Notification</h1>
+            <h1>New Question on Your Tour</h1>
         </div>
+
         <div class="content">
-            <p>Hello!</p>
-            <p>A user asked a question on one of your tours. Please check out the question here: </p>
-            <a href="{{ route('tour.show', ['tourId' => $tourId]) }}#questionsList">Link</a>
-            <p>Thank you,</p>
+            <p>Dear Tour Operator,</p>
+
+            <p>We wanted to let you know that a traveller has posted a new question on one of your tours.  
+               You can view and respond to it by clicking the link below:</p>
+
+            <a href="{{ route('tour.show', ['tourId' => $tourId]) }}#questionsList" target="_blank">
+                View the Question
+            </a>
+
+            <p style="margin-top: 20px;">
+                Thank you for being part of <strong>World on Moto</strong>.  
+                We appreciate your continued support and engagement with our community of riders.
+            </p>
+
+            <p>Kind regards,<br>
+                <strong>The World on Moto Team</strong>
+            </p>
         </div>
+
         <div class="footer">
-            <p>&copy; {{ date('Y') }} WorldOnMoto. All rights reserved.</p>
+            <p>&copy; {{ date('Y') }} World on Moto. All rights reserved.</p>
         </div>
     </div>
 </body>
